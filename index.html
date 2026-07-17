@@ -1,13 +1,109 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="pt-br">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ibamsimulados</title>
+    <title>IBAM Simulados Premium</title>
+    <meta name="description" content="Plataforma de simulados de alta performance focada na banca IBAM." />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   </head>
   <body>
-    <div id="app"></div>
+    <div id="app">
+      <!-- Loading State -->
+      <div id="loading" class="screen flex-center">
+        <div class="loader"></div>
+        <p>Preparando seu simulado...</p>
+      </div>
+
+      <!-- Start Screen -->
+      <div id="start-screen" class="screen flex-center hidden">
+        <div class="glass-card text-center">
+          <h1 class="gradient-text">IBAM Elite Simulados</h1>
+          <p id="exam-title" class="subtitle"></p>
+          <div class="exam-stats">
+            <div class="stat"><span id="q-count">0</span> Questões</div>
+            <div class="stat">Assistente Social</div>
+          </div>
+          <button id="btn-start" class="btn-primary">Iniciar Prova</button>
+        </div>
+      </div>
+
+      <!-- Exam Screen -->
+      <div id="exam-screen" class="screen hidden">
+        <header class="glass-header">
+          <div class="header-left">
+            <h2>IBAM <span>Simulados</span></h2>
+          </div>
+          <div class="header-right">
+            <div id="timer" class="timer">00:00:00</div>
+            <button id="btn-finish" class="btn-danger">Finalizar Prova</button>
+          </div>
+        </header>
+        
+        <main class="exam-container">
+          <aside class="sidebar glass-card">
+            <h3>Navegação</h3>
+            <div id="question-grid" class="question-grid">
+              <!-- Rendered via JS -->
+            </div>
+          </aside>
+          
+          <section class="question-area glass-card">
+            <div class="question-header">
+              <span id="current-disciplina" class="badge">Disciplina</span>
+              <span id="current-q-number" class="q-number">Questão 1</span>
+            </div>
+            
+            <div id="question-text" class="question-text">
+              <!-- Rendered via JS -->
+            </div>
+            
+            <div id="options-container" class="options-container">
+              <!-- Rendered via JS -->
+            </div>
+            
+            <div class="question-footer">
+              <button id="btn-prev" class="btn-secondary" disabled>Anterior</button>
+              <button id="btn-next" class="btn-primary">Próxima</button>
+            </div>
+          </section>
+        </main>
+      </div>
+
+      <!-- Results Screen -->
+      <div id="results-screen" class="screen flex-center hidden">
+        <div class="glass-card text-center results-card">
+          <h1 class="gradient-text">Desempenho</h1>
+          
+          <div class="score-circle">
+            <svg viewBox="0 0 36 36" class="circular-chart">
+              <path class="circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+              <path id="score-path" class="circle" stroke-dasharray="0, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+              <text id="score-text" x="18" y="20.35" class="percentage">0%</text>
+            </svg>
+          </div>
+
+          <div class="results-stats">
+            <div class="stat-box">
+              <span class="label">Corretas</span>
+              <span id="res-correct" class="value success">0</span>
+            </div>
+            <div class="stat-box">
+              <span class="label">Total</span>
+              <span id="res-total" class="value">0</span>
+            </div>
+            <div class="stat-box">
+              <span class="label">Tempo</span>
+              <span id="res-time" class="value">00:00:00</span>
+            </div>
+          </div>
+          
+          <button id="btn-restart" class="btn-secondary mt-4">Tentar Novamente</button>
+        </div>
+      </div>
+    </div>
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>
