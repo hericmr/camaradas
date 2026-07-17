@@ -1,56 +1,57 @@
 import './style.css';
 import { SimuladoEngine } from './engine/SimuladoEngine';
-
-// Fetch the exam data statically since it's local in Vite
 import ibamData from './data/ibam_provas.json';
 
-// Get the first available exam
 const examKey = Object.keys(ibamData)[0];
 const examQuestions = ibamData[examKey];
+const DURATION_MS = 3.5 * 60 * 60 * 1000;
 
-// State
 let engine = null;
 let currentQuestionIndex = 0;
 let timerInterval = null;
+let hasTimerLimit = true;
 
-// DOM Elements
 const screens = {
-  loading: document.getElementById('loading'),
   start: document.getElementById('start-screen'),
   exam: document.getElementById('exam-screen'),
   results: document.getElementById('results-screen')
 };
 
-// Start Screen
 const elExamTitle = document.getElementById('exam-title');
 const elQCount = document.getElementById('q-count');
 const btnStart = document.getElementById('btn-start');
+const elModeToggle = document.getElementById('mode-toggle');
 
-// Exam Screen
 const elTimer = document.getElementById('timer');
 const btnFinish = document.getElementById('btn-finish');
 const gridContainer = document.getElementById('question-grid');
-const elCurrentDisciplina = document.getElementById('current-disciplina');
+
+const elCardDisciplina = document.getElementById('card-disciplina');
+const elCardEdital = document.getElementById('card-edital');
+const elCardBanca = document.getElementById('card-banca');
+
 const elCurrentQNumber = document.getElementById('current-q-number');
 const elQuestionText = document.getElementById('question-text');
 const elOptionsContainer = document.getElementById('options-container');
+
 const btnPrev = document.getElementById('btn-prev');
+const btnCheck = document.getElementById('btn-check');
 const btnNext = document.getElementById('btn-next');
 
-// Initialize App
 function init() {
   elExamTitle.textContent = examKey;
   elQCount.textContent = examQuestions.length;
+  elModeToggle.checked = false;
   showScreen('start');
   
-  // Event Listeners
   btnStart.addEventListener('click', startExam);
-  btnFinish.addEventListener('click', finishExam);
+  btnFinish.addEventListener('click', () => finishExam(false));
   btnPrev.addEventListener('click', () => navigateTo(currentQuestionIndex - 1));
+  btnCheck.addEventListener('click', checkCurrentQuestion);
   btnNext.addEventListener('click', () => navigateTo(currentQuestionIndex + 1));
   
   document.getElementById('btn-restart').addEventListener('click', () => {
-    init(); // Reset
+    init();
   });
 }
 
@@ -70,14 +71,37 @@ function formatTime(ms) {
 function updateTimerDisplay() {
   if (!engine || !engine.startTime) return;
   const elapsed = Date.now() - engine.startTime;
-  elTimer.textContent = formatTime(elapsed);
+  
+  if (hasTimerLimit) {
+    const timeLeft = DURATION_MS - elapsed;
+    if (timeLeft <= 0) {
+      elTimer.textContent = "00:00:00";
+      finishExam(true);
+      return;
+    }
+    elTimer.textContent = formatTime(timeLeft);
+    if (timeLeft < 10 * 60 * 1000) {
+      elTimer.style.color = 'var(--danger)';
+    }
+  } else {
+    elTimer.textContent = formatTime(elapsed);
+  }
 }
 
 function startExam() {
+  hasTimerLimit = !elModeToggle.checked;
+  
+  if (hasTimerLimit) {
+    elTimer.style.color = '#b45309'; // warning
+  }
+  
+  btnFinish.classList.remove('hidden');
+
   engine = new SimuladoEngine(examQuestions);
   engine.start();
   currentQuestionIndex = 0;
   
+  updateTimerDisplay();
   timerInterval = setInterval(updateTimerDisplay, 1000);
   
   buildNavigationGrid();
@@ -102,11 +126,7 @@ function updateNavigationGrid() {
   engine.questions.forEach((_, i) => {
     const btn = document.getElementById(`nav-q-${i}`);
     if (!btn) return;
-    
-    // Reset classes
     btn.className = 'grid-btn';
-    
-    // Add states
     if (engine.answers[i]) btn.classList.add('answered');
     if (i === currentQuestionIndex) btn.classList.add('active');
   });
@@ -121,66 +141,94 @@ function navigateTo(index) {
 function renderQuestion(index) {
   const q = engine.questions[index];
   
-  elCurrentDisciplina.textContent = q.disciplina;
+  if(q.disciplina) elCardDisciplina.innerHTML = `<strong>Disciplina:</strong> ${q.disciplina}`;
+  if(q.id_concurso) elCardEdital.innerHTML = `<strong>Edital:</strong> ${q.id_concurso}`;
+  if(q.banca) elCardBanca.innerHTML = `<strong>Banca:</strong> ${q.banca}`;
+  
   elCurrentQNumber.textContent = `Questão ${index + 1} de ${engine.questions.length}`;
   
-  // Format question text (simple HTML encoding avoiding XSS since it's local, but be careful)
-  elQuestionText.textContent = q.questão;
+  // Handling enunciado e texto_relevante
+  let htmlText = '';
+  if (q.texto_relevante) {
+    htmlText += `<div style="background:#f9fafb; padding:1rem; border-radius:0.5rem; margin-bottom:1rem; border:1px solid #f3f4f6;">${q.texto_relevante}</div>`;
+  }
+  htmlText += `<p>${q.questão || q.enunciado}</p>`;
+  elQuestionText.innerHTML = htmlText;
   
-  // Render options
   elOptionsContainer.innerHTML = '';
   const selectedAnswer = engine.answers[index];
+  const isChecked = engine.checkedQuestions[index];
+  const correctAnswer = q.resposta_correta;
   
   if (q.alternativas) {
     Object.entries(q.alternativas).forEach(([letter, text]) => {
       const btn = document.createElement('button');
-      btn.className = `option-btn ${selectedAnswer === letter ? 'selected' : ''}`;
       
-      // Clean up the text: removes the "(A) " prefix if present since we'll style it
+      let classes = ['option-btn'];
+      if (selectedAnswer === letter) classes.push('selected');
+      
+      if (isChecked) {
+        if (letter === correctAnswer) {
+          classes.push('correct-ans');
+        } else if (selectedAnswer === letter && letter !== correctAnswer) {
+          classes.push('wrong-ans');
+        }
+        btn.disabled = true;
+      }
+      
+      btn.className = classes.join(' ');
+      
       const cleanText = text.replace(/^\([A-E]\)\s*/, '');
+      btn.innerHTML = `<span class="option-letter">${letter})</span><span>${cleanText}</span>`;
       
-      btn.innerHTML = `<strong>${letter}</strong><span style="margin-left:1rem">${cleanText}</span>`;
-      
-      btn.addEventListener('click', () => {
-        engine.answerQuestion(index, letter);
-        renderQuestion(index); // Re-render to show selection
-      });
+      if (!isChecked) {
+        btn.addEventListener('click', () => {
+          engine.answerQuestion(index, letter);
+          renderQuestion(index);
+        });
+      }
       
       elOptionsContainer.appendChild(btn);
     });
   }
 
-  // Update Buttons
   btnPrev.disabled = index === 0;
   btnNext.disabled = index === engine.questions.length - 1;
   
-  // Update Grid
+  if (isChecked || !selectedAnswer) {
+    btnCheck.disabled = true;
+    if (isChecked) {
+      btnCheck.classList.add('hidden');
+    } else {
+      btnCheck.classList.remove('hidden');
+    }
+  } else {
+    btnCheck.disabled = false;
+    btnCheck.classList.remove('hidden');
+  }
+  
   updateNavigationGrid();
 }
 
-function finishExam() {
-  if (!confirm("Tem certeza que deseja finalizar a prova?")) return;
+function checkCurrentQuestion() {
+  if (!engine.answers[currentQuestionIndex]) return;
+  engine.checkQuestion(currentQuestionIndex);
+  renderQuestion(currentQuestionIndex);
+}
+
+function finishExam(isAuto = false) {
+  if (!isAuto && !confirm("Tem certeza que deseja finalizar a prova?")) return;
   
   clearInterval(timerInterval);
   engine.finish();
   const score = engine.getScore();
-  
+  btnFinish.classList.add('hidden');
   showScreen('results');
   
-  // Animate the circle
-  const scorePath = document.getElementById('score-path');
-  const scoreText = document.getElementById('score-text');
-  
-  // Dash array calculation: circle circumference is ~100 with radius 15.9155
-  setTimeout(() => {
-    scorePath.setAttribute('stroke-dasharray', `${score.percentage}, 100`);
-    scoreText.textContent = `${Math.round(score.percentage)}%`;
-  }, 100);
-  
+  document.getElementById('score-text').textContent = `${Math.round(score.percentage)}%`;
   document.getElementById('res-correct').textContent = score.correct;
   document.getElementById('res-total').textContent = score.total;
   document.getElementById('res-time').textContent = formatTime(score.timeTakenMs);
 }
 
-// Start
 init();

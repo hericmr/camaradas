@@ -4,6 +4,7 @@ export class SimuladoEngine {
   constructor(examData) {
     this.questions = examData;
     this.answers = {}; // questionIndex -> letter selected
+    this.checkedQuestions = {}; // questionIndex -> boolean
     this.startTime = null;
     this.endTime = null;
     this.isFinished = false;
@@ -16,7 +17,15 @@ export class SimuladoEngine {
   answerQuestion(index, letter) {
     if (this.isFinished) throw new Error("Exam is already finished");
     if (index < 0 || index >= this.questions.length) throw new Error("Invalid question index");
+    if (this.checkedQuestions[index]) throw new Error("Question already checked");
     this.answers[index] = letter;
+  }
+
+  checkQuestion(index) {
+    if (this.isFinished) throw new Error("Exam is already finished");
+    if (!this.answers[index]) throw new Error("Question not answered yet");
+    this.checkedQuestions[index] = true;
+    return this.questions[index].resposta_correta;
   }
 
   finish() {
