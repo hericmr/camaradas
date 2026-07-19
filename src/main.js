@@ -18,8 +18,8 @@ const screens = {
   results: document.getElementById('results-screen')
 };
 
-const elExamTitle = document.getElementById('exam-title');
 const elQCount = document.getElementById('q-count');
+const elBadgeCargo = document.getElementById('badge-cargo');
 const btnStart = document.getElementById('btn-start');
 const elModeToggle = document.getElementById('mode-toggle');
 const elExamSelect = document.getElementById('exam-select');
@@ -28,8 +28,10 @@ const elTimer = document.getElementById('timer');
 const btnFinish = document.getElementById('btn-finish');
 const gridContainer = document.getElementById('question-grid');
 
+const elCardCargo = document.getElementById('card-cargo');
 const elCardDisciplina = document.getElementById('card-disciplina');
 const elCardEdital = document.getElementById('card-edital');
+const elCardAno = document.getElementById('card-ano');
 const elCardBanca = document.getElementById('card-banca');
 
 const elCurrentQNumber = document.getElementById('current-q-number');
@@ -57,8 +59,8 @@ function populateExamSelect() {
 function selectExam(key) {
   examKey = key;
   examQuestions = ibamData[examKey];
-  elExamTitle.textContent = examKey;
   elQCount.textContent = examQuestions.length;
+  elBadgeCargo.textContent = examQuestions[0]?.cargo || '';
 }
 
 function init() {
@@ -165,9 +167,12 @@ function navigateTo(index) {
 function renderQuestion(index) {
   const q = engine.questions[index];
   
+  if(q.cargo) elCardCargo.innerHTML = `<strong>Cargo:</strong> ${q.cargo}`;
   if(q.disciplina) elCardDisciplina.innerHTML = `<strong>Disciplina:</strong> ${q.disciplina}`;
   if(q.id_concurso) elCardEdital.innerHTML = `<strong>Edital:</strong> ${q.id_concurso}`;
   if(q.banca) elCardBanca.innerHTML = `<strong>Banca:</strong> ${q.banca}`;
+  const ano = q.id_concurso && q.id_concurso.match(/\d{4}/);
+  if (ano) elCardAno.innerHTML = `<strong>Ano:</strong> ${ano[0]}`;
   
   elCurrentQNumber.textContent = `Questão ${index + 1} de ${engine.questions.length}`;
   

@@ -29,18 +29,15 @@
         <!-- Tela de Início -->
         <div id="start-screen" class="card text-center mt-8 hidden">
           <img src="/logo.webp" alt="Logo" class="start-logo mx-auto mb-4" />
-          <h1 class="text-xl font-bold mb-2">Simulado IBAM</h1>
 
-          <div class="exam-select-wrapper mb-4">
+          <div class="exam-select-wrapper mb-6">
             <label for="exam-select" class="text-sm font-semibold text-gray-700 mb-2">Escolha a prova</label>
             <select id="exam-select" class="exam-select"></select>
           </div>
 
-          <p id="exam-title" class="text-gray-600 mb-6"></p>
-
           <div class="flex justify-center gap-4 mb-6">
             <span class="badge"><span id="q-count">0</span> Questões</span>
-            <span class="badge">Assistente Social</span>
+            <span class="badge" id="badge-cargo"></span>
           </div>
 
           <div class="mode-selector mb-6">
@@ -68,9 +65,9 @@
             
             <!-- Faixa escura no topo com as infos -->
             <div class="card-banner">
-              <div><strong>Cargo:</strong> Assistente Social</div>
+              <div id="card-cargo"><strong>Cargo:</strong> Assistente Social</div>
               <div id="card-edital"><strong>Edital:</strong> 01/2026</div>
-              <div><strong>Ano:</strong> 2026</div>
+              <div id="card-ano"><strong>Ano:</strong> 2026</div>
               <div id="card-banca"><strong>Banca:</strong> IBAM</div>
               <div id="card-disciplina"><strong>Disciplina:</strong> Língua Portuguesa</div>
             </div>
