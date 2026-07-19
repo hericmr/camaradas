@@ -38,6 +38,9 @@ const btnPrev = document.getElementById('btn-prev');
 const btnCheck = document.getElementById('btn-check');
 const btnNext = document.getElementById('btn-next');
 
+const elAreaBreakdown = document.getElementById('area-breakdown');
+const elReviewList = document.getElementById('review-list');
+
 function init() {
   elExamTitle.textContent = examKey;
   elQCount.textContent = examQuestions.length;
@@ -229,6 +232,51 @@ function finishExam(isAuto = false) {
   document.getElementById('res-correct').textContent = score.correct;
   document.getElementById('res-total').textContent = score.total;
   document.getElementById('res-time').textContent = formatTime(score.timeTakenMs);
+
+  renderAreaBreakdown(engine.getBreakdownByArea());
+  renderReviewList(engine.getReview());
+}
+
+function renderAreaBreakdown(areas) {
+  elAreaBreakdown.innerHTML = '';
+  areas.forEach(({ area, correct, total, percentage }) => {
+    const div = document.createElement('div');
+    div.className = 'area-item';
+    div.innerHTML = `
+      <div class="area-item-header">
+        <span class="area-name">${area}</span>
+        <span class="area-percent">${Math.round(percentage)}%</span>
+      </div>
+      <div class="area-bar"><div class="area-bar-fill" style="width:${percentage}%"></div></div>
+      <div class="area-detail">${correct} de ${total} questões</div>
+    `;
+    elAreaBreakdown.appendChild(div);
+  });
+}
+
+function renderReviewList(review) {
+  elReviewList.innerHTML = '';
+  review.forEach(({ index, disciplina, userAnswer, correctAnswer, isCorrect }) => {
+    let statusClass = 'review-item--wrong';
+    let statusText = 'Incorreta';
+    if (!userAnswer) {
+      statusClass = 'review-item--blank';
+      statusText = 'Não respondida';
+    } else if (isCorrect) {
+      statusClass = 'review-item--correct';
+      statusText = 'Correta';
+    }
+    const div = document.createElement('div');
+    div.className = `review-item ${statusClass}`;
+    div.innerHTML = `
+      <span class="review-q-number">${index + 1}</span>
+      <span class="review-area">${disciplina || ''}</span>
+      <span class="review-answer">Sua resposta: <strong>${userAnswer || 'Não respondida'}</strong></span>
+      <span class="review-correct">Gabarito: <strong>${correctAnswer}</strong></span>
+      <span class="review-status">${statusText}</span>
+    `;
+    elReviewList.appendChild(div);
+  });
 }
 
 init();

@@ -53,4 +53,40 @@ describe('SimuladoEngine', () => {
     engine.finish();
     expect(() => engine.answerQuestion(0, "A")).toThrow("Exam is already finished");
   });
+
+  it('should provide a per-question review with the user answer and the correct answer', () => {
+    const engine = new SimuladoEngine(mockQuestions);
+    engine.start();
+    engine.answerQuestion(0, "A"); // correct
+    engine.answerQuestion(1, "C"); // wrong
+    // Q3 left unanswered, but is annulled
+    engine.finish();
+
+    const review = engine.getReview();
+    expect(review).toEqual([
+      { index: 0, disciplina: null, userAnswer: "A", correctAnswer: "A", isCorrect: true },
+      { index: 1, disciplina: null, userAnswer: "C", correctAnswer: "B", isCorrect: false },
+      { index: 2, disciplina: null, userAnswer: null, correctAnswer: "Nula", isCorrect: true }
+    ]);
+  });
+
+  it('should calculate the breakdown of correct/incorrect answers per disciplina', () => {
+    const questionsByArea = [
+      { questão: "Q1", disciplina: "Português", resposta_correta: "A" },
+      { questão: "Q2", disciplina: "Português", resposta_correta: "B" },
+      { questão: "Q3", disciplina: "Matemática", resposta_correta: "C" }
+    ];
+    const engine = new SimuladoEngine(questionsByArea);
+    engine.start();
+    engine.answerQuestion(0, "A"); // Português correct
+    engine.answerQuestion(1, "X"); // Português wrong
+    engine.answerQuestion(2, "C"); // Matemática correct
+    engine.finish();
+
+    const breakdown = engine.getBreakdownByArea();
+    expect(breakdown).toEqual([
+      { area: "Português", correct: 1, total: 2, percentage: 50 },
+      { area: "Matemática", correct: 1, total: 1, percentage: 100 }
+    ]);
+  });
 });

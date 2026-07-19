@@ -33,24 +33,55 @@ export class SimuladoEngine {
     this.isFinished = true;
   }
 
+  isAnswerCorrect(index) {
+    const q = this.questions[index];
+    return q.resposta_correta === 'Nula' || this.answers[index] === q.resposta_correta;
+  }
+
   getScore() {
     if (!this.isFinished) throw new Error("Cannot calculate score before finishing");
-    
+
     let correct = 0;
     for (let i = 0; i < this.questions.length; i++) {
-      const q = this.questions[i];
-      if (q.resposta_correta === 'Nula') {
-        correct++; // Anuladas count as correct
-      } else if (this.answers[i] === q.resposta_correta) {
-        correct++;
-      }
+      if (this.isAnswerCorrect(i)) correct++;
     }
-    
+
     return {
       total: this.questions.length,
       correct: correct,
       percentage: (correct / this.questions.length) * 100,
       timeTakenMs: this.endTime - this.startTime
     };
+  }
+
+  getReview() {
+    if (!this.isFinished) throw new Error("Cannot calculate review before finishing");
+
+    return this.questions.map((q, i) => ({
+      index: i,
+      disciplina: q.disciplina || null,
+      userAnswer: this.answers[i] || null,
+      correctAnswer: q.resposta_correta,
+      isCorrect: this.isAnswerCorrect(i)
+    }));
+  }
+
+  getBreakdownByArea() {
+    if (!this.isFinished) throw new Error("Cannot calculate breakdown before finishing");
+
+    const areas = {};
+    this.questions.forEach((q, i) => {
+      const area = q.disciplina || 'Outros';
+      if (!areas[area]) areas[area] = { area, correct: 0, total: 0 };
+      areas[area].total++;
+      if (this.isAnswerCorrect(i)) areas[area].correct++;
+    });
+
+    return Object.values(areas).map(({ area, correct, total }) => ({
+      area,
+      correct,
+      total,
+      percentage: (correct / total) * 100
+    }));
   }
 }
