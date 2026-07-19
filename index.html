@@ -30,8 +30,14 @@
         <div id="start-screen" class="card text-center mt-8 hidden">
           <img src="/logo.webp" alt="Logo" class="start-logo mx-auto mb-4" />
           <h1 class="text-xl font-bold mb-2">Simulado IBAM</h1>
+
+          <div class="exam-select-wrapper mb-4">
+            <label for="exam-select" class="text-sm font-semibold text-gray-700 mb-2">Escolha a prova</label>
+            <select id="exam-select" class="exam-select"></select>
+          </div>
+
           <p id="exam-title" class="text-gray-600 mb-6"></p>
-          
+
           <div class="flex justify-center gap-4 mb-6">
             <span class="badge"><span id="q-count">0</span> Questões</span>
             <span class="badge">Assistente Social</span>

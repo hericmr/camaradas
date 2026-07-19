@@ -424,3 +424,27 @@ body {
 }
 .toggle-switch input:checked + .slider { background-color: var(--primary-blue); }
 .toggle-switch input:checked + .slider:before { transform: translateX(20px); }
+
+/* Seletor de simulado */
+.exam-select-wrapper {
+  max-width: 28rem;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
+}
+.exam-select-wrapper label { display: block; }
+.exam-select {
+  width: 100%;
+  padding: 0.6rem 0.75rem;
+  border: 1px solid var(--gray-200);
+  border-radius: 0.5rem;
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  color: var(--text-dark);
+  background-color: var(--white);
+  cursor: pointer;
+}
+.exam-select:focus {
+  outline: none;
+  border-color: var(--primary-blue);
+}

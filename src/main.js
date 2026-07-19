@@ -2,8 +2,9 @@ import './style.css';
 import { SimuladoEngine } from './engine/SimuladoEngine';
 import ibamData from './data/ibam_provas.json';
 
-const examKey = Object.keys(ibamData)[0];
-const examQuestions = ibamData[examKey];
+const examKeys = Object.keys(ibamData);
+let examKey = examKeys[0];
+let examQuestions = ibamData[examKey];
 const DURATION_MS = 3.5 * 60 * 60 * 1000;
 
 let engine = null;
@@ -21,6 +22,7 @@ const elExamTitle = document.getElementById('exam-title');
 const elQCount = document.getElementById('q-count');
 const btnStart = document.getElementById('btn-start');
 const elModeToggle = document.getElementById('mode-toggle');
+const elExamSelect = document.getElementById('exam-select');
 
 const elTimer = document.getElementById('timer');
 const btnFinish = document.getElementById('btn-finish');
@@ -41,18 +43,37 @@ const btnNext = document.getElementById('btn-next');
 const elAreaBreakdown = document.getElementById('area-breakdown');
 const elReviewList = document.getElementById('review-list');
 
-function init() {
+function populateExamSelect() {
+  elExamSelect.innerHTML = '';
+  examKeys.forEach((key) => {
+    const option = document.createElement('option');
+    option.value = key;
+    option.textContent = key;
+    elExamSelect.appendChild(option);
+  });
+  elExamSelect.value = examKey;
+}
+
+function selectExam(key) {
+  examKey = key;
+  examQuestions = ibamData[examKey];
   elExamTitle.textContent = examKey;
   elQCount.textContent = examQuestions.length;
+}
+
+function init() {
+  populateExamSelect();
+  selectExam(examKey);
   elModeToggle.checked = false;
   showScreen('start');
-  
+
+  elExamSelect.addEventListener('change', () => selectExam(elExamSelect.value));
   btnStart.addEventListener('click', startExam);
   btnFinish.addEventListener('click', () => finishExam(false));
   btnPrev.addEventListener('click', () => navigateTo(currentQuestionIndex - 1));
   btnCheck.addEventListener('click', checkCurrentQuestion);
   btnNext.addEventListener('click', () => navigateTo(currentQuestionIndex + 1));
-  
+
   document.getElementById('btn-restart').addEventListener('click', () => {
     init();
   });
