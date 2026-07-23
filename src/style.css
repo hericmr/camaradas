@@ -218,6 +218,36 @@ body {
   border: 1px solid var(--gray-200);
 }
 
+.study-links {
+  border-top: 1px solid var(--gray-200);
+  padding-top: 1.5rem;
+}
+
+.study-link {
+  display: inline-block;
+  color: var(--primary-blue-hover);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.study-link:hover {
+  text-decoration: underline;
+}
+
+.study-folder-list {
+  list-style: none;
+  margin-top: 0.75rem;
+}
+
+.study-folder-list li {
+  padding: 0.25rem 0;
+  border-bottom: 1px dashed var(--gray-200);
+}
+
+.study-folder-list li:last-child {
+  border-bottom: none;
+}
+
 /* The Classic Question Card */
 .question-card {
   background: var(--white);
