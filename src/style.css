@@ -262,6 +262,58 @@ body {
   white-space: pre;
 }
 
+.study-sources {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.study-source-group {
+  border: 1px solid var(--gray-200);
+  border-radius: 0.5rem;
+  padding: 0.5rem 0.75rem;
+}
+
+.study-source-group summary {
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: var(--text-dark);
+}
+
+.study-source-group ul {
+  list-style: none;
+  margin-top: 0.5rem;
+}
+
+.study-source-group li {
+  padding: 0.3rem 0;
+  font-size: 0.85rem;
+  border-bottom: 1px dashed var(--gray-200);
+}
+
+.study-source-group li:last-child {
+  border-bottom: none;
+}
+
+.study-source-group a {
+  color: var(--primary-blue-hover);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.study-source-group a:hover {
+  text-decoration: underline;
+}
+
+.study-warn {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--danger);
+  margin-top: 0.15rem;
+}
+
 /* The Classic Question Card */
 .question-card {
   background: var(--white);
