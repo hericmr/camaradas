@@ -234,34 +234,6 @@ body {
   text-decoration: underline;
 }
 
-.study-folder-list {
-  list-style: none;
-  margin-top: 0.75rem;
-}
-
-.study-folder-list li {
-  padding: 0.25rem 0;
-  border-bottom: 1px dashed var(--gray-200);
-}
-
-.study-folder-list li:last-child {
-  border-bottom: none;
-}
-
-.study-tree {
-  margin-top: 1rem;
-  padding: 1rem;
-  background: var(--gray-50);
-  border: 1px solid var(--gray-200);
-  border-radius: 0.5rem;
-  font-family: monospace;
-  font-size: 0.8rem;
-  line-height: 1.4;
-  color: var(--text-gray);
-  overflow-x: auto;
-  white-space: pre;
-}
-
 .study-sources {
   display: flex;
   flex-direction: column;
