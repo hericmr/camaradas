@@ -18,8 +18,6 @@ const screens = {
   results: document.getElementById('results-screen')
 };
 
-const elQCount = document.getElementById('q-count');
-const elBadgeCargo = document.getElementById('badge-cargo');
 const btnStart = document.getElementById('btn-start');
 const elModeToggle = document.getElementById('mode-toggle');
 const elExamSelect = document.getElementById('exam-select');
@@ -59,8 +57,6 @@ function populateExamSelect() {
 function selectExam(key) {
   examKey = key;
   examQuestions = ibamData[examKey];
-  elQCount.textContent = examQuestions.length;
-  elBadgeCargo.textContent = examQuestions[0]?.cargo || '';
 }
 
 function init() {
