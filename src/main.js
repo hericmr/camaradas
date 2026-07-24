@@ -18,6 +18,8 @@ const screens = {
   results: document.getElementById('results-screen')
 };
 
+const elHeader = document.querySelector('.app-header');
+
 const btnStart = document.getElementById('btn-start');
 const elModeToggle = document.getElementById('mode-toggle');
 const elExamSelect = document.getElementById('exam-select');
@@ -80,6 +82,7 @@ function init() {
 function showScreen(name) {
   Object.values(screens).forEach(el => el.classList.add('hidden'));
   screens[name].classList.remove('hidden');
+  elHeader.classList.toggle('hidden', name === 'start');
 }
 
 function formatTime(ms) {
