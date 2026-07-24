@@ -30,6 +30,17 @@ body {
   line-height: 1.5;
 }
 
+#start-screen::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background-image: url('/background.png');
+  background-repeat: repeat;
+  background-size: 256px 256px;
+  pointer-events: none;
+}
+
 /* Utilities */
 .hidden { display: none !important; }
 .text-center { text-align: center; }
@@ -206,16 +217,6 @@ body {
 .start-logo {
   max-width: 100%;
   height: auto;
-}
-
-.badge {
-  background: var(--gray-50);
-  padding: 0.25rem 0.75rem;
-  border-radius: 9999px;
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: var(--text-gray);
-  border: 1px solid var(--gray-200);
 }
 
 .study-links {
