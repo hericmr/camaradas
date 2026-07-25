@@ -1,4 +1,4 @@
-(function(){let e=document.createElement(`link`).relList;if(e&&e.supports&&e.supports(`modulepreload`))return;for(let e of document.querySelectorAll(`link[rel="modulepreload"]`))n(e);new MutationObserver(e=>{for(let t of e)if(t.type===`childList`)for(let e of t.addedNodes)e.tagName===`LINK`&&e.rel===`modulepreload`&&n(e)}).observe(document,{childList:!0,subtree:!0});function t(e){let t={};return e.integrity&&(t.integrity=e.integrity),e.referrerPolicy&&(t.referrerPolicy=e.referrerPolicy),e.crossOrigin===`use-credentials`?t.credentials=`include`:e.crossOrigin===`anonymous`?t.credentials=`omit`:t.credentials=`same-origin`,t}function n(e){if(e.ep)return;e.ep=!0;let n=t(e);fetch(e.href,n)}})();var e=class{constructor(e){this.questions=e,this.answers={},this.checkedQuestions={},this.startTime=null,this.endTime=null,this.isFinished=!1}start(){this.startTime=Date.now()}answerQuestion(e,t){if(this.isFinished)throw Error(`Exam is already finished`);if(e<0||e>=this.questions.length)throw Error(`Invalid question index`);if(this.checkedQuestions[e])throw Error(`Question already checked`);this.answers[e]=t}checkQuestion(e){if(this.isFinished)throw Error(`Exam is already finished`);if(!this.answers[e])throw Error(`Question not answered yet`);return this.checkedQuestions[e]=!0,this.questions[e].resposta_correta}finish(){this.endTime=Date.now(),this.isFinished=!0}isAnswerCorrect(e){let t=this.questions[e];return t.resposta_correta===`Nula`||this.answers[e]===t.resposta_correta}getScore(){if(!this.isFinished)throw Error(`Cannot calculate score before finishing`);let e=0;for(let t=0;t<this.questions.length;t++)this.isAnswerCorrect(t)&&e++;return{total:this.questions.length,correct:e,percentage:e/this.questions.length*100,timeTakenMs:this.endTime-this.startTime}}getReview(){if(!this.isFinished)throw Error(`Cannot calculate review before finishing`);return this.questions.map((e,t)=>({index:t,disciplina:e.disciplina||null,userAnswer:this.answers[t]||null,correctAnswer:e.resposta_correta,isCorrect:this.isAnswerCorrect(t)}))}getBreakdownByArea(){if(!this.isFinished)throw Error(`Cannot calculate breakdown before finishing`);let e={};return this.questions.forEach((t,n)=>{let r=t.disciplina||`Outros`;e[r]||(e[r]={area:r,correct:0,total:0}),e[r].total++,this.isAnswerCorrect(n)&&e[r].correct++}),Object.values(e).map(({area:e,correct:t,total:n})=>({area:e,correct:t,total:n,percentage:t/n*100}))}},t={"IBAM - Prefeitura de São Vicente - Assistente Social - 2026":[{alternativas:{A:`(A) Os travessões isolam um segmento explicativo de valor enumerativo e especificador, que explicita o conteúdo semântico do termo "saúde", sem alterar a estrutura sintática essencial da oração.`,B:`(B) Os travessões assinalam a supressão de um termo anteriormente mencionado, funcionando como recurso de elipse que evita repetição e garante maior fluidez ao encadeamento textual.`,C:`(C) Os travessões introduzem uma intercalação de natureza opinativa, na qual o enunciador acrescenta um comentário avaliativo que modifica o sentido original do termo "saúde" no contexto`,D:`(D) Os travessões delimitam uma oração subordinada adjetiva explicativa reduzida, responsável por restringir o significado do termo "saúde" e indicar suas possíveis classificações no período.`},cargo:`ASSISTENTE SOCIAL`,disciplina:`Língua Portuguesa`,id_concurso:`01/2026`,questão:`O texto seguinte servirá de base para responder
+(function(){let e=document.createElement(`link`).relList;if(e&&e.supports&&e.supports(`modulepreload`))return;for(let e of document.querySelectorAll(`link[rel="modulepreload"]`))n(e);new MutationObserver(e=>{for(let t of e)if(t.type===`childList`)for(let e of t.addedNodes)e.tagName===`LINK`&&e.rel===`modulepreload`&&n(e)}).observe(document,{childList:!0,subtree:!0});function t(e){let t={};return e.integrity&&(t.integrity=e.integrity),e.referrerPolicy&&(t.referrerPolicy=e.referrerPolicy),e.crossOrigin===`use-credentials`?t.credentials=`include`:e.crossOrigin===`anonymous`?t.credentials=`omit`:t.credentials=`same-origin`,t}function n(e){if(e.ep)return;e.ep=!0;let n=t(e);fetch(e.href,n)}})();var e=class{constructor(e){this.questions=e,this.answers={},this.checkedQuestions={},this.startTime=null,this.endTime=null,this.isFinished=!1}start(){this.startTime=Date.now()}answerQuestion(e,t){if(this.isFinished)throw Error(`Exam is already finished`);if(e<0||e>=this.questions.length)throw Error(`Invalid question index`);if(this.checkedQuestions[e])throw Error(`Question already checked`);this.answers[e]=t}checkQuestion(e){if(this.isFinished)throw Error(`Exam is already finished`);if(!this.answers[e])throw Error(`Question not answered yet`);return this.checkedQuestions[e]=!0,this.questions[e].resposta_correta}finish(){this.endTime=Date.now(),this.isFinished=!0}isAnswerCorrect(e){let t=this.questions[e];return t.resposta_correta===`Nula`||this.answers[e]===t.resposta_correta}getScore(){if(!this.isFinished)throw Error(`Cannot calculate score before finishing`);let e=0;for(let t=0;t<this.questions.length;t++)this.isAnswerCorrect(t)&&e++;return{total:this.questions.length,correct:e,percentage:e/this.questions.length*100,timeTakenMs:this.endTime-this.startTime}}getReview(){if(!this.isFinished)throw Error(`Cannot calculate review before finishing`);return this.questions.map((e,t)=>({index:t,disciplina:e.disciplina||null,userAnswer:this.answers[t]||null,correctAnswer:e.resposta_correta,isCorrect:this.isAnswerCorrect(t)}))}getBreakdownByArea(){if(!this.isFinished)throw Error(`Cannot calculate breakdown before finishing`);let e={};return this.questions.forEach((t,n)=>{let r=t.disciplina||`Outros`;e[r]||(e[r]={area:r,correct:0,total:0}),e[r].total++,this.isAnswerCorrect(n)&&e[r].correct++}),Object.values(e).map(({area:e,correct:t,total:n})=>({area:e,correct:t,total:n,percentage:t/n*100}))}},t=`ibam_history_v1`,n=`ibam_error_bank_v1`,r=50;function i(e,t){try{let n=localStorage.getItem(e);return n?JSON.parse(n):t}catch{return t}}function a(e,t){try{localStorage.setItem(e,JSON.stringify(t))}catch{}}function o(){return i(t,[])}function s(){a(t,[])}function c(){return i(n,{})}function l(){return Object.values(c()).sort((e,t)=>t.addedAt-e.addedAt)}function u(e,t,n){let r=n._examKey||e;return{originExam:r,qid:n._qid||`${r}#${t}`}}function ee({examKey:e,review:t,questions:r}){let i=c();t.forEach((t,n)=>{let a=r[n],{originExam:o,qid:s}=u(e,n,a);if(t.isCorrect){delete i[s];return}let c=i[s];i[s]={qid:s,examKey:o,disciplina:a.disciplina||`outros`,cargo:a.cargo,id_concurso:a.id_concurso,questão:a.questão,alternativas:a.alternativas,resposta_correta:a.resposta_correta,addedAt:c?c.addedAt:Date.now(),timesWrong:(c?c.timesWrong:0)+1}}),a(n,i)}function d({examKey:e,mode:n,score:i,breakdown:s,review:c,questions:l}){let u=o(),d={id:`${Date.now()}_${Math.random().toString(36).slice(2,8)}`,examKey:e,mode:n,date:Date.now(),score:i,breakdown:s};return u.unshift(d),u.length>r&&(u.length=r),a(t,u),ee({examKey:e,review:c,questions:l}),d}function f(){return l().map(e=>({...e,_qid:e.qid,_examKey:e.examKey}))}var p={"IBAM - Prefeitura de São Vicente - Assistente Social - 2026":[{alternativas:{A:`(A) Os travessões isolam um segmento explicativo de valor enumerativo e especificador, que explicita o conteúdo semântico do termo "saúde", sem alterar a estrutura sintática essencial da oração.`,B:`(B) Os travessões assinalam a supressão de um termo anteriormente mencionado, funcionando como recurso de elipse que evita repetição e garante maior fluidez ao encadeamento textual.`,C:`(C) Os travessões introduzem uma intercalação de natureza opinativa, na qual o enunciador acrescenta um comentário avaliativo que modifica o sentido original do termo "saúde" no contexto`,D:`(D) Os travessões delimitam uma oração subordinada adjetiva explicativa reduzida, responsável por restringir o significado do termo "saúde" e indicar suas possíveis classificações no período.`},cargo:`ASSISTENTE SOCIAL`,disciplina:`Língua Portuguesa`,id_concurso:`01/2026`,questão:`O texto seguinte servirá de base para responder
                                         às questões de 1 a 5.
 Qual é a importância de o profissional cuidar da própria saúde?
 Não é novidade que a carga de trabalho para o profissional da área da saúde é muito intensa. Médicos, enfermeiros e outros especialistas do ramo enfrentam longos plantões, realizam diversas tarefas e lidam com pressão e cobranças de forma constante.
@@ -1127,17 +1127,3284 @@ IV − Orientação e Acompanhamento a Adolescentes em Cumprimento de Medida Só
 I . No Código de Ética.
 II. Na Lei de Regulamentação de Profissão.
 III. No Congresso da Virada.
-IV. Nas Diretrizes para o Curso de Serviço Social da ABEPSS. Está correto o apresentado em:`,alternativas:{A:`(A) apenas I, II e IV`,B:`(B) apenas II`,C:`(C) apenas III e IV`,D:`(D) apenas III`,E:`(E) apenas I, II e III`},disciplina:`Conhecimentos Específicos`,cargo:`ESPECIALISTA EM SAÚDE - SERVIÇO SOCIAL`,id_concurso:`09/2024`,banca:`IBAM`,resposta_correta:`A`},{questão:`Complete o enunciado a seguir com uma das alternativas disponibilizadas. A Constituição Federal de 1988 traz uma nova concepção para a Assistência Social brasileira como direito do cidadão e dever do Estado. Incluída no âmbito da Seguridade Social e regulamentada ___________________.`,alternativas:{A:`(A) pelo Sistema Único de Assistência Social − SUAS.`,B:`(B) pelo Ministério Público.`,C:`(C) pelos Conselhos de Assistência Social.`,D:`(D) pela Casa Civil da Presidência da República.`,E:`(E) pela Lei Orgânica da Assistência Social − LOAS.`},disciplina:`Conhecimentos Específicos`,cargo:`ESPECIALISTA EM SAÚDE - SERVIÇO SOCIAL`,id_concurso:`09/2024`,banca:`IBAM`,resposta_correta:`E`},{questão:`Complete o enunciado a seguir com uma das alternativas disponibilizadas. A Política Nacional de Saúde da Pessoa com Deficiência é voltada para a inclusão das pessoas com deficiência em toda a rede de serviços do Sistema Único de Saúde (SUS). De acordo com esta política as equipes das unidades de reabilitação devem ser multiprofissionais e trabalhar de forma interdisciplinar, buscando recursos locais que facilitem o desenvolvimento integrado de processos de inclusão da pessoa com deficiência, envolvendo as unidades básicas de saúde, as comunidades e também __________________.`,alternativas:{A:`(A) o/a assistente social.`,B:`(B) o auxiliar social.`,C:`(C) os agentes públicos.`,D:`(D) os conselheiros de pessoa com deficiência.`,E:`(E) às famílias.`},disciplina:`Conhecimentos Específicos`,cargo:`ESPECIALISTA EM SAÚDE - SERVIÇO SOCIAL`,id_concurso:`09/2024`,banca:`IBAM`,resposta_correta:`E`},{questão:`Complete o enunciado a seguir com uma das alternativas disponibilizadas Yazbek (2006) explica que no início da década de 1990, do ponto de vista das referências teórico-metodológicas, a primeira questão que se coloca para a profissão é o confronto com a denominada 'crise' dos modelos analíticos, explicativos nas ciências sociais, que buscam captar o que está acontecendo no fim de século e as grandes transformações que alcançam múltiplos aspectos da vida social. No mundo do conhecimento começam as interferências que questionam e nivela os paradigmas marxista e positivista, denominado pensamento ____________________.`,alternativas:{A:`(A) pós-moderno.`,B:`(B) inter-cultural.`,C:`(C) ampliado.`,D:`(D) retrospectivo.`,E:`(E) sistêmico.`},disciplina:`Conhecimentos Específicos`,cargo:`ESPECIALISTA EM SAÚDE - SERVIÇO SOCIAL`,id_concurso:`09/2024`,banca:`IBAM`,resposta_correta:`A`},{questão:`O atual Código de Ética do/a assistente social está organizado por meio de princípios, deveres, direitos e proibições que orientam o comportamento ético profissional, ofertando seus objetivos ético-políticos, e, também parâmetros para a atuação do assistente social no cotidiano profissional. De acordo com o código o "posicionamento em favor da equidade e justiça social, que assegure universalidade de acesso aos bens e serviços relativos aos programas e políticas sociais, bem como sua gestão democrática", constui:`,alternativas:{A:`(A) uma Determinação dos Conselhos Regionais de Serviço Social.`,B:`(B) uma Competência do Conselho Federal de Serviço Social.`,C:`(C) um Dever do/a assistente social.`,D:`(D) um Princípio Fundamental.`,E:`(E) um Direito do/a assistente social.`},disciplina:`Conhecimentos Específicos`,cargo:`ESPECIALISTA EM SAÚDE - SERVIÇO SOCIAL`,id_concurso:`09/2024`,banca:`IBAM`,resposta_correta:`D`},{questão:`O Centro de Referência de Assistência Social (CRAS) é uma unidade pública estatal e descentralizada da Política de Assistência Social. Compete aos CRAS as seguintes funções exclusivas:`,alternativas:{A:`(A) a (re)inserção do indivíduo no território e apoio comunitário.`,B:`(B) restauração da cidadania e resolução de conflitos.`,C:`(C) Mediação de conflitos e acolhimento institucional.`,D:`(D) resolução de conflitos e apoio comunitário.`,E:`(E) gestão territorial e execução do PAIF.`},disciplina:`Conhecimentos Específicos`,cargo:`ESPECIALISTA EM SAÚDE - SERVIÇO SOCIAL`,id_concurso:`09/2024`,banca:`IBAM`,resposta_correta:`E`},{questão:`Complete o enunciado a seguir com uma das alternativas disponibilizadas. Bravo (2009) explica que o Movimento de Reconceituação foi um movimento impulsionado pelos acontecimentos econômico sociais, políticos e culturais da época que tiveram repercussão na profissão, principalmente na América Latina, a partir de 1965. Nesse mesmo ano, foi criada uma importante entidade com a finalidade de estimular e coordenar o debate da região, a partir de uma organização político profissional a ser desenvolvida em cada país, em articulação com a sociedade civil. Essa entidade que se destacou na articulação latino-americana foi __________________________.`,alternativas:{A:`(A) Celats − Centro Latino-Americano de Trabalho Social.`,B:`(B) Abess − Associação Brasileira de Ensino de Serviço Social.`,C:`(C) Alaets − Associação Latino Americana de Escolas de Serviço Social.`,D:`(D) Ceas − Centro de Estudo e Ação Social.`,E:`(E) Cedepss − Centro de Documentação e Pesquisa em Políticas Sociais e Serviço Social`},disciplina:`Conhecimentos Específicos`,cargo:`ESPECIALISTA EM SAÚDE - SERVIÇO SOCIAL`,id_concurso:`09/2024`,banca:`IBAM`,resposta_correta:`C`},{questão:`Complete o enunciado a seguir com uma das alternativas disponibilizadas. O Sistema Nacional de Atendimento Socioeducativo − SINASE (Lei nº 12.594/12) regulamenta a execução das medidas socioeducativas destinadas a adolescente que pratique ato infracional, e alterou entre outras o a Lei 8.069/90 − Estatuto da Criança e do Adolescente (ECA). De acordo com o artigo 53 do SINASE o Plano individual de Atendimento (PIA) será elaborado sob a responsabilidade da equipe técnica do respectivo programa de atendimento, com a participação efetiva do adolescente e ________________.`,alternativas:{A:`(A) um representante do Ministério Público.`,B:`(B) um membro do Conselho Tutelar.`,C:`(C) de sua família.`,D:`(D) do advogado nomeado.`,E:`(E) do/a assistente social da Vara da Infância e Juventude.`},disciplina:`Conhecimentos Específicos`,cargo:`ESPECIALISTA EM SAÚDE - SERVIÇO SOCIAL`,id_concurso:`09/2024`,banca:`IBAM`,resposta_correta:`C`},{questão:`Complete o enunciado a seguir com uma das alternativas disponibilizadas. O Serviço Social tem na questão social a base de sua fundação como especialização do trabalho e trabalha com as suas variadas expressões quotidianas, tais como os indivíduos as experimentam no trabalho, na família, na área habitacional, na saúde, na assistência social, etc. Para Iamamoto (2005) decifrar as novas mediações por meio das quais se expressa a questão social, hoje, é de fundamental importância para que se possa apreender as várias expressões que assumem na atualidade, as desigualdades sociais, sua produção e reprodução ampliada, bem como ___________________________.`,alternativas:{A:`(A) revisitar experiências profissionais.`,B:`(B) projetar e forjar formas de resistência e de defesa da vida.`,C:`(C) desenvolver metas com foco individualizado.`,D:`(D) assumir o protagonismo com características assistenciais.`,E:`(E) acreditar nos segmentos especializados.`},disciplina:`Conhecimentos Específicos`,cargo:`ESPECIALISTA EM SAÚDE - SERVIÇO SOCIAL`,id_concurso:`09/2024`,banca:`IBAM`,resposta_correta:`B`},{questão:`O Estatuto da Criança e do Adolescente (ECA) é o principal instrumento normativo do Brasil sobre os direitos da criança e do adolescente. Nos últimos anos, foram realizados diversos aprimoramentos, dentre os quais a Lei da Primeira Infância (Lei nº 13.257/16) que considera como primeira infância:`,alternativas:{A:`(A) os primeiros 7 (sete) anos completos ou 84 (oitenta e quatro) meses de vida da criança.`,B:`(B) os primeiros 6 (seis) anos completos ou 72 (setenta e dois) meses de vida da criança.`,C:`(C) os primeiros 5 (cinco) anos completos ou 60 (sessenta) meses de vida da criança.`,D:`(D) os primeiros 4 (quatro) anos completos ou 48 (quarenta e oito) meses de vida da criança.`,E:`(E) os primeiros 8 (oito) anos completos ou 96 (noventa e seis) meses de vida da criança.`},disciplina:`Conhecimentos Específicos`,cargo:`ESPECIALISTA EM SAÚDE - SERVIÇO SOCIAL`,id_concurso:`09/2024`,banca:`IBAM`,resposta_correta:`B`},{questão:`A Política Nacional de Assistência Social − PNAS/2004, definiu que os programas que visam o repasse direto de recursos dos fundos de Assistência aos beneficiários, como forma de acesso á renda, visando o combate à fome, à pobreza e outras formas de privação de direitos, que levem à situação de vulnerabilidade social, criando possibilidades para a emancipação, o exercício da autonomia das famílias e indivíduos atendidos e o desenvolvimento local é denominado:`,alternativas:{A:`(A) transferência de renda.`,B:`(B) bolsa auxílio temporária.`,C:`(C) auxílio de permanência.`,D:`(D) benefício por incapacidade temporária.`,E:`(E) benefícios eventuais.`},disciplina:`Conhecimentos Específicos`,cargo:`ESPECIALISTA EM SAÚDE - SERVIÇO SOCIAL`,id_concurso:`09/2024`,banca:`IBAM`,resposta_correta:`A`},{questão:`Na Lei Orgânica da Assistência Social (LOAS) constitui um dos instrumentos das proteções da assistência social que identifica e previne as situações de risco e vulnerabilidade social e seus agravos no território:`,alternativas:{A:`(A) as diretrizes institucionais.`,B:`(B) a vigilância socioassistencial.`,C:`(C) o acolhimento`,D:`(D) a prática restaurativa.`,E:`(E) os benefícios eventuais.`},disciplina:`Conhecimentos Específicos`,cargo:`ESPECIALISTA EM SAÚDE - SERVIÇO SOCIAL`,id_concurso:`09/2024`,banca:`IBAM`,resposta_correta:`B`},{questão:`Conforme estabelecido no artigo 6º-A da Lei Orgânica da Assistência Social (LOAS), a assistência social organiza-se pelos seguintes tipos de proteção.`,alternativas:{A:`(A) Primária e Secundária.`,B:`(B) Primária e Complexa.`,C:`(C) Básica e Especial.`,D:`(D) Básica e Alta Complexidade.`,E:`(E) Singular e Especial.`},disciplina:`Conhecimentos Específicos`,cargo:`ESPECIALISTA EM SAÚDE - SERVIÇO SOCIAL`,id_concurso:`09/2024`,banca:`IBAM`,resposta_correta:`C`},{questão:`Complete o enunciado a seguir com uma das alternativas disponibilizadas. O Movimento de Reconceituação do Serviço Social, emergindo na metade dos anos 1960 e prolongando-se por uma década, foi na sua especificidade, um fenômeno tipicamente latino-americano. Representou um marco decisivo no desencadeamento do processo de revisão crítica do Serviço Social no continente. Ele marcou a adoção de um outro projeto societário, o que vai acarretar numa revisão do fazer profissional, da formação e _____________________.`,alternativas:{A:`(A) da compreensão da profissão e de sua projeção social.`,B:`(B) assunção da questão social e da missão profissional.`,C:`(C) autonomia profissional e criação da Abepss.`,D:`(D) da autonomia profissional e do reconhecimento público.`,E:`(E) especificidade do Serviço Social e regulamentação da profissão.`},disciplina:`Conhecimentos Específicos`,cargo:`ESPECIALISTA EM SAÚDE - SERVIÇO SOCIAL`,id_concurso:`09/2024`,banca:`IBAM`,resposta_correta:`A`},{questão:`Complete o enunciado a seguir com uma das alternativas disponibilizadas. De acordo com Montaño (2009), existem duas teses sobre a gênese do Serviço Social. A primeira sustenta a origem do Serviço Social na evolução, organização e profissionalização das formas anteriores de ajuda, da caridade e da filantropia, vinculada agora à intervenção na questão social. Para o autor nesta tese está presente o limite posto nos antecedentes, fontes e precursores que teriam levado a criação do Serviço Social. Nesse sentido aponta que essa linha de pensamento representa um caminho_________________.`,alternativas:{A:`(A) amplo do ponto de vista epistemológico.`,B:`(B) antagônico com perspectiva sistêmica e limites organizacionais`,C:`(C) metodológico e teoricamente equivocado.`,D:`(D) com limite conceitual.`,E:`(E) ancorado no empirismo.`},disciplina:`Conhecimentos Específicos`,cargo:`ESPECIALISTA EM SAÚDE - SERVIÇO SOCIAL`,id_concurso:`09/2024`,banca:`IBAM`,resposta_correta:`C`},{questão:`Complete o sentido do enunciado a seguir com uma das alternativas disponibilizadas. A Assistência Social como política de proteção social configura-se como uma nova situação para o Brasil. Ela significa garantir a todos, que dela necessitam, e sem contribuição prévia a provisão dessa proteção. Na construção dessa política, levou-se em conta três vertentes de proteção social: as pessoas, as suas circunstâncias e dentre elas seu núcleo de apoio primeiro, isto é, a família. Nesse sentido, a proteção social exige a capacidade de maior aproximação possível das pessoas, dos seus riscos e vulnerabilidades produzidos _______________.`,alternativas:{A:`(A) e reproduzidos no coletivo.`,B:`(B) pelo indivíduo e reproduzidos coletivamente.`,C:`(C) na totalidade.`,D:`(D) no cotidiano.`,E:`(E) pelo indivíduo.`},disciplina:`Conhecimentos Específicos`,cargo:`ESPECIALISTA EM SAÚDE - SERVIÇO SOCIAL`,id_concurso:`09/2024`,banca:`IBAM`,resposta_correta:`D`}]},n=Object.keys(t),r=n[0],i=t[r],a=3.5*60*60*1e3,o=null,s=0,c=null,l=!0,u={start:document.getElementById(`start-screen`),exam:document.getElementById(`exam-screen`),results:document.getElementById(`results-screen`)},d=document.getElementById(`q-count`),f=document.getElementById(`badge-cargo`),p=document.getElementById(`btn-start`),m=document.getElementById(`mode-toggle`),h=document.getElementById(`exam-select`),g=document.getElementById(`timer`),_=document.getElementById(`btn-finish`),v=document.getElementById(`question-grid`),y=document.getElementById(`card-cargo`),b=document.getElementById(`card-disciplina`),x=document.getElementById(`card-edital`),S=document.getElementById(`card-ano`),C=document.getElementById(`card-banca`),w=document.getElementById(`current-q-number`),T=document.getElementById(`question-text`),E=document.getElementById(`options-container`),D=document.getElementById(`btn-prev`),O=document.getElementById(`btn-check`),k=document.getElementById(`btn-next`),A=document.getElementById(`area-breakdown`),j=document.getElementById(`review-list`);function M(){h.innerHTML=``,n.forEach(e=>{let t=document.createElement(`option`);t.value=e,t.textContent=e,h.appendChild(t)}),h.value=r}function N(e){r=e,i=t[r],d.textContent=i.length,f.textContent=i[0]?.cargo||``}function P(){M(),N(r),m.checked=!1,F(`start`),h.addEventListener(`change`,()=>N(h.value)),p.addEventListener(`click`,R),_.addEventListener(`click`,()=>W(!1)),D.addEventListener(`click`,()=>V(s-1)),O.addEventListener(`click`,U),k.addEventListener(`click`,()=>V(s+1)),document.getElementById(`btn-restart`).addEventListener(`click`,()=>{P()})}function F(e){Object.values(u).forEach(e=>e.classList.add(`hidden`)),u[e].classList.remove(`hidden`)}function I(e){let t=Math.floor(e/1e3);return`${String(Math.floor(t/3600)).padStart(2,`0`)}:${String(Math.floor(t%3600/60)).padStart(2,`0`)}:${String(t%60).padStart(2,`0`)}`}function L(){if(!o||!o.startTime)return;let e=Date.now()-o.startTime;if(l){let t=a-e;if(t<=0){g.textContent=`00:00:00`,W(!0);return}g.textContent=I(t),t<600*1e3&&(g.style.color=`var(--danger)`)}else g.textContent=I(e)}function R(){l=!m.checked,l&&(g.style.color=`#b45309`),_.classList.remove(`hidden`),o=new e(i),o.start(),s=0,L(),c=setInterval(L,1e3),z(),H(s),F(`exam`)}function z(){v.innerHTML=``,o.questions.forEach((e,t)=>{let n=document.createElement(`button`);n.className=`grid-btn`,n.textContent=t+1,n.id=`nav-q-${t}`,n.addEventListener(`click`,()=>V(t)),v.appendChild(n)})}function B(){o.questions.forEach((e,t)=>{let n=document.getElementById(`nav-q-${t}`);n&&(n.className=`grid-btn`,o.answers[t]&&n.classList.add(`answered`),t===s&&n.classList.add(`active`))})}function V(e){e<0||e>=o.questions.length||(s=e,H(e))}function H(e){let t=o.questions[e];t.cargo&&(y.innerHTML=`<strong>Cargo:</strong> ${t.cargo}`),t.disciplina&&(b.innerHTML=`<strong>Disciplina:</strong> ${t.disciplina}`),t.id_concurso&&(x.innerHTML=`<strong>Edital:</strong> ${t.id_concurso}`),t.banca&&(C.innerHTML=`<strong>Banca:</strong> ${t.banca}`);let n=t.id_concurso&&t.id_concurso.match(/\d{4}/);n&&(S.innerHTML=`<strong>Ano:</strong> ${n[0]}`),w.textContent=`Questão ${e+1} de ${o.questions.length}`;let r=``;t.texto_relevante&&(r+=`<div style="background:#f9fafb; padding:1rem; border-radius:0.5rem; margin-bottom:1rem; border:1px solid #f3f4f6;">${t.texto_relevante}</div>`),r+=`<p>${t.questão||t.enunciado}</p>`,T.innerHTML=r,E.innerHTML=``;let i=o.answers[e],a=o.checkedQuestions[e],s=t.resposta_correta;t.alternativas&&Object.entries(t.alternativas).forEach(([t,n])=>{let r=document.createElement(`button`),c=[`option-btn`];i===t&&c.push(`selected`),a&&(t===s?c.push(`correct-ans`):i===t&&t!==s&&c.push(`wrong-ans`),r.disabled=!0),r.className=c.join(` `),r.innerHTML=`<span class="option-letter">${t})</span><span>${n.replace(/^\([A-E]\)\s*/,``)}</span>`,a||r.addEventListener(`click`,()=>{o.answerQuestion(e,t),H(e)}),E.appendChild(r)}),D.disabled=e===0,k.disabled=e===o.questions.length-1,a||!i?(O.disabled=!0,a?O.classList.add(`hidden`):O.classList.remove(`hidden`)):(O.disabled=!1,O.classList.remove(`hidden`)),B()}function U(){o.answers[s]&&(o.checkQuestion(s),H(s))}function W(e=!1){if(!e&&!confirm(`Tem certeza que deseja finalizar a prova?`))return;clearInterval(c),o.finish();let t=o.getScore();_.classList.add(`hidden`),F(`results`),document.getElementById(`score-text`).textContent=`${Math.round(t.percentage)}%`,document.getElementById(`res-correct`).textContent=t.correct,document.getElementById(`res-total`).textContent=t.total,document.getElementById(`res-time`).textContent=I(t.timeTakenMs),G(o.getBreakdownByArea()),K(o.getReview())}function G(e){A.innerHTML=``,e.forEach(({area:e,correct:t,total:n,percentage:r})=>{let i=document.createElement(`div`);i.className=`area-item`,i.innerHTML=`
+IV. Nas Diretrizes para o Curso de Serviço Social da ABEPSS. Está correto o apresentado em:`,alternativas:{A:`(A) apenas I, II e IV`,B:`(B) apenas II`,C:`(C) apenas III e IV`,D:`(D) apenas III`,E:`(E) apenas I, II e III`},disciplina:`Conhecimentos Específicos`,cargo:`ESPECIALISTA EM SAÚDE - SERVIÇO SOCIAL`,id_concurso:`09/2024`,banca:`IBAM`,resposta_correta:`A`},{questão:`Complete o enunciado a seguir com uma das alternativas disponibilizadas. A Constituição Federal de 1988 traz uma nova concepção para a Assistência Social brasileira como direito do cidadão e dever do Estado. Incluída no âmbito da Seguridade Social e regulamentada ___________________.`,alternativas:{A:`(A) pelo Sistema Único de Assistência Social − SUAS.`,B:`(B) pelo Ministério Público.`,C:`(C) pelos Conselhos de Assistência Social.`,D:`(D) pela Casa Civil da Presidência da República.`,E:`(E) pela Lei Orgânica da Assistência Social − LOAS.`},disciplina:`Conhecimentos Específicos`,cargo:`ESPECIALISTA EM SAÚDE - SERVIÇO SOCIAL`,id_concurso:`09/2024`,banca:`IBAM`,resposta_correta:`E`},{questão:`Complete o enunciado a seguir com uma das alternativas disponibilizadas. A Política Nacional de Saúde da Pessoa com Deficiência é voltada para a inclusão das pessoas com deficiência em toda a rede de serviços do Sistema Único de Saúde (SUS). De acordo com esta política as equipes das unidades de reabilitação devem ser multiprofissionais e trabalhar de forma interdisciplinar, buscando recursos locais que facilitem o desenvolvimento integrado de processos de inclusão da pessoa com deficiência, envolvendo as unidades básicas de saúde, as comunidades e também __________________.`,alternativas:{A:`(A) o/a assistente social.`,B:`(B) o auxiliar social.`,C:`(C) os agentes públicos.`,D:`(D) os conselheiros de pessoa com deficiência.`,E:`(E) às famílias.`},disciplina:`Conhecimentos Específicos`,cargo:`ESPECIALISTA EM SAÚDE - SERVIÇO SOCIAL`,id_concurso:`09/2024`,banca:`IBAM`,resposta_correta:`E`},{questão:`Complete o enunciado a seguir com uma das alternativas disponibilizadas Yazbek (2006) explica que no início da década de 1990, do ponto de vista das referências teórico-metodológicas, a primeira questão que se coloca para a profissão é o confronto com a denominada 'crise' dos modelos analíticos, explicativos nas ciências sociais, que buscam captar o que está acontecendo no fim de século e as grandes transformações que alcançam múltiplos aspectos da vida social. No mundo do conhecimento começam as interferências que questionam e nivela os paradigmas marxista e positivista, denominado pensamento ____________________.`,alternativas:{A:`(A) pós-moderno.`,B:`(B) inter-cultural.`,C:`(C) ampliado.`,D:`(D) retrospectivo.`,E:`(E) sistêmico.`},disciplina:`Conhecimentos Específicos`,cargo:`ESPECIALISTA EM SAÚDE - SERVIÇO SOCIAL`,id_concurso:`09/2024`,banca:`IBAM`,resposta_correta:`A`},{questão:`O atual Código de Ética do/a assistente social está organizado por meio de princípios, deveres, direitos e proibições que orientam o comportamento ético profissional, ofertando seus objetivos ético-políticos, e, também parâmetros para a atuação do assistente social no cotidiano profissional. De acordo com o código o "posicionamento em favor da equidade e justiça social, que assegure universalidade de acesso aos bens e serviços relativos aos programas e políticas sociais, bem como sua gestão democrática", constui:`,alternativas:{A:`(A) uma Determinação dos Conselhos Regionais de Serviço Social.`,B:`(B) uma Competência do Conselho Federal de Serviço Social.`,C:`(C) um Dever do/a assistente social.`,D:`(D) um Princípio Fundamental.`,E:`(E) um Direito do/a assistente social.`},disciplina:`Conhecimentos Específicos`,cargo:`ESPECIALISTA EM SAÚDE - SERVIÇO SOCIAL`,id_concurso:`09/2024`,banca:`IBAM`,resposta_correta:`D`},{questão:`O Centro de Referência de Assistência Social (CRAS) é uma unidade pública estatal e descentralizada da Política de Assistência Social. Compete aos CRAS as seguintes funções exclusivas:`,alternativas:{A:`(A) a (re)inserção do indivíduo no território e apoio comunitário.`,B:`(B) restauração da cidadania e resolução de conflitos.`,C:`(C) Mediação de conflitos e acolhimento institucional.`,D:`(D) resolução de conflitos e apoio comunitário.`,E:`(E) gestão territorial e execução do PAIF.`},disciplina:`Conhecimentos Específicos`,cargo:`ESPECIALISTA EM SAÚDE - SERVIÇO SOCIAL`,id_concurso:`09/2024`,banca:`IBAM`,resposta_correta:`E`},{questão:`Complete o enunciado a seguir com uma das alternativas disponibilizadas. Bravo (2009) explica que o Movimento de Reconceituação foi um movimento impulsionado pelos acontecimentos econômico sociais, políticos e culturais da época que tiveram repercussão na profissão, principalmente na América Latina, a partir de 1965. Nesse mesmo ano, foi criada uma importante entidade com a finalidade de estimular e coordenar o debate da região, a partir de uma organização político profissional a ser desenvolvida em cada país, em articulação com a sociedade civil. Essa entidade que se destacou na articulação latino-americana foi __________________________.`,alternativas:{A:`(A) Celats − Centro Latino-Americano de Trabalho Social.`,B:`(B) Abess − Associação Brasileira de Ensino de Serviço Social.`,C:`(C) Alaets − Associação Latino Americana de Escolas de Serviço Social.`,D:`(D) Ceas − Centro de Estudo e Ação Social.`,E:`(E) Cedepss − Centro de Documentação e Pesquisa em Políticas Sociais e Serviço Social`},disciplina:`Conhecimentos Específicos`,cargo:`ESPECIALISTA EM SAÚDE - SERVIÇO SOCIAL`,id_concurso:`09/2024`,banca:`IBAM`,resposta_correta:`C`},{questão:`Complete o enunciado a seguir com uma das alternativas disponibilizadas. O Sistema Nacional de Atendimento Socioeducativo − SINASE (Lei nº 12.594/12) regulamenta a execução das medidas socioeducativas destinadas a adolescente que pratique ato infracional, e alterou entre outras o a Lei 8.069/90 − Estatuto da Criança e do Adolescente (ECA). De acordo com o artigo 53 do SINASE o Plano individual de Atendimento (PIA) será elaborado sob a responsabilidade da equipe técnica do respectivo programa de atendimento, com a participação efetiva do adolescente e ________________.`,alternativas:{A:`(A) um representante do Ministério Público.`,B:`(B) um membro do Conselho Tutelar.`,C:`(C) de sua família.`,D:`(D) do advogado nomeado.`,E:`(E) do/a assistente social da Vara da Infância e Juventude.`},disciplina:`Conhecimentos Específicos`,cargo:`ESPECIALISTA EM SAÚDE - SERVIÇO SOCIAL`,id_concurso:`09/2024`,banca:`IBAM`,resposta_correta:`C`},{questão:`Complete o enunciado a seguir com uma das alternativas disponibilizadas. O Serviço Social tem na questão social a base de sua fundação como especialização do trabalho e trabalha com as suas variadas expressões quotidianas, tais como os indivíduos as experimentam no trabalho, na família, na área habitacional, na saúde, na assistência social, etc. Para Iamamoto (2005) decifrar as novas mediações por meio das quais se expressa a questão social, hoje, é de fundamental importância para que se possa apreender as várias expressões que assumem na atualidade, as desigualdades sociais, sua produção e reprodução ampliada, bem como ___________________________.`,alternativas:{A:`(A) revisitar experiências profissionais.`,B:`(B) projetar e forjar formas de resistência e de defesa da vida.`,C:`(C) desenvolver metas com foco individualizado.`,D:`(D) assumir o protagonismo com características assistenciais.`,E:`(E) acreditar nos segmentos especializados.`},disciplina:`Conhecimentos Específicos`,cargo:`ESPECIALISTA EM SAÚDE - SERVIÇO SOCIAL`,id_concurso:`09/2024`,banca:`IBAM`,resposta_correta:`B`},{questão:`O Estatuto da Criança e do Adolescente (ECA) é o principal instrumento normativo do Brasil sobre os direitos da criança e do adolescente. Nos últimos anos, foram realizados diversos aprimoramentos, dentre os quais a Lei da Primeira Infância (Lei nº 13.257/16) que considera como primeira infância:`,alternativas:{A:`(A) os primeiros 7 (sete) anos completos ou 84 (oitenta e quatro) meses de vida da criança.`,B:`(B) os primeiros 6 (seis) anos completos ou 72 (setenta e dois) meses de vida da criança.`,C:`(C) os primeiros 5 (cinco) anos completos ou 60 (sessenta) meses de vida da criança.`,D:`(D) os primeiros 4 (quatro) anos completos ou 48 (quarenta e oito) meses de vida da criança.`,E:`(E) os primeiros 8 (oito) anos completos ou 96 (noventa e seis) meses de vida da criança.`},disciplina:`Conhecimentos Específicos`,cargo:`ESPECIALISTA EM SAÚDE - SERVIÇO SOCIAL`,id_concurso:`09/2024`,banca:`IBAM`,resposta_correta:`B`},{questão:`A Política Nacional de Assistência Social − PNAS/2004, definiu que os programas que visam o repasse direto de recursos dos fundos de Assistência aos beneficiários, como forma de acesso á renda, visando o combate à fome, à pobreza e outras formas de privação de direitos, que levem à situação de vulnerabilidade social, criando possibilidades para a emancipação, o exercício da autonomia das famílias e indivíduos atendidos e o desenvolvimento local é denominado:`,alternativas:{A:`(A) transferência de renda.`,B:`(B) bolsa auxílio temporária.`,C:`(C) auxílio de permanência.`,D:`(D) benefício por incapacidade temporária.`,E:`(E) benefícios eventuais.`},disciplina:`Conhecimentos Específicos`,cargo:`ESPECIALISTA EM SAÚDE - SERVIÇO SOCIAL`,id_concurso:`09/2024`,banca:`IBAM`,resposta_correta:`A`},{questão:`Na Lei Orgânica da Assistência Social (LOAS) constitui um dos instrumentos das proteções da assistência social que identifica e previne as situações de risco e vulnerabilidade social e seus agravos no território:`,alternativas:{A:`(A) as diretrizes institucionais.`,B:`(B) a vigilância socioassistencial.`,C:`(C) o acolhimento`,D:`(D) a prática restaurativa.`,E:`(E) os benefícios eventuais.`},disciplina:`Conhecimentos Específicos`,cargo:`ESPECIALISTA EM SAÚDE - SERVIÇO SOCIAL`,id_concurso:`09/2024`,banca:`IBAM`,resposta_correta:`B`},{questão:`Conforme estabelecido no artigo 6º-A da Lei Orgânica da Assistência Social (LOAS), a assistência social organiza-se pelos seguintes tipos de proteção.`,alternativas:{A:`(A) Primária e Secundária.`,B:`(B) Primária e Complexa.`,C:`(C) Básica e Especial.`,D:`(D) Básica e Alta Complexidade.`,E:`(E) Singular e Especial.`},disciplina:`Conhecimentos Específicos`,cargo:`ESPECIALISTA EM SAÚDE - SERVIÇO SOCIAL`,id_concurso:`09/2024`,banca:`IBAM`,resposta_correta:`C`},{questão:`Complete o enunciado a seguir com uma das alternativas disponibilizadas. O Movimento de Reconceituação do Serviço Social, emergindo na metade dos anos 1960 e prolongando-se por uma década, foi na sua especificidade, um fenômeno tipicamente latino-americano. Representou um marco decisivo no desencadeamento do processo de revisão crítica do Serviço Social no continente. Ele marcou a adoção de um outro projeto societário, o que vai acarretar numa revisão do fazer profissional, da formação e _____________________.`,alternativas:{A:`(A) da compreensão da profissão e de sua projeção social.`,B:`(B) assunção da questão social e da missão profissional.`,C:`(C) autonomia profissional e criação da Abepss.`,D:`(D) da autonomia profissional e do reconhecimento público.`,E:`(E) especificidade do Serviço Social e regulamentação da profissão.`},disciplina:`Conhecimentos Específicos`,cargo:`ESPECIALISTA EM SAÚDE - SERVIÇO SOCIAL`,id_concurso:`09/2024`,banca:`IBAM`,resposta_correta:`A`},{questão:`Complete o enunciado a seguir com uma das alternativas disponibilizadas. De acordo com Montaño (2009), existem duas teses sobre a gênese do Serviço Social. A primeira sustenta a origem do Serviço Social na evolução, organização e profissionalização das formas anteriores de ajuda, da caridade e da filantropia, vinculada agora à intervenção na questão social. Para o autor nesta tese está presente o limite posto nos antecedentes, fontes e precursores que teriam levado a criação do Serviço Social. Nesse sentido aponta que essa linha de pensamento representa um caminho_________________.`,alternativas:{A:`(A) amplo do ponto de vista epistemológico.`,B:`(B) antagônico com perspectiva sistêmica e limites organizacionais`,C:`(C) metodológico e teoricamente equivocado.`,D:`(D) com limite conceitual.`,E:`(E) ancorado no empirismo.`},disciplina:`Conhecimentos Específicos`,cargo:`ESPECIALISTA EM SAÚDE - SERVIÇO SOCIAL`,id_concurso:`09/2024`,banca:`IBAM`,resposta_correta:`C`},{questão:`Complete o sentido do enunciado a seguir com uma das alternativas disponibilizadas. A Assistência Social como política de proteção social configura-se como uma nova situação para o Brasil. Ela significa garantir a todos, que dela necessitam, e sem contribuição prévia a provisão dessa proteção. Na construção dessa política, levou-se em conta três vertentes de proteção social: as pessoas, as suas circunstâncias e dentre elas seu núcleo de apoio primeiro, isto é, a família. Nesse sentido, a proteção social exige a capacidade de maior aproximação possível das pessoas, dos seus riscos e vulnerabilidades produzidos _______________.`,alternativas:{A:`(A) e reproduzidos no coletivo.`,B:`(B) pelo indivíduo e reproduzidos coletivamente.`,C:`(C) na totalidade.`,D:`(D) no cotidiano.`,E:`(E) pelo indivíduo.`},disciplina:`Conhecimentos Específicos`,cargo:`ESPECIALISTA EM SAÚDE - SERVIÇO SOCIAL`,id_concurso:`09/2024`,banca:`IBAM`,resposta_correta:`D`}],"IBAM - Prefeitura Municipal de Cândido de Abreu/PR - Assistente Social - 2017":[{questão:`São alguns direitos sociais previstos no artigo 6o
+da Constituição Federal de 1988:`,alternativas:{A:`(A) segurança pública; saúde; religião; moradia; assistência social`,B:`(B) atividade física; moradia; renda, tecnologia; auxílio à maternidade`,C:`(C) saneamento básico; transporte; educação; água; proteção à infância`,D:`(D) previdência social; lazer; alimentação; trabalho; assistência aos desamparados`},disciplina:`Conhecimentos Específicos`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`CP 01/2017`,banca:`IBAM`,resposta_correta:`D`},{questão:`A criança e o adolescente têm direito à liberdade,
+ao respeito e à dignidade como pessoa humana
+em processo de desenvolvimento e como sujeito
+de direitos. Um dos aspectos compreendidos
+como direito à liberdade consiste na:`,alternativas:{A:`(A) participação da vida política`,B:`(B) presença nos serviços assistenciais`,C:`(C) preparação para a atividade profissional`,D:`(D) cooperação nas ocupações remuneradas`},disciplina:`Conhecimentos Específicos`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`CP 01/2017`,banca:`IBAM`,resposta_correta:`A`},{questão:`A unidade pública municipal que se localiza em
+territórios com maiores índices de vulnerabilidade
+e risco social e que se destina à prestação de
+serviços, programas e projetos socioassistenciais
+de proteção social básica às famílias é
+denominada:`,alternativas:{A:`(A) Centro de Atenção Integral às Famílias`,B:`(B) Escola de Orientação e Apoio Sociofamiliar`,C:`(C) Centro de Referência de Assistência Social`,D:`(D) Casa de Inclusão Produtiva e Enfrentamento à Pobreza`},disciplina:`Conhecimentos Específicos`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`CP 01/2017`,banca:`IBAM`,resposta_correta:`C`},{questão:`É assegurada aos maiores de 65 anos a
+gratuidade dos transportes coletivos públicos
+urbanos. O acesso a essa gratuidade é garantido
+à pessoa idosa a partir da seguinte condição:`,alternativas:{A:`(A) manifestação de deficiência associada à idade a partir de laudo médico`,B:`(B) apresentação de qualquer documento pessoal que comprove sua idade`,C:`(C) exibição de comprovante de rendimento inferior a dois salários mínimos`,D:`(D) demonstração de declaração médica que indique necessidade de acompanhante`},disciplina:`Conhecimentos Específicos`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`CP 01/2017`,banca:`IBAM`,resposta_correta:`B`},{questão:`Uma das diretrizes da política pública que visa
+coibir a violência doméstica e familiar contra a
+mulher está expressa na seguinte alternativa:`,alternativas:{A:`(A) exigência, nas diretrizes curriculares dos cursos de graduação da área das ciências humanas e sociais, de conteúdos voltados ao lugar da mulher no mercado de trabalho`,B:`(B) proibição de veiculação nos programas televisivos de papéis estereotipados que desconsiderem os valores éticos de irrestrito respeito à diversidade de gênero`,C:`(C) destaque, nos currículos escolares de todos os níveis de ensino, para os conteúdos relativos à equidade de gênero e de raça ou etnia`,D:`(D) garantia de atendimento e proteção intersetorial e interdisciplinar nos serviços de saúde voltados às necessidades da mulher`},disciplina:`Conhecimentos Específicos`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`CP 01/2017`,banca:`IBAM`,resposta_correta:`C`},{questão:`De acordo com a Lei no 13.146/2015, na
+avaliação da deficiência, realizada por equipe
+multiprofissional e interdisciplinar, deve ser
+considerado, entre outros, o seguinte aspecto:`,alternativas:{A:`(A) exclusão do mercado de trabalho`,B:`(B) inexistência de tecnologias assistivas`,C:`(C) limitação no desempenho de atividades`,D:`(D) restrição no acesso às residências inclusivas`},disciplina:`Conhecimentos Específicos`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`CP 01/2017`,banca:`IBAM`,resposta_correta:`C`},{questão:`Durante o acompanhamento social de um usuário
+de 72 anos, internado em um hospital de
+emergência em função de infarto, a assistente
+social identifica que a ausência de vínculos
+familiares e afetivos bem como de renda o levou
+à situação de rua. Soma-se a isso a necessidade
+premente de acesso a políticas públicas – acesso
+esse até então inexistente –, com vistas à
+garantia do seu tratamento de saúde, após a alta
+hospitalar.
+Em função dessa realidade, a profissional
+encaminhará o referido idoso para atendimento
+em serviços da seguinte modalidade de proteção
+social da assistência social:`,alternativas:{A:`(A) intermediária`,B:`(B) especial`,C:`(C) integral`,D:`(D) básica`},disciplina:`Conhecimentos Específicos`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`CP 01/2017`,banca:`IBAM`,resposta_correta:`B`},{questão:`Considere a seguinte situação:
+Ao iniciar o tratamento de hemodiálise, uma
+mulher de 42 anos com doença renal crônica
+passa a ter dificuldades para desenvolver suas
+atividades da vida diária. Vive com seus dois
+filhos adolescentes, que, alternadamente, a
+acompanham durante as sessões de hemodiálise.
+Ela se encontra desempregada, sem nunca ter
+mantido vínculo com a Previdência Social. O
+sustento dessa família advém da pensão
+alimentícia dos adolescentes, no valor de R$
+1.405,50.
+Com relação à concessão do Benefício da
+Prestação Continuada – BPC, a usuária tem o
+direito:`,alternativas:{A:`(A) deferido, porque não mantém vínculo com a Previdência Social`,B:`(B) indeferido, porque sua renda familiar per capita ultrapassa 1/4 do salário mínimo vigente`,C:`(C) deferido, porque a renda per capita familiar, a ser contabilizada no cálculo do BPC, é inexistente`,D:`(D) indeferido, porque seu quadro clínico de saúde encontra-se estável, mesmo com limitações cotidianas`},disciplina:`Conhecimentos Específicos`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`CP 01/2017`,banca:`IBAM`,resposta_correta:`B`},{questão:`Segundo Behring (2009), a política social no
+neoliberalismo configura-se como paternalista e
+geradora de desequilíbrio; deixa de ser direito
+social, caracterizando tendências de
+desresponsabilização e desfinanciamento do
+Estado. Associado a isso, observa-se a
+degradação dos serviços públicos e o corte dos
+gastos sociais que induzem, nesse terreno, um
+processo denominado de:`,alternativas:{A:`(A) desregulamentação`,B:`(B) conservadorismo`,C:`(C) pós-modernismo`,D:`(D) privatização`},disciplina:`Conhecimentos Específicos`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`CP 01/2017`,banca:`IBAM`,resposta_correta:`D`},{questão:`A análise de Boschetti (2009) acerca do atual
+modelo de proteção social brasileiro aponta para
+um processo de desmonte permanente e gradual,
+no qual seus princípios constitucionais estão
+sendo diluídos em sucessivas contrarreformas.
+Nessa lógica, para a autora, o único princípio da
+seguridade social que vem sendo assegurado
+com rigor é concebido como:`,alternativas:{A:`(A) diversidade da base de financiamento`,B:`(B) universalidade da cobertura assistencial`,C:`(C) seletividade na prestação dos benefícios`,D:`(D) equidade na forma de participação no custeio`},disciplina:`Conhecimentos Específicos`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`CP 01/2017`,banca:`IBAM`,resposta_correta:`C`},{questão:`A partir do final da primeira década do século XXI,
+observa-se uma importante modificação do
+referencial teórico da reforma sanitária que foi
+hegemônico nos anos 1980. Essa reforma passa
+a ser influenciada por adeptos de uma posição
+ideopolítica que não tem como preocupação a
+superação do capitalismo. Bravo e Menezes
+(2013) afirmam que tal interferência é dada pela
+seguinte direção social:`,alternativas:{A:`(A) marxista`,B:`(B) meritocrática`,C:`(C) ecossistêmica`,D:`(D) social-democrata`},disciplina:`Conhecimentos Específicos`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`CP 01/2017`,banca:`IBAM`,resposta_correta:`D`},{questão:`Ao vivenciarem a precarização dos serviços
+prestados em uma unidade pública de saúde,
+cuja gestão é feita por uma Organização Social
+(OS) – o que inclui falta de alimentação para
+usuários internados e acompanhantes, nas
+situações previstas em lei, além de insumos e
+equipamentos de saúde –, um grupo de
+assistentes sociais, juntamente com outros
+trabalhadores, decide orientar as famílias desses
+usuários a tornar pública a situação. Essas
+assistentes sociais também decidem,
+coletivamente, denunciar tal situação ao
+Conselho Regional de Serviço Social da sua
+região. Em função disso, são demitidas do
+trabalho da unidade.
+De acordo com o Código de Ética do Assistente
+Social, a conduta ética dessas profissionais é
+considerada como:`,alternativas:{A:`(A) dever`,B:`(B) direito`,C:`(C) proibição`,D:`(D) prerrogativa`},disciplina:`Conhecimentos Específicos`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`CP 01/2017`,banca:`IBAM`,resposta_correta:`A`},{questão:`Ao buscar superar tentativas de obscurecimento
+da função social da profissão na divisão social e
+técnica do trabalho, o documento intitulado
+Parâmetros para Atuação de Assistentes Sociais
+na Política de Saúde (2011) aponta que o objetivo
+do trabalho profissional nessa área é:`,alternativas:{A:`(A) compreender os determinantes sociais, econômicos e culturais que interferem no processo saúde-doença, buscando estratégias político-institucionais para o enfrentamento dessas questões`,B:`(B) analisar as dimensões subjetivas vividas pelo usuário à luz das suas condições de vida e trabalho, enfatizando as particularidades do trabalho nas diferentes especialidades médicas`,C:`(C) facilitar o acesso dos usuários à rede de serviços públicos de saúde, inscrevendo suas ações no âmbito da proposta original do SUS contida no projeto de Reforma Sanitária brasileira`,D:`(D) estimular a atuação coletiva, interdisciplinar e intersetorial que garanta a participação popular nas decisões institucionais, rompendo com a fragmentação dos serviços e do atendimento às necessidades sociais`},disciplina:`Conhecimentos Específicos`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`CP 01/2017`,banca:`IBAM`,resposta_correta:`A`},{questão:`A educação pode ser considerada um espaço
+privilegiado para o enriquecimento ou
+empobrecimento do gênero humano. Na
+perspectiva de fortalecimento do projeto ético-
+político, o trabalho do assistente social nessa
+área deve possibilitar aos indivíduos sociais o
+desenvolvimento de suas potencialidades e
+capacidades. Para o Conselho Federal de Serviço
+Social – CFESS (2013), isso significa ter como
+referência uma concepção de educação
+entendida como:`,alternativas:{A:`(A) formal`,B:`(B) cidadã`,C:`(C) bancária`,D:`(D) emancipadora`},disciplina:`Conhecimentos Específicos`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`CP 01/2017`,banca:`IBAM`,resposta_correta:`D`},{questão:`De acordo com o CFESS (2016), a
+operacionalização das ações profissionais na
+política urbana deve considerar conhecimentos e
+práticas de profissionais de outras áreas de
+conhecimento que, quando apoiados na
+dimensão da totalidade, possibilitam uma
+necessária interlocução, com vistas à superação
+da fragmentação dos saberes e ao rompimento
+da naturalização, da psicologização e da
+moralização das expressões da questão social.
+Essa perspectiva de análise fundamenta-se no
+seguinte princípio:`,alternativas:{A:`(A) intersetorialidade`,B:`(B) criticidade`,C:`(C) ecletismo`,D:`(D) pluralismo`},disciplina:`Conhecimentos Específicos`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`CP 01/2017`,banca:`IBAM`,resposta_correta:`A`},{questão:`Verifica-se na produção teórica brasileira sobre os
+fundamentos e as particularidades do trabalho
+profissional a presença de diferentes teses. A
+autora que sustenta a tese da proteção social é:`,alternativas:{A:`(A) Marilda Villela Iamamoto`,B:`(B) Maria Carmelita Yazbek`,C:`(C) Suely Gomes Costa`,D:`(D) Leila Lima Santos`},disciplina:`Conhecimentos Específicos`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`CP 01/2017`,banca:`IBAM`,resposta_correta:`C`},{questão:`A realização das competências e atribuições
+privativas desenvolvidas pela categoria de
+assistentes sociais no âmbito da política de
+assistência social requer o uso de instrumentais
+adequados a cada situação social a ser
+enfrentada profissionalmente. Porém, segundo o
+CFESS (2009), sua utilização pressupõe a
+superação do seguinte aspecto:`,alternativas:{A:`(A) potencialização da orientação social`,B:`(B) psicologização das relações sociais`,C:`(C) mediação das contradições sociais`,D:`(D) organização da população usuária`},disciplina:`Conhecimentos Específicos`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`CP 01/2017`,banca:`IBAM`,resposta_correta:`B`},{questão:`Um dos princípios de organização do trabalho
+coletivo, a interdisciplinaridade pressupõe que:`,alternativas:{A:`(A) as áreas de conhecimento exerçam seu potencial de contribuição com o respeito à autonomia e à horizontalidade na relação entre elas`,B:`(B) o exercício profissional se realize descomprometido com a troca de conhecimentos e a cooperação entre as diferentes áreas`,C:`(C) diferentes disciplinas contribuam para a constituição de um campo autônomo de saber e intervenção, com vistas a um profundo estágio de interação entre elas`,D:`(D) o relacionamento efetivo entre diferentes disciplinas tenha uma direção teórica e política dada por uma das áreas do saber`},disciplina:`Conhecimentos Específicos`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`CP 01/2017`,banca:`IBAM`,resposta_correta:`A`},{questão:`Trata-se da tentativa de institucionalização da
+inserção e/ou expansão do acesso a serviços;
+compõe a ação de articulação interinstitucional
+para fins de acesso a serviços na perspectiva da
+garantia de direitos; materializa-se a partir de um
+formulário assinado pelo assistente social, em
+papel timbrado da instituição de origem,
+revelando a autoridade profissional como aspecto
+ético fundamental. Nos termos de Trindade
+(2017), esse procedimento caracteriza-se como:`,alternativas:{A:`(A) prontuário`,B:`(B) ficha social`,C:`(C) encaminhamento`,D:`(D) cadastro de recursos`},disciplina:`Conhecimentos Específicos`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`CP 01/2017`,banca:`IBAM`,resposta_correta:`C`},{questão:`Na nova fase do capitalismo, com predomínio
+rentista, o processo político e econômico que
+permite tanto o investimento dos países ricos nos
+países periféricos – transformados em fonte de
+lucro rápido e fácil – como a mercantilização da
+esfera doméstica e privada não mercantil é
+caracterizado pela:`,alternativas:{A:`(A) globalização econômica`,B:`(B) acumulação por espoliação`,C:`(C) reestruturação da produção`,D:`(D) modernização conservadora`},disciplina:`Conhecimentos Específicos`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`CP 01/2017`,banca:`IBAM`,resposta_correta:`B`},{questão:`Os fundamentos do Sistema Único de Saúde
+(SUS) estão expressos na Constituição Brasileira
+de 1988. A alternativa que não apresenta um
+desses fundamentos é:`,alternativas:{A:`(A) deveres do Estado`,B:`(B) financiamento do sistema`,C:`(C) atributos da atenção primária`,D:`(D) direitos dos usuários`},disciplina:`SUS e Saúde Pública`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`CP 01/2017`,banca:`IBAM`,resposta_correta:`C`},{questão:`As Organizações Sociais (OS) são caracterizadas
+como de interesse social e de utilidade pública.
+Não representa um dos objetivos das OS:`,alternativas:{A:`(A) ampliar a eficiência dos serviços`,B:`(B) definir políticas públicas de saúde`,C:`(C) estimular a ação social comunitária`,D:`(D) atender melhor o cidadão`},disciplina:`SUS e Saúde Pública`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`CP 01/2017`,banca:`IBAM`,resposta_correta:`B`},{questão:`Na década de 1940, a política de Estado
+pretendeu estender a todas as categorias do
+operariado urbano os benefícios da previdência
+social. Assim, as antigas caixas de
+aposentadorias e pensões (CAPs) foram
+substituídas pelos institutos de aposentadoria e
+pensões (IAPs). A categoria de trabalhadores que
+teve o primeiro IAP criado foi a de:`,alternativas:{A:`(A) marítimos`,B:`(B) professores`,C:`(C) médicos`,D:`(D) bancários`},disciplina:`SUS e Saúde Pública`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`CP 01/2017`,banca:`IBAM`,resposta_correta:`A`},{questão:`Das alternativas abaixo, aquela que apresenta um
+princípio doutrinário do Sistema Único de Saúde é:`,alternativas:{A:`(A) integralidade`,B:`(B) regionalização`,C:`(C) descentralização`,D:`(D) hierarquização`},disciplina:`SUS e Saúde Pública`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`CP 01/2017`,banca:`IBAM`,resposta_correta:`A`},{questão:`A lei, de 28 de dezembro de 1990, que dispõe
+sobre as transferências intergovernamentais de
+recursos financeiros na área da saúde é a de
+número:`,alternativas:{A:`(A) 7037`,B:`(B) 7145`,C:`(C) 8080`,D:`(D) 8142`},disciplina:`SUS e Saúde Pública`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`CP 01/2017`,banca:`IBAM`,resposta_correta:`D`},{questão:`A seguinte alternativa apresenta uma definição
+introduzida pela Política Nacional de Atenção
+Básica (PNAB):`,alternativas:{A:`(A) introdução do educador físico nas equipes da estratégia saúde da família`,B:`(B) definição da população a ser atendida pelas equipes de saúde da família`,C:`(C) suspensão do curso introdutório para os agentes comunitários de saúde`,D:`(D) carga horária de 20 horas para os profissionais da estratégia saúde da família`},disciplina:`SUS e Saúde Pública`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`CP 01/2017`,banca:`IBAM`,resposta_correta:`B`},{questão:`O ano em que foi realizada a 1ª Conferência
+Nacional de Saúde é:`,alternativas:{A:`(A) 1934`,B:`(B) 1937`,C:`(C) 1941`,D:`(D) 1946`},disciplina:`SUS e Saúde Pública`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`CP 01/2017`,banca:`IBAM`,resposta_correta:`C`},{questão:`De acordo com a Política Nacional de Atenção
+Básica de 2012, é uma atribuição comum a todos
+os membros da equipe de saúde da família:`,alternativas:{A:`(A) participação no processo de territorialização e mapeamento local`,B:`(B) orientação das famílias quanto aos serviços disponíveis`,C:`(C) cadastramento de todas as pessoas residentes na área`,D:`(D) conservação dos materiais odontológicos`},disciplina:`SUS e Saúde Pública`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`CP 01/2017`,banca:`IBAM`,resposta_correta:`A`},{questão:`O Decreto no 7.508 de 2011 regulamenta alguns
+aspectos da Lei no 8.080 de 1990. A seguinte
+alternativa não representa uma dessas
+regulamentações:`,alternativas:{A:`(A) a organização do SUS`,B:`(B) o planejamento da saúde`,C:`(C) a assistência à saúde`,D:`(D) o repasse de verbas fundo a fundo`},disciplina:`SUS e Saúde Pública`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`CP 01/2017`,banca:`IBAM`,resposta_correta:`D`},{questão:`Na implantação da regulamentação da Lei no
+8.080/1990, há atribuições específicas para os
+gestores e os fóruns de pactuação. A seguinte
+alternativa apresenta uma atribuição da Comissão
+Intergestores Tripartite:`,alternativas:{A:`(A) instituir formas de incentivo ao cumprimento das metas de saúde e à melhoria das ações e serviços de saúde`,B:`(B) pactuar os critérios para o planejamento integrado das ações e dos serviços de saúde da Região de Saúde`,C:`(C) criar novas Portas de Entrada às ações e aos serviços de saúde, considerando as características da Região de Saúde`,D:`(D) ampliar o acesso do usuário à assistência farmacêutica`},disciplina:`SUS e Saúde Pública`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`CP 01/2017`,banca:`IBAM`,resposta_correta:`B`},{questão:`Uma frase que indica o ponto de vista central da
+autora acerca do tema desenvolvido no texto é:`,alternativas:{A:`(A) Para muitos basta dar “limites” para realizar uma boa educação, (l. 9-10)`,B:`(B) A tarefa de dar limite é uma das tantas que esperamos dos outros. (l. 24-25)`,C:`(C) Em termos éticos, os antigos entendiam o limite como autodomínio, (l. 50-51)`,D:`(D) Todo limite é uma experiência que se formula na relação com o outro. (l. 59-60)`},disciplina:`Língua Portuguesa`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`CP 01/2017`,banca:`IBAM`,resposta_correta:`D`,texto_relevante:`TEXTO: SEM LIMITES
+
+Critica-se por aí a falta de limite das
+      crianças.  Reclama-se  dos  adolescentes
+      criados sem limites. No quarto escuro do
+      caos, esperamos que a luz do limite venha
+5    pôr a bagunça em ordem. Nem adultos
+     escapam da exigência  geral. Impõem-se
+       leis rígidas contra o consumo do álcool,
+     fecham-se as casas de jogos.
+            Para muitos basta dar “limites” para
+10    realizar uma boa educação, como se a
+      experiência do limite sozinha pudesse ser a
+     salvação para alguém que se perdeu. Um
+      “não” dito em tom solene aqui, ou acolá, e
+      estaria feita a mágica. Sabemos que não
+15   funciona assim. Professores contam com
+     soluções vindas de casa. Pais desatentos
+     ou ocupados esperam que os limites sejam
+     produzidos na escola, como se encontrar o
+       “limite” fosse tarefa da educação formal.
+20  Nem uma coisa nem outra. Parece que o
+       limite se tornou uma palavra a carregar a
+      culpa para o lado oposto onde cada um
+      está.
+         A tarefa de dar limite é uma das
+25   tantas que esperamos dos outros. Todos
+     sabemos que ela dá muito trabalho. Muitas
+     vezes nem sabemos, os responsáveis, do
+     que se  trata.  Talvez não confiemos na
+      possibilidade de que limite seja a resposta
+30   para nossos problemas na educação, nos
+      relacionamentos, pois nós mesmos não nos
+    damos   limites.  Somos  autoindulgentes,
+      autopiedosos, sempre prontos a perdoar as
+     nossas falhas. A revolta contra as leis é
+
+
+35    sinal de que não vemos vantagem dos
+      limites para nós mesmos. A culpa – e o
+     problema – é dos outros.
+        O  filósofo grego  Aristóteles  dizia
+     que qualquer coisa não existe para além do
+40    limite. Tudo o que existe precisa de um
+       limite para existir. Para saber o que algo é e
+     onde está se usa a noção do limite. Limite é
+     sinônimo de forma. Não podemos saber o
+     que é uma casa se não reconhecemos seus
+45    limites  concretos,  arquiteturais, que  são,
+       afinal, formais. Se pensarmos bem, todo o
+     nosso modo de ver o mundo, de pensar, de
+     entender  as   coisas,  depende   deste
+      conceito.
+50       Em  termos   éticos,  os  antigos
+     entendiam  o  limite  como  autodomínio,
+     capacidade  de   controlar  as   próprias
+      paixões, de viver no meio-termo. Limite era
+     tudo que tanto impedia como possibilitava
+55   movimentos. Qualquer ação dependia de
+      limites no espaço e no tempo. Mas também
+     dos limites externos ou internos de quem
+      agia.
+           Todo limite é uma experiência que
+60   se formula na relação com o outro. Entre
+    mim e o  outro há sempre um espaço
+     imponderável. Neste vazio entre “eu” e “tu”,
+     a melhor coisa a ser colocada é o respeito.
+    Se o  limite é a experiência que permite
+65   saber até onde se pode chegar  e, com
+      sorte, a protetora dor de saber aonde não
+     se deve ir, o respeito é a única de todas as
+      experiências  que  não  pode  ter  limite.
+     Porque respeito é o modo de olhar para o
+70   outro como  algo  positivo,  ver  nele sua
+      potência de ser, como alguém que, mesmo
+    me sendo próximo, carrega em si algo que
+     não pode dizer sobre si mesmo para mim,
+      e, por isso mesmo, sempre será intocável.
+
+
+              Adaptado de marciatiburi.com.br.`},{questão:`(...) como se a experiência do limite sozinha
+pudesse ser a salvação para alguém que se
+perdeu. (l. 10-12)
+Com base no trecho acima, pode-se caracterizar
+a experiência do limite como:`,alternativas:{A:`(A) libertadora`,B:`(B) insuficiente`,C:`(C) autoritária`,D:`(D) recíproca`},disciplina:`Língua Portuguesa`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`CP 01/2017`,banca:`IBAM`,resposta_correta:`B`,texto_relevante:`TEXTO: SEM LIMITES
+
+Critica-se por aí a falta de limite das
+      crianças.  Reclama-se  dos  adolescentes
+      criados sem limites. No quarto escuro do
+      caos, esperamos que a luz do limite venha
+5    pôr a bagunça em ordem. Nem adultos
+     escapam da exigência  geral. Impõem-se
+       leis rígidas contra o consumo do álcool,
+     fecham-se as casas de jogos.
+            Para muitos basta dar “limites” para
+10    realizar uma boa educação, como se a
+      experiência do limite sozinha pudesse ser a
+     salvação para alguém que se perdeu. Um
+      “não” dito em tom solene aqui, ou acolá, e
+      estaria feita a mágica. Sabemos que não
+15   funciona assim. Professores contam com
+     soluções vindas de casa. Pais desatentos
+     ou ocupados esperam que os limites sejam
+     produzidos na escola, como se encontrar o
+       “limite” fosse tarefa da educação formal.
+20  Nem uma coisa nem outra. Parece que o
+       limite se tornou uma palavra a carregar a
+      culpa para o lado oposto onde cada um
+      está.
+         A tarefa de dar limite é uma das
+25   tantas que esperamos dos outros. Todos
+     sabemos que ela dá muito trabalho. Muitas
+     vezes nem sabemos, os responsáveis, do
+     que se  trata.  Talvez não confiemos na
+      possibilidade de que limite seja a resposta
+30   para nossos problemas na educação, nos
+      relacionamentos, pois nós mesmos não nos
+    damos   limites.  Somos  autoindulgentes,
+      autopiedosos, sempre prontos a perdoar as
+     nossas falhas. A revolta contra as leis é
+
+
+35    sinal de que não vemos vantagem dos
+      limites para nós mesmos. A culpa – e o
+     problema – é dos outros.
+        O  filósofo grego  Aristóteles  dizia
+     que qualquer coisa não existe para além do
+40    limite. Tudo o que existe precisa de um
+       limite para existir. Para saber o que algo é e
+     onde está se usa a noção do limite. Limite é
+     sinônimo de forma. Não podemos saber o
+     que é uma casa se não reconhecemos seus
+45    limites  concretos,  arquiteturais, que  são,
+       afinal, formais. Se pensarmos bem, todo o
+     nosso modo de ver o mundo, de pensar, de
+     entender  as   coisas,  depende   deste
+      conceito.
+50       Em  termos   éticos,  os  antigos
+     entendiam  o  limite  como  autodomínio,
+     capacidade  de   controlar  as   próprias
+      paixões, de viver no meio-termo. Limite era
+     tudo que tanto impedia como possibilitava
+55   movimentos. Qualquer ação dependia de
+      limites no espaço e no tempo. Mas também
+     dos limites externos ou internos de quem
+      agia.
+           Todo limite é uma experiência que
+60   se formula na relação com o outro. Entre
+    mim e o  outro há sempre um espaço
+     imponderável. Neste vazio entre “eu” e “tu”,
+     a melhor coisa a ser colocada é o respeito.
+    Se o  limite é a experiência que permite
+65   saber até onde se pode chegar  e, com
+      sorte, a protetora dor de saber aonde não
+     se deve ir, o respeito é a única de todas as
+      experiências  que  não  pode  ter  limite.
+     Porque respeito é o modo de olhar para o
+70   outro como  algo  positivo,  ver  nele sua
+      potência de ser, como alguém que, mesmo
+    me sendo próximo, carrega em si algo que
+     não pode dizer sobre si mesmo para mim,
+      e, por isso mesmo, sempre será intocável.
+
+
+              Adaptado de marciatiburi.com.br.`},{questão:`Um “não” dito em tom solene aqui, ou acolá, e
+estaria feita a mágica. (l. 12-14)
+Na frase, o uso da palavra “mágica” revela, por
+parte da autora, uma atitude de:`,alternativas:{A:`(A) indiferença`,B:`(B) admiração`,C:`(C) crença`,D:`(D) ironia`},disciplina:`Língua Portuguesa`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`CP 01/2017`,banca:`IBAM`,resposta_correta:`D`,texto_relevante:`TEXTO: SEM LIMITES
+
+Critica-se por aí a falta de limite das
+      crianças.  Reclama-se  dos  adolescentes
+      criados sem limites. No quarto escuro do
+      caos, esperamos que a luz do limite venha
+5    pôr a bagunça em ordem. Nem adultos
+     escapam da exigência  geral. Impõem-se
+       leis rígidas contra o consumo do álcool,
+     fecham-se as casas de jogos.
+            Para muitos basta dar “limites” para
+10    realizar uma boa educação, como se a
+      experiência do limite sozinha pudesse ser a
+     salvação para alguém que se perdeu. Um
+      “não” dito em tom solene aqui, ou acolá, e
+      estaria feita a mágica. Sabemos que não
+15   funciona assim. Professores contam com
+     soluções vindas de casa. Pais desatentos
+     ou ocupados esperam que os limites sejam
+     produzidos na escola, como se encontrar o
+       “limite” fosse tarefa da educação formal.
+20  Nem uma coisa nem outra. Parece que o
+       limite se tornou uma palavra a carregar a
+      culpa para o lado oposto onde cada um
+      está.
+         A tarefa de dar limite é uma das
+25   tantas que esperamos dos outros. Todos
+     sabemos que ela dá muito trabalho. Muitas
+     vezes nem sabemos, os responsáveis, do
+     que se  trata.  Talvez não confiemos na
+      possibilidade de que limite seja a resposta
+30   para nossos problemas na educação, nos
+      relacionamentos, pois nós mesmos não nos
+    damos   limites.  Somos  autoindulgentes,
+      autopiedosos, sempre prontos a perdoar as
+     nossas falhas. A revolta contra as leis é
+
+
+35    sinal de que não vemos vantagem dos
+      limites para nós mesmos. A culpa – e o
+     problema – é dos outros.
+        O  filósofo grego  Aristóteles  dizia
+     que qualquer coisa não existe para além do
+40    limite. Tudo o que existe precisa de um
+       limite para existir. Para saber o que algo é e
+     onde está se usa a noção do limite. Limite é
+     sinônimo de forma. Não podemos saber o
+     que é uma casa se não reconhecemos seus
+45    limites  concretos,  arquiteturais, que  são,
+       afinal, formais. Se pensarmos bem, todo o
+     nosso modo de ver o mundo, de pensar, de
+     entender  as   coisas,  depende   deste
+      conceito.
+50       Em  termos   éticos,  os  antigos
+     entendiam  o  limite  como  autodomínio,
+     capacidade  de   controlar  as   próprias
+      paixões, de viver no meio-termo. Limite era
+     tudo que tanto impedia como possibilitava
+55   movimentos. Qualquer ação dependia de
+      limites no espaço e no tempo. Mas também
+     dos limites externos ou internos de quem
+      agia.
+           Todo limite é uma experiência que
+60   se formula na relação com o outro. Entre
+    mim e o  outro há sempre um espaço
+     imponderável. Neste vazio entre “eu” e “tu”,
+     a melhor coisa a ser colocada é o respeito.
+    Se o  limite é a experiência que permite
+65   saber até onde se pode chegar  e, com
+      sorte, a protetora dor de saber aonde não
+     se deve ir, o respeito é a única de todas as
+      experiências  que  não  pode  ter  limite.
+     Porque respeito é o modo de olhar para o
+70   outro como  algo  positivo,  ver  nele sua
+      potência de ser, como alguém que, mesmo
+    me sendo próximo, carrega em si algo que
+     não pode dizer sobre si mesmo para mim,
+      e, por isso mesmo, sempre será intocável.
+
+
+              Adaptado de marciatiburi.com.br.`},{questão:`Dentre os valores da palavra “se”, está o de
+indicar uma condição, o que é observado em:`,alternativas:{A:`(A) Muitas vezes nem sabemos, os responsáveis, do que se trata. (l. 26-28)`,B:`(B) Para saber o que algo é e onde está se usa a noção do limite. (l. 41-42)`,C:`(C) Não podemos saber o que é uma casa se não reconhecemos seus limites (l. 43-45)`,D:`(D) a protetora dor de saber aonde não se deve ir, (l. 66-67)`},disciplina:`Língua Portuguesa`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`CP 01/2017`,banca:`IBAM`,resposta_correta:`C`,texto_relevante:`TEXTO: SEM LIMITES
+
+Critica-se por aí a falta de limite das
+      crianças.  Reclama-se  dos  adolescentes
+      criados sem limites. No quarto escuro do
+      caos, esperamos que a luz do limite venha
+5    pôr a bagunça em ordem. Nem adultos
+     escapam da exigência  geral. Impõem-se
+       leis rígidas contra o consumo do álcool,
+     fecham-se as casas de jogos.
+            Para muitos basta dar “limites” para
+10    realizar uma boa educação, como se a
+      experiência do limite sozinha pudesse ser a
+     salvação para alguém que se perdeu. Um
+      “não” dito em tom solene aqui, ou acolá, e
+      estaria feita a mágica. Sabemos que não
+15   funciona assim. Professores contam com
+     soluções vindas de casa. Pais desatentos
+     ou ocupados esperam que os limites sejam
+     produzidos na escola, como se encontrar o
+       “limite” fosse tarefa da educação formal.
+20  Nem uma coisa nem outra. Parece que o
+       limite se tornou uma palavra a carregar a
+      culpa para o lado oposto onde cada um
+      está.
+         A tarefa de dar limite é uma das
+25   tantas que esperamos dos outros. Todos
+     sabemos que ela dá muito trabalho. Muitas
+     vezes nem sabemos, os responsáveis, do
+     que se  trata.  Talvez não confiemos na
+      possibilidade de que limite seja a resposta
+30   para nossos problemas na educação, nos
+      relacionamentos, pois nós mesmos não nos
+    damos   limites.  Somos  autoindulgentes,
+      autopiedosos, sempre prontos a perdoar as
+     nossas falhas. A revolta contra as leis é
+
+
+35    sinal de que não vemos vantagem dos
+      limites para nós mesmos. A culpa – e o
+     problema – é dos outros.
+        O  filósofo grego  Aristóteles  dizia
+     que qualquer coisa não existe para além do
+40    limite. Tudo o que existe precisa de um
+       limite para existir. Para saber o que algo é e
+     onde está se usa a noção do limite. Limite é
+     sinônimo de forma. Não podemos saber o
+     que é uma casa se não reconhecemos seus
+45    limites  concretos,  arquiteturais, que  são,
+       afinal, formais. Se pensarmos bem, todo o
+     nosso modo de ver o mundo, de pensar, de
+     entender  as   coisas,  depende   deste
+      conceito.
+50       Em  termos   éticos,  os  antigos
+     entendiam  o  limite  como  autodomínio,
+     capacidade  de   controlar  as   próprias
+      paixões, de viver no meio-termo. Limite era
+     tudo que tanto impedia como possibilitava
+55   movimentos. Qualquer ação dependia de
+      limites no espaço e no tempo. Mas também
+     dos limites externos ou internos de quem
+      agia.
+           Todo limite é uma experiência que
+60   se formula na relação com o outro. Entre
+    mim e o  outro há sempre um espaço
+     imponderável. Neste vazio entre “eu” e “tu”,
+     a melhor coisa a ser colocada é o respeito.
+    Se o  limite é a experiência que permite
+65   saber até onde se pode chegar  e, com
+      sorte, a protetora dor de saber aonde não
+     se deve ir, o respeito é a única de todas as
+      experiências  que  não  pode  ter  limite.
+     Porque respeito é o modo de olhar para o
+70   outro como  algo  positivo,  ver  nele sua
+      potência de ser, como alguém que, mesmo
+    me sendo próximo, carrega em si algo que
+     não pode dizer sobre si mesmo para mim,
+      e, por isso mesmo, sempre será intocável.
+
+
+              Adaptado de marciatiburi.com.br.`},{questão:`Sabemos que não funciona assim. (l. 14-15)
+A oração sublinhada acima complementa o verbo
+“saber” e, por isso, é classificada como uma
+oração subordinada substantiva do seguinte tipo:`,alternativas:{A:`(A) completiva nominal`,B:`(B) objetiva direta`,C:`(C) predicativa`,D:`(D) subjetiva`},disciplina:`Língua Portuguesa`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`CP 01/2017`,banca:`IBAM`,resposta_correta:`B`,texto_relevante:`TEXTO: SEM LIMITES
+
+Critica-se por aí a falta de limite das
+      crianças.  Reclama-se  dos  adolescentes
+      criados sem limites. No quarto escuro do
+      caos, esperamos que a luz do limite venha
+5    pôr a bagunça em ordem. Nem adultos
+     escapam da exigência  geral. Impõem-se
+       leis rígidas contra o consumo do álcool,
+     fecham-se as casas de jogos.
+            Para muitos basta dar “limites” para
+10    realizar uma boa educação, como se a
+      experiência do limite sozinha pudesse ser a
+     salvação para alguém que se perdeu. Um
+      “não” dito em tom solene aqui, ou acolá, e
+      estaria feita a mágica. Sabemos que não
+15   funciona assim. Professores contam com
+     soluções vindas de casa. Pais desatentos
+     ou ocupados esperam que os limites sejam
+     produzidos na escola, como se encontrar o
+       “limite” fosse tarefa da educação formal.
+20  Nem uma coisa nem outra. Parece que o
+       limite se tornou uma palavra a carregar a
+      culpa para o lado oposto onde cada um
+      está.
+         A tarefa de dar limite é uma das
+25   tantas que esperamos dos outros. Todos
+     sabemos que ela dá muito trabalho. Muitas
+     vezes nem sabemos, os responsáveis, do
+     que se  trata.  Talvez não confiemos na
+      possibilidade de que limite seja a resposta
+30   para nossos problemas na educação, nos
+      relacionamentos, pois nós mesmos não nos
+    damos   limites.  Somos  autoindulgentes,
+      autopiedosos, sempre prontos a perdoar as
+     nossas falhas. A revolta contra as leis é
+
+
+35    sinal de que não vemos vantagem dos
+      limites para nós mesmos. A culpa – e o
+     problema – é dos outros.
+        O  filósofo grego  Aristóteles  dizia
+     que qualquer coisa não existe para além do
+40    limite. Tudo o que existe precisa de um
+       limite para existir. Para saber o que algo é e
+     onde está se usa a noção do limite. Limite é
+     sinônimo de forma. Não podemos saber o
+     que é uma casa se não reconhecemos seus
+45    limites  concretos,  arquiteturais, que  são,
+       afinal, formais. Se pensarmos bem, todo o
+     nosso modo de ver o mundo, de pensar, de
+     entender  as   coisas,  depende   deste
+      conceito.
+50       Em  termos   éticos,  os  antigos
+     entendiam  o  limite  como  autodomínio,
+     capacidade  de   controlar  as   próprias
+      paixões, de viver no meio-termo. Limite era
+     tudo que tanto impedia como possibilitava
+55   movimentos. Qualquer ação dependia de
+      limites no espaço e no tempo. Mas também
+     dos limites externos ou internos de quem
+      agia.
+           Todo limite é uma experiência que
+60   se formula na relação com o outro. Entre
+    mim e o  outro há sempre um espaço
+     imponderável. Neste vazio entre “eu” e “tu”,
+     a melhor coisa a ser colocada é o respeito.
+    Se o  limite é a experiência que permite
+65   saber até onde se pode chegar  e, com
+      sorte, a protetora dor de saber aonde não
+     se deve ir, o respeito é a única de todas as
+      experiências  que  não  pode  ter  limite.
+     Porque respeito é o modo de olhar para o
+70   outro como  algo  positivo,  ver  nele sua
+      potência de ser, como alguém que, mesmo
+    me sendo próximo, carrega em si algo que
+     não pode dizer sobre si mesmo para mim,
+      e, por isso mesmo, sempre será intocável.
+
+
+              Adaptado de marciatiburi.com.br.`},{questão:`A revolta contra as leis é sinal de que não vemos
+vantagem dos limites para nós mesmos. (l. 34-36)
+No terceiro parágrafo, a frase citada representa
+um recurso de:`,alternativas:{A:`(A) contra-argumentação`,B:`(B) exemplificação`,C:`(C) generalização`,D:`(D) gradação`},disciplina:`Língua Portuguesa`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`CP 01/2017`,banca:`IBAM`,resposta_correta:`B`,texto_relevante:`TEXTO: SEM LIMITES
+
+Critica-se por aí a falta de limite das
+      crianças.  Reclama-se  dos  adolescentes
+      criados sem limites. No quarto escuro do
+      caos, esperamos que a luz do limite venha
+5    pôr a bagunça em ordem. Nem adultos
+     escapam da exigência  geral. Impõem-se
+       leis rígidas contra o consumo do álcool,
+     fecham-se as casas de jogos.
+            Para muitos basta dar “limites” para
+10    realizar uma boa educação, como se a
+      experiência do limite sozinha pudesse ser a
+     salvação para alguém que se perdeu. Um
+      “não” dito em tom solene aqui, ou acolá, e
+      estaria feita a mágica. Sabemos que não
+15   funciona assim. Professores contam com
+     soluções vindas de casa. Pais desatentos
+     ou ocupados esperam que os limites sejam
+     produzidos na escola, como se encontrar o
+       “limite” fosse tarefa da educação formal.
+20  Nem uma coisa nem outra. Parece que o
+       limite se tornou uma palavra a carregar a
+      culpa para o lado oposto onde cada um
+      está.
+         A tarefa de dar limite é uma das
+25   tantas que esperamos dos outros. Todos
+     sabemos que ela dá muito trabalho. Muitas
+     vezes nem sabemos, os responsáveis, do
+     que se  trata.  Talvez não confiemos na
+      possibilidade de que limite seja a resposta
+30   para nossos problemas na educação, nos
+      relacionamentos, pois nós mesmos não nos
+    damos   limites.  Somos  autoindulgentes,
+      autopiedosos, sempre prontos a perdoar as
+     nossas falhas. A revolta contra as leis é
+
+
+35    sinal de que não vemos vantagem dos
+      limites para nós mesmos. A culpa – e o
+     problema – é dos outros.
+        O  filósofo grego  Aristóteles  dizia
+     que qualquer coisa não existe para além do
+40    limite. Tudo o que existe precisa de um
+       limite para existir. Para saber o que algo é e
+     onde está se usa a noção do limite. Limite é
+     sinônimo de forma. Não podemos saber o
+     que é uma casa se não reconhecemos seus
+45    limites  concretos,  arquiteturais, que  são,
+       afinal, formais. Se pensarmos bem, todo o
+     nosso modo de ver o mundo, de pensar, de
+     entender  as   coisas,  depende   deste
+      conceito.
+50       Em  termos   éticos,  os  antigos
+     entendiam  o  limite  como  autodomínio,
+     capacidade  de   controlar  as   próprias
+      paixões, de viver no meio-termo. Limite era
+     tudo que tanto impedia como possibilitava
+55   movimentos. Qualquer ação dependia de
+      limites no espaço e no tempo. Mas também
+     dos limites externos ou internos de quem
+      agia.
+           Todo limite é uma experiência que
+60   se formula na relação com o outro. Entre
+    mim e o  outro há sempre um espaço
+     imponderável. Neste vazio entre “eu” e “tu”,
+     a melhor coisa a ser colocada é o respeito.
+    Se o  limite é a experiência que permite
+65   saber até onde se pode chegar  e, com
+      sorte, a protetora dor de saber aonde não
+     se deve ir, o respeito é a única de todas as
+      experiências  que  não  pode  ter  limite.
+     Porque respeito é o modo de olhar para o
+70   outro como  algo  positivo,  ver  nele sua
+      potência de ser, como alguém que, mesmo
+    me sendo próximo, carrega em si algo que
+     não pode dizer sobre si mesmo para mim,
+      e, por isso mesmo, sempre será intocável.
+
+
+              Adaptado de marciatiburi.com.br.`},{questão:`Limite era tudo que tanto impedia como
+possibilitava movimentos. (l. 53-55)
+As palavras sublinhadas acima, em conjunto,
+estabelecem sentido de:`,alternativas:{A:`(A) adição`,B:`(B) proporção`,C:`(C) concessão`,D:`(D) comparação`},disciplina:`Língua Portuguesa`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`CP 01/2017`,banca:`IBAM`,resposta_correta:`A`,texto_relevante:`TEXTO: SEM LIMITES
+
+Critica-se por aí a falta de limite das
+      crianças.  Reclama-se  dos  adolescentes
+      criados sem limites. No quarto escuro do
+      caos, esperamos que a luz do limite venha
+5    pôr a bagunça em ordem. Nem adultos
+     escapam da exigência  geral. Impõem-se
+       leis rígidas contra o consumo do álcool,
+     fecham-se as casas de jogos.
+            Para muitos basta dar “limites” para
+10    realizar uma boa educação, como se a
+      experiência do limite sozinha pudesse ser a
+     salvação para alguém que se perdeu. Um
+      “não” dito em tom solene aqui, ou acolá, e
+      estaria feita a mágica. Sabemos que não
+15   funciona assim. Professores contam com
+     soluções vindas de casa. Pais desatentos
+     ou ocupados esperam que os limites sejam
+     produzidos na escola, como se encontrar o
+       “limite” fosse tarefa da educação formal.
+20  Nem uma coisa nem outra. Parece que o
+       limite se tornou uma palavra a carregar a
+      culpa para o lado oposto onde cada um
+      está.
+         A tarefa de dar limite é uma das
+25   tantas que esperamos dos outros. Todos
+     sabemos que ela dá muito trabalho. Muitas
+     vezes nem sabemos, os responsáveis, do
+     que se  trata.  Talvez não confiemos na
+      possibilidade de que limite seja a resposta
+30   para nossos problemas na educação, nos
+      relacionamentos, pois nós mesmos não nos
+    damos   limites.  Somos  autoindulgentes,
+      autopiedosos, sempre prontos a perdoar as
+     nossas falhas. A revolta contra as leis é
+
+
+35    sinal de que não vemos vantagem dos
+      limites para nós mesmos. A culpa – e o
+     problema – é dos outros.
+        O  filósofo grego  Aristóteles  dizia
+     que qualquer coisa não existe para além do
+40    limite. Tudo o que existe precisa de um
+       limite para existir. Para saber o que algo é e
+     onde está se usa a noção do limite. Limite é
+     sinônimo de forma. Não podemos saber o
+     que é uma casa se não reconhecemos seus
+45    limites  concretos,  arquiteturais, que  são,
+       afinal, formais. Se pensarmos bem, todo o
+     nosso modo de ver o mundo, de pensar, de
+     entender  as   coisas,  depende   deste
+      conceito.
+50       Em  termos   éticos,  os  antigos
+     entendiam  o  limite  como  autodomínio,
+     capacidade  de   controlar  as   próprias
+      paixões, de viver no meio-termo. Limite era
+     tudo que tanto impedia como possibilitava
+55   movimentos. Qualquer ação dependia de
+      limites no espaço e no tempo. Mas também
+     dos limites externos ou internos de quem
+      agia.
+           Todo limite é uma experiência que
+60   se formula na relação com o outro. Entre
+    mim e o  outro há sempre um espaço
+     imponderável. Neste vazio entre “eu” e “tu”,
+     a melhor coisa a ser colocada é o respeito.
+    Se o  limite é a experiência que permite
+65   saber até onde se pode chegar  e, com
+      sorte, a protetora dor de saber aonde não
+     se deve ir, o respeito é a única de todas as
+      experiências  que  não  pode  ter  limite.
+     Porque respeito é o modo de olhar para o
+70   outro como  algo  positivo,  ver  nele sua
+      potência de ser, como alguém que, mesmo
+    me sendo próximo, carrega em si algo que
+     não pode dizer sobre si mesmo para mim,
+      e, por isso mesmo, sempre será intocável.
+
+
+              Adaptado de marciatiburi.com.br.`},{questão:`Uma palavra classificada como adjetivo está
+sublinhada em:`,alternativas:{A:`(A) Nem adultos escapam da exigência geral. (l. 5-6)`,B:`(B) uma palavra a carregar a culpa para o lado oposto (l. 21-22)`,C:`(C) os antigos entendiam o limite como autodomínio, (l. 50-51)`,D:`(D) Entre mim e o outro há sempre um espaço imponderável. (l. 60-62)`},disciplina:`Língua Portuguesa`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`CP 01/2017`,banca:`IBAM`,resposta_correta:`D`,texto_relevante:`TEXTO: SEM LIMITES
+
+Critica-se por aí a falta de limite das
+      crianças.  Reclama-se  dos  adolescentes
+      criados sem limites. No quarto escuro do
+      caos, esperamos que a luz do limite venha
+5    pôr a bagunça em ordem. Nem adultos
+     escapam da exigência  geral. Impõem-se
+       leis rígidas contra o consumo do álcool,
+     fecham-se as casas de jogos.
+            Para muitos basta dar “limites” para
+10    realizar uma boa educação, como se a
+      experiência do limite sozinha pudesse ser a
+     salvação para alguém que se perdeu. Um
+      “não” dito em tom solene aqui, ou acolá, e
+      estaria feita a mágica. Sabemos que não
+15   funciona assim. Professores contam com
+     soluções vindas de casa. Pais desatentos
+     ou ocupados esperam que os limites sejam
+     produzidos na escola, como se encontrar o
+       “limite” fosse tarefa da educação formal.
+20  Nem uma coisa nem outra. Parece que o
+       limite se tornou uma palavra a carregar a
+      culpa para o lado oposto onde cada um
+      está.
+         A tarefa de dar limite é uma das
+25   tantas que esperamos dos outros. Todos
+     sabemos que ela dá muito trabalho. Muitas
+     vezes nem sabemos, os responsáveis, do
+     que se  trata.  Talvez não confiemos na
+      possibilidade de que limite seja a resposta
+30   para nossos problemas na educação, nos
+      relacionamentos, pois nós mesmos não nos
+    damos   limites.  Somos  autoindulgentes,
+      autopiedosos, sempre prontos a perdoar as
+     nossas falhas. A revolta contra as leis é
+
+
+35    sinal de que não vemos vantagem dos
+      limites para nós mesmos. A culpa – e o
+     problema – é dos outros.
+        O  filósofo grego  Aristóteles  dizia
+     que qualquer coisa não existe para além do
+40    limite. Tudo o que existe precisa de um
+       limite para existir. Para saber o que algo é e
+     onde está se usa a noção do limite. Limite é
+     sinônimo de forma. Não podemos saber o
+     que é uma casa se não reconhecemos seus
+45    limites  concretos,  arquiteturais, que  são,
+       afinal, formais. Se pensarmos bem, todo o
+     nosso modo de ver o mundo, de pensar, de
+     entender  as   coisas,  depende   deste
+      conceito.
+50       Em  termos   éticos,  os  antigos
+     entendiam  o  limite  como  autodomínio,
+     capacidade  de   controlar  as   próprias
+      paixões, de viver no meio-termo. Limite era
+     tudo que tanto impedia como possibilitava
+55   movimentos. Qualquer ação dependia de
+      limites no espaço e no tempo. Mas também
+     dos limites externos ou internos de quem
+      agia.
+           Todo limite é uma experiência que
+60   se formula na relação com o outro. Entre
+    mim e o  outro há sempre um espaço
+     imponderável. Neste vazio entre “eu” e “tu”,
+     a melhor coisa a ser colocada é o respeito.
+    Se o  limite é a experiência que permite
+65   saber até onde se pode chegar  e, com
+      sorte, a protetora dor de saber aonde não
+     se deve ir, o respeito é a única de todas as
+      experiências  que  não  pode  ter  limite.
+     Porque respeito é o modo de olhar para o
+70   outro como  algo  positivo,  ver  nele sua
+      potência de ser, como alguém que, mesmo
+    me sendo próximo, carrega em si algo que
+     não pode dizer sobre si mesmo para mim,
+      e, por isso mesmo, sempre será intocável.
+
+
+              Adaptado de marciatiburi.com.br.`},{questão:`A frase citada está separada da frase que a
+antecede por um ponto-final, mas poderia ter sido
+empregada uma vírgula.
+Com o uso do ponto-final, associa-se ao conteúdo
+dessa frase o valor de:`,alternativas:{A:`(A) ênfase`,B:`(B) inclusão`,C:`(C) oposição`,D:`(D) neutralidade`},disciplina:`Língua Portuguesa`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`CP 01/2017`,banca:`IBAM`,resposta_correta:`A`,texto_relevante:`TEXTO: SEM LIMITES
+
+Critica-se por aí a falta de limite das
+      crianças.  Reclama-se  dos  adolescentes
+      criados sem limites. No quarto escuro do
+      caos, esperamos que a luz do limite venha
+5    pôr a bagunça em ordem. Nem adultos
+     escapam da exigência  geral. Impõem-se
+       leis rígidas contra o consumo do álcool,
+     fecham-se as casas de jogos.
+            Para muitos basta dar “limites” para
+10    realizar uma boa educação, como se a
+      experiência do limite sozinha pudesse ser a
+     salvação para alguém que se perdeu. Um
+      “não” dito em tom solene aqui, ou acolá, e
+      estaria feita a mágica. Sabemos que não
+15   funciona assim. Professores contam com
+     soluções vindas de casa. Pais desatentos
+     ou ocupados esperam que os limites sejam
+     produzidos na escola, como se encontrar o
+       “limite” fosse tarefa da educação formal.
+20  Nem uma coisa nem outra. Parece que o
+       limite se tornou uma palavra a carregar a
+      culpa para o lado oposto onde cada um
+      está.
+         A tarefa de dar limite é uma das
+25   tantas que esperamos dos outros. Todos
+     sabemos que ela dá muito trabalho. Muitas
+     vezes nem sabemos, os responsáveis, do
+     que se  trata.  Talvez não confiemos na
+      possibilidade de que limite seja a resposta
+30   para nossos problemas na educação, nos
+      relacionamentos, pois nós mesmos não nos
+    damos   limites.  Somos  autoindulgentes,
+      autopiedosos, sempre prontos a perdoar as
+     nossas falhas. A revolta contra as leis é
+
+
+35    sinal de que não vemos vantagem dos
+      limites para nós mesmos. A culpa – e o
+     problema – é dos outros.
+        O  filósofo grego  Aristóteles  dizia
+     que qualquer coisa não existe para além do
+40    limite. Tudo o que existe precisa de um
+       limite para existir. Para saber o que algo é e
+     onde está se usa a noção do limite. Limite é
+     sinônimo de forma. Não podemos saber o
+     que é uma casa se não reconhecemos seus
+45    limites  concretos,  arquiteturais, que  são,
+       afinal, formais. Se pensarmos bem, todo o
+     nosso modo de ver o mundo, de pensar, de
+     entender  as   coisas,  depende   deste
+      conceito.
+50       Em  termos   éticos,  os  antigos
+     entendiam  o  limite  como  autodomínio,
+     capacidade  de   controlar  as   próprias
+      paixões, de viver no meio-termo. Limite era
+     tudo que tanto impedia como possibilitava
+55   movimentos. Qualquer ação dependia de
+      limites no espaço e no tempo. Mas também
+     dos limites externos ou internos de quem
+      agia.
+           Todo limite é uma experiência que
+60   se formula na relação com o outro. Entre
+    mim e o  outro há sempre um espaço
+     imponderável. Neste vazio entre “eu” e “tu”,
+     a melhor coisa a ser colocada é o respeito.
+    Se o  limite é a experiência que permite
+65   saber até onde se pode chegar  e, com
+      sorte, a protetora dor de saber aonde não
+     se deve ir, o respeito é a única de todas as
+      experiências  que  não  pode  ter  limite.
+     Porque respeito é o modo de olhar para o
+70   outro como  algo  positivo,  ver  nele sua
+      potência de ser, como alguém que, mesmo
+    me sendo próximo, carrega em si algo que
+     não pode dizer sobre si mesmo para mim,
+      e, por isso mesmo, sempre será intocável.
+
+
+              Adaptado de marciatiburi.com.br.`},{questão:`O verbo sublinhado está no pretérito imperfeito do
+modo indicativo, expressando assim o seguinte
+aspecto da ocorrência da ação:`,alternativas:{A:`(A) incerteza`,B:`(B) intermitência`,C:`(C) continuidade`,D:`(D) eventualidade`},disciplina:`Língua Portuguesa`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`CP 01/2017`,banca:`IBAM`,resposta_correta:`C`,texto_relevante:`TEXTO: SEM LIMITES
+
+Critica-se por aí a falta de limite das
+      crianças.  Reclama-se  dos  adolescentes
+      criados sem limites. No quarto escuro do
+      caos, esperamos que a luz do limite venha
+5    pôr a bagunça em ordem. Nem adultos
+     escapam da exigência  geral. Impõem-se
+       leis rígidas contra o consumo do álcool,
+     fecham-se as casas de jogos.
+            Para muitos basta dar “limites” para
+10    realizar uma boa educação, como se a
+      experiência do limite sozinha pudesse ser a
+     salvação para alguém que se perdeu. Um
+      “não” dito em tom solene aqui, ou acolá, e
+      estaria feita a mágica. Sabemos que não
+15   funciona assim. Professores contam com
+     soluções vindas de casa. Pais desatentos
+     ou ocupados esperam que os limites sejam
+     produzidos na escola, como se encontrar o
+       “limite” fosse tarefa da educação formal.
+20  Nem uma coisa nem outra. Parece que o
+       limite se tornou uma palavra a carregar a
+      culpa para o lado oposto onde cada um
+      está.
+         A tarefa de dar limite é uma das
+25   tantas que esperamos dos outros. Todos
+     sabemos que ela dá muito trabalho. Muitas
+     vezes nem sabemos, os responsáveis, do
+     que se  trata.  Talvez não confiemos na
+      possibilidade de que limite seja a resposta
+30   para nossos problemas na educação, nos
+      relacionamentos, pois nós mesmos não nos
+    damos   limites.  Somos  autoindulgentes,
+      autopiedosos, sempre prontos a perdoar as
+     nossas falhas. A revolta contra as leis é
+
+
+35    sinal de que não vemos vantagem dos
+      limites para nós mesmos. A culpa – e o
+     problema – é dos outros.
+        O  filósofo grego  Aristóteles  dizia
+     que qualquer coisa não existe para além do
+40    limite. Tudo o que existe precisa de um
+       limite para existir. Para saber o que algo é e
+     onde está se usa a noção do limite. Limite é
+     sinônimo de forma. Não podemos saber o
+     que é uma casa se não reconhecemos seus
+45    limites  concretos,  arquiteturais, que  são,
+       afinal, formais. Se pensarmos bem, todo o
+     nosso modo de ver o mundo, de pensar, de
+     entender  as   coisas,  depende   deste
+      conceito.
+50       Em  termos   éticos,  os  antigos
+     entendiam  o  limite  como  autodomínio,
+     capacidade  de   controlar  as   próprias
+      paixões, de viver no meio-termo. Limite era
+     tudo que tanto impedia como possibilitava
+55   movimentos. Qualquer ação dependia de
+      limites no espaço e no tempo. Mas também
+     dos limites externos ou internos de quem
+      agia.
+           Todo limite é uma experiência que
+60   se formula na relação com o outro. Entre
+    mim e o  outro há sempre um espaço
+     imponderável. Neste vazio entre “eu” e “tu”,
+     a melhor coisa a ser colocada é o respeito.
+    Se o  limite é a experiência que permite
+65   saber até onde se pode chegar  e, com
+      sorte, a protetora dor de saber aonde não
+     se deve ir, o respeito é a única de todas as
+      experiências  que  não  pode  ter  limite.
+     Porque respeito é o modo de olhar para o
+70   outro como  algo  positivo,  ver  nele sua
+      potência de ser, como alguém que, mesmo
+    me sendo próximo, carrega em si algo que
+     não pode dizer sobre si mesmo para mim,
+      e, por isso mesmo, sempre será intocável.
+
+
+              Adaptado de marciatiburi.com.br.`}],"IBAM - Prefeitura Municipal de Caruaru/PE - Assistente Social - 2025":[{questão:`O trabalho de mobilização e organização comunitária na atuação do assistente social é central, pois é um
+instrumento de participação na política de habitação. Todavia, ressalta-se a sua contradição no cotidiano
+profissional:`,alternativas:{A:`(A) quando o profissional se vê subordinado a uma dimensão política e ideológica do Estado para amenizar os conflitos junto às comunidades`,B:`(B) quando o profissional se percebe como um instrumento do Estado para manter a ordem social, sem possibilidade de mudança da realidade`,C:`(C) quando o profissional atua para amenizar os conflitos mediante o crescimento no investimento na mão de obra qualificada e nas articulações entre as políticas`,D:`(D) quando o profissional consegue intervir, de maneira autônoma, nos conflitos urbanos, sem utilizar as políticas sociais`},disciplina:`Conhecimentos Específicos`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`03/2025`,banca:`IBAM`,resposta_correta:`A`},{questão:`“A ênfase conferida às ações socioeducativas é identificada como um marco na intervenção dos assistentes
+sociais, considerando sua importância no processo de produção e reprodução social.” (Iamamoto, 2009)
+Mediante as ações socioeducativas, o assistente social:`,alternativas:{A:`(A) interage com a população, colocando o indivíduo como foco e atuando na resolução dos problemas individuais, em uma perspectiva emancipadora`,B:`(B) interage com a população, intenta o diálogo problematizador e a coletivização de demandas individuais, trazendo a responsabilidade de cada um para com seus problemas`,C:`(C) tem como objetivo a mobilização, a organização e a participação social, em uma perspectiva emancipatória`,D:`(D) em uma perspectiva de controle social, tem como objetivo o assistencialismo e a organização social`},disciplina:`Conhecimentos Específicos`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`03/2025`,banca:`IBAM`,resposta_correta:`C`},{questão:`Plantão social e visita domiciliar e institucional são instrumentos do Serviço Social, utilizados no âmbito da
+política de habitação. Sobre tais instrumentos, é correta a seguinte afirmativa:`,alternativas:{A:`(A) a visita serve para monitorar, avaliar e controlar a situação socioeconômica das famílias`,B:`(B) a visita serve para organizar e acompanhar as vistorias de imóveis, bem como observar a situação socioeconômica das famílias e coletar informações`,C:`(C) a visita visa o atendimento dos usuários no repasse de informações sobre o projeto`,D:`(D) o plantão social permite ao assistente social ter contato direto com as famílias e é desenvolvido com amplos recursos e estrutura organizada`},disciplina:`Conhecimentos Específicos`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`03/2025`,banca:`IBAM`,resposta_correta:`B`},{questão:`No âmbito das políticas sociais brasileiras, o neoliberalismo fere os pressupostos constitucionais de
+universalidade, equidade e integralidade, ao promover uma oferta de pacote básico de serviços públicos
+voltados para parcela da população que não tem condições de acesso a esses serviços no mercado, o que
+causa um impacto negativo para a profissão na medida em que:`,alternativas:{A:`(A) a intervenção do Serviço Social passa a se resumir em manutenção do assistencialismo através de doações, tirando a condição de direito e passando a ser considerado favor`,B:`(B) o caráter imediatista das políticas propostas pela lógica neoliberal requisita dos profissionais uma intervenção imediata e focalizada nas demandas apresentadas pela população usuária, prestando atendimento emergencial às necessidades sociais`,C:`(C) o caráter imediatista dessas políticas está previsto na Constituição Federal de 1988 e a intervenção do Serviço Social fortalece esse direito`,D:`(D) a intervenção do Serviço Social passa a adotar a lógica neoliberal em sua forma de atuação, pois está inserido na divisão sociotécnica do trabalho, assim dificultando colocar em prática o Código de Ética da Profissão (1993)`},disciplina:`Conhecimentos Específicos`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`03/2025`,banca:`IBAM`,resposta_correta:`B`},{questão:`Dados analisados sugerem que houve avanços consideráveis no tocante ao reconhecimento e positivação
+do direito fundamental à moradia, sobretudo amparado nos princípios da dignidade humana e da função
+social da propriedade, bem como na ratificação de tratados e convenções internacionais. Esses avanços só
+foram possíveis:`,alternativas:{A:`(A) por meio do Estado de Bem-Estar Social, que com a reestruturação produtiva trouxe a função do Estado como mediador dos conflitos sociais, sendo o máximo para o capital e o mínimo para o social`,B:`(B) graças à promulgação da Constituição cidadã de 1988 e posteriores emendas constitucionais e aos disruptivos e inovadores instrumentos de política urbana trazidos no bojo do Estatuto da Cidade`,C:`(C) por meio do surgimento da política de assistência social, que foi antecessora da Constituição cidadã de 1988`,D:`(D) por intermédio dos programas de habitação que surgiram com a necessidade imposta pelos direitos humanos e pela política de assistência social`},disciplina:`Conhecimentos Específicos`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`03/2025`,banca:`IBAM`,resposta_correta:`B`},{questão:`Em suas diretrizes, a PNAS/2004 pressupõe a territorialização como um dos princípios que compõem um
+dos principais mecanismos de sustentação para a organização do SUAS/2005, uma vez que:`,alternativas:{A:`(A) entende-se que as diferenças culturais de cada território não interferem no planejamento das ações`,B:`(B) unificando as regiões de atuação em um único território, o planejamento das ações é facilitado`,C:`(C) faz-se necessário separar as regiões para focar no indivíduo formado pela sua cultura`,D:`(D) leva em consideração a heterogeneidade e a desigualdade socioterritorial presente no país`},disciplina:`Conhecimentos Específicos`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`03/2025`,banca:`IBAM`,resposta_correta:`D`},{questão:`A autora Marilda Iamamoto (2019) ressalta que o assistente social é um trabalhador assalariado que se
+enquadra na divisão sociotécnica do trabalho, mas possui a possibilidade de imprimir uma direção social às
+suas ações. Essa característica se refere a:`,alternativas:{A:`(A) relativa autonomia`,B:`(B) projeto profissional`,C:`(C) intelectualidade orgânica`,D:`(D) mais-valia`},disciplina:`Conhecimentos Específicos`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`03/2025`,banca:`IBAM`,resposta_correta:`A`},{questão:`Sua característica de espaço público remete considerá-lo como unidade de possibilidades, de
+reconhecimentos, de acessos a direitos, de proteção social, de provisões, de acolhimento, de segurança, de
+estratégias e, principalmente, de referência no que diz respeito ao atendimento da população local.
+A descrição acima diz respeito a:`,alternativas:{A:`(A) PNAS`,B:`(B) SUAS`,C:`(C) CRAS`,D:`(D) LOAS`},disciplina:`Conhecimentos Específicos`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`03/2025`,banca:`IBAM`,resposta_correta:`C`},{questão:`A dinâmica populacional é um importante indicador para a política de assistência social, pois ela está
+intimamente relacionada com o processo econômico estrutural de valorização do solo em todo território
+nacional, destacando-se a alta taxa de urbanização, especialmente nos municípios de médio e grande porte
+e nas metrópoles.
+Das alternativas abaixo, aquela que apresenta uma afirmativa correta sobre o tema é:`,alternativas:{A:`(A) municípios médios possuem população entre 50.001 e 80.000 habitantes`,B:`(B) municípios grandes possuem população entre 100.001 e 900.000 habitantes`,C:`(C) metrópoles possuem população superior a 1.000.000 habitantes`,D:`(D) municípios médios possuem população entre 25.001 e 100.000 habitantes`},disciplina:`Conhecimentos Específicos`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`03/2025`,banca:`IBAM`,resposta_correta:`B`},{questão:`A proteção social deve garantir as seguintes
+seguranças: segurança de sobrevivência (de
+rendimento e de autonomia); de acolhida; de
+convívio ou vivência familiar. Desse modo,
+podemos afirmar que:`,alternativas:{A:`(A) a segurança de acolhida é uma das seguranças primordiais da política de assistência social, pois opera com a provisão de necessidades humanas que começa com os direitos à alimentação, ao vestuário e ao abrigo, próprios à vida humana em sociedade`,B:`(B) a segurança de rendimentos é uma compensação do valor do salário mínimo inadequado e tem como finalidade assegurar que todos tenham uma forma monetária de garantir sua sobrevivência`,C:`(C) a segurança de acolhida se refere à proibição de separação da família ou da parentela, independentemente da situação`,D:`(D) a segurança de convívio ou vivência familiar é uma das necessidades a ser preenchida pela política de assistência social, o que pressupõe a aceitação de situações de reclusão`},disciplina:`Conhecimentos Específicos`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`03/2025`,banca:`IBAM`,resposta_correta:`A`},{questão:`“Exercício do Serviço Social sem ser
+discriminado, nem discriminar, por questões de
+inserção de classe social, gênero, etnia, religião,
+nacionalidade, orientação sexual, identidade de
+gênero, idade e condição física.”
+O trecho acima, presente no Código de Ética do
+Serviço Social, é:`,alternativas:{A:`(A) uma diretriz`,B:`(B) um direito do assistente social`,C:`(C) um dever do assistente social`,D:`(D) um princípio fundamental`},disciplina:`Conhecimentos Específicos`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`03/2025`,banca:`IBAM`,resposta_correta:`D`},{questão:`Segundo o Código de Ética do Serviço Social,
+realizar estudos socioeconômicos com os
+usuários para fins de benefícios e serviços sociais
+junto a órgãos da administração pública direta e
+indireta, empresas privadas e outras entidades é:`,alternativas:{A:`(A) uma atribuição privativa do assistente social`,B:`(B) uma competência do assistente social`,C:`(C) um direito do assistente social`,D:`(D) uma competência exclusiva do assistente social`},disciplina:`Conhecimentos Específicos`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`03/2025`,banca:`IBAM`,resposta_correta:`B`},{questão:`Na atualidade, um dos desafios da intervenção
+profissional no campo da política social está
+apresentado na seguinte alternativa:`,alternativas:{A:`(A) presença de profissionais qualificados`,B:`(B) divulgação das políticas sociais`,C:`(C) definição objetiva do que compete aos diferentes profissionais em uma equipe multidisciplinar`,D:`(D) articulação com as diferentes lideranças`},disciplina:`Conhecimentos Específicos`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`03/2025`,banca:`IBAM`,resposta_correta:`C`},{questão:`A Política Nacional de Habitação de Interesse
+Social (PNHIS) foi instituída no Brasil e tem como
+um de seus objetivos:`,alternativas:{A:`(A) viabilizar para a população de menor renda o acesso à terra urbanizada e à habitação digna e sustentável`,B:`(B) monitorar a atuação das instituições e órgãos que desempenham funções no setor da habitação`,C:`(C) incentivar a pesquisa, a incorporação de desenvolvimento tecnológico e de formas alternativas de produção habitacional`,D:`(D) estabelecer mecanismos de quotas para idosos, deficientes e famílias chefiadas por mulheres`},disciplina:`Conhecimentos Específicos`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`03/2025`,banca:`IBAM`,resposta_correta:`A`},{questão:`Todos os serviços da proteção social básica,
+desenvolvidos no território de abrangência do
+CRAS, devem ser a ele referenciados e manter
+articulação com o Serviço de Proteção e
+Atendimento Integral à Família (PAIF). É
+considerado objetivo do PAIF:`,alternativas:{A:`(A) atender às famílias em situação de vulnerabilidade`,B:`(B) atender às pessoas com deficiência`,C:`(C) oferecer benefícios`,D:`(D) fortalecer a função protetiva da família, contribuindo na melhoria da sua qualidade de vida`},disciplina:`Conhecimentos Específicos`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`03/2025`,banca:`IBAM`,resposta_correta:`D`},{questão:`A LOAS, em seu art. 2º, estabelece como um de
+seus objetivos a universalização dos direitos
+sociais, a fim de tornar o destinatário da ação
+assistencial alcançável pelas demais políticas
+públicas. Esse objetivo se alinha ao princípio
+fundamental da assistência social, que é:`,alternativas:{A:`(A) a centralização político-administrativa`,B:`(B) a primazia da responsabilidade do Estado na condução da política de assistência social`,C:`(C) a hierarquização dos serviços`,D:`(D) o controle social, assegurado pela participação popular`},disciplina:`Conhecimentos Específicos`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`03/2025`,banca:`IBAM`,resposta_correta:`B`},{questão:`Os benefícios eventuais, previstos no art. 22 da
+LOAS, integram as seguranças afiançadas pelo
+SUAS. Eles são concedidos para suprir
+necessidades decorrentes de contingências
+sociais, mediante a avaliação de critérios e
+prazos definidos:`,alternativas:{A:`(A) pelos respectivos Conselhos Municipais, Estaduais e do DF, e regulamentados pelos entes federativos`,B:`(B) pelos Estados e pelo Distrito Federal, exclusivamente`,C:`(C) pelo Ministério do Desenvolvimento e Assistência Social, Família e Combate à Fome (MDS)`,D:`(D) pelo Conselho Nacional de Assistência Social (CNAS) e pelo INSS`},disciplina:`Conhecimentos Específicos`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`03/2025`,banca:`IBAM`,resposta_correta:`A`},{questão:`No desenvolvimento do trabalho social com
+famílias, um dos pressupostos éticos e
+metodológicos é o reconhecimento da diversidade
+e pluralidade dos arranjos familiares
+contemporâneos. Desse modo, o assistente
+social deve:`,alternativas:{A:`(A) respeitar os diversos formatos de família, porém direcionando os serviços à família nuclear`,B:`(B) orientar sua prática pelo modelo tradicional de família nuclear`,C:`(C) pautar-se pelo respeito à diversidade, aos arranjos homoafetivos, monoparentais, extensos etc.`,D:`(D) inserir as famílias não tradicionais e nucleares nos serviços especializados de alta complexidade`},disciplina:`Conhecimentos Específicos`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`03/2025`,banca:`IBAM`,resposta_correta:`C`},{questão:`Os instrumentos são elementos “necessários à
+atuação técnica, através dos quais os assistentes
+sociais podem efetivamente objetivar suas
+finalidades” (Guerra, 2008). Já a técnica está
+associada à habilidade no uso dos instrumentos.
+Nesse contexto, podemos corretamente afirmar
+que:`,alternativas:{A:`(A) os instrumentos são concebidos como elementos estáticos, preformatados e usados de uma forma homogênea pela categoria`,B:`(B) os instrumentos e técnicas de intervenção profissional são um dos elementos constitutivos da dimensão teórico-metodológica do Serviço Social`,C:`(C) os instrumentos e técnicas utilizados na intervenção do profissional deverão ser neutros e apolíticos`,D:`(D) o instrumental é percebido como um conjunto articulado de instrumentos e técnicas, que não podem ser vistos isoladamente, mas como unidade dialética`},disciplina:`Conhecimentos Específicos`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`03/2025`,banca:`IBAM`,resposta_correta:`D`},{questão:`Segundo a Norma Operacional Básica
+(NOB/RH/SUAS), um dos princípios éticos que
+orientam a intervenção dos profissionais da área
+de assistência social está apresentado na
+seguinte alternativa:`,alternativas:{A:`(A) opção por um projeto profissional vinculado ao processo de construção de uma nova ordem societária, sem dominação, exploração de classe, etnia e gênero`,B:`(B) participação em manifestações de defesa dos direitos da categoria e dos interesses da classe trabalhadora`,C:`(C) compromisso em ofertar serviços, programas, projetos e benefícios de qualidade que garantam a oportunidade de convívio para o fortalecimento de laços familiares e sociais`,D:`(D) exercício do Serviço Social sem ser discriminado, nem discriminar, por questões de inserção de classe social, gênero, etnia, religião, nacionalidade, orientação sexual, identidade de gênero, idade e condição física`},disciplina:`Conhecimentos Específicos`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`03/2025`,banca:`IBAM`,resposta_correta:`C`},{questão:`Segundo o texto, a escolha de “parassocial” como
+a Palavra do Ano de 2025 sintetiza o espírito do
+momento atual porque:`,alternativas:{A:`(A) um termo acadêmico migrou para o vocabulário comum, descrevendo um fenômeno vivido por milhões`,B:`(B) as pessoas estão buscando autoridades individuais, como youtubers, considerados mais acessíveis`,C:`(C) a espontaneidade dos podcasts tem funcionado como um substituto para as amizades reais`,D:`(D) o fenômeno reflete a era da intimidade aparente com figuras públicas no cotidiano`},disciplina:`Língua Portuguesa`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`03/2025`,banca:`IBAM`,resposta_correta:`A`,texto_relevante:`“Parassocial” é eleita Palavra do Ano de 2025
+pelo Dicionário de Cambridge; entenda o que
+significa
+Termo escolhido aponta o avanço de vínculos
+unilaterais entre fãs, influenciadores e chatbots
+ O Dicionário de Cambridge escolheu
+“parassocial” como a Palavra do Ano de 2025,
+termo usado para descrever relações unilaterais
+em que uma pessoa sente intimidade com
+alguém que não a conhece, como celebridades,
+influenciadores e até chatbots de inteligência
+artificial (IA)
+ Segundo o dicionário britânico, o
+interesse pela palavra disparou no último ano,
+acompanhando a discussão sobre a influência de
+criadores de conteúdos digitais e casos recentes
+de comportamentos obsessivos entre seguidores.
+Para linguistas, o tema ganhou força justamente
+porque espelha uma era em que a intimidade
+aparente com figuras públicas se tornou parte do
+cotidiano.
+ O fenômeno cresce à medida que a
+cultura do fandom ganha novas camadas e vem
+sendo utilizada até como estratégia de marketing,
+segundo o estudo “Marketing de influenciadores e
+relações parassociais”, realizado pelo
+departamento de Humanidades e Ciências
+Sociais da University of California, EUA.
+ Nos podcasts, essa aproximação também
+cresce. De acordo com o dicionário, a
+espontaneidade, a fala imperfeita e o tom íntimo
+dos apresentadores têm funcionado como
+substitutos de amizades reais, criando a
+sensação de convivência contínua.
+ No entanto, foi a IA que levou o debate a
+outro patamar. Com o avanço dos chatbots,
+alguns usuários passaram a tratar ferramentas
+como o ChatGPT como confidentes, amigos e até
+possíveis parceiros românticos. O Cambridge
+alerta que essas conexões podem ser
+emocionalmente significativas, e, em certos
+casos, problemáticas, abrindo discussões sobre
+dependência emocional, privacidade e limites
+éticos.
+ Para Colin McIntosh, do Dicionário de
+Cambridge, a escolha sintetiza o momento atual.
+“Parassocial captura o espírito de 2025”, afirmou.
+Ele explicou que um termo antes restrito ao meio
+acadêmico entrou no vocabulário cotidiano.
+“Milhões de pessoas estão envolvidas em
+relações parassociais, e muitas outras observam
+seu crescimento”, disse.
+ A psicóloga Simone Schnall, da
+Universidade de Cambridge, avaliou que essas
+relações estão redefinindo o significado de
+celebridade e o modo como pessoas comuns
+interagem online. Segundo ela, a queda de
+confiança na mídia tradicional incentivou o público
+a buscar “autoridades individuais”, como
+influenciadores e youtubers, considerados mais
+acessíveis e autênticos.
+ Fonte: https://www.estadao.com.br/link/cultura-
+ digital/parassocial-e-eleita-palavra-do-ano-de-2025-
+ pelo-dicionario-de-cambridge-entenda-o-que-significa-
+ nprei/. Acesso em 30/11/2025. Excerto.`},{questão:`O texto estabelece uma relação de causalidade
+entre:`,alternativas:{A:`(A) o avanço dos chatbots e a diminuição do uso de podcasts`,B:`(B) a espontaneidade dos podcasts e o crescimento da cultura do fandom`,C:`(C) a eleição da Palavra do Ano e o aumento da confiança na mídia tradicional`,D:`(D) a queda de confiança na mídia tradicional e a busca por “autoridades individuais”`},disciplina:`Língua Portuguesa`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`03/2025`,banca:`IBAM`,resposta_correta:`D`,texto_relevante:`“Parassocial” é eleita Palavra do Ano de 2025
+pelo Dicionário de Cambridge; entenda o que
+significa
+Termo escolhido aponta o avanço de vínculos
+unilaterais entre fãs, influenciadores e chatbots
+ O Dicionário de Cambridge escolheu
+“parassocial” como a Palavra do Ano de 2025,
+termo usado para descrever relações unilaterais
+em que uma pessoa sente intimidade com
+alguém que não a conhece, como celebridades,
+influenciadores e até chatbots de inteligência
+artificial (IA)
+ Segundo o dicionário britânico, o
+interesse pela palavra disparou no último ano,
+acompanhando a discussão sobre a influência de
+criadores de conteúdos digitais e casos recentes
+de comportamentos obsessivos entre seguidores.
+Para linguistas, o tema ganhou força justamente
+porque espelha uma era em que a intimidade
+aparente com figuras públicas se tornou parte do
+cotidiano.
+ O fenômeno cresce à medida que a
+cultura do fandom ganha novas camadas e vem
+sendo utilizada até como estratégia de marketing,
+segundo o estudo “Marketing de influenciadores e
+relações parassociais”, realizado pelo
+departamento de Humanidades e Ciências
+Sociais da University of California, EUA.
+ Nos podcasts, essa aproximação também
+cresce. De acordo com o dicionário, a
+espontaneidade, a fala imperfeita e o tom íntimo
+dos apresentadores têm funcionado como
+substitutos de amizades reais, criando a
+sensação de convivência contínua.
+ No entanto, foi a IA que levou o debate a
+outro patamar. Com o avanço dos chatbots,
+alguns usuários passaram a tratar ferramentas
+como o ChatGPT como confidentes, amigos e até
+possíveis parceiros românticos. O Cambridge
+alerta que essas conexões podem ser
+emocionalmente significativas, e, em certos
+casos, problemáticas, abrindo discussões sobre
+dependência emocional, privacidade e limites
+éticos.
+ Para Colin McIntosh, do Dicionário de
+Cambridge, a escolha sintetiza o momento atual.
+“Parassocial captura o espírito de 2025”, afirmou.
+Ele explicou que um termo antes restrito ao meio
+acadêmico entrou no vocabulário cotidiano.
+“Milhões de pessoas estão envolvidas em
+relações parassociais, e muitas outras observam
+seu crescimento”, disse.
+ A psicóloga Simone Schnall, da
+Universidade de Cambridge, avaliou que essas
+relações estão redefinindo o significado de
+celebridade e o modo como pessoas comuns
+interagem online. Segundo ela, a queda de
+confiança na mídia tradicional incentivou o público
+a buscar “autoridades individuais”, como
+influenciadores e youtubers, considerados mais
+acessíveis e autênticos.
+ Fonte: https://www.estadao.com.br/link/cultura-
+ digital/parassocial-e-eleita-palavra-do-ano-de-2025-
+ pelo-dicionario-de-cambridge-entenda-o-que-significa-
+ nprei/. Acesso em 30/11/2025. Excerto.`},{questão:`A tese central defendida pelo texto como um todo
+é a de que:`,alternativas:{A:`(A) o Dicionário de Cambridge costuma eleger palavras de origem acadêmica como Palavra do Ano`,B:`(B) os chatbots de inteligência artificial representam um perigo iminente para a estabilidade emocional dos usuários`,C:`(C) as relações parassociais, embora não sejam um conceito novo, tornaram-se um fenômeno culturalmente preponderante e representativo da época`,D:`(D) a cultura do fandom e os podcasts são os verdadeiros responsáveis pela popularização do termo “parassocial”, até então ausente das línguas humanas`},disciplina:`Língua Portuguesa`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`03/2025`,banca:`IBAM`,resposta_correta:`C`,texto_relevante:`“Parassocial” é eleita Palavra do Ano de 2025
+pelo Dicionário de Cambridge; entenda o que
+significa
+Termo escolhido aponta o avanço de vínculos
+unilaterais entre fãs, influenciadores e chatbots
+ O Dicionário de Cambridge escolheu
+“parassocial” como a Palavra do Ano de 2025,
+termo usado para descrever relações unilaterais
+em que uma pessoa sente intimidade com
+alguém que não a conhece, como celebridades,
+influenciadores e até chatbots de inteligência
+artificial (IA)
+ Segundo o dicionário britânico, o
+interesse pela palavra disparou no último ano,
+acompanhando a discussão sobre a influência de
+criadores de conteúdos digitais e casos recentes
+de comportamentos obsessivos entre seguidores.
+Para linguistas, o tema ganhou força justamente
+porque espelha uma era em que a intimidade
+aparente com figuras públicas se tornou parte do
+cotidiano.
+ O fenômeno cresce à medida que a
+cultura do fandom ganha novas camadas e vem
+sendo utilizada até como estratégia de marketing,
+segundo o estudo “Marketing de influenciadores e
+relações parassociais”, realizado pelo
+departamento de Humanidades e Ciências
+Sociais da University of California, EUA.
+ Nos podcasts, essa aproximação também
+cresce. De acordo com o dicionário, a
+espontaneidade, a fala imperfeita e o tom íntimo
+dos apresentadores têm funcionado como
+substitutos de amizades reais, criando a
+sensação de convivência contínua.
+ No entanto, foi a IA que levou o debate a
+outro patamar. Com o avanço dos chatbots,
+alguns usuários passaram a tratar ferramentas
+como o ChatGPT como confidentes, amigos e até
+possíveis parceiros românticos. O Cambridge
+alerta que essas conexões podem ser
+emocionalmente significativas, e, em certos
+casos, problemáticas, abrindo discussões sobre
+dependência emocional, privacidade e limites
+éticos.
+ Para Colin McIntosh, do Dicionário de
+Cambridge, a escolha sintetiza o momento atual.
+“Parassocial captura o espírito de 2025”, afirmou.
+Ele explicou que um termo antes restrito ao meio
+acadêmico entrou no vocabulário cotidiano.
+“Milhões de pessoas estão envolvidas em
+relações parassociais, e muitas outras observam
+seu crescimento”, disse.
+ A psicóloga Simone Schnall, da
+Universidade de Cambridge, avaliou que essas
+relações estão redefinindo o significado de
+celebridade e o modo como pessoas comuns
+interagem online. Segundo ela, a queda de
+confiança na mídia tradicional incentivou o público
+a buscar “autoridades individuais”, como
+influenciadores e youtubers, considerados mais
+acessíveis e autênticos.
+ Fonte: https://www.estadao.com.br/link/cultura-
+ digital/parassocial-e-eleita-palavra-do-ano-de-2025-
+ pelo-dicionario-de-cambridge-entenda-o-que-significa-
+ nprei/. Acesso em 30/11/2025. Excerto.`},{questão:`“No entanto, foi a IA que levou o debate a outro
+patamar” (5º parágrafo). O texto permite concluir
+que a relação parassocial com chatbots de IA é
+considerada um “debate em outro patamar”
+porque:`,alternativas:{A:`(A) é isenta de quaisquer preocupações éticas ou emocionais, sendo puramente benéfica`,B:`(B) substitui completamente as relações parassociais com humanos, tornando-as obsoletas`,C:`(C) mantém as mesmas características e consequências das relações com influenciadores, sem inovações`,D:`(D) reproduz, em um ambiente tecnológico novo, dinâmicas interpessoais já conhecidas, porém com riscos específicos`},disciplina:`Língua Portuguesa`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`03/2025`,banca:`IBAM`,resposta_correta:`D`,texto_relevante:`“Parassocial” é eleita Palavra do Ano de 2025
+pelo Dicionário de Cambridge; entenda o que
+significa
+Termo escolhido aponta o avanço de vínculos
+unilaterais entre fãs, influenciadores e chatbots
+ O Dicionário de Cambridge escolheu
+“parassocial” como a Palavra do Ano de 2025,
+termo usado para descrever relações unilaterais
+em que uma pessoa sente intimidade com
+alguém que não a conhece, como celebridades,
+influenciadores e até chatbots de inteligência
+artificial (IA)
+ Segundo o dicionário britânico, o
+interesse pela palavra disparou no último ano,
+acompanhando a discussão sobre a influência de
+criadores de conteúdos digitais e casos recentes
+de comportamentos obsessivos entre seguidores.
+Para linguistas, o tema ganhou força justamente
+porque espelha uma era em que a intimidade
+aparente com figuras públicas se tornou parte do
+cotidiano.
+ O fenômeno cresce à medida que a
+cultura do fandom ganha novas camadas e vem
+sendo utilizada até como estratégia de marketing,
+segundo o estudo “Marketing de influenciadores e
+relações parassociais”, realizado pelo
+departamento de Humanidades e Ciências
+Sociais da University of California, EUA.
+ Nos podcasts, essa aproximação também
+cresce. De acordo com o dicionário, a
+espontaneidade, a fala imperfeita e o tom íntimo
+dos apresentadores têm funcionado como
+substitutos de amizades reais, criando a
+sensação de convivência contínua.
+ No entanto, foi a IA que levou o debate a
+outro patamar. Com o avanço dos chatbots,
+alguns usuários passaram a tratar ferramentas
+como o ChatGPT como confidentes, amigos e até
+possíveis parceiros românticos. O Cambridge
+alerta que essas conexões podem ser
+emocionalmente significativas, e, em certos
+casos, problemáticas, abrindo discussões sobre
+dependência emocional, privacidade e limites
+éticos.
+ Para Colin McIntosh, do Dicionário de
+Cambridge, a escolha sintetiza o momento atual.
+“Parassocial captura o espírito de 2025”, afirmou.
+Ele explicou que um termo antes restrito ao meio
+acadêmico entrou no vocabulário cotidiano.
+“Milhões de pessoas estão envolvidas em
+relações parassociais, e muitas outras observam
+seu crescimento”, disse.
+ A psicóloga Simone Schnall, da
+Universidade de Cambridge, avaliou que essas
+relações estão redefinindo o significado de
+celebridade e o modo como pessoas comuns
+interagem online. Segundo ela, a queda de
+confiança na mídia tradicional incentivou o público
+a buscar “autoridades individuais”, como
+influenciadores e youtubers, considerados mais
+acessíveis e autênticos.
+ Fonte: https://www.estadao.com.br/link/cultura-
+ digital/parassocial-e-eleita-palavra-do-ano-de-2025-
+ pelo-dicionario-de-cambridge-entenda-o-que-significa-
+ nprei/. Acesso em 30/11/2025. Excerto.`},{questão:`A expressão “Parassocial captura o espírito de
+2025”, dita por Colin McIntosh e apresentada no
+texto (6º parágrafo), emprega uma figura de
+linguagem que consiste em:`,alternativas:{A:`(A) repetir sons consonantais idênticos para criar um efeito rítmico na frase`,B:`(B) atribuir a ação de um ser animado (“capturar”) a uma abstração (“parassocial”)`,C:`(C) omitir um termo facilmente identificável pelo contexto, tornando a frase mais dinâmica`,D:`(D) utilizar um termo em sentido oposto ao original, com o objetivo de criar um efeito de ironia`},disciplina:`Língua Portuguesa`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`03/2025`,banca:`IBAM`,resposta_correta:`B`,texto_relevante:`“Parassocial” é eleita Palavra do Ano de 2025
+pelo Dicionário de Cambridge; entenda o que
+significa
+Termo escolhido aponta o avanço de vínculos
+unilaterais entre fãs, influenciadores e chatbots
+ O Dicionário de Cambridge escolheu
+“parassocial” como a Palavra do Ano de 2025,
+termo usado para descrever relações unilaterais
+em que uma pessoa sente intimidade com
+alguém que não a conhece, como celebridades,
+influenciadores e até chatbots de inteligência
+artificial (IA)
+ Segundo o dicionário britânico, o
+interesse pela palavra disparou no último ano,
+acompanhando a discussão sobre a influência de
+criadores de conteúdos digitais e casos recentes
+de comportamentos obsessivos entre seguidores.
+Para linguistas, o tema ganhou força justamente
+porque espelha uma era em que a intimidade
+aparente com figuras públicas se tornou parte do
+cotidiano.
+ O fenômeno cresce à medida que a
+cultura do fandom ganha novas camadas e vem
+sendo utilizada até como estratégia de marketing,
+segundo o estudo “Marketing de influenciadores e
+relações parassociais”, realizado pelo
+departamento de Humanidades e Ciências
+Sociais da University of California, EUA.
+ Nos podcasts, essa aproximação também
+cresce. De acordo com o dicionário, a
+espontaneidade, a fala imperfeita e o tom íntimo
+dos apresentadores têm funcionado como
+substitutos de amizades reais, criando a
+sensação de convivência contínua.
+ No entanto, foi a IA que levou o debate a
+outro patamar. Com o avanço dos chatbots,
+alguns usuários passaram a tratar ferramentas
+como o ChatGPT como confidentes, amigos e até
+possíveis parceiros românticos. O Cambridge
+alerta que essas conexões podem ser
+emocionalmente significativas, e, em certos
+casos, problemáticas, abrindo discussões sobre
+dependência emocional, privacidade e limites
+éticos.
+ Para Colin McIntosh, do Dicionário de
+Cambridge, a escolha sintetiza o momento atual.
+“Parassocial captura o espírito de 2025”, afirmou.
+Ele explicou que um termo antes restrito ao meio
+acadêmico entrou no vocabulário cotidiano.
+“Milhões de pessoas estão envolvidas em
+relações parassociais, e muitas outras observam
+seu crescimento”, disse.
+ A psicóloga Simone Schnall, da
+Universidade de Cambridge, avaliou que essas
+relações estão redefinindo o significado de
+celebridade e o modo como pessoas comuns
+interagem online. Segundo ela, a queda de
+confiança na mídia tradicional incentivou o público
+a buscar “autoridades individuais”, como
+influenciadores e youtubers, considerados mais
+acessíveis e autênticos.
+ Fonte: https://www.estadao.com.br/link/cultura-
+ digital/parassocial-e-eleita-palavra-do-ano-de-2025-
+ pelo-dicionario-de-cambridge-entenda-o-que-significa-
+ nprei/. Acesso em 30/11/2025. Excerto.`},{questão:`O texto apresentado é predominantemente
+expositivo; contudo, há um trecho de cunho
+descritivo ao:`,alternativas:{A:`(A) relatar sequências cronológicas de eventos`,B:`(B) emitir comandos para a ação direta dos leitores`,C:`(C) indicar a apresentação de qualidades e defeitos dos podcasts`,D:`(D) apresentar a fala de Colin McIntosh, acompanhada de juízo de valor`},disciplina:`Língua Portuguesa`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`03/2025`,banca:`IBAM`,resposta_correta:`C`,texto_relevante:`“Parassocial” é eleita Palavra do Ano de 2025
+pelo Dicionário de Cambridge; entenda o que
+significa
+Termo escolhido aponta o avanço de vínculos
+unilaterais entre fãs, influenciadores e chatbots
+ O Dicionário de Cambridge escolheu
+“parassocial” como a Palavra do Ano de 2025,
+termo usado para descrever relações unilaterais
+em que uma pessoa sente intimidade com
+alguém que não a conhece, como celebridades,
+influenciadores e até chatbots de inteligência
+artificial (IA)
+ Segundo o dicionário britânico, o
+interesse pela palavra disparou no último ano,
+acompanhando a discussão sobre a influência de
+criadores de conteúdos digitais e casos recentes
+de comportamentos obsessivos entre seguidores.
+Para linguistas, o tema ganhou força justamente
+porque espelha uma era em que a intimidade
+aparente com figuras públicas se tornou parte do
+cotidiano.
+ O fenômeno cresce à medida que a
+cultura do fandom ganha novas camadas e vem
+sendo utilizada até como estratégia de marketing,
+segundo o estudo “Marketing de influenciadores e
+relações parassociais”, realizado pelo
+departamento de Humanidades e Ciências
+Sociais da University of California, EUA.
+ Nos podcasts, essa aproximação também
+cresce. De acordo com o dicionário, a
+espontaneidade, a fala imperfeita e o tom íntimo
+dos apresentadores têm funcionado como
+substitutos de amizades reais, criando a
+sensação de convivência contínua.
+ No entanto, foi a IA que levou o debate a
+outro patamar. Com o avanço dos chatbots,
+alguns usuários passaram a tratar ferramentas
+como o ChatGPT como confidentes, amigos e até
+possíveis parceiros românticos. O Cambridge
+alerta que essas conexões podem ser
+emocionalmente significativas, e, em certos
+casos, problemáticas, abrindo discussões sobre
+dependência emocional, privacidade e limites
+éticos.
+ Para Colin McIntosh, do Dicionário de
+Cambridge, a escolha sintetiza o momento atual.
+“Parassocial captura o espírito de 2025”, afirmou.
+Ele explicou que um termo antes restrito ao meio
+acadêmico entrou no vocabulário cotidiano.
+“Milhões de pessoas estão envolvidas em
+relações parassociais, e muitas outras observam
+seu crescimento”, disse.
+ A psicóloga Simone Schnall, da
+Universidade de Cambridge, avaliou que essas
+relações estão redefinindo o significado de
+celebridade e o modo como pessoas comuns
+interagem online. Segundo ela, a queda de
+confiança na mídia tradicional incentivou o público
+a buscar “autoridades individuais”, como
+influenciadores e youtubers, considerados mais
+acessíveis e autênticos.
+ Fonte: https://www.estadao.com.br/link/cultura-
+ digital/parassocial-e-eleita-palavra-do-ano-de-2025-
+ pelo-dicionario-de-cambridge-entenda-o-que-significa-
+ nprei/. Acesso em 30/11/2025. Excerto.`},{questão:`“Para linguistas, o tema ganhou força justamente
+porque espelha uma era em que a intimidade
+aparente com figuras públicas se tornou parte do
+cotidiano” (2º parágrafo). Nesse uso específico, a
+palavra em destaque indica:`,alternativas:{A:`(A) tema`,B:`(B) destino`,C:`(C) finalidade`,D:`(D) ponto de vista`},disciplina:`Língua Portuguesa`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`03/2025`,banca:`IBAM`,resposta_correta:`D`,texto_relevante:`“Parassocial” é eleita Palavra do Ano de 2025
+pelo Dicionário de Cambridge; entenda o que
+significa
+Termo escolhido aponta o avanço de vínculos
+unilaterais entre fãs, influenciadores e chatbots
+ O Dicionário de Cambridge escolheu
+“parassocial” como a Palavra do Ano de 2025,
+termo usado para descrever relações unilaterais
+em que uma pessoa sente intimidade com
+alguém que não a conhece, como celebridades,
+influenciadores e até chatbots de inteligência
+artificial (IA)
+ Segundo o dicionário britânico, o
+interesse pela palavra disparou no último ano,
+acompanhando a discussão sobre a influência de
+criadores de conteúdos digitais e casos recentes
+de comportamentos obsessivos entre seguidores.
+Para linguistas, o tema ganhou força justamente
+porque espelha uma era em que a intimidade
+aparente com figuras públicas se tornou parte do
+cotidiano.
+ O fenômeno cresce à medida que a
+cultura do fandom ganha novas camadas e vem
+sendo utilizada até como estratégia de marketing,
+segundo o estudo “Marketing de influenciadores e
+relações parassociais”, realizado pelo
+departamento de Humanidades e Ciências
+Sociais da University of California, EUA.
+ Nos podcasts, essa aproximação também
+cresce. De acordo com o dicionário, a
+espontaneidade, a fala imperfeita e o tom íntimo
+dos apresentadores têm funcionado como
+substitutos de amizades reais, criando a
+sensação de convivência contínua.
+ No entanto, foi a IA que levou o debate a
+outro patamar. Com o avanço dos chatbots,
+alguns usuários passaram a tratar ferramentas
+como o ChatGPT como confidentes, amigos e até
+possíveis parceiros românticos. O Cambridge
+alerta que essas conexões podem ser
+emocionalmente significativas, e, em certos
+casos, problemáticas, abrindo discussões sobre
+dependência emocional, privacidade e limites
+éticos.
+ Para Colin McIntosh, do Dicionário de
+Cambridge, a escolha sintetiza o momento atual.
+“Parassocial captura o espírito de 2025”, afirmou.
+Ele explicou que um termo antes restrito ao meio
+acadêmico entrou no vocabulário cotidiano.
+“Milhões de pessoas estão envolvidas em
+relações parassociais, e muitas outras observam
+seu crescimento”, disse.
+ A psicóloga Simone Schnall, da
+Universidade de Cambridge, avaliou que essas
+relações estão redefinindo o significado de
+celebridade e o modo como pessoas comuns
+interagem online. Segundo ela, a queda de
+confiança na mídia tradicional incentivou o público
+a buscar “autoridades individuais”, como
+influenciadores e youtubers, considerados mais
+acessíveis e autênticos.
+ Fonte: https://www.estadao.com.br/link/cultura-
+ digital/parassocial-e-eleita-palavra-do-ano-de-2025-
+ pelo-dicionario-de-cambridge-entenda-o-que-significa-
+ nprei/. Acesso em 30/11/2025. Excerto.`},{questão:`“De acordo com o dicionário, a espontaneidade, a
+fala imperfeita e o tom íntimo dos apresentadores
+têm funcionado como substitutos de amizades
+reais, criando a sensação de convivência
+contínua” (4º parágrafo). A forma verbal em
+destaque está flexionada na:`,alternativas:{A:`(A) terceira pessoa do plural`,B:`(B) terceira pessoa do singular`,C:`(C) primeira pessoa do plural`,D:`(D) primeira pessoa do singular`},disciplina:`Língua Portuguesa`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`03/2025`,banca:`IBAM`,resposta_correta:`A`,texto_relevante:`“Parassocial” é eleita Palavra do Ano de 2025
+pelo Dicionário de Cambridge; entenda o que
+significa
+Termo escolhido aponta o avanço de vínculos
+unilaterais entre fãs, influenciadores e chatbots
+ O Dicionário de Cambridge escolheu
+“parassocial” como a Palavra do Ano de 2025,
+termo usado para descrever relações unilaterais
+em que uma pessoa sente intimidade com
+alguém que não a conhece, como celebridades,
+influenciadores e até chatbots de inteligência
+artificial (IA)
+ Segundo o dicionário britânico, o
+interesse pela palavra disparou no último ano,
+acompanhando a discussão sobre a influência de
+criadores de conteúdos digitais e casos recentes
+de comportamentos obsessivos entre seguidores.
+Para linguistas, o tema ganhou força justamente
+porque espelha uma era em que a intimidade
+aparente com figuras públicas se tornou parte do
+cotidiano.
+ O fenômeno cresce à medida que a
+cultura do fandom ganha novas camadas e vem
+sendo utilizada até como estratégia de marketing,
+segundo o estudo “Marketing de influenciadores e
+relações parassociais”, realizado pelo
+departamento de Humanidades e Ciências
+Sociais da University of California, EUA.
+ Nos podcasts, essa aproximação também
+cresce. De acordo com o dicionário, a
+espontaneidade, a fala imperfeita e o tom íntimo
+dos apresentadores têm funcionado como
+substitutos de amizades reais, criando a
+sensação de convivência contínua.
+ No entanto, foi a IA que levou o debate a
+outro patamar. Com o avanço dos chatbots,
+alguns usuários passaram a tratar ferramentas
+como o ChatGPT como confidentes, amigos e até
+possíveis parceiros românticos. O Cambridge
+alerta que essas conexões podem ser
+emocionalmente significativas, e, em certos
+casos, problemáticas, abrindo discussões sobre
+dependência emocional, privacidade e limites
+éticos.
+ Para Colin McIntosh, do Dicionário de
+Cambridge, a escolha sintetiza o momento atual.
+“Parassocial captura o espírito de 2025”, afirmou.
+Ele explicou que um termo antes restrito ao meio
+acadêmico entrou no vocabulário cotidiano.
+“Milhões de pessoas estão envolvidas em
+relações parassociais, e muitas outras observam
+seu crescimento”, disse.
+ A psicóloga Simone Schnall, da
+Universidade de Cambridge, avaliou que essas
+relações estão redefinindo o significado de
+celebridade e o modo como pessoas comuns
+interagem online. Segundo ela, a queda de
+confiança na mídia tradicional incentivou o público
+a buscar “autoridades individuais”, como
+influenciadores e youtubers, considerados mais
+acessíveis e autênticos.
+ Fonte: https://www.estadao.com.br/link/cultura-
+ digital/parassocial-e-eleita-palavra-do-ano-de-2025-
+ pelo-dicionario-de-cambridge-entenda-o-que-significa-
+ nprei/. Acesso em 30/11/2025. Excerto.`},{questão:`“No entanto, foi a IA que levou o debate a outro
+patamar” (5º parágrafo). As duas palavras
+grifadas são classificadas, respectivamente,
+como:`,alternativas:{A:`(A) substantivo e substantivo`,B:`(B) substantivo e verbo`,C:`(C) verbo e substantivo`,D:`(D) verbo e verbo`},disciplina:`Língua Portuguesa`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`03/2025`,banca:`IBAM`,resposta_correta:`A`,texto_relevante:`“Parassocial” é eleita Palavra do Ano de 2025
+pelo Dicionário de Cambridge; entenda o que
+significa
+Termo escolhido aponta o avanço de vínculos
+unilaterais entre fãs, influenciadores e chatbots
+ O Dicionário de Cambridge escolheu
+“parassocial” como a Palavra do Ano de 2025,
+termo usado para descrever relações unilaterais
+em que uma pessoa sente intimidade com
+alguém que não a conhece, como celebridades,
+influenciadores e até chatbots de inteligência
+artificial (IA)
+ Segundo o dicionário britânico, o
+interesse pela palavra disparou no último ano,
+acompanhando a discussão sobre a influência de
+criadores de conteúdos digitais e casos recentes
+de comportamentos obsessivos entre seguidores.
+Para linguistas, o tema ganhou força justamente
+porque espelha uma era em que a intimidade
+aparente com figuras públicas se tornou parte do
+cotidiano.
+ O fenômeno cresce à medida que a
+cultura do fandom ganha novas camadas e vem
+sendo utilizada até como estratégia de marketing,
+segundo o estudo “Marketing de influenciadores e
+relações parassociais”, realizado pelo
+departamento de Humanidades e Ciências
+Sociais da University of California, EUA.
+ Nos podcasts, essa aproximação também
+cresce. De acordo com o dicionário, a
+espontaneidade, a fala imperfeita e o tom íntimo
+dos apresentadores têm funcionado como
+substitutos de amizades reais, criando a
+sensação de convivência contínua.
+ No entanto, foi a IA que levou o debate a
+outro patamar. Com o avanço dos chatbots,
+alguns usuários passaram a tratar ferramentas
+como o ChatGPT como confidentes, amigos e até
+possíveis parceiros românticos. O Cambridge
+alerta que essas conexões podem ser
+emocionalmente significativas, e, em certos
+casos, problemáticas, abrindo discussões sobre
+dependência emocional, privacidade e limites
+éticos.
+ Para Colin McIntosh, do Dicionário de
+Cambridge, a escolha sintetiza o momento atual.
+“Parassocial captura o espírito de 2025”, afirmou.
+Ele explicou que um termo antes restrito ao meio
+acadêmico entrou no vocabulário cotidiano.
+“Milhões de pessoas estão envolvidas em
+relações parassociais, e muitas outras observam
+seu crescimento”, disse.
+ A psicóloga Simone Schnall, da
+Universidade de Cambridge, avaliou que essas
+relações estão redefinindo o significado de
+celebridade e o modo como pessoas comuns
+interagem online. Segundo ela, a queda de
+confiança na mídia tradicional incentivou o público
+a buscar “autoridades individuais”, como
+influenciadores e youtubers, considerados mais
+acessíveis e autênticos.
+ Fonte: https://www.estadao.com.br/link/cultura-
+ digital/parassocial-e-eleita-palavra-do-ano-de-2025-
+ pelo-dicionario-de-cambridge-entenda-o-que-significa-
+ nprei/. Acesso em 30/11/2025. Excerto.`},{questão:`O texto utiliza aspas em “Marketing de
+influenciadores e relações parassociais” (3º
+parágrafo) para indicar:`,alternativas:{A:`(A) citação direta`,B:`(B) título de uma obra`,C:`(C) ironia discursiva`,D:`(D) nova definição técnica`},disciplina:`Língua Portuguesa`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`03/2025`,banca:`IBAM`,resposta_correta:`B`,texto_relevante:`“Parassocial” é eleita Palavra do Ano de 2025
+pelo Dicionário de Cambridge; entenda o que
+significa
+Termo escolhido aponta o avanço de vínculos
+unilaterais entre fãs, influenciadores e chatbots
+ O Dicionário de Cambridge escolheu
+“parassocial” como a Palavra do Ano de 2025,
+termo usado para descrever relações unilaterais
+em que uma pessoa sente intimidade com
+alguém que não a conhece, como celebridades,
+influenciadores e até chatbots de inteligência
+artificial (IA)
+ Segundo o dicionário britânico, o
+interesse pela palavra disparou no último ano,
+acompanhando a discussão sobre a influência de
+criadores de conteúdos digitais e casos recentes
+de comportamentos obsessivos entre seguidores.
+Para linguistas, o tema ganhou força justamente
+porque espelha uma era em que a intimidade
+aparente com figuras públicas se tornou parte do
+cotidiano.
+ O fenômeno cresce à medida que a
+cultura do fandom ganha novas camadas e vem
+sendo utilizada até como estratégia de marketing,
+segundo o estudo “Marketing de influenciadores e
+relações parassociais”, realizado pelo
+departamento de Humanidades e Ciências
+Sociais da University of California, EUA.
+ Nos podcasts, essa aproximação também
+cresce. De acordo com o dicionário, a
+espontaneidade, a fala imperfeita e o tom íntimo
+dos apresentadores têm funcionado como
+substitutos de amizades reais, criando a
+sensação de convivência contínua.
+ No entanto, foi a IA que levou o debate a
+outro patamar. Com o avanço dos chatbots,
+alguns usuários passaram a tratar ferramentas
+como o ChatGPT como confidentes, amigos e até
+possíveis parceiros românticos. O Cambridge
+alerta que essas conexões podem ser
+emocionalmente significativas, e, em certos
+casos, problemáticas, abrindo discussões sobre
+dependência emocional, privacidade e limites
+éticos.
+ Para Colin McIntosh, do Dicionário de
+Cambridge, a escolha sintetiza o momento atual.
+“Parassocial captura o espírito de 2025”, afirmou.
+Ele explicou que um termo antes restrito ao meio
+acadêmico entrou no vocabulário cotidiano.
+“Milhões de pessoas estão envolvidas em
+relações parassociais, e muitas outras observam
+seu crescimento”, disse.
+ A psicóloga Simone Schnall, da
+Universidade de Cambridge, avaliou que essas
+relações estão redefinindo o significado de
+celebridade e o modo como pessoas comuns
+interagem online. Segundo ela, a queda de
+confiança na mídia tradicional incentivou o público
+a buscar “autoridades individuais”, como
+influenciadores e youtubers, considerados mais
+acessíveis e autênticos.
+ Fonte: https://www.estadao.com.br/link/cultura-
+ digital/parassocial-e-eleita-palavra-do-ano-de-2025-
+ pelo-dicionario-de-cambridge-entenda-o-que-significa-
+ nprei/. Acesso em 30/11/2025. Excerto.`},{questão:`De acordo com a Portaria GM/MS nº 6.734, de 18
+de março de 2025, a alternativa que contém
+apenas doenças, agravos ou eventos de
+notificação compulsória imediata (até 24h) para
+as Secretarias Municipais de Saúde é a seguinte:`,alternativas:{A:`(A) esquistossomose, febre amarela e hanseníase`,B:`(B) covid-19, leptospirose e violência sexual`,C:`(C) HIV/AIDS, hepatites virais e sífilis congênita`,D:`(D) sarampo, herpes-zoster e perda auditiva relacionada ao trabalho`},disciplina:`SUS e Saúde Pública`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`03/2025`,banca:`IBAM`,resposta_correta:`B`},{questão:`A Política Nacional de Humanização (PNH) ou
+HumanizaSUS, lançada em 2003, busca qualificar
+o modo de atenção e gestão na rede do SUS,
+incluindo trabalhadores, usuários e gestores. É
+estruturada a partir de método, princípios,
+diretrizes e dispositivos. Sobre o tema, é correta a
+seguinte afirmativa:`,alternativas:{A:`(A) a indissociabilidade entre atenção e gestão constitui uma das diretrizes da PNH`,B:`(B) o método proposto pela PNH é o Projeto Terapêutico Singular`,C:`(C) um dos princípios da PNH é o acolhimento`,D:`(D) entre os dispositivos da PNH está a Equipe Transdisciplinar de Referência e de Apoio Matricial`},disciplina:`SUS e Saúde Pública`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`03/2025`,banca:`IBAM`,resposta_correta:`D`},{questão:`Entre os documentos que constituem a base legal
+do SUS estão a Constituição Federal de 1988 e a
+Lei nº 8.080, de 19 de setembro de 1990, também
+conhecida como Lei Orgânica da Saúde. No texto
+da Constituição são citados três princípios do
+SUS que estão também entre as diretrizes
+apresentadas na Lei nº 8.080/1990. São eles:`,alternativas:{A:`(A) equidade, universalidade e integralidade`,B:`(B) participação da comunidade, preservação da autonomia e direito à informação sobre saúde das pessoas assistidas`,C:`(C) descentralização, integralidade e participação da comunidade`,D:`(D) universalidade, descentralização e capacidade de resolução dos serviços em todos os níveis de assistência`},disciplina:`SUS e Saúde Pública`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`03/2025`,banca:`IBAM`,resposta_correta:`C`},{questão:`De acordo com as disposições da Política
+Nacional de Atenção Básica (PNAB), publicada
+em 2017, que estabelece a revisão de diretrizes
+para a organização da Atenção Básica, no âmbito
+do Sistema Único de Saúde, é correto afirmar
+que:`,alternativas:{A:`(A) os Núcleos Ampliados de Saúde da Família e Atenção Básica (Nasf-AB) não se constituem em serviços com unidades físicas independentes ou especiais, e não são de livre acesso para atendimento individual ou coletivo`,B:`(B) a realização de atendimentos individuais não compete à equipe do Núcleo Ampliado de Saúde da Família e Atenção Básica`,C:`(C) a equipe de Saúde da Família deve ser composta, no mínimo, por médico, enfermeiro, profissionais de saúde bucal, auxiliar e/ou técnico de enfermagem e agente comunitário de saúde`,D:`(D) a equipe da Atenção Básica deve ser composta minimamente por médico, enfermeiro, auxiliar e/ou técnico de enfermagem e agentes de combate às endemias`},disciplina:`SUS e Saúde Pública`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`03/2025`,banca:`IBAM`,resposta_correta:`A`},{questão:`Em relação à Lei nº 8.142, de 28 de dezembro de
+1990, que dispõe sobre a participação da
+comunidade na gestão do Sistema Único de
+Saúde, é verdadeira a seguinte afirmativa:`,alternativas:{A:`(A) o Conselho de Saúde é um órgão colegiado composto apenas por representantes do governo, prestadores de serviço e profissionais de saúde`,B:`(B) a Conferência de Saúde tem caráter permanente e deliberativo, e atua na formulação de estratégias e no controle da execução da política de saúde na instância correspondente, inclusive nos aspectos econômicos e financeiros`,C:`(C) o Conselho de Saúde deve se reunir a cada quatro anos com a representação dos vários segmentos sociais, para avaliar a situação de saúde e propor as diretrizes para a formulação da política de saúde nos níveis correspondentes`,D:`(D) a representação dos usuários nos Conselhos de Saúde e Conferências deve ser paritária em relação ao conjunto dos demais segmentos`},disciplina:`SUS e Saúde Pública`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`03/2025`,banca:`IBAM`,resposta_correta:`D`},{questão:`Em 2006, foi criada a Comissão Nacional sobre
+Determinantes Sociais da Saúde com o objetivo
+de oferecer respostas, no Brasil, à iniciativa global
+de criação da Comissão sobre Determinantes
+Sociais da Saúde em 2005, pela Organização
+Mundial de Saúde. Das alternativas abaixo,
+aquela que apresenta uma afirmativa correta
+sobre o tema é a seguinte:`,alternativas:{A:`(A) para essa Comissão, os fatores comportamentais não influenciam a ocorrência de problemas de saúde na população`,B:`(B) os determinantes sociais de saúde são associados ao conceito de equidade em saúde`,C:`(C) a Conferência de Jacarta é considerada um marco por recolocar em destaque o tema dos determinantes sociais`,D:`(D) os determinantes de saúde identificados em estudos com indivíduos são suficientes para explicar as diferenças no estado de saúde entre grupos de uma sociedade ou entre sociedades diversas`},disciplina:`SUS e Saúde Pública`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`03/2025`,banca:`IBAM`,resposta_correta:`B`},{questão:`Antes da implementação do Sistema Único de
+Saúde, o Brasil experienciou diversos modelos e
+formas de atenção à saúde. Sobre a história das
+políticas de saúde no país, é uma informação
+verdadeira:`,alternativas:{A:`(A) entre as entidades centrais no movimento de Reforma Sanitária estão o Centro Brasileiro de Estudos de Saúde (Cebes) e a Associação Brasileira de Saúde Coletiva (Abrasco)`,B:`(B) o Instituto Nacional de Previdência Social (INPS) foi criado através da Lei Eloy Chaves`,C:`(C) os Institutos de Aposentadorias e Pensões (IAPs) passam a incluir os trabalhadores rurais entre os beneficiários do sistema previdenciário`,D:`(D) o modelo sanitarista campanhista tinha como foco o combate à tríplice epidemia: peste bubônica, dengue e varíola`},disciplina:`SUS e Saúde Pública`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`03/2025`,banca:`IBAM`,resposta_correta:`A`},{questão:`Segundo o Ministério da Saúde, o Brasil recebeu,
+em 2016, o certificado de eliminação do sarampo,
+concedido pela OMS. Contudo, em 2018, o vírus
+voltou a circular no país, sendo confirmados
+39.779 casos entre 2018 e 2022. Para a
+epidemiologia, nesse contexto, o sarampo pode
+ser conceituado como uma doença:`,alternativas:{A:`(A) não transmissível`,B:`(B) emergente`,C:`(C) reemergente`,D:`(D) crônica`},disciplina:`SUS e Saúde Pública`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`03/2025`,banca:`IBAM`,resposta_correta:`C`},{questão:`A Rede de Atenção Psicossocial (RAPS) é um
+conjunto de diferentes serviços de atenção à
+saúde para pessoas com sofrimento ou transtorno
+mental, incluindo aquelas com necessidades
+decorrentes do uso de crack, álcool e outras
+drogas, e integra o Sistema Único de Saúde
+(SUS). De acordo com a Portaria de
+Consolidação GM/MS nº 3, de 28 de setembro de
+2017, e a Portaria GM/MS nº 3.588, de 21 de
+dezembro de 2017, podemos corretamente
+afirmar que:`,alternativas:{A:`(A) UPA 24 horas e portas hospitalares de atenção à urgência/pronto-socorro em Hospital Geral não se configuram como componentes da RAPS`,B:`(B) entre os serviços da RAPS na Atenção Residencial de Caráter Transitório estão as Unidades de Acolhimento, os Centros de Convivência e Cultura e os Serviços de Atenção em Regime Residencial`,C:`(C) os Serviços Residenciais Terapêuticos (SRT) constituem uma modalidade assistencial substitutiva da internação psiquiátrica prolongada`,D:`(D) entre as modalidades de CAPS AD, apenas o CAPS AD IV deve funcionar de forma contínua, durante as 24 horas em todos os dias da semana, inclusive finais de semana e feriados`},disciplina:`SUS e Saúde Pública`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`03/2025`,banca:`IBAM`,resposta_correta:`C`},{questão:`Considerando a Política Nacional de Promoção
+da Saúde, atualizada através da Portaria de
+Consolidação nº 2/2017, o princípio que se refere
+à identificação de potencialidades e ao
+desenvolvimento de capacidades, possibilitando
+escolhas conscientes de sujeitos e comunidades
+sobre suas ações e trajetórias, denomina-se:`,alternativas:{A:`(A) autonomia`,B:`(B) empoderamento`,C:`(C) participação social`,D:`(D) integralidade`},disciplina:`SUS e Saúde Pública`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`03/2025`,banca:`IBAM`,resposta_correta:`A`}],"IBAM - Prefeitura Municipal de Arraial do Cabo/RJ - Assistente Social - 2025":[{questão:`A reestruturação produtiva e a transição para a
+acumulação flexível alteraram drasticamente o
+mercado de trabalho. Uma característica central
+desse novo cenário está descrita na seguinte
+alternativa:`,alternativas:{A:`(A) estabilidade garantida pela expansão do modelo fordista de produção em massa`,B:`(B) fortalecimento dos movimentos sindicais com ampliação de direitos sociais universais`,C:`(C) crescimento da precarização, rotatividade, informalidade e terceirização da força de trabalho`,D:`(D) centralização da produção em grandes plantas industriais com baixa rotatividade de mão de obra`},disciplina:`Conhecimentos Específicos`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`02/2025`,banca:`IBAM`,resposta_correta:`C`},{questão:`As transformações sociopolíticas contemporâneas
+impactam diretamente o exercício profissional do
+assistente social. Nesse sentido, é correto afirmar
+que:`,alternativas:{A:`(A) o assistente social atua como gestor da pobreza, com foco exclusivo na distribuição de benefícios eventuais`,B:`(B) o mercado de trabalho para o assistente social está em plena expansão com a privatização total dos serviços públicos`,C:`(C) o trabalho profissional pertence aos movimentos das pressões da luta de classes e foca apenas na harmonia social`,D:`(D) a profissão enfrenta desafios como a precarização dos vínculos laborais e a regressão de direitos no âmbito das políticas sociais`},disciplina:`Conhecimentos Específicos`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`02/2025`,banca:`IBAM`,resposta_correta:`D`},{questão:`Sob a égide do neoliberalismo e da mundialização,
+a atuação do Estado em relação à “questão social”
+caracteriza-se por:`,alternativas:{A:`(A) expansão do financiamento público para garantir a universalidade de todas as políticas sociais`,B:`(B) focalização das ações, desfinanciamento das políticas sociais e descentralização sem repasse de recursos`,C:`(C) promoção do pleno emprego como eixo central das reformas econômicas governamentais`,D:`(D) eliminação completa de qualquer intervenção estatal na esfera da assistência social`},disciplina:`Conhecimentos Específicos`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`02/2025`,banca:`IBAM`,resposta_correta:`B`},{questão:`No Brasil, o processo de “reforma” do Estado,
+iniciado especialmente a partir de 1995 (Plano Diretor
+da Reforma do Aparelho do Estado – PDRAE), é
+denominado pela literatura crítica do Serviço Social
+como contrarreforma. Esta denominação justifica-se
+porque:`,alternativas:{A:`(A) consiste em um desmonte deliberado das conquistas sociais, com foco na privatização, terceirização e focalização de políticas`,B:`(B) promove a expansão dos direitos sociais para além dos limites estabelecidos na Constituição de 1988`,C:`(C) busca centralizar todas as ações sociais na esfera federal, extinguindo a autonomia de Estados e Municípios`,D:`(D) tem como objetivo fortalecer as empresas estatais para que estas pudessem financiar a Seguridade Social`},disciplina:`Conhecimentos Específicos`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`02/2025`,banca:`IBAM`,resposta_correta:`A`},{questão:`Uma das marcas da contrarreforma do Estado
+brasileiro é a transferência da execução de serviços
+públicos para a chamada “sociedade civil
+organizada”. Sobre esse fenômeno, é correta a
+seguinte afirmativa:`,alternativas:{A:`(A) a transferência para o terceiro setor fortalece o caráter público e universal das políticas sociais`,B:`(B) trata-se de uma estratégia de “publicização” que, na prática, retira a responsabilidade direta do Estado e estimula a filantropia`,C:`(C) garante a estabilidade dos trabalhadores envolvidos, uma vez que as ONGs seguem o regime estatutário do funcionalismo público`,D:`(D) representa o auge do controle social democrático, onde a população decide diretamente sobre o fundo público`},disciplina:`Conhecimentos Específicos`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`02/2025`,banca:`IBAM`,resposta_correta:`B`},{questão:`A articulação entre as três dimensões do Serviço
+Social (teórico-metodológica, ético-política e técnico-
+operativa) define a competência profissional. Quando
+essas dimensões são dissociadas, o trabalho do
+assistente social passa a ser baseado no:`,alternativas:{A:`(A) pragmatismo executivo, transformando o profissional em um mero “tarefeiro” sem direção social`,B:`(B) profissionalismo crítico, que questiona as estruturas de poder`,C:`(C) militantismo purista, que ignora a necessidade de instrumentos técnicos para a ação`,D:`(D) teoricismo abstrato, que se descola da prática cotidiana e das demandas institucionais`},disciplina:`Conhecimentos Específicos`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`02/2025`,banca:`IBAM`,resposta_correta:`A`},{questão:`Na dinâmica do mercado de trabalho, o assistente
+social vende sua força de trabalho em troca de
+salário. Essa condição implica que:`,alternativas:{A:`(A) o profissional tem total soberania sobre os objetivos da instituição, sobrepondo seu projeto ético-político às normas institucionais`,B:`(B) o assistente social é um “intelectual orgânico” que não sofre as pressões da precarização e do desemprego estrutural`,C:`(C) existe uma tensão constante entre a autonomia técnica do profissional e as exigências burocráticas e restritivas das instituições empregadoras`,D:`(D) a dimensão técnica da profissão é capaz de resolver, por si só, o antagonismo entre capital e trabalho no ambiente institucional`},disciplina:`Conhecimentos Específicos`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`02/2025`,banca:`IBAM`,resposta_correta:`C`},{questão:`No âmbito das políticas sociais, especialmente no
+Sistema Único de Assistência Social (SUAS), o
+trabalho social com famílias deve ser pautado:`,alternativas:{A:`(A) por uma perspectiva de “ajustamento”, focada em corrigir comportamentos considerados desviantes pela moral vigente`,B:`(B) pelo reconhecimento das famílias como sujeitos de direitos, respeitando seus diversos arranjos e dinâmicas, sem patologizações`,C:`(C) pela responsabilização da mulher pelo cuidado, reforçando a divisão sexual do trabalho tradicional`,D:`(D) pela aplicação de sanções e punições às famílias que não seguem as condicionalidades dos programas sociais`},disciplina:`Conhecimentos Específicos`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`02/2025`,banca:`IBAM`,resposta_correta:`B`},{questão:`O trabalho em equipe multiprofissional é uma
+realidade nas políticas sociais. Sobre a atuação do
+assistente social nesse contexto, é correta a
+seguinte afirmativa:`,alternativas:{A:`(A) o assistente social deve abrir mão de sua autonomia técnica para seguir as orientações das categorias com maior prestígio social`,B:`(B) a interdisciplinaridade exige que as competências profissionais sejam diluídas, tornando todos os profissionais aptos a fazer tudo`,C:`(C) o trabalho em equipe deve preservar a especificidade de cada área, buscando uma síntese que qualifique o atendimento ao usuário`,D:`(D) o sigilo profissional do assistente social é abolido no trabalho em equipe, devendo todas as informações ser compartilhadas sem critério`},disciplina:`Conhecimentos Específicos`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`02/2025`,banca:`IBAM`,resposta_correta:`C`},{questão:`A Resolução CFESS nº 493/2006 dispõe sobre as
+condições éticas e técnicas do trabalho do
+assistente social. Segundo essa norma, o
+ambiente de trabalho deve garantir:`,alternativas:{A:`(A) espaço físico que assegure o sigilo e a dignidade do atendimento, com ventilação e iluminação adequadas`,B:`(B) acesso livre de qualquer funcionário aos arquivos e prontuários de Serviço Social para agilizar o fluxo administrativo`,C:`(C) atendimento em balcões abertos para otimizar o tempo e permitir que mais pessoas ouçam a orientação`,D:`(D) uso obrigatório de uniformes institucionais que identifiquem a categoria como subordinada à gestão administrativa`},disciplina:`Conhecimentos Específicos`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`02/2025`,banca:`IBAM`,resposta_correta:`A`},{questão:`Considerando a Resolução CFESS nº 554/2009 e
+posicionamentos do conjunto CFESS/CRESS
+sobre a oitiva de crianças e adolescentes vítimas
+de violência, é verdadeira a seguinte afirmativa:`,alternativas:{A:`(A) o assistente social é obrigado a realizar o depoimento especial, pois trata-se de uma técnica de intervenção social`,B:`(B) a realização do “depoimento sem danos” como coleta de provas judiciais não constitui atribuição nem competência do assistente social, ferindo o projeto ético-político`,C:`(C) a escuta especializada deve ser feita prioritariamente pelo assistente social para substituir a função do delegado de polícia`,D:`(D) o profissional deve sempre priorizar a produção de provas criminais em detrimento da proteção social da criança`},disciplina:`Conhecimentos Específicos`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`02/2025`,banca:`IBAM`,resposta_correta:`B`},{questão:`A Seguridade Social brasileira, instituída pela
+Constituição de 1988, é marcada por uma
+contradição fundante. Sobre sua trajetória,
+podemos corretamente afirmar que:`,alternativas:{A:`(A) foi fruto de uma concessão das elites políticas, sem participação dos movimentos sociais ou da classe trabalhadora`,B:`(B) consolidou-se como um sistema universal pleno, imune às crises econômicas e aos ajustes fiscais desde sua criação`,C:`(C) representa um pacto de cidadania que sofreu ataques imediatos após sua promulgação, por meio de reformas restritivas`,D:`(D) baseia-se exclusivamente no modelo de seguro contributivo bismarckiano, excluindo quem não contribui diretamente`},disciplina:`Conhecimentos Específicos`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`02/2025`,banca:`IBAM`,resposta_correta:`C`},{questão:`O controle democrático é um dos princípios
+organizativos da Seguridade Social. Na prática, ele
+se materializa através de:`,alternativas:{A:`(A) decisões unilaterais dos ministros de cada área, visando a eficiência administrativa`,B:`(B) conselhos de políticas públicas com participação paritária, embora enfrentando desafios de burocratização e esvaziamento`,C:`(C) consultas populares via redes sociais antes de cada corte orçamentário`,D:`(D) gestão exclusiva por técnicos concursados, sem interferência de usuários ou trabalhadores`},disciplina:`Conhecimentos Específicos`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`02/2025`,banca:`IBAM`,resposta_correta:`B`},{questão:`O projeto ético-político contemporâneo do Serviço
+Social brasileiro é fruto de um processo histórico
+de amadurecimento da categoria. Sobre seus
+fundamentos, é verdadeira a seguinte afirmativa:`,alternativas:{A:`(A) baseia-se na doutrina social da Igreja, priorizando a caridade e o ajustamento moral dos sujeitos`,B:`(B) é um projeto estritamente técnico, focado na eficiência da gestão de benefícios sem viés ideológico`,C:`(C) prioriza a defesa dos interesses do Estado acima dos direitos da classe trabalhadora`,D:`(D) rompe com o conservadorismo ao adotar uma teoria social crítica que nega a neutralidade profissional`},disciplina:`Conhecimentos Específicos`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`02/2025`,banca:`IBAM`,resposta_correta:`D`},{questão:`O Código de Ética Profissional dos Assistentes
+Sociais, de 1993, apresenta princípios
+fundamentais que norteiam a profissão. Dentre
+eles, destaca-se:`,alternativas:{A:`(A) defesa intransigente dos direitos humanos e recusa do arbítrio e do autoritarismo`,B:`(B) subordinação da ética profissional às conveniências políticas das instituições empregadoras`,C:`(C) compromisso com a harmonia entre as classes sociais para evitar conflitos distributivos`,D:`(D) restrição do acesso à informação como forma de proteger a imagem das instituições públicas`},disciplina:`Conhecimentos Específicos`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`02/2025`,banca:`IBAM`,resposta_correta:`A`},{questão:`O Sistema Único de Assistência Social (SUAS)
+organiza a proteção social em dois níveis: básica
+e especial. Das alternativas abaixo, aquela que
+apresenta uma afirmativa verdadeira sobre o
+Serviço de Proteção e Atendimento Especializado
+a Famílias e Indivíduos (PAEFI) é a seguinte:`,alternativas:{A:`(A) destina-se a famílias em situação de risco, cujos direitos já foram violados ou ameaçados`,B:`(B) é a principal porta de entrada do SUAS, sendo ofertado exclusivamente nos CRAS`,C:`(C) trata-se de um benefício eventual concedido apenas em situações de calamidade pública`,D:`(D) é um serviço de acolhimento institucional de longa permanência para idosos e crianças`},disciplina:`Conhecimentos Específicos`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`02/2025`,banca:`IBAM`,resposta_correta:`A`},{questão:`A Lei nº 8.142/1990 dispõe sobre a participação da
+comunidade na gestão do SUS. Sobre os
+Conselhos de Saúde, é correta a seguinte
+afirmativa:`,alternativas:{A:`(A) são órgãos consultivos, sem poder de decisão sobre os gastos da saúde no território`,B:`(B) o Secretário de Saúde de cada esfera é, obrigatoriamente, o presidente vitalício do conselho`,C:`(C) devem ser compostos de forma paritária, sendo 50% de representantes dos usuários e 50% dos demais segmentos`,D:`(D) reúnem-se a cada quatro anos para avaliar a situação de saúde e propor as diretrizes da política`},disciplina:`Conhecimentos Específicos`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`02/2025`,banca:`IBAM`,resposta_correta:`C`},{questão:`De acordo com a Tipificação Nacional, o serviço
+que tem como objetivo prevenir situações de risco
+social, fortalecer vínculos familiares e
+comunitários, e que é ofertado exclusivamente no
+CRAS, denomina-se:`,alternativas:{A:`(A) Serviço de Acolhimento Institucional`,B:`(B) Serviço de Proteção e Atendimento Especializado a Famílias e Indivíduos`,C:`(C) Serviço de Proteção e Atendimento Integral à Família`,D:`(D) Serviço de Proteção Social Básica no Domicílio para Pessoas com Deficiência e Idosas`},disciplina:`Conhecimentos Específicos`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`02/2025`,banca:`IBAM`,resposta_correta:`C`},{questão:`Na proteção de alta complexidade, o atendimento
+é voltado a indivíduos ou famílias com vínculos
+familiares rompidos ou fragilizados. É um serviço
+de alta complexidade:`,alternativas:{A:`(A) Centro de Referência Especializado para População em Situação de Rua`,B:`(B) Serviço de Proteção Social Especial para Pessoas com Deficiência e suas Famílias`,C:`(C) Serviço de Abordagem Social às Pessoas em Situação de Rua`,D:`(D) Serviço de Acolhimento em Família Acolhedora`},disciplina:`Conhecimentos Específicos`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`02/2025`,banca:`IBAM`,resposta_correta:`D`},{questão:`Segundo o Conselho Federal de Serviço Social
+(CFESS), na contemporaneidade, a atuação dos
+assistentes sociais nas escolas deve focar em:`,alternativas:{A:`(A) identificar famílias “desajustadas” para aplicação de medidas punitivas pela direção escolar`,B:`(B) atuar na mediação das relações entre escola, família e comunidade, contribuindo para a democratização da gestão escolar`,C:`(C) assumir funções administrativas da escola, como controle de frequência e organização de eventos comemorativos`,D:`(D) realizar terapia familiar com pais de alunos que apresentam dificuldades de aprendizagem`},disciplina:`Conhecimentos Específicos`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`02/2025`,banca:`IBAM`,resposta_correta:`B`},{questão:`A afirmação de que o uso das canetas de análogos
+de GLP-1 “exige cuidados extras” entre idosos
+deve ser compreendida, no texto, como:`,alternativas:{A:`(A) contestação da eficácia das canetas para obesidade`,B:`(B) necessidade de acompanhamento mais rigoroso diante de riscos específicos`,C:`(C) substituição obrigatória do tratamento medicamentoso por métodos naturais`,D:`(D) rejeição ao uso desses medicamentos para emagrecimento rápido nessa faixa etária`},disciplina:`Língua Portuguesa`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`02/2025`,banca:`IBAM`,resposta_correta:`B`,texto_relevante:`TEXTO: Uso de canetas para obesidade entre
+idosos exige cuidados extras; entenda
+Emagrecimento rápido é fator de risco para
+problemas como a sarcopenia, que favorece
+quedas e fraturas
+ As canetas de análogos de GLP-1 [...] têm
+se mostrado grandes aliadas no tratamento da
+obesidade e do diabetes, com eficácia e segurança
+comprovadas para diversos tipos de pacientes.
+Idosos também podem se beneficiar do uso
+desses medicamentos, mas com atenção
+redobrada e acompanhamento multiprofissional
+ainda mais rigoroso, já que os riscos associados à
+utilização incorreta aumentam de maneira
+significativa.
+ Especialistas explicam que existem
+peculiaridades para os pacientes na terceira idade.
+Se usado inadvertidamente, o medicamento pode
+por exemplo favorecer a sarcopenia (perda
+progressiva e generalizada de massa, força e
+função muscular), tendo como consequência
+quedas e fraturas.
+ Independentemente da idade, durante a
+perda de peso, quase um terço da redução é de
+massa magra, incluindo a massa muscular, cuja
+preservação é fundamental para manter a força, a
+mobilidade e a autonomia. Ao envelhecer, porém,
+o organismo já tende a perder músculo e ganhar
+gordura.
+ “O corpo da pessoa idosa é diferente de
+um adulto jovem — tem mais gordura e menos
+músculo, por isso, cada grama de músculo perdido
+na terceira idade tem um impacto maior”, afirma o
+geriatra Ivan Aprahamian, diretor científico da
+Sociedade Brasileira de Geriatria e Gerontologia
+(SBGG).
+ Por isso, nessa faixa etária, o
+emagrecimento rápido ou acentuado pode
+favorecer fraqueza, quedas, fraturas e, assim,
+acelerar o processo de perda de funcionalidade,
+explica o endocrinologista Fernando Valente,
+professor da Faculdade de Medicina do ABC e
+diretor da Sociedade Brasileira de Diabetes (SBD).
+ “O efeito combinado do menor apetite com
+as náuseas e a rápida perda de peso provocadas
+pelas canetas pode precipitar síndromes
+geriátricas, como sarcopenia e fragilidade física”,
+diz Aprahamian.
+ Outros problemas relacionados ao uso das
+canetas para diabetes e obesidade são a
+desidratação e a perda de eletrólitos, quando o
+paciente fica muito tempo sem se hidratar — o que
+acontece devido à falta de apetite ocasionada pela
+medicação.
+ Casos graves de desidratação podem
+comprometer a função renal. Junto a isso, a baixa
+ingestão calórica aumenta o risco de deficiências
+nutricionais, além de aumentar o risco de
+hipoglicemia, o que, em casos mais graves, pode
+ter como sintomas até mesmo confusão mental.
+ Fonte: https://www.estadao.com.br/saude/uso-de-
+ canetas-para-obesidade-entre-idosos-exige-cuidados-
+ extras-entenda/. Acesso em 07/01/2026. Excerto
+ adaptado`},{questão:`No texto, a menção à sarcopenia cumpre
+principalmente a função de:`,alternativas:{A:`(A) explicar o funcionamento do medicamento`,B:`(B) defender a interrupção do tratamento em idosos`,C:`(C) exemplificar um risco associado ao uso inadequado`,D:`(D) apresentar uma condição exclusiva da terceira idade`},disciplina:`Língua Portuguesa`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`02/2025`,banca:`IBAM`,resposta_correta:`C`,texto_relevante:`TEXTO: Uso de canetas para obesidade entre
+idosos exige cuidados extras; entenda
+Emagrecimento rápido é fator de risco para
+problemas como a sarcopenia, que favorece
+quedas e fraturas
+ As canetas de análogos de GLP-1 [...] têm
+se mostrado grandes aliadas no tratamento da
+obesidade e do diabetes, com eficácia e segurança
+comprovadas para diversos tipos de pacientes.
+Idosos também podem se beneficiar do uso
+desses medicamentos, mas com atenção
+redobrada e acompanhamento multiprofissional
+ainda mais rigoroso, já que os riscos associados à
+utilização incorreta aumentam de maneira
+significativa.
+ Especialistas explicam que existem
+peculiaridades para os pacientes na terceira idade.
+Se usado inadvertidamente, o medicamento pode
+por exemplo favorecer a sarcopenia (perda
+progressiva e generalizada de massa, força e
+função muscular), tendo como consequência
+quedas e fraturas.
+ Independentemente da idade, durante a
+perda de peso, quase um terço da redução é de
+massa magra, incluindo a massa muscular, cuja
+preservação é fundamental para manter a força, a
+mobilidade e a autonomia. Ao envelhecer, porém,
+o organismo já tende a perder músculo e ganhar
+gordura.
+ “O corpo da pessoa idosa é diferente de
+um adulto jovem — tem mais gordura e menos
+músculo, por isso, cada grama de músculo perdido
+na terceira idade tem um impacto maior”, afirma o
+geriatra Ivan Aprahamian, diretor científico da
+Sociedade Brasileira de Geriatria e Gerontologia
+(SBGG).
+ Por isso, nessa faixa etária, o
+emagrecimento rápido ou acentuado pode
+favorecer fraqueza, quedas, fraturas e, assim,
+acelerar o processo de perda de funcionalidade,
+explica o endocrinologista Fernando Valente,
+professor da Faculdade de Medicina do ABC e
+diretor da Sociedade Brasileira de Diabetes (SBD).
+ “O efeito combinado do menor apetite com
+as náuseas e a rápida perda de peso provocadas
+pelas canetas pode precipitar síndromes
+geriátricas, como sarcopenia e fragilidade física”,
+diz Aprahamian.
+ Outros problemas relacionados ao uso das
+canetas para diabetes e obesidade são a
+desidratação e a perda de eletrólitos, quando o
+paciente fica muito tempo sem se hidratar — o que
+acontece devido à falta de apetite ocasionada pela
+medicação.
+ Casos graves de desidratação podem
+comprometer a função renal. Junto a isso, a baixa
+ingestão calórica aumenta o risco de deficiências
+nutricionais, além de aumentar o risco de
+hipoglicemia, o que, em casos mais graves, pode
+ter como sintomas até mesmo confusão mental.
+ Fonte: https://www.estadao.com.br/saude/uso-de-
+ canetas-para-obesidade-entre-idosos-exige-cuidados-
+ extras-entenda/. Acesso em 07/01/2026. Excerto
+ adaptado`},{questão:`Segundo o texto, o principal fator que torna o
+emagrecimento mais arriscado na velhice é a:`,alternativas:{A:`(A) maior prevalência de doenças crônicas`,B:`(B) redução do apetite causada pela medicação`,C:`(C) tendência fisiológica à perda de massa muscular`,D:`(D) menor adesão dos idosos ao tratamento contínuo`},disciplina:`Língua Portuguesa`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`02/2025`,banca:`IBAM`,resposta_correta:`C`,texto_relevante:`TEXTO: Uso de canetas para obesidade entre
+idosos exige cuidados extras; entenda
+Emagrecimento rápido é fator de risco para
+problemas como a sarcopenia, que favorece
+quedas e fraturas
+ As canetas de análogos de GLP-1 [...] têm
+se mostrado grandes aliadas no tratamento da
+obesidade e do diabetes, com eficácia e segurança
+comprovadas para diversos tipos de pacientes.
+Idosos também podem se beneficiar do uso
+desses medicamentos, mas com atenção
+redobrada e acompanhamento multiprofissional
+ainda mais rigoroso, já que os riscos associados à
+utilização incorreta aumentam de maneira
+significativa.
+ Especialistas explicam que existem
+peculiaridades para os pacientes na terceira idade.
+Se usado inadvertidamente, o medicamento pode
+por exemplo favorecer a sarcopenia (perda
+progressiva e generalizada de massa, força e
+função muscular), tendo como consequência
+quedas e fraturas.
+ Independentemente da idade, durante a
+perda de peso, quase um terço da redução é de
+massa magra, incluindo a massa muscular, cuja
+preservação é fundamental para manter a força, a
+mobilidade e a autonomia. Ao envelhecer, porém,
+o organismo já tende a perder músculo e ganhar
+gordura.
+ “O corpo da pessoa idosa é diferente de
+um adulto jovem — tem mais gordura e menos
+músculo, por isso, cada grama de músculo perdido
+na terceira idade tem um impacto maior”, afirma o
+geriatra Ivan Aprahamian, diretor científico da
+Sociedade Brasileira de Geriatria e Gerontologia
+(SBGG).
+ Por isso, nessa faixa etária, o
+emagrecimento rápido ou acentuado pode
+favorecer fraqueza, quedas, fraturas e, assim,
+acelerar o processo de perda de funcionalidade,
+explica o endocrinologista Fernando Valente,
+professor da Faculdade de Medicina do ABC e
+diretor da Sociedade Brasileira de Diabetes (SBD).
+ “O efeito combinado do menor apetite com
+as náuseas e a rápida perda de peso provocadas
+pelas canetas pode precipitar síndromes
+geriátricas, como sarcopenia e fragilidade física”,
+diz Aprahamian.
+ Outros problemas relacionados ao uso das
+canetas para diabetes e obesidade são a
+desidratação e a perda de eletrólitos, quando o
+paciente fica muito tempo sem se hidratar — o que
+acontece devido à falta de apetite ocasionada pela
+medicação.
+ Casos graves de desidratação podem
+comprometer a função renal. Junto a isso, a baixa
+ingestão calórica aumenta o risco de deficiências
+nutricionais, além de aumentar o risco de
+hipoglicemia, o que, em casos mais graves, pode
+ter como sintomas até mesmo confusão mental.
+ Fonte: https://www.estadao.com.br/saude/uso-de-
+ canetas-para-obesidade-entre-idosos-exige-cuidados-
+ extras-entenda/. Acesso em 07/01/2026. Excerto
+ adaptado`},{questão:`A afirmação do geriatra Ivan Aprahamian, no texto,
+introduz:`,alternativas:{A:`(A) um dado estatístico`,B:`(B) uma explicação de caráter técnico-científico`,C:`(C) um contraponto à argumentação apresentada`,D:`(D) uma opinião pessoal divergente da mais predominante`},disciplina:`Língua Portuguesa`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`02/2025`,banca:`IBAM`,resposta_correta:`B`,texto_relevante:`TEXTO: Uso de canetas para obesidade entre
+idosos exige cuidados extras; entenda
+Emagrecimento rápido é fator de risco para
+problemas como a sarcopenia, que favorece
+quedas e fraturas
+ As canetas de análogos de GLP-1 [...] têm
+se mostrado grandes aliadas no tratamento da
+obesidade e do diabetes, com eficácia e segurança
+comprovadas para diversos tipos de pacientes.
+Idosos também podem se beneficiar do uso
+desses medicamentos, mas com atenção
+redobrada e acompanhamento multiprofissional
+ainda mais rigoroso, já que os riscos associados à
+utilização incorreta aumentam de maneira
+significativa.
+ Especialistas explicam que existem
+peculiaridades para os pacientes na terceira idade.
+Se usado inadvertidamente, o medicamento pode
+por exemplo favorecer a sarcopenia (perda
+progressiva e generalizada de massa, força e
+função muscular), tendo como consequência
+quedas e fraturas.
+ Independentemente da idade, durante a
+perda de peso, quase um terço da redução é de
+massa magra, incluindo a massa muscular, cuja
+preservação é fundamental para manter a força, a
+mobilidade e a autonomia. Ao envelhecer, porém,
+o organismo já tende a perder músculo e ganhar
+gordura.
+ “O corpo da pessoa idosa é diferente de
+um adulto jovem — tem mais gordura e menos
+músculo, por isso, cada grama de músculo perdido
+na terceira idade tem um impacto maior”, afirma o
+geriatra Ivan Aprahamian, diretor científico da
+Sociedade Brasileira de Geriatria e Gerontologia
+(SBGG).
+ Por isso, nessa faixa etária, o
+emagrecimento rápido ou acentuado pode
+favorecer fraqueza, quedas, fraturas e, assim,
+acelerar o processo de perda de funcionalidade,
+explica o endocrinologista Fernando Valente,
+professor da Faculdade de Medicina do ABC e
+diretor da Sociedade Brasileira de Diabetes (SBD).
+ “O efeito combinado do menor apetite com
+as náuseas e a rápida perda de peso provocadas
+pelas canetas pode precipitar síndromes
+geriátricas, como sarcopenia e fragilidade física”,
+diz Aprahamian.
+ Outros problemas relacionados ao uso das
+canetas para diabetes e obesidade são a
+desidratação e a perda de eletrólitos, quando o
+paciente fica muito tempo sem se hidratar — o que
+acontece devido à falta de apetite ocasionada pela
+medicação.
+ Casos graves de desidratação podem
+comprometer a função renal. Junto a isso, a baixa
+ingestão calórica aumenta o risco de deficiências
+nutricionais, além de aumentar o risco de
+hipoglicemia, o que, em casos mais graves, pode
+ter como sintomas até mesmo confusão mental.
+ Fonte: https://www.estadao.com.br/saude/uso-de-
+ canetas-para-obesidade-entre-idosos-exige-cuidados-
+ extras-entenda/. Acesso em 07/01/2026. Excerto
+ adaptado`},{questão:`No trecho “o medicamento pode por exemplo
+favorecer a sarcopenia” (2º parágrafo), o verbo em
+destaque expressa valor semântico de:`,alternativas:{A:`(A) certeza`,B:`(B) obrigação`,C:`(C) permissão`,D:`(D) possibilidade`},disciplina:`Língua Portuguesa`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`02/2025`,banca:`IBAM`,resposta_correta:`D`,texto_relevante:`TEXTO: Uso de canetas para obesidade entre
+idosos exige cuidados extras; entenda
+Emagrecimento rápido é fator de risco para
+problemas como a sarcopenia, que favorece
+quedas e fraturas
+ As canetas de análogos de GLP-1 [...] têm
+se mostrado grandes aliadas no tratamento da
+obesidade e do diabetes, com eficácia e segurança
+comprovadas para diversos tipos de pacientes.
+Idosos também podem se beneficiar do uso
+desses medicamentos, mas com atenção
+redobrada e acompanhamento multiprofissional
+ainda mais rigoroso, já que os riscos associados à
+utilização incorreta aumentam de maneira
+significativa.
+ Especialistas explicam que existem
+peculiaridades para os pacientes na terceira idade.
+Se usado inadvertidamente, o medicamento pode
+por exemplo favorecer a sarcopenia (perda
+progressiva e generalizada de massa, força e
+função muscular), tendo como consequência
+quedas e fraturas.
+ Independentemente da idade, durante a
+perda de peso, quase um terço da redução é de
+massa magra, incluindo a massa muscular, cuja
+preservação é fundamental para manter a força, a
+mobilidade e a autonomia. Ao envelhecer, porém,
+o organismo já tende a perder músculo e ganhar
+gordura.
+ “O corpo da pessoa idosa é diferente de
+um adulto jovem — tem mais gordura e menos
+músculo, por isso, cada grama de músculo perdido
+na terceira idade tem um impacto maior”, afirma o
+geriatra Ivan Aprahamian, diretor científico da
+Sociedade Brasileira de Geriatria e Gerontologia
+(SBGG).
+ Por isso, nessa faixa etária, o
+emagrecimento rápido ou acentuado pode
+favorecer fraqueza, quedas, fraturas e, assim,
+acelerar o processo de perda de funcionalidade,
+explica o endocrinologista Fernando Valente,
+professor da Faculdade de Medicina do ABC e
+diretor da Sociedade Brasileira de Diabetes (SBD).
+ “O efeito combinado do menor apetite com
+as náuseas e a rápida perda de peso provocadas
+pelas canetas pode precipitar síndromes
+geriátricas, como sarcopenia e fragilidade física”,
+diz Aprahamian.
+ Outros problemas relacionados ao uso das
+canetas para diabetes e obesidade são a
+desidratação e a perda de eletrólitos, quando o
+paciente fica muito tempo sem se hidratar — o que
+acontece devido à falta de apetite ocasionada pela
+medicação.
+ Casos graves de desidratação podem
+comprometer a função renal. Junto a isso, a baixa
+ingestão calórica aumenta o risco de deficiências
+nutricionais, além de aumentar o risco de
+hipoglicemia, o que, em casos mais graves, pode
+ter como sintomas até mesmo confusão mental.
+ Fonte: https://www.estadao.com.br/saude/uso-de-
+ canetas-para-obesidade-entre-idosos-exige-cuidados-
+ extras-entenda/. Acesso em 07/01/2026. Excerto
+ adaptado`},{questão:`Considerando a organização global do texto,
+predomina o modo de organização do discurso:`,alternativas:{A:`(A) injuntivo-narrativo`,B:`(B) descritivo-narrativo`,C:`(C) narrativo-argumentativo`,D:`(D) expositivo-argumentativo`},disciplina:`Língua Portuguesa`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`02/2025`,banca:`IBAM`,resposta_correta:`D`,texto_relevante:`TEXTO: Uso de canetas para obesidade entre
+idosos exige cuidados extras; entenda
+Emagrecimento rápido é fator de risco para
+problemas como a sarcopenia, que favorece
+quedas e fraturas
+ As canetas de análogos de GLP-1 [...] têm
+se mostrado grandes aliadas no tratamento da
+obesidade e do diabetes, com eficácia e segurança
+comprovadas para diversos tipos de pacientes.
+Idosos também podem se beneficiar do uso
+desses medicamentos, mas com atenção
+redobrada e acompanhamento multiprofissional
+ainda mais rigoroso, já que os riscos associados à
+utilização incorreta aumentam de maneira
+significativa.
+ Especialistas explicam que existem
+peculiaridades para os pacientes na terceira idade.
+Se usado inadvertidamente, o medicamento pode
+por exemplo favorecer a sarcopenia (perda
+progressiva e generalizada de massa, força e
+função muscular), tendo como consequência
+quedas e fraturas.
+ Independentemente da idade, durante a
+perda de peso, quase um terço da redução é de
+massa magra, incluindo a massa muscular, cuja
+preservação é fundamental para manter a força, a
+mobilidade e a autonomia. Ao envelhecer, porém,
+o organismo já tende a perder músculo e ganhar
+gordura.
+ “O corpo da pessoa idosa é diferente de
+um adulto jovem — tem mais gordura e menos
+músculo, por isso, cada grama de músculo perdido
+na terceira idade tem um impacto maior”, afirma o
+geriatra Ivan Aprahamian, diretor científico da
+Sociedade Brasileira de Geriatria e Gerontologia
+(SBGG).
+ Por isso, nessa faixa etária, o
+emagrecimento rápido ou acentuado pode
+favorecer fraqueza, quedas, fraturas e, assim,
+acelerar o processo de perda de funcionalidade,
+explica o endocrinologista Fernando Valente,
+professor da Faculdade de Medicina do ABC e
+diretor da Sociedade Brasileira de Diabetes (SBD).
+ “O efeito combinado do menor apetite com
+as náuseas e a rápida perda de peso provocadas
+pelas canetas pode precipitar síndromes
+geriátricas, como sarcopenia e fragilidade física”,
+diz Aprahamian.
+ Outros problemas relacionados ao uso das
+canetas para diabetes e obesidade são a
+desidratação e a perda de eletrólitos, quando o
+paciente fica muito tempo sem se hidratar — o que
+acontece devido à falta de apetite ocasionada pela
+medicação.
+ Casos graves de desidratação podem
+comprometer a função renal. Junto a isso, a baixa
+ingestão calórica aumenta o risco de deficiências
+nutricionais, além de aumentar o risco de
+hipoglicemia, o que, em casos mais graves, pode
+ter como sintomas até mesmo confusão mental.
+ Fonte: https://www.estadao.com.br/saude/uso-de-
+ canetas-para-obesidade-entre-idosos-exige-cuidados-
+ extras-entenda/. Acesso em 07/01/2026. Excerto
+ adaptado`},{questão:`No trecho “o emagrecimento rápido ou acentuado
+pode favorecer fraqueza, quedas, fraturas e,
+assim, acelerar o processo de perda de
+funcionalidade” (5º parágrafo), estabelece-se uma
+relação predominante de:`,alternativas:{A:`(A) comparação`,B:`(B) exemplificação`,C:`(C) causa e consequência`,D:`(D) generalização seguida de particularização`},disciplina:`Língua Portuguesa`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`02/2025`,banca:`IBAM`,resposta_correta:`C`,texto_relevante:`TEXTO: Uso de canetas para obesidade entre
+idosos exige cuidados extras; entenda
+Emagrecimento rápido é fator de risco para
+problemas como a sarcopenia, que favorece
+quedas e fraturas
+ As canetas de análogos de GLP-1 [...] têm
+se mostrado grandes aliadas no tratamento da
+obesidade e do diabetes, com eficácia e segurança
+comprovadas para diversos tipos de pacientes.
+Idosos também podem se beneficiar do uso
+desses medicamentos, mas com atenção
+redobrada e acompanhamento multiprofissional
+ainda mais rigoroso, já que os riscos associados à
+utilização incorreta aumentam de maneira
+significativa.
+ Especialistas explicam que existem
+peculiaridades para os pacientes na terceira idade.
+Se usado inadvertidamente, o medicamento pode
+por exemplo favorecer a sarcopenia (perda
+progressiva e generalizada de massa, força e
+função muscular), tendo como consequência
+quedas e fraturas.
+ Independentemente da idade, durante a
+perda de peso, quase um terço da redução é de
+massa magra, incluindo a massa muscular, cuja
+preservação é fundamental para manter a força, a
+mobilidade e a autonomia. Ao envelhecer, porém,
+o organismo já tende a perder músculo e ganhar
+gordura.
+ “O corpo da pessoa idosa é diferente de
+um adulto jovem — tem mais gordura e menos
+músculo, por isso, cada grama de músculo perdido
+na terceira idade tem um impacto maior”, afirma o
+geriatra Ivan Aprahamian, diretor científico da
+Sociedade Brasileira de Geriatria e Gerontologia
+(SBGG).
+ Por isso, nessa faixa etária, o
+emagrecimento rápido ou acentuado pode
+favorecer fraqueza, quedas, fraturas e, assim,
+acelerar o processo de perda de funcionalidade,
+explica o endocrinologista Fernando Valente,
+professor da Faculdade de Medicina do ABC e
+diretor da Sociedade Brasileira de Diabetes (SBD).
+ “O efeito combinado do menor apetite com
+as náuseas e a rápida perda de peso provocadas
+pelas canetas pode precipitar síndromes
+geriátricas, como sarcopenia e fragilidade física”,
+diz Aprahamian.
+ Outros problemas relacionados ao uso das
+canetas para diabetes e obesidade são a
+desidratação e a perda de eletrólitos, quando o
+paciente fica muito tempo sem se hidratar — o que
+acontece devido à falta de apetite ocasionada pela
+medicação.
+ Casos graves de desidratação podem
+comprometer a função renal. Junto a isso, a baixa
+ingestão calórica aumenta o risco de deficiências
+nutricionais, além de aumentar o risco de
+hipoglicemia, o que, em casos mais graves, pode
+ter como sintomas até mesmo confusão mental.
+ Fonte: https://www.estadao.com.br/saude/uso-de-
+ canetas-para-obesidade-entre-idosos-exige-cuidados-
+ extras-entenda/. Acesso em 07/01/2026. Excerto
+ adaptado`},{questão:`Na palavra inadvertidamente, há um sufixo em:`,alternativas:{A:`(A) in`,B:`(B) adver`,C:`(C) tida`,D:`(D) mente`},disciplina:`Língua Portuguesa`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`02/2025`,banca:`IBAM`,resposta_correta:`D`,texto_relevante:`TEXTO: Uso de canetas para obesidade entre
+idosos exige cuidados extras; entenda
+Emagrecimento rápido é fator de risco para
+problemas como a sarcopenia, que favorece
+quedas e fraturas
+ As canetas de análogos de GLP-1 [...] têm
+se mostrado grandes aliadas no tratamento da
+obesidade e do diabetes, com eficácia e segurança
+comprovadas para diversos tipos de pacientes.
+Idosos também podem se beneficiar do uso
+desses medicamentos, mas com atenção
+redobrada e acompanhamento multiprofissional
+ainda mais rigoroso, já que os riscos associados à
+utilização incorreta aumentam de maneira
+significativa.
+ Especialistas explicam que existem
+peculiaridades para os pacientes na terceira idade.
+Se usado inadvertidamente, o medicamento pode
+por exemplo favorecer a sarcopenia (perda
+progressiva e generalizada de massa, força e
+função muscular), tendo como consequência
+quedas e fraturas.
+ Independentemente da idade, durante a
+perda de peso, quase um terço da redução é de
+massa magra, incluindo a massa muscular, cuja
+preservação é fundamental para manter a força, a
+mobilidade e a autonomia. Ao envelhecer, porém,
+o organismo já tende a perder músculo e ganhar
+gordura.
+ “O corpo da pessoa idosa é diferente de
+um adulto jovem — tem mais gordura e menos
+músculo, por isso, cada grama de músculo perdido
+na terceira idade tem um impacto maior”, afirma o
+geriatra Ivan Aprahamian, diretor científico da
+Sociedade Brasileira de Geriatria e Gerontologia
+(SBGG).
+ Por isso, nessa faixa etária, o
+emagrecimento rápido ou acentuado pode
+favorecer fraqueza, quedas, fraturas e, assim,
+acelerar o processo de perda de funcionalidade,
+explica o endocrinologista Fernando Valente,
+professor da Faculdade de Medicina do ABC e
+diretor da Sociedade Brasileira de Diabetes (SBD).
+ “O efeito combinado do menor apetite com
+as náuseas e a rápida perda de peso provocadas
+pelas canetas pode precipitar síndromes
+geriátricas, como sarcopenia e fragilidade física”,
+diz Aprahamian.
+ Outros problemas relacionados ao uso das
+canetas para diabetes e obesidade são a
+desidratação e a perda de eletrólitos, quando o
+paciente fica muito tempo sem se hidratar — o que
+acontece devido à falta de apetite ocasionada pela
+medicação.
+ Casos graves de desidratação podem
+comprometer a função renal. Junto a isso, a baixa
+ingestão calórica aumenta o risco de deficiências
+nutricionais, além de aumentar o risco de
+hipoglicemia, o que, em casos mais graves, pode
+ter como sintomas até mesmo confusão mental.
+ Fonte: https://www.estadao.com.br/saude/uso-de-
+ canetas-para-obesidade-entre-idosos-exige-cuidados-
+ extras-entenda/. Acesso em 07/01/2026. Excerto
+ adaptado`},{questão:`Há uma preposição e uma conjunção destacadas,
+nessa ordem, em:`,alternativas:{A:`(A) “As canetas de análogos de GLP-1 [...] têm se mostrado grandes aliadas no tratamento da obesidade e do diabetes” (1º parágrafo)`,B:`(B) “Idosos também podem se beneficiar do uso desses medicamentos, mas com atenção redobrada e acompanhamento multiprofissional” (1º parágrafo)`,C:`(C) “Por isso, nessa faixa etária, o emagrecimento rápido ou acentuado pode favorecer fraqueza, quedas, fraturas” (5º parágrafo)`,D:`(D) “Outros problemas relacionados ao uso das canetas para diabetes e obesidade são a desidratação e a perda de eletrólitos” (7º parágrafo)`},disciplina:`Língua Portuguesa`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`02/2025`,banca:`IBAM`,resposta_correta:`A`,texto_relevante:`TEXTO: Uso de canetas para obesidade entre
+idosos exige cuidados extras; entenda
+Emagrecimento rápido é fator de risco para
+problemas como a sarcopenia, que favorece
+quedas e fraturas
+ As canetas de análogos de GLP-1 [...] têm
+se mostrado grandes aliadas no tratamento da
+obesidade e do diabetes, com eficácia e segurança
+comprovadas para diversos tipos de pacientes.
+Idosos também podem se beneficiar do uso
+desses medicamentos, mas com atenção
+redobrada e acompanhamento multiprofissional
+ainda mais rigoroso, já que os riscos associados à
+utilização incorreta aumentam de maneira
+significativa.
+ Especialistas explicam que existem
+peculiaridades para os pacientes na terceira idade.
+Se usado inadvertidamente, o medicamento pode
+por exemplo favorecer a sarcopenia (perda
+progressiva e generalizada de massa, força e
+função muscular), tendo como consequência
+quedas e fraturas.
+ Independentemente da idade, durante a
+perda de peso, quase um terço da redução é de
+massa magra, incluindo a massa muscular, cuja
+preservação é fundamental para manter a força, a
+mobilidade e a autonomia. Ao envelhecer, porém,
+o organismo já tende a perder músculo e ganhar
+gordura.
+ “O corpo da pessoa idosa é diferente de
+um adulto jovem — tem mais gordura e menos
+músculo, por isso, cada grama de músculo perdido
+na terceira idade tem um impacto maior”, afirma o
+geriatra Ivan Aprahamian, diretor científico da
+Sociedade Brasileira de Geriatria e Gerontologia
+(SBGG).
+ Por isso, nessa faixa etária, o
+emagrecimento rápido ou acentuado pode
+favorecer fraqueza, quedas, fraturas e, assim,
+acelerar o processo de perda de funcionalidade,
+explica o endocrinologista Fernando Valente,
+professor da Faculdade de Medicina do ABC e
+diretor da Sociedade Brasileira de Diabetes (SBD).
+ “O efeito combinado do menor apetite com
+as náuseas e a rápida perda de peso provocadas
+pelas canetas pode precipitar síndromes
+geriátricas, como sarcopenia e fragilidade física”,
+diz Aprahamian.
+ Outros problemas relacionados ao uso das
+canetas para diabetes e obesidade são a
+desidratação e a perda de eletrólitos, quando o
+paciente fica muito tempo sem se hidratar — o que
+acontece devido à falta de apetite ocasionada pela
+medicação.
+ Casos graves de desidratação podem
+comprometer a função renal. Junto a isso, a baixa
+ingestão calórica aumenta o risco de deficiências
+nutricionais, além de aumentar o risco de
+hipoglicemia, o que, em casos mais graves, pode
+ter como sintomas até mesmo confusão mental.
+ Fonte: https://www.estadao.com.br/saude/uso-de-
+ canetas-para-obesidade-entre-idosos-exige-cuidados-
+ extras-entenda/. Acesso em 07/01/2026. Excerto
+ adaptado`},{questão:`“Independentemente da idade, durante a perda de
+peso, quase um terço da redução é de massa
+magra, incluindo a massa muscular, cuja
+preservação é fundamental para manter a força, a
+mobilidade e a autonomia” (3º parágrafo). No
+trecho, o pronome em destaque estabelece
+relação de:`,alternativas:{A:`(A) posse`,B:`(B) condição`,C:`(C) explicação`,D:`(D) consequência`},disciplina:`Língua Portuguesa`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`02/2025`,banca:`IBAM`,resposta_correta:`A`,texto_relevante:`TEXTO: Uso de canetas para obesidade entre
+idosos exige cuidados extras; entenda
+Emagrecimento rápido é fator de risco para
+problemas como a sarcopenia, que favorece
+quedas e fraturas
+ As canetas de análogos de GLP-1 [...] têm
+se mostrado grandes aliadas no tratamento da
+obesidade e do diabetes, com eficácia e segurança
+comprovadas para diversos tipos de pacientes.
+Idosos também podem se beneficiar do uso
+desses medicamentos, mas com atenção
+redobrada e acompanhamento multiprofissional
+ainda mais rigoroso, já que os riscos associados à
+utilização incorreta aumentam de maneira
+significativa.
+ Especialistas explicam que existem
+peculiaridades para os pacientes na terceira idade.
+Se usado inadvertidamente, o medicamento pode
+por exemplo favorecer a sarcopenia (perda
+progressiva e generalizada de massa, força e
+função muscular), tendo como consequência
+quedas e fraturas.
+ Independentemente da idade, durante a
+perda de peso, quase um terço da redução é de
+massa magra, incluindo a massa muscular, cuja
+preservação é fundamental para manter a força, a
+mobilidade e a autonomia. Ao envelhecer, porém,
+o organismo já tende a perder músculo e ganhar
+gordura.
+ “O corpo da pessoa idosa é diferente de
+um adulto jovem — tem mais gordura e menos
+músculo, por isso, cada grama de músculo perdido
+na terceira idade tem um impacto maior”, afirma o
+geriatra Ivan Aprahamian, diretor científico da
+Sociedade Brasileira de Geriatria e Gerontologia
+(SBGG).
+ Por isso, nessa faixa etária, o
+emagrecimento rápido ou acentuado pode
+favorecer fraqueza, quedas, fraturas e, assim,
+acelerar o processo de perda de funcionalidade,
+explica o endocrinologista Fernando Valente,
+professor da Faculdade de Medicina do ABC e
+diretor da Sociedade Brasileira de Diabetes (SBD).
+ “O efeito combinado do menor apetite com
+as náuseas e a rápida perda de peso provocadas
+pelas canetas pode precipitar síndromes
+geriátricas, como sarcopenia e fragilidade física”,
+diz Aprahamian.
+ Outros problemas relacionados ao uso das
+canetas para diabetes e obesidade são a
+desidratação e a perda de eletrólitos, quando o
+paciente fica muito tempo sem se hidratar — o que
+acontece devido à falta de apetite ocasionada pela
+medicação.
+ Casos graves de desidratação podem
+comprometer a função renal. Junto a isso, a baixa
+ingestão calórica aumenta o risco de deficiências
+nutricionais, além de aumentar o risco de
+hipoglicemia, o que, em casos mais graves, pode
+ter como sintomas até mesmo confusão mental.
+ Fonte: https://www.estadao.com.br/saude/uso-de-
+ canetas-para-obesidade-entre-idosos-exige-cuidados-
+ extras-entenda/. Acesso em 07/01/2026. Excerto
+ adaptado`},{questão:`“Conjunto de ações que proporcionam o
+conhecimento, a detecção ou prevenção de
+qualquer mudança nos fatores determinantes e
+condicionantes de saúde individual ou coletiva,
+com a finalidade de recomendar e adotar as
+medidas de prevenção e controle das doenças ou
+agravos.”
+De acordo com a Lei nº 8080/1990, que instituiu o
+Sistema Único de Saúde (SUS), a descrição acima
+corresponde à vigilância denominada:`,alternativas:{A:`(A) nutricional`,B:`(B) farmacológica`,C:`(C) epidemiológica`,D:`(D) sanitária`},disciplina:`SUS e Saúde Pública`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`02/2025`,banca:`IBAM`,resposta_correta:`C`},{questão:`A Portaria de Consolidação nº 4, de 28 de
+setembro de 2017, em seu Capítulo I, dispõe sobre
+a Lista Nacional de Notificação Compulsória de
+doenças, agravos e eventos de saúde pública.
+Sobre o tema, é correta a seguinte afirmativa:`,alternativas:{A:`(A) a notificação compulsória imediata deve ser realizada em até seis horas, a partir do conhecimento da ocorrência de doença, agravo ou evento de saúde pública`,B:`(B) a notificação compulsória deve ser realizada, exclusivamente, pelos médicos que prestam assistência ao paciente`,C:`(C) a notificação compulsória só deve ser realizada após a confirmação de doença ou agravo`,D:`(D) a violência doméstica e/ou outras violências são de notificação compulsória semanal`},disciplina:`SUS e Saúde Pública`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`02/2025`,banca:`IBAM`,resposta_correta:`D`},{questão:`Em relação aos Sistemas de Informação em
+Saúde, que consistem em um conjunto de
+componentes inter-relacionados que coletam,
+processam, armazenam e distribuem a informação
+para apoiar o processo de tomada de decisão e
+auxiliar no controle das organizações de saúde,
+podemos corretamente afirmar que:`,alternativas:{A:`(A) o Registro de Eventos em Saúde Pública (RESP) é um sistema utilizado para registrar e monitorar eventos de saúde pública, como surtos, emergências e situações de risco, apoiando a resposta rápida das vigilâncias epidemiológicas`,B:`(B) o Sistema de Informações sobre Nascidos Vivos (SINASC) realiza a coleta de dados sobre os nascimentos ocorridos no Brasil e tem como documento-base a Ficha Individual de Notificação`,C:`(C) o Sistema de Informações sobre Mortalidade (SIM) tem como documento-base a Declaração de Óbito, que pode ser preenchida e assinada por qualquer profissional de saúde`,D:`(D) o Sistema de Informações Hospitalares registra e processa as internações financiadas pelo SUS, utilizando como documento a Autorização de Procedimentos de Alta Complexidade/Custo (APAC)`},disciplina:`SUS e Saúde Pública`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`02/2025`,banca:`IBAM`,resposta_correta:`A`},{questão:`Um paciente hipertenso descompensado procurou
+atendimento na Unidade de Saúde da Família. A
+médica e a enfermeira da equipe fizeram o ajuste da
+medicação e o monitoramento da pressão arterial; o
+agente comunitário de saúde acompanhou o uso
+dos remédios no domicílio; a nutricionista da equipe
+do NASF orientou a dieta, e o paciente passou a
+participar do grupo de atividade física coordenado
+pelo profissional de Educação Física do NASF. Com
+essas medidas, o paciente apresentou um melhor
+controle da pressão arterial, evitando seu
+encaminhamento para a atenção secundária ou
+uma internação de emergência. Segundo a Portaria
+MS/GM 2436/2017, a diretriz da Atenção Básica
+observada nesse caso é:`,alternativas:{A:`(A) longitudinalidade`,B:`(B) participação da comunidade`,C:`(C) resolutividade`,D:`(D) adscrição da população`},disciplina:`SUS e Saúde Pública`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`02/2025`,banca:`IBAM`,resposta_correta:`C`},{questão:`Das alternativas abaixo, aquela que descreve
+corretamente um dos conceitos fundamentais da
+Epidemiologia, importante para o apoio ao
+planejamento e gestão em saúde, é a seguinte:`,alternativas:{A:`(A) período de incubação é o intervalo de tempo que transcorre entre a exposição a um agente infeccioso e o surgimento do primeiro sinal ou sintoma da doença`,B:`(B) infectividade é a capacidade de um agente infeccioso de produzir doença em pessoas infectadas`,C:`(C) letalidade é a capacidade do agente infeccioso de produzir casos graves e fatais`,D:`(D) período de latência é o intervalo de tempo durante o qual o agente infeccioso pode ser transferido direta ou indiretamente de uma pessoa infectada a outra pessoa, de um animal infectado ao ser humano ou de um ser humano infectado a um animal, inclusive artrópodes`},disciplina:`SUS e Saúde Pública`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`02/2025`,banca:`IBAM`,resposta_correta:`A`},{questão:`Entre as diretrizes da Política Nacional de
+Humanização, criada pelo Ministério da Saúde em
+2003, a Clínica Ampliada tem como premissa:`,alternativas:{A:`(A) tomar a remissão de sintoma e a cura como seu objetivo`,B:`(B) produzir saúde e ampliar o grau de autonomia dos sujeitos`,C:`(C) realizar a avaliação diagnóstica considerando apenas o saber clínico e epidemiológico`,D:`(D) definir a intervenção terapêutica considerando predominantemente ou exclusivamente os aspectos orgânicos`},disciplina:`SUS e Saúde Pública`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`02/2025`,banca:`IBAM`,resposta_correta:`B`},{questão:`De acordo com o modelo da história natural das
+doenças, Leavell e Clark propõem três níveis de
+prevenção: primária, secundária e terciária.
+Posteriormente, foi proposto o conceito de
+prevenção quaternária, que tem ganhado
+destaque por seu potencial de promover práticas
+mais seguras e sustentáveis no SUS. Das
+alternativas abaixo, aquela que apresenta apenas
+exemplos de prevenção quaternária é a seguinte:`,alternativas:{A:`(A) estímulo à atividade física e realização de campanhas de vacinação`,B:`(B) cuidados paliativos e desprescrição de medicamentos em idosos polimedicados`,C:`(C) exame preventivo de mamografia e teste do pezinho`,D:`(D) reabilitação pós-AVC e programa de controle de diabetes`},disciplina:`SUS e Saúde Pública`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`02/2025`,banca:`IBAM`,resposta_correta:`B`},{questão:`A Lei nº 8.142/1990 institui os Conselhos de Saúde
+como uma das instâncias colegiadas que
+garantem a participação da comunidade na gestão
+do SUS. Sobre o Conselho de Saúde, é verdadeira
+a seguinte afirmativa:`,alternativas:{A:`(A) é um órgão com caráter permanente e deliberativo`,B:`(B) é um órgão que se reúne a cada dois anos, que atua na formulação de estratégias e no controle da execução da política de saúde na instância correspondente, inclusive nos aspectos econômicos e financeiros`,C:`(C) é um órgão que se reúne a cada quatro anos, sem caráter deliberativo`,D:`(D) é um órgão colegiado em que a representação dos usuários deve ser paritária em relação à representação dos profissionais de saúde`},disciplina:`SUS e Saúde Pública`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`02/2025`,banca:`IBAM`,resposta_correta:`A`},{questão:`Considerando a história das políticas públicas em
+saúde no Brasil, a seguinte alternativa apresenta
+uma afirmativa verdadeira:`,alternativas:{A:`(A) as Santas Casas de Misericórdia surgiram no Período Imperial`,B:`(B) a Revolta de Vacina, ocorrida durante o Período Republicano, consistiu em uma reação popular à obrigatoriedade da vacina contra a febre amarela`,C:`(C) o Ministério da Educação e Saúde foi criado durante a Ditadura Militar`,D:`(D) os Institutos de Aposentadoria e Pensão (IAPs) foram criados durante a Era Vargas`},disciplina:`SUS e Saúde Pública`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`02/2025`,banca:`IBAM`,resposta_correta:`D`},{questão:`As Normas Operacionais Básicas (NOB)
+consistem em portarias do Ministério da Saúde
+que, em essência, buscam orientar a transferência
+de recursos financeiros, auxiliar na delimitação
+mais precisa das atribuições dos gestores nas
+esferas federal, estadual e municipal, além de
+regulamentar a organização da gestão. Sobre o
+tema, é correto afirmar que:`,alternativas:{A:`(A) a NOB 91, editada pelo Ministro da Saúde, privilegiava o financiamento da Assistência Hospitalar e Ambulatorial`,B:`(B) a NOB 92 regulamenta o processo de descentralização da gestão dos serviços e ações no âmbito do SUS, sendo marcada pelo crescimento da autonomia do município`,C:`(C) a NOB 93 define as condições de gestão para municípios (incipiente, parcial e semiplena) e estados (parcial e semiplena)`,D:`(D) a NOB 96 cria a transferência regular automática (fundo a fundo)`},disciplina:`SUS e Saúde Pública`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`02/2025`,banca:`IBAM`,resposta_correta:`C`}],"IBAM - Prefeitura Municipal de Bertioga/SP - Assistente Social - 2025":[{questão:`"Além dos números crescentes, o pesquisador André Luiz Freitas Dias também
+ressalta a falta de assistência adequada a essa população."
+Com base na regência verbal e nominal, identifique a alternativa correta.`,alternativas:{A:`(A) O verbo "ressaltar" atua como bitransitivo, e a regência adequada para o objeto indireto exigiria a forma "para essa população".`,B:`(B) O verbo "ressaltar" atua como transitivo direto, mas pode ser encontrado como intransitivo, como em "Suas costelas ressaltaram quando emagreceu".`,C:`(C) O verbo "ressaltar" atua como bitransitivo, tendo como objeto direto "a falta" e como objeto indireto "a essa população".`,D:`(D) O verbo "ressaltar" atua como intransitivo, e o segmento que o acompanha desempenha a função de adjunto adverbial, integrando uma oração subordinada adverbial.`},disciplina:`Língua Portuguesa`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`01/2025`,banca:`IBAM`,resposta_correta:`B`,texto_relevante:`População em situação de rua no Brasil cresce 8,5%, mostra levantamento.
+O país tem atualmente 358.553 pessoas vivendo nas ruas. O estudo destaca a predominância
+dos estados do Sudeste, mas revela crescimento expressivo em regiões como Roraima e
+Pará.
+O Brasil tem 358.553 pessoas em situação de rua, segundo relatório do Observatório
+Brasileiro de Políticas Públicas com a População em Situação de Rua da Universidade
+Federal de Minas Gerais (UFMG), com dados referentes a outubro de 2025. O número
+representa um aumento de 8,5% em relação ao total registrado em 2024, que era de 327.925.
+De acordo com o levantamento, 61% dessa população está concentrada em cidades da
+região Sudeste. São mais de 218 mil pessoas vivendo nas ruas só nessa região.
+A cidade de São Paulo lidera o ranking, com mais de 99 mil pessoas em situação de rua. Em
+seguida, aparecem o Rio de Janeiro, com mais de 23 mil, e Belo Horizonte, com cerca de
+15.300.
+Apesar da concentração no Sudeste, o estudo chama atenção para o crescimento acelerado
+da população em situação de rua em estados como Roraima e Pará. Em Roraima, por
+exemplo, o número saltou de 2.038 pessoas em 2023 para 7.206 em 2024, um aumento
+superior a 200%.
+Entre os fatores que explicam esse cenário estão a precarização do trabalho e da moradia,
+como aponta o coordenador do Observatório da UFMG, André Luiz Freitas Dias.
+"Compreendemos que esse crescimento precisa ser analisado a partir da ausência e
+insuficiência histórica de políticas públicas estruturantes, como a moradia, a precarização
+das condições de vida e de trabalho, mas também a partir de uma análise das emergências
+climáticas e dos deslocamentos forçados em curso no Brasil, na América Latina e em outros
+continentes", afirma.
+Além dos números crescentes, o pesquisador André Luiz Freitas Dias também ressalta a
+falta de assistência adequada a essa população.
+"Lamentavelmente, o descumprimento da Constituição Federal de 1988 com as pessoas em
+situação de rua continua no Brasil, apesar do reconhecimento do Supremo Tribunal Federal
+em uma decisão de julho de 2023. Percebemos pouquíssimos avanços na garantia de
+direitos dessa população, majoritária e historicamente vulnerável", ressalta.
+Os dados foram extraídos do CadÚnico, cadastro do governo federal voltado para políticas
+sociais. O levantamento também revela que a população em situação de rua no país é
+majoritariamente negra: a cada 10 pessoas, 7 se identificam como negras.`},{questão:`"Apesar da concentração no Sudeste, o estudo chama atenção para o crescimento
+acelerado da população em situação de rua em estados como Roraima e Pará."
+Conforme o texto-base, o crescimento da população em situação de rua fora do
+Sudeste está relacionado, principalmente:`,alternativas:{A:`(A) à ausência de políticas públicas estruturantes e às emergências climáticas.`,B:`(B) à redução de programas sociais federais após 2023.`,C:`(C) ao aumento da criminalidade urbana, que vem crescendo nas últimas décadas.`,D:`(D) exclusivamente à migração espontânea entre regiões brasileiras.`},disciplina:`Língua Portuguesa`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`01/2025`,banca:`IBAM`,resposta_correta:`A`,texto_relevante:`População em situação de rua no Brasil cresce 8,5%, mostra levantamento.
+O país tem atualmente 358.553 pessoas vivendo nas ruas. O estudo destaca a predominância
+dos estados do Sudeste, mas revela crescimento expressivo em regiões como Roraima e
+Pará.
+O Brasil tem 358.553 pessoas em situação de rua, segundo relatório do Observatório
+Brasileiro de Políticas Públicas com a População em Situação de Rua da Universidade
+Federal de Minas Gerais (UFMG), com dados referentes a outubro de 2025. O número
+representa um aumento de 8,5% em relação ao total registrado em 2024, que era de 327.925.
+De acordo com o levantamento, 61% dessa população está concentrada em cidades da
+região Sudeste. São mais de 218 mil pessoas vivendo nas ruas só nessa região.
+A cidade de São Paulo lidera o ranking, com mais de 99 mil pessoas em situação de rua. Em
+seguida, aparecem o Rio de Janeiro, com mais de 23 mil, e Belo Horizonte, com cerca de
+15.300.
+Apesar da concentração no Sudeste, o estudo chama atenção para o crescimento acelerado
+da população em situação de rua em estados como Roraima e Pará. Em Roraima, por
+exemplo, o número saltou de 2.038 pessoas em 2023 para 7.206 em 2024, um aumento
+superior a 200%.
+Entre os fatores que explicam esse cenário estão a precarização do trabalho e da moradia,
+como aponta o coordenador do Observatório da UFMG, André Luiz Freitas Dias.
+"Compreendemos que esse crescimento precisa ser analisado a partir da ausência e
+insuficiência histórica de políticas públicas estruturantes, como a moradia, a precarização
+das condições de vida e de trabalho, mas também a partir de uma análise das emergências
+climáticas e dos deslocamentos forçados em curso no Brasil, na América Latina e em outros
+continentes", afirma.
+Além dos números crescentes, o pesquisador André Luiz Freitas Dias também ressalta a
+falta de assistência adequada a essa população.
+"Lamentavelmente, o descumprimento da Constituição Federal de 1988 com as pessoas em
+situação de rua continua no Brasil, apesar do reconhecimento do Supremo Tribunal Federal
+em uma decisão de julho de 2023. Percebemos pouquíssimos avanços na garantia de
+direitos dessa população, majoritária e historicamente vulnerável", ressalta.
+Os dados foram extraídos do CadÚnico, cadastro do governo federal voltado para políticas
+sociais. O levantamento também revela que a população em situação de rua no país é
+majoritariamente negra: a cada 10 pessoas, 7 se identificam como negras.`},{questão:`"De acordo com o levantamento, 61% dessa população está concentrada em cidades da
+região Sudeste. São mais de 218 mil pessoas vivendo nas ruas só nessa região. Em
+seguida, aparecem o Rio de Janeiro, com mais de 23 mil, e Belo Horizonte, com cerca
+de 15.300."
+Com base nas regras de concordância verbal e nominal, marque com (V), as
+afirmativas verdadeiras, ou com (F), as falsas.
+(__)A substituição de "está" por "estão", com os devidos ajustes de concordância nos
+demais termos, mantém a correção gramatical do primeiro período do trecho.
+(__) A forma "são", no segundo período, também pode ser substituída por "é",
+mantendo a correção gramatical, estabelecendo concordância com o numeral.
+(__)A forma "aparecem" está inadequada, pois deveria estar no singular, uma vez que,
+quando o verbo é anteposto ao sujeito, a concordância deve ser estabelecida com o
+termo mais próximo.
+(__)A concordância adequada observada no primeiro período também se verifica em
+"Cinquenta por cento dos espectadores detestou os fogos de artifício".
+Assinale a alternativa que apresenta a sequência correta.`,alternativas:{A:`(A) V, F, F, F.`,B:`(B) F, F, V, V.`,C:`(C) V, V, V, V.`,D:`(D) V, V, F, V.`},disciplina:`Língua Portuguesa`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`01/2025`,banca:`IBAM`,resposta_correta:`A`,texto_relevante:`População em situação de rua no Brasil cresce 8,5%, mostra levantamento.
+O país tem atualmente 358.553 pessoas vivendo nas ruas. O estudo destaca a predominância
+dos estados do Sudeste, mas revela crescimento expressivo em regiões como Roraima e
+Pará.
+O Brasil tem 358.553 pessoas em situação de rua, segundo relatório do Observatório
+Brasileiro de Políticas Públicas com a População em Situação de Rua da Universidade
+Federal de Minas Gerais (UFMG), com dados referentes a outubro de 2025. O número
+representa um aumento de 8,5% em relação ao total registrado em 2024, que era de 327.925.
+De acordo com o levantamento, 61% dessa população está concentrada em cidades da
+região Sudeste. São mais de 218 mil pessoas vivendo nas ruas só nessa região.
+A cidade de São Paulo lidera o ranking, com mais de 99 mil pessoas em situação de rua. Em
+seguida, aparecem o Rio de Janeiro, com mais de 23 mil, e Belo Horizonte, com cerca de
+15.300.
+Apesar da concentração no Sudeste, o estudo chama atenção para o crescimento acelerado
+da população em situação de rua em estados como Roraima e Pará. Em Roraima, por
+exemplo, o número saltou de 2.038 pessoas em 2023 para 7.206 em 2024, um aumento
+superior a 200%.
+Entre os fatores que explicam esse cenário estão a precarização do trabalho e da moradia,
+como aponta o coordenador do Observatório da UFMG, André Luiz Freitas Dias.
+"Compreendemos que esse crescimento precisa ser analisado a partir da ausência e
+insuficiência histórica de políticas públicas estruturantes, como a moradia, a precarização
+das condições de vida e de trabalho, mas também a partir de uma análise das emergências
+climáticas e dos deslocamentos forçados em curso no Brasil, na América Latina e em outros
+continentes", afirma.
+Além dos números crescentes, o pesquisador André Luiz Freitas Dias também ressalta a
+falta de assistência adequada a essa população.
+"Lamentavelmente, o descumprimento da Constituição Federal de 1988 com as pessoas em
+situação de rua continua no Brasil, apesar do reconhecimento do Supremo Tribunal Federal
+em uma decisão de julho de 2023. Percebemos pouquíssimos avanços na garantia de
+direitos dessa população, majoritária e historicamente vulnerável", ressalta.
+Os dados foram extraídos do CadÚnico, cadastro do governo federal voltado para políticas
+sociais. O levantamento também revela que a população em situação de rua no país é
+majoritariamente negra: a cada 10 pessoas, 7 se identificam como negras.`},{questão:`"Percebemos pouquíssimos avanços na garantia de direitos dessa população,
+majoritária e historicamente vulnerável, ressalta."
+Analise as reescritas a seguir e identifique aquela que não mantém o sentido
+pretendido pelo autor.`,alternativas:{A:`(A) Observamos um número muito reduzido de avanços na efetivação dos direitos dessa população, que é majoritária e historicamente vulnerável, ressalta.`,B:`(B) O autor destaca que são pouquíssimos os avanços na garantia dos direitos dessa população, que é majoritária e historicamente vulnerável.`,C:`(C) Percebemos avanços muito limitados na ampliação dos direitos dessa população, majoritária e historicamente vulnerável, destaca.`,D:`(D) Observamos pouquíssimos progressos na efetivação dos direitos dessa população, majoritária e historicamente vulnerável, ressalta.`},disciplina:`Língua Portuguesa`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`01/2025`,banca:`IBAM`,resposta_correta:`C`,texto_relevante:`População em situação de rua no Brasil cresce 8,5%, mostra levantamento.
+O país tem atualmente 358.553 pessoas vivendo nas ruas. O estudo destaca a predominância
+dos estados do Sudeste, mas revela crescimento expressivo em regiões como Roraima e
+Pará.
+O Brasil tem 358.553 pessoas em situação de rua, segundo relatório do Observatório
+Brasileiro de Políticas Públicas com a População em Situação de Rua da Universidade
+Federal de Minas Gerais (UFMG), com dados referentes a outubro de 2025. O número
+representa um aumento de 8,5% em relação ao total registrado em 2024, que era de 327.925.
+De acordo com o levantamento, 61% dessa população está concentrada em cidades da
+região Sudeste. São mais de 218 mil pessoas vivendo nas ruas só nessa região.
+A cidade de São Paulo lidera o ranking, com mais de 99 mil pessoas em situação de rua. Em
+seguida, aparecem o Rio de Janeiro, com mais de 23 mil, e Belo Horizonte, com cerca de
+15.300.
+Apesar da concentração no Sudeste, o estudo chama atenção para o crescimento acelerado
+da população em situação de rua em estados como Roraima e Pará. Em Roraima, por
+exemplo, o número saltou de 2.038 pessoas em 2023 para 7.206 em 2024, um aumento
+superior a 200%.
+Entre os fatores que explicam esse cenário estão a precarização do trabalho e da moradia,
+como aponta o coordenador do Observatório da UFMG, André Luiz Freitas Dias.
+"Compreendemos que esse crescimento precisa ser analisado a partir da ausência e
+insuficiência histórica de políticas públicas estruturantes, como a moradia, a precarização
+das condições de vida e de trabalho, mas também a partir de uma análise das emergências
+climáticas e dos deslocamentos forçados em curso no Brasil, na América Latina e em outros
+continentes", afirma.
+Além dos números crescentes, o pesquisador André Luiz Freitas Dias também ressalta a
+falta de assistência adequada a essa população.
+"Lamentavelmente, o descumprimento da Constituição Federal de 1988 com as pessoas em
+situação de rua continua no Brasil, apesar do reconhecimento do Supremo Tribunal Federal
+em uma decisão de julho de 2023. Percebemos pouquíssimos avanços na garantia de
+direitos dessa população, majoritária e historicamente vulnerável", ressalta.
+Os dados foram extraídos do CadÚnico, cadastro do governo federal voltado para políticas
+sociais. O levantamento também revela que a população em situação de rua no país é
+majoritariamente negra: a cada 10 pessoas, 7 se identificam como negras.`},{questão:`O texto "População em situação de rua no Brasil cresce 8,5%, mostra levantamento"
+caracteriza-se predominantemente como:`,alternativas:{A:`(A) expositivo-informativo, pois apresenta dados estatísticos e oferece explicações sobre determinado fenômeno social.`,B:`(B) descritivo, já que traz as características geográficas de estados e cidades.`,C:`(C) injuntivo, pois tem a função de orientar ações governamentais a serem adotadas.`,D:`(D) argumentativo, pois tem como objetivo convencer o leitor sobre uma tese política.`},disciplina:`Língua Portuguesa`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`01/2025`,banca:`IBAM`,resposta_correta:`A`,texto_relevante:`População em situação de rua no Brasil cresce 8,5%, mostra levantamento.
+O país tem atualmente 358.553 pessoas vivendo nas ruas. O estudo destaca a predominância
+dos estados do Sudeste, mas revela crescimento expressivo em regiões como Roraima e
+Pará.
+O Brasil tem 358.553 pessoas em situação de rua, segundo relatório do Observatório
+Brasileiro de Políticas Públicas com a População em Situação de Rua da Universidade
+Federal de Minas Gerais (UFMG), com dados referentes a outubro de 2025. O número
+representa um aumento de 8,5% em relação ao total registrado em 2024, que era de 327.925.
+De acordo com o levantamento, 61% dessa população está concentrada em cidades da
+região Sudeste. São mais de 218 mil pessoas vivendo nas ruas só nessa região.
+A cidade de São Paulo lidera o ranking, com mais de 99 mil pessoas em situação de rua. Em
+seguida, aparecem o Rio de Janeiro, com mais de 23 mil, e Belo Horizonte, com cerca de
+15.300.
+Apesar da concentração no Sudeste, o estudo chama atenção para o crescimento acelerado
+da população em situação de rua em estados como Roraima e Pará. Em Roraima, por
+exemplo, o número saltou de 2.038 pessoas em 2023 para 7.206 em 2024, um aumento
+superior a 200%.
+Entre os fatores que explicam esse cenário estão a precarização do trabalho e da moradia,
+como aponta o coordenador do Observatório da UFMG, André Luiz Freitas Dias.
+"Compreendemos que esse crescimento precisa ser analisado a partir da ausência e
+insuficiência histórica de políticas públicas estruturantes, como a moradia, a precarização
+das condições de vida e de trabalho, mas também a partir de uma análise das emergências
+climáticas e dos deslocamentos forçados em curso no Brasil, na América Latina e em outros
+continentes", afirma.
+Além dos números crescentes, o pesquisador André Luiz Freitas Dias também ressalta a
+falta de assistência adequada a essa população.
+"Lamentavelmente, o descumprimento da Constituição Federal de 1988 com as pessoas em
+situação de rua continua no Brasil, apesar do reconhecimento do Supremo Tribunal Federal
+em uma decisão de julho de 2023. Percebemos pouquíssimos avanços na garantia de
+direitos dessa população, majoritária e historicamente vulnerável", ressalta.
+Os dados foram extraídos do CadÚnico, cadastro do governo federal voltado para políticas
+sociais. O levantamento também revela que a população em situação de rua no país é
+majoritariamente negra: a cada 10 pessoas, 7 se identificam como negras.`},{questão:`"As crianças – e adultos – autistas costumam se comunicar de forma diferente das
+pessoas neurotípicas."
+Considerando o texto-base, pode-se inferir que a menor ocorrência de ressonância na
+fala de crianças autistas:`,alternativas:{A:`(A) indica ausência de criatividade linguística em contextos sociais e individuais.`,B:`(B) está associada à limitação de improvisação linguística no decorrer da interação social.`,C:`(C) decorre exclusivamente de limitações cognitivas que impedem a compreensão da fala alheia.`,D:`(D) resulta da falta de estímulo familiar durante as interações cotidianas.`},disciplina:`Língua Portuguesa`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`01/2025`,banca:`IBAM`,resposta_correta:`B`,texto_relevante:`Como padrões de conversa podem ajudar a identificar sinais precoces de autismo.
+As crianças – e adultos – autistas costumam se comunicar de forma diferente das pessoas
+neurotípicas.
+As principais características da fala autista podem incluir pouco contato visual, maior
+concentração nos detalhes em detrimento da essência geral da conversa e valorização do
+significado literal – as pessoas autistas podem ter dificuldade de entender informações
+implícitas, não diretamente expressas.
+Essas diferenças podem dificultar parte da comunicação entre as crianças autistas e os
+adultos ao seu redor. Mas compreender as dificuldades pode ajudar.
+Minha pesquisa, em conjunto com meus colegas, explorou como as crianças autistas e
+neurotípicas imitam a fala dos pais durante uma conversa.
+A imitação é um aspecto da linguagem e da comunicação que começa ao nascer. Quando as
+pessoas falam entre si, elas costumam repetir o que as outras dizem, refletir seus gestos,
+alinhar seu tom de voz e até mesmo seu sotaque.
+Isso ocorre tanto como um processo de aprendizado quanto como forma de adaptação
+social. O processo demonstra engajamento, sinalizando aos participantes da conversa que
+eles estão sendo ouvidos e compreendidos.
+O tipo de imitação que procuramos é conhecido como "ressonância". Ele envolve a
+reutilização da fala dos demais durante uma conversa.
+Imagine que eu pergunte "você teve um bom fim de semana?" e você responda "sim". Nesse
+caso, não há ressonância na resposta. Você responde a minha questão, mas não se envolve
+com as minhas palavras.
+Mas, se você tivesse respondido algo como "tive um fim de semana bastante interessante, na
+verdade, viajei para Paris", você teria "ressoado" diversas palavras da minha pergunta
+(como "fim de semana", "tive") e se envolvido criativamente com elas (substituindo "bom"
+por "interessante").
+Na nossa pesquisa, procuramos esta forma de imitação entre as crianças e suas mães. Ao
+todo, nosso estudo envolveu 180 crianças falantes de mandarim, com 37 a 60 meses de
+idade (aproximadamente, de três a cinco anos).
+Incluímos crianças neurotípicas e neurodiversas e procuramos suas imitações verbais –
+como elas reutilizavam e reformulavam espontaneamente as palavras ditas para elas. E
+concluímos que as crianças autistas foram muito menos propensas a fazer uso deste tipo de
+imitação.
+Um exemplo da nossa pesquisa é uma mãe que abre um livro e diz: "A raposa estava tão
+assustada que saiu correndo." Sua filha neurotípica ressoou a frase e se engajou com suas
+palavras: "Ela estava tão assustada e saiu correndo rapidinho."
+Mas este tipo de imitação verbal era mais raro entre as crianças autistas. Elas reutilizaram
+as palavras dos seus pais com muito menos frequência e criatividade.
+A ressonância envolve a capacidade de "improvisar" rapidamente com as palavras dos
+demais. E descobrimos que as crianças diagnosticadas com o transtorno do espectro autista
+apresentam menos probabilidade de fazer isso que as crianças neurotípicas.
+Uma criança autista pode repetir frequentemente a mesma frase usada pela mãe, mas sem
+adornos, nem reutilização criativa das palavras.
+Isso não significa que elas não sejam capazes de ressoar criativamente as palavras da mãe,
+mas sim que elas o faziam com frequência significativamente menor. Isso talvez ocorra
+porque a criatividade das pessoas autistas pode ser expressa mais frequentemente em
+isolamento social e fica mais difícil durante um diálogo.
+Resumidamente, o transtorno do espectro autista não impede a criatividade, mas as pessoas
+autistas enfrentam dificuldade para criar com as palavras dos demais durante uma
+conversa.
+Esta descoberta nos fornece uma nova consciência de como os pais, médicos e educadores
+podem identificar os primeiros sinais de autismo no desenvolvimento das crianças.
+Nossas conclusões podem ajudar os pais de crianças autistas a compreender por que os
+padrões de fala dos seus filhos e sua forma de responder aos demais podem ser diferentes
+das crianças neurotípicas.`},{questão:`"Uma criança autista pode repetir frequentemente a mesma frase usada pela mãe,
+mas sem adornos, nem reutilização criativa das palavras."
+A expressão "sem adornos" indica que:`,alternativas:{A:`(A) a criança reproduz a fala alheia, mas com menor elaboração criativa no diálogo.`,B:`(B) a fala da criança autista é incoerente ou desorganizada.`,C:`(C) a criança autista não compreende o significado das palavras que repete.`,D:`(D) a criança autista é incapaz de se comunicar verbalmente.`},disciplina:`Língua Portuguesa`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`01/2025`,banca:`IBAM`,resposta_correta:`A`,texto_relevante:`Como padrões de conversa podem ajudar a identificar sinais precoces de autismo.
+As crianças – e adultos – autistas costumam se comunicar de forma diferente das pessoas
+neurotípicas.
+As principais características da fala autista podem incluir pouco contato visual, maior
+concentração nos detalhes em detrimento da essência geral da conversa e valorização do
+significado literal – as pessoas autistas podem ter dificuldade de entender informações
+implícitas, não diretamente expressas.
+Essas diferenças podem dificultar parte da comunicação entre as crianças autistas e os
+adultos ao seu redor. Mas compreender as dificuldades pode ajudar.
+Minha pesquisa, em conjunto com meus colegas, explorou como as crianças autistas e
+neurotípicas imitam a fala dos pais durante uma conversa.
+A imitação é um aspecto da linguagem e da comunicação que começa ao nascer. Quando as
+pessoas falam entre si, elas costumam repetir o que as outras dizem, refletir seus gestos,
+alinhar seu tom de voz e até mesmo seu sotaque.
+Isso ocorre tanto como um processo de aprendizado quanto como forma de adaptação
+social. O processo demonstra engajamento, sinalizando aos participantes da conversa que
+eles estão sendo ouvidos e compreendidos.
+O tipo de imitação que procuramos é conhecido como "ressonância". Ele envolve a
+reutilização da fala dos demais durante uma conversa.
+Imagine que eu pergunte "você teve um bom fim de semana?" e você responda "sim". Nesse
+caso, não há ressonância na resposta. Você responde a minha questão, mas não se envolve
+com as minhas palavras.
+Mas, se você tivesse respondido algo como "tive um fim de semana bastante interessante, na
+verdade, viajei para Paris", você teria "ressoado" diversas palavras da minha pergunta
+(como "fim de semana", "tive") e se envolvido criativamente com elas (substituindo "bom"
+por "interessante").
+Na nossa pesquisa, procuramos esta forma de imitação entre as crianças e suas mães. Ao
+todo, nosso estudo envolveu 180 crianças falantes de mandarim, com 37 a 60 meses de
+idade (aproximadamente, de três a cinco anos).
+Incluímos crianças neurotípicas e neurodiversas e procuramos suas imitações verbais –
+como elas reutilizavam e reformulavam espontaneamente as palavras ditas para elas. E
+concluímos que as crianças autistas foram muito menos propensas a fazer uso deste tipo de
+imitação.
+Um exemplo da nossa pesquisa é uma mãe que abre um livro e diz: "A raposa estava tão
+assustada que saiu correndo." Sua filha neurotípica ressoou a frase e se engajou com suas
+palavras: "Ela estava tão assustada e saiu correndo rapidinho."
+Mas este tipo de imitação verbal era mais raro entre as crianças autistas. Elas reutilizaram
+as palavras dos seus pais com muito menos frequência e criatividade.
+A ressonância envolve a capacidade de "improvisar" rapidamente com as palavras dos
+demais. E descobrimos que as crianças diagnosticadas com o transtorno do espectro autista
+apresentam menos probabilidade de fazer isso que as crianças neurotípicas.
+Uma criança autista pode repetir frequentemente a mesma frase usada pela mãe, mas sem
+adornos, nem reutilização criativa das palavras.
+Isso não significa que elas não sejam capazes de ressoar criativamente as palavras da mãe,
+mas sim que elas o faziam com frequência significativamente menor. Isso talvez ocorra
+porque a criatividade das pessoas autistas pode ser expressa mais frequentemente em
+isolamento social e fica mais difícil durante um diálogo.
+Resumidamente, o transtorno do espectro autista não impede a criatividade, mas as pessoas
+autistas enfrentam dificuldade para criar com as palavras dos demais durante uma
+conversa.
+Esta descoberta nos fornece uma nova consciência de como os pais, médicos e educadores
+podem identificar os primeiros sinais de autismo no desenvolvimento das crianças.
+Nossas conclusões podem ajudar os pais de crianças autistas a compreender por que os
+padrões de fala dos seus filhos e sua forma de responder aos demais podem ser diferentes
+das crianças neurotípicas.`},{questão:`"Incluímos crianças neurotípicas e neurodiversas e procuramos suas imitações
+verbais – como elas reutilizavam e reformulavam espontaneamente as palavras ditas
+para elas."
+Com base nas regras de acentuação dos vocábulos presentes no trecho e no texto,
+marque com (V) as afirmativas verdadeiras, ou com (F), as falsas.
+(__)O vocábulo "incluímos" é acentuado pela mesma regra que justifica a acentuação
+de "influíste" e "seriíssimo", uma vez que o "i" tônico forma hiato com a vogal
+anterior.
+(__)O trecho apresenta duas palavras que são acentuadas pela mesma regra de
+acentuação gráfica.
+(__)O vocábulo "neurotípicas" recebe acento pela mesma regra que justifica o acento
+de "diálogo".
+(__)Os vocábulos "conclusões" e "verbais" apresentam a mesma classificação quanto à
+acentuação tônica, ao passo que "palavras" enquadra-se em classificação distinta.
+Assinale a alternativa que apresenta a sequência correta.`,alternativas:{A:`(A) F, V, F, F.`,B:`(B) V, V, F, V.`,C:`(C) V, V, V, V.`,D:`(D) F, F, V, V.`},disciplina:`Língua Portuguesa`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`01/2025`,banca:`IBAM`,resposta_correta:`D`,texto_relevante:`Como padrões de conversa podem ajudar a identificar sinais precoces de autismo.
+As crianças – e adultos – autistas costumam se comunicar de forma diferente das pessoas
+neurotípicas.
+As principais características da fala autista podem incluir pouco contato visual, maior
+concentração nos detalhes em detrimento da essência geral da conversa e valorização do
+significado literal – as pessoas autistas podem ter dificuldade de entender informações
+implícitas, não diretamente expressas.
+Essas diferenças podem dificultar parte da comunicação entre as crianças autistas e os
+adultos ao seu redor. Mas compreender as dificuldades pode ajudar.
+Minha pesquisa, em conjunto com meus colegas, explorou como as crianças autistas e
+neurotípicas imitam a fala dos pais durante uma conversa.
+A imitação é um aspecto da linguagem e da comunicação que começa ao nascer. Quando as
+pessoas falam entre si, elas costumam repetir o que as outras dizem, refletir seus gestos,
+alinhar seu tom de voz e até mesmo seu sotaque.
+Isso ocorre tanto como um processo de aprendizado quanto como forma de adaptação
+social. O processo demonstra engajamento, sinalizando aos participantes da conversa que
+eles estão sendo ouvidos e compreendidos.
+O tipo de imitação que procuramos é conhecido como "ressonância". Ele envolve a
+reutilização da fala dos demais durante uma conversa.
+Imagine que eu pergunte "você teve um bom fim de semana?" e você responda "sim". Nesse
+caso, não há ressonância na resposta. Você responde a minha questão, mas não se envolve
+com as minhas palavras.
+Mas, se você tivesse respondido algo como "tive um fim de semana bastante interessante, na
+verdade, viajei para Paris", você teria "ressoado" diversas palavras da minha pergunta
+(como "fim de semana", "tive") e se envolvido criativamente com elas (substituindo "bom"
+por "interessante").
+Na nossa pesquisa, procuramos esta forma de imitação entre as crianças e suas mães. Ao
+todo, nosso estudo envolveu 180 crianças falantes de mandarim, com 37 a 60 meses de
+idade (aproximadamente, de três a cinco anos).
+Incluímos crianças neurotípicas e neurodiversas e procuramos suas imitações verbais –
+como elas reutilizavam e reformulavam espontaneamente as palavras ditas para elas. E
+concluímos que as crianças autistas foram muito menos propensas a fazer uso deste tipo de
+imitação.
+Um exemplo da nossa pesquisa é uma mãe que abre um livro e diz: "A raposa estava tão
+assustada que saiu correndo." Sua filha neurotípica ressoou a frase e se engajou com suas
+palavras: "Ela estava tão assustada e saiu correndo rapidinho."
+Mas este tipo de imitação verbal era mais raro entre as crianças autistas. Elas reutilizaram
+as palavras dos seus pais com muito menos frequência e criatividade.
+A ressonância envolve a capacidade de "improvisar" rapidamente com as palavras dos
+demais. E descobrimos que as crianças diagnosticadas com o transtorno do espectro autista
+apresentam menos probabilidade de fazer isso que as crianças neurotípicas.
+Uma criança autista pode repetir frequentemente a mesma frase usada pela mãe, mas sem
+adornos, nem reutilização criativa das palavras.
+Isso não significa que elas não sejam capazes de ressoar criativamente as palavras da mãe,
+mas sim que elas o faziam com frequência significativamente menor. Isso talvez ocorra
+porque a criatividade das pessoas autistas pode ser expressa mais frequentemente em
+isolamento social e fica mais difícil durante um diálogo.
+Resumidamente, o transtorno do espectro autista não impede a criatividade, mas as pessoas
+autistas enfrentam dificuldade para criar com as palavras dos demais durante uma
+conversa.
+Esta descoberta nos fornece uma nova consciência de como os pais, médicos e educadores
+podem identificar os primeiros sinais de autismo no desenvolvimento das crianças.
+Nossas conclusões podem ajudar os pais de crianças autistas a compreender por que os
+padrões de fala dos seus filhos e sua forma de responder aos demais podem ser diferentes
+das crianças neurotípicas.`},{questão:`"Minha pesquisa, em conjunto com meus colegas, explorou como as crianças autistas e
+neurotípicas imitam a fala dos pais durante uma conversa."
+O vocábulo "neurotípicas" não é hifenizado. Analise a grafia das palavras compostas
+com ou sem hífen e identifique aquela que apresenta algum vocábulo grafado de
+forma incorreta.`,alternativas:{A:`(A) antissemita e marcapasso.`,B:`(B) latino-americano e sabiá-da-serra.`,C:`(C) dia a dia e infravermelho.`,D:`(D) mão de obra e sub-raça.`},disciplina:`Língua Portuguesa`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`01/2025`,banca:`IBAM`,resposta_correta:`A`,texto_relevante:`Como padrões de conversa podem ajudar a identificar sinais precoces de autismo.
+As crianças – e adultos – autistas costumam se comunicar de forma diferente das pessoas
+neurotípicas.
+As principais características da fala autista podem incluir pouco contato visual, maior
+concentração nos detalhes em detrimento da essência geral da conversa e valorização do
+significado literal – as pessoas autistas podem ter dificuldade de entender informações
+implícitas, não diretamente expressas.
+Essas diferenças podem dificultar parte da comunicação entre as crianças autistas e os
+adultos ao seu redor. Mas compreender as dificuldades pode ajudar.
+Minha pesquisa, em conjunto com meus colegas, explorou como as crianças autistas e
+neurotípicas imitam a fala dos pais durante uma conversa.
+A imitação é um aspecto da linguagem e da comunicação que começa ao nascer. Quando as
+pessoas falam entre si, elas costumam repetir o que as outras dizem, refletir seus gestos,
+alinhar seu tom de voz e até mesmo seu sotaque.
+Isso ocorre tanto como um processo de aprendizado quanto como forma de adaptação
+social. O processo demonstra engajamento, sinalizando aos participantes da conversa que
+eles estão sendo ouvidos e compreendidos.
+O tipo de imitação que procuramos é conhecido como "ressonância". Ele envolve a
+reutilização da fala dos demais durante uma conversa.
+Imagine que eu pergunte "você teve um bom fim de semana?" e você responda "sim". Nesse
+caso, não há ressonância na resposta. Você responde a minha questão, mas não se envolve
+com as minhas palavras.
+Mas, se você tivesse respondido algo como "tive um fim de semana bastante interessante, na
+verdade, viajei para Paris", você teria "ressoado" diversas palavras da minha pergunta
+(como "fim de semana", "tive") e se envolvido criativamente com elas (substituindo "bom"
+por "interessante").
+Na nossa pesquisa, procuramos esta forma de imitação entre as crianças e suas mães. Ao
+todo, nosso estudo envolveu 180 crianças falantes de mandarim, com 37 a 60 meses de
+idade (aproximadamente, de três a cinco anos).
+Incluímos crianças neurotípicas e neurodiversas e procuramos suas imitações verbais –
+como elas reutilizavam e reformulavam espontaneamente as palavras ditas para elas. E
+concluímos que as crianças autistas foram muito menos propensas a fazer uso deste tipo de
+imitação.
+Um exemplo da nossa pesquisa é uma mãe que abre um livro e diz: "A raposa estava tão
+assustada que saiu correndo." Sua filha neurotípica ressoou a frase e se engajou com suas
+palavras: "Ela estava tão assustada e saiu correndo rapidinho."
+Mas este tipo de imitação verbal era mais raro entre as crianças autistas. Elas reutilizaram
+as palavras dos seus pais com muito menos frequência e criatividade.
+A ressonância envolve a capacidade de "improvisar" rapidamente com as palavras dos
+demais. E descobrimos que as crianças diagnosticadas com o transtorno do espectro autista
+apresentam menos probabilidade de fazer isso que as crianças neurotípicas.
+Uma criança autista pode repetir frequentemente a mesma frase usada pela mãe, mas sem
+adornos, nem reutilização criativa das palavras.
+Isso não significa que elas não sejam capazes de ressoar criativamente as palavras da mãe,
+mas sim que elas o faziam com frequência significativamente menor. Isso talvez ocorra
+porque a criatividade das pessoas autistas pode ser expressa mais frequentemente em
+isolamento social e fica mais difícil durante um diálogo.
+Resumidamente, o transtorno do espectro autista não impede a criatividade, mas as pessoas
+autistas enfrentam dificuldade para criar com as palavras dos demais durante uma
+conversa.
+Esta descoberta nos fornece uma nova consciência de como os pais, médicos e educadores
+podem identificar os primeiros sinais de autismo no desenvolvimento das crianças.
+Nossas conclusões podem ajudar os pais de crianças autistas a compreender por que os
+padrões de fala dos seus filhos e sua forma de responder aos demais podem ser diferentes
+das crianças neurotípicas.`},{questão:`"Minha pesquisa, em conjunto com meus colegas, explorou como as crianças autistas e
+neurotípicas imitam a fala dos pais durante uma conversa."
+De acordo com o texto-base, pode-se concluir que o estudo apresentado contribui para
+o entendimento do transtorno do espectro autista, uma vez que:`,alternativas:{A:`(A) redefine o conceito de criatividade ao tratá-la como uma habilidade restrita às crianças neurotípicas.`,B:`(B) aprofunda a compreensão de que variações na comunicação podem funcionar como sinais iniciais do transtorno do espectro autista.`,C:`(C) evidencia que a repetição literal da fala é suficiente para assegurar o engajamento comunicativo.`,D:`(D) evidencia que a interação comunicativa entre pais e filhos autistas não pode ocorrer sem a mediação de intervenção clínica.`},disciplina:`Língua Portuguesa`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`01/2025`,banca:`IBAM`,resposta_correta:`B`,texto_relevante:`Como padrões de conversa podem ajudar a identificar sinais precoces de autismo.
+As crianças – e adultos – autistas costumam se comunicar de forma diferente das pessoas
+neurotípicas.
+As principais características da fala autista podem incluir pouco contato visual, maior
+concentração nos detalhes em detrimento da essência geral da conversa e valorização do
+significado literal – as pessoas autistas podem ter dificuldade de entender informações
+implícitas, não diretamente expressas.
+Essas diferenças podem dificultar parte da comunicação entre as crianças autistas e os
+adultos ao seu redor. Mas compreender as dificuldades pode ajudar.
+Minha pesquisa, em conjunto com meus colegas, explorou como as crianças autistas e
+neurotípicas imitam a fala dos pais durante uma conversa.
+A imitação é um aspecto da linguagem e da comunicação que começa ao nascer. Quando as
+pessoas falam entre si, elas costumam repetir o que as outras dizem, refletir seus gestos,
+alinhar seu tom de voz e até mesmo seu sotaque.
+Isso ocorre tanto como um processo de aprendizado quanto como forma de adaptação
+social. O processo demonstra engajamento, sinalizando aos participantes da conversa que
+eles estão sendo ouvidos e compreendidos.
+O tipo de imitação que procuramos é conhecido como "ressonância". Ele envolve a
+reutilização da fala dos demais durante uma conversa.
+Imagine que eu pergunte "você teve um bom fim de semana?" e você responda "sim". Nesse
+caso, não há ressonância na resposta. Você responde a minha questão, mas não se envolve
+com as minhas palavras.
+Mas, se você tivesse respondido algo como "tive um fim de semana bastante interessante, na
+verdade, viajei para Paris", você teria "ressoado" diversas palavras da minha pergunta
+(como "fim de semana", "tive") e se envolvido criativamente com elas (substituindo "bom"
+por "interessante").
+Na nossa pesquisa, procuramos esta forma de imitação entre as crianças e suas mães. Ao
+todo, nosso estudo envolveu 180 crianças falantes de mandarim, com 37 a 60 meses de
+idade (aproximadamente, de três a cinco anos).
+Incluímos crianças neurotípicas e neurodiversas e procuramos suas imitações verbais –
+como elas reutilizavam e reformulavam espontaneamente as palavras ditas para elas. E
+concluímos que as crianças autistas foram muito menos propensas a fazer uso deste tipo de
+imitação.
+Um exemplo da nossa pesquisa é uma mãe que abre um livro e diz: "A raposa estava tão
+assustada que saiu correndo." Sua filha neurotípica ressoou a frase e se engajou com suas
+palavras: "Ela estava tão assustada e saiu correndo rapidinho."
+Mas este tipo de imitação verbal era mais raro entre as crianças autistas. Elas reutilizaram
+as palavras dos seus pais com muito menos frequência e criatividade.
+A ressonância envolve a capacidade de "improvisar" rapidamente com as palavras dos
+demais. E descobrimos que as crianças diagnosticadas com o transtorno do espectro autista
+apresentam menos probabilidade de fazer isso que as crianças neurotípicas.
+Uma criança autista pode repetir frequentemente a mesma frase usada pela mãe, mas sem
+adornos, nem reutilização criativa das palavras.
+Isso não significa que elas não sejam capazes de ressoar criativamente as palavras da mãe,
+mas sim que elas o faziam com frequência significativamente menor. Isso talvez ocorra
+porque a criatividade das pessoas autistas pode ser expressa mais frequentemente em
+isolamento social e fica mais difícil durante um diálogo.
+Resumidamente, o transtorno do espectro autista não impede a criatividade, mas as pessoas
+autistas enfrentam dificuldade para criar com as palavras dos demais durante uma
+conversa.
+Esta descoberta nos fornece uma nova consciência de como os pais, médicos e educadores
+podem identificar os primeiros sinais de autismo no desenvolvimento das crianças.
+Nossas conclusões podem ajudar os pais de crianças autistas a compreender por que os
+padrões de fala dos seus filhos e sua forma de responder aos demais podem ser diferentes
+das crianças neurotípicas.`},{questão:`Em um centro de referência de assistência social, a assistente social Ana observou que
+o número de famílias atendidas mensalmente passou de 320 para 368 após a ampliação
+do horário de funcionamento. De acordo com esses dados, qual foi a variação
+percentual no número de famílias atendidas?`,alternativas:{A:`(A) 12%.`,B:`(B) 14%.`,C:`(C) 15%.`,D:`(D) 10%.`},disciplina:`Matemática`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`01/2025`,banca:`IBAM`,resposta_correta:`C`},{questão:`Considere o argumento: "Todos os usuários que recebem benefício eventual passaram
+por avaliação socioeconômica. Maria recebeu benefício eventual. Logo, Maria passou
+por avaliação socioeconômica." Assinale a alternativa correta quanto à validade do
+argumento.`,alternativas:{A:`(A) Válido, por instância do quantificador e modus ponens.`,B:`(B) Válido apenas se Maria for a única usuária.`,C:`(C) Inválido, por negar o antecedente.`,D:`(D) Inválido, por afirmar o consequente.`},disciplina:`Matemática`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`01/2025`,banca:`IBAM`,resposta_correta:`A`},{questão:`Em um cadastro de famílias acompanhadas por um serviço social, constam 8 famílias
+com crianças, 5 famílias com idosos e 7 famílias compostas apenas por adultos. Uma
+família é escolhida aleatoriamente para participar de uma ação educativa. Qual é a
+probabilidade de a família escolhida ser uma família com idosos?`,alternativas:{A:`(A) 27%.`,B:`(B) 20%.`,C:`(C) 35%.`,D:`(D) 25%.`},disciplina:`Matemática`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`01/2025`,banca:`IBAM`,resposta_correta:`D`},{questão:`Em um programa municipal de acompanhamento social, o número de visitas
+domiciliares realizadas por mês cresce de forma constante. No primeiro mês foram
+realizadas 120 visitas, e a cada mês esse número aumenta em 15 visitas. Mantido esse
+padrão, quantas visitas domiciliares serão realizadas no quinto mês do programa?`,alternativas:{A:`(A) 175 visitas.`,B:`(B) 195 visitas.`,C:`(C) 180 visitas.`,D:`(D) 165 visitas.`},disciplina:`Matemática`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`01/2025`,banca:`IBAM`,resposta_correta:`C`},{questão:`Considere as proposições simples:
+p: O plano de acompanhamento familiar foi elaborado.
+q: A visita domiciliar foi realizada.
+A proposição composta "O plano de acompanhamento familiar foi elaborado ou a
+visita domiciliar foi realizada" será falsa apenas quando:`,alternativas:{A:`(A) a proposição p for verdadeira e q for falsa.`,B:`(B) a proposição p for falsa e q for verdadeira.`,C:`(C) as proposições p e q forem ambas falsas.`,D:`(D) as proposições p e q forem ambas verdadeiras.`},disciplina:`Matemática`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`01/2025`,banca:`IBAM`,resposta_correta:`C`},{questão:`Na descrição dos principais fatos históricos ocorridos em Bertioga/SP encontramos o
+trecho abaixo
+"2000 a.C.: Tribos primitivas vivem na região e deixam como testemunho de sua
+existência os _____, que são antigos depósitos situados na costa, em lagoas ou rios do
+litoral e formados de montes de conchas, restos de cozinha e de esqueletos,
+amontoados por tribos selvagens que habitaram o litoral."
+Disponível em:http://www.bertioga.sp.gov.br/cidadao/historia
+Qual das alternativas abaixo traz o termo que completa corretamente o texto?`,alternativas:{A:`(A) sambaquis`,B:`(B) murundus`,C:`(C) cupinzeiro`,D:`(D) samburás`},disciplina:`Conhecimentos Gerais`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`01/2025`,banca:`IBAM`,resposta_correta:`A`},{questão:`A composição etária de um município é um dado estratégico para políticas públicas,
+pois influencia a oferta de educação, saúde e trabalho. Em Bertioga, a descrição oficial
+ressalta uma população predominantemente jovem, embora com sinais de
+estreitamento na base da pirâmide etária ao longo do tempo. Esse tipo de mudança
+sugere transição demográfica e impactos sobre serviços e planejamento urbano. Nesse
+cenário, assinale qual afirmação sintetiza corretamente a característica demográfica
+destacada para o município.`,alternativas:{A:`(A) A inexistência de mudanças na estrutura etária, mantendo-se estável por várias décadas sem variações.`,B:`(B) A concentração exclusiva em população infantil, sem crescimento das faixas adultas e economicamente ativas.`,C:`(C) A predominância de população idosa, com maioria absoluta acima de sessenta e cinco anos no recorte citado.`,D:`(D) A indicação de população jovem, com maioria abaixo de trinta anos no recorte citado.`},disciplina:`Conhecimentos Gerais`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`01/2025`,banca:`IBAM`,resposta_correta:`D`},{questão:`O Poder Legislativo municipal integra a autonomia política dos municípios brasileiros
+e se organiza por meio da Câmara Municipal. A Constituição Federal estabelece
+parâmetros para organização e funcionamento desse poder, incluindo funções
+legislativas e fiscalizadoras. No cotidiano, a atuação legislativa envolve elaboração de
+normas locais, controle externo e debate público sobre políticas municipais. Com base
+nesse enquadramento institucional, avalie as assertivas e assinale a alternativa
+correta.
+I.A organização das funções legislativas e fiscalizadoras da Câmara Municipal é
+prevista no texto constitucional.
+II.O município se rege por lei orgânica aprovada pela Câmara, como parte do
+ordenamento local.
+III.A Câmara Municipal exerce competências exclusivamente judiciais, substituindo o
+Tribunal de Justiça do estado.
+IV.A existência de representantes eleitos localmente está vinculada ao princípio de
+poder exercido por representantes.
+Está correto o que se afirma em:`,alternativas:{A:`(A) I, II e IV, apenas.`,B:`(B) II, III e IV, apenas.`,C:`(C) I e IV, apenas.`,D:`(D) II e III, apenas.`},disciplina:`Conhecimentos Gerais`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`01/2025`,banca:`IBAM`,resposta_correta:`A`},{questão:`A organização político-administrativa de municípios brasileiros decorre de processos
+institucionais que envolvem disputas locais, mobilização social e mecanismos legais
+de validação. A emancipação de distritos costuma ser precedida por movimentos
+organizados da população, culminando em instrumentos formais de consulta coletiva.
+No caso de Bertioga, a narrativa institucional destaca a atuação popular como
+elemento central para a consolidação da autonomia administrativa. Considerando
+esse contexto, analise as afirmações a seguir sobre os mecanismos de legitimação da
+emancipação municipal e registre (V) para as verdadeiras, e (F), para as falsas.
+(__)A realização de plebiscito com participação da população é apontada como
+elemento decisivo para confirmar a emancipação do distrito.
+(__)A nomeação direta do prefeito pelo governo estadual é descrita como etapa
+fundamental do processo emancipatório.
+(__)A consulta popular é apresentada como forma de legitimação política da
+autonomia local.
+(__)A fusão administrativa com município vizinho é indicada como mecanismo central
+de criação do novo município.
+Assinale a alternativa que apresenta a sequência correta.`,alternativas:{A:`(A) V, F, V, F.`,B:`(B) F, F, V, V.`,C:`(C) F, V, F, V.`,D:`(D) V, V, F, F.`},disciplina:`Conhecimentos Gerais`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`01/2025`,banca:`IBAM`,resposta_correta:`A`},{questão:`A diferenciação entre compartimentos do relevo ajuda a compreender riscos naturais
+e vocações de uso do solo. Em Bertioga, a descrição oficial associa a escarpa serrana à
+Serra do Mar e a planície à faixa costeira, citando ainda morros isolados. Complete
+corretamente as lacunas sobre as formas de relevo mencionadas: "A caracterização
+local destaca a ________ e a ________, além de morros isolados na área municipal."
+Qual alternativa preenche adequadamente as lacunas?`,alternativas:{A:`(A) Serra Cristalina do Interior - Planície Basáltica`,B:`(B) Planície Interiorana - Depressão Periférica`,C:`(C) Escarpa da Serra do Mar - Planície Litorânea ou Costeira`,D:`(D) Chapada Central - Planície de Inundação Continental`},disciplina:`Conhecimentos Gerais`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`01/2025`,banca:`IBAM`,resposta_correta:`C`},{questão:`A rede hidrográfica de Bertioga inclui rios com diferentes origens, trajetos e
+ambientes associados, compondo paisagens de Mata Atlântica, manguezais e áreas
+costeiras. A descrição institucional destaca, por exemplo, um rio cuja nascente se situa
+em outro município e que deságua no Canal de Bertioga, além de mencionar área de
+drenagem e afluentes. Esse tipo de informação é fundamental para planejamento
+ambiental e gestão de recursos hídricos. Assinale qual alternativa descreve
+corretamente o Rio Itapanhaú conforme a caracterização institucional.`,alternativas:{A:`(A) Nasce no Oceano Atlântico e deságua exclusivamente em lagoas interiores, sem ligação com o canal.`,B:`(B) Nasce em Biritiba Mirim e deságua no Canal de Bertioga, com indicação de afluentes como: Jaguareguava, da Praia e Itatinga.`,C:`(C) Surge em planície desértica e corre apenas em leito subterrâneo, sem contato com a Mata Atlântica.`,D:`(D) Forma-se apenas pela junção de rios marinhos, sem contribuição de nascentes na Serra do Mar.`},disciplina:`Conhecimentos Gerais`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`01/2025`,banca:`IBAM`,resposta_correta:`B`},{questão:`No uso profissional dos aplicativos do Microsoft Office, especialmente o MS-Word e o
+MS-Excel, é fundamental compreender suas estruturas, recursos de edição e
+formatação, bem como a lógica de funcionamento de tabelas, gráficos e fórmulas.
+Considerando esses aspectos, assinale a alternativa correta.`,alternativas:{A:`(A) O Microsoft Excel é utilizado prioritariamente para edição de textos longos, oferecendo recursos avançados de formatação tipográfica, enquanto o Word é destinado exclusivamente à realização de cálculos por meio de fórmulas e funções.`,B:`(B) As fórmulas no Excel não utilizam operadores matemáticos, sendo obrigatória a aplicação de funções específicas para qualquer tipo de cálculo, inclusive operações simples de soma ou multiplicação.`,C:`(C) No Microsoft Word, não é possível alterar a formatação de um texto após sua digitação, pois as opções de fonte, parágrafo e alinhamento devem ser definidas previamente à escrita.`,D:`(D) No Microsoft Word, a criação de tabelas permite organizar informações em linhas e colunas, sendo possível aplicar estilos, bordas e sombreamentos, enquanto no Excel os gráficos são gerados a partir de dados estruturados em células, exigindo relação lógica entre rótulos e valores numéricos.`},disciplina:`Informática`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`01/2025`,banca:`IBAM`,resposta_correta:`D`},{questão:`No contexto da transformação digital das organizações públicas e privadas, a
+segurança da informação passou a ser um elemento estratégico para a proteção de
+dados, sistemas e processos. Considerando conceitos relacionados a vírus, malware,
+phishing, uso de antivírus e boas práticas de navegação segura, assinale a alternativa
+correta.`,alternativas:{A:`(A) O phishing caracteriza-se exclusivamente pelo envio de e-mails fraudulentos, sendo inviável sua ocorrência por meio de páginas web falsas, mensagens instantâneas ou redes sociais.`,B:`(B) A instalação de antivírus elimina a necessidade de atualizações frequentes do sistema operacional e do navegador, uma vez que tais softwares são capazes de neutralizar qualquer vulnerabilidade explorada por códigos maliciosos.`,C:`(C) Malwares não possuem capacidade de coletar informações pessoais sem o consentimento do usuário, pois essa prática é impedida pelos protocolos de segurança presentes nos navegadores modernos.`,D:`(D) Vírus de computador constituem uma categoria específica de malware que, diferentemente de worms e trojans, necessitam da execução de um arquivo hospedeiro para se propagar, sendo insuficiente, isoladamente, o uso de antivírus para garantir a segurança da informação.`},disciplina:`Informática`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`01/2025`,banca:`IBAM`,resposta_correta:`D`},{questão:`No uso cotidiano do computador em ambientes profissionais, é fundamental
+compreender a relação entre hardware, software, os componentes básicos do
+computador, os periféricos de entrada e saída e as funcionalidades do sistema
+operacional Windows, especialmente no que se refere à manipulação de arquivos,
+pastas, área de trabalho, menus e janelas. Com base nesses conhecimentos, analise as
+assertivas a seguir e marque (V) para as verdadeiras, e (F), para as falsas.
+(__)Hardware corresponde à parte física do computador, englobando componentes
+como placa-mãe, processador, memória, monitor e dispositivos periféricos.
+(__)O software é responsável exclusivamente pelo armazenamento permanente dos
+dados, não interferindo na execução de programas ou na interação com o usuário.
+(__)Teclado e mouse são exemplos clássicos de periféricos de entrada, pois permitem a
+inserção de dados e comandos no sistema.
+(__)No sistema operacional Windows, arquivos e pastas podem ser organizados,
+copiados, movidos ou excluídos por meio do Explorador de Arquivos.
+(__)A área de trabalho do Windows é um espaço de armazenamento físico do
+computador, onde os arquivos ficam gravados diretamente no disco rígido.
+(__)Janelas são elementos da interface gráfica do Windows que permitem visualizar e
+interagir com programas, documentos ou configurações do sistema.
+Assinale a alternativa que contém a sequência correta.`,alternativas:{A:`(A) V, V, F, V, F, V.`,B:`(B) V, F, V, V, F, V.`,C:`(C) F, F, V, V, V, F.`,D:`(D) V, F, V, F, V, V.`},disciplina:`Informática`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`01/2025`,banca:`IBAM`,resposta_correta:`B`},{questão:`No ambiente profissional, o uso adequado da internet e do correio eletrônico é
+essencial para comunicação, pesquisa e troca de informações. Considerando os
+conceitos de navegação na internet, links, mecanismos de busca, bem como o envio e
+recebimento de mensagens eletrônicas e anexos, analise as afirmativas a seguir.
+I.A navegação na internet ocorre por meio de navegadores, que permitem acessar
+páginas web a partir de endereços identificados por URLs.
+II.Links ou hiperlinks são elementos clicáveis que direcionam o usuário para outras
+páginas, documentos ou recursos disponíveis na rede.
+III.Os mecanismos de busca, como Google ou Bing, localizam informações
+exclusivamente a partir do endereço completo do site digitado pelo usuário.
+IV.No correio eletrônico, é possível anexar arquivos às mensagens, respeitando limites
+de tamanho definidos pelo serviço utilizado.
+V.O recebimento de e-mails com anexos garante automaticamente que o conteúdo seja
+seguro, desde que o remetente seja conhecido.
+Está correto o que se afirma em:`,alternativas:{A:`(A) II, III e V, apenas.`,B:`(B) I, II, III e IV, apenas.`,C:`(C) I, II e IV, apenas.`,D:`(D) I, II, III, IV e V.`},disciplina:`Informática`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`01/2025`,banca:`IBAM`,resposta_correta:`C`},{questão:`O Serviço de Proteção e Atendimento Integral à Família (PAIF) é o serviço principal da
+Proteção Social Básica, ofertado obrigatoriamente no Centro de Referência de
+Assistência Social (CRAS). Sua execução visa fortalecer a função protetiva da família.
+Considerando os objetivos e características do PAIF, assinale a alternativa correta.`,alternativas:{A:`(A) O objetivo central do PAIF é realizar a retirada de crianças e adolescentes do convívio familiar sempre que for identificada situação de pobreza, encaminhando-os para adoção.`,B:`(B) O PAIF deve ser executado prioritariamente no Centro de Referência Especializado de Assistência Social (CREAS), pois trata de famílias que já vivenciam situações de violência doméstica e abuso.`,C:`(C) O PAIF é um serviço destinado exclusivamente à distribuição de cestas básicas e benefícios eventuais, não possuindo caráter de acompanhamento psicossocial ou educativo.`,D:`(D) O PAIF tem como objetivo apoiar as famílias na prevenção da ruptura de laços, promovendo o acesso a direitos e contribuindo para a melhoria da qualidade de vida, por meio de ações de caráter continuado.`},disciplina:`Conhecimentos Específicos`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`01/2025`,banca:`IBAM`,resposta_correta:`D`},{questão:`O monitoramento e a avaliação são processos distintos, porém complementares,
+indispensáveis para a qualificação da gestão do SUAS. O monitoramento foca no
+acompanhamento contínuo dos indicadores de execução. Analise as afirmativas a
+seguir sobre o processo de monitoramento.
+I.O monitoramento é uma atividade contínua e sistemática de coleta e análise de
+dados sobre a execução dos serviços, permitindo verificar se as metas físicas e
+financeiras estão sendo cumpridas conforme o planejado.
+II.O principal objetivo do monitoramento é punir os profissionais que não atingem as
+metas de atendimento, servindo como ferramenta de controle disciplinar e redução
+salarial.
+III.O monitoramento permite correções de rumo durante a execução da política,
+identificando falhas operacionais ou insuficiência de recursos antes que o ciclo da
+política se encerre.
+Está correto o que se afirma em:`,alternativas:{A:`(A) I, apenas.`,B:`(B) II e III, apenas.`,C:`(C) I e III, apenas.`,D:`(D) I, II e III.`},disciplina:`Conhecimentos Específicos`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`01/2025`,banca:`IBAM`,resposta_correta:`C`},{questão:`O Benefício de Prestação Continuada (BPC) é uma garantia constitucional
+regulamentada pela LOAS, integrando a proteção social básica no âmbito da
+segurança de renda. Considerando os critérios de acesso e a natureza jurídica do BPC,
+assinale a alternativa correta.`,alternativas:{A:`(A) O BPC é um benefício previdenciário, exigindo que o requerente tenha contribuído com o INSS por pelo menos 12 meses antes de solicitar o benefício.`,B:`(B) O BPC garante um salário mínimo mensal à pessoa com deficiência e ao idoso com 65 anos ou mais, que comprovem não possuir meios de prover a própria manutenção nem de tê-la provida por sua família, sendo a renda familiar per capita inferior a 1/4 do salário mínimo.`,C:`(C) Para ter direito ao BPC, o idoso deve ter obrigatoriamente 60 anos completos, seguindo a definição de idoso do Estatuto da Pessoa Idosa para fins de benefícios assistenciais.`,D:`(D) O recebimento do BPC dá direito automático ao pagamento do 13º salário (abono anual) e gera pensão por morte aos dependentes do beneficiário.`},disciplina:`Conhecimentos Específicos`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`01/2025`,banca:`IBAM`,resposta_correta:`B`},{questão:`Os princípios éticos e políticos que regem o Sistema Único de Assistência Social (SUAS)
+são fundamentais para garantir que a assistência social seja operada como direito e
+não como favor, orientando a prática profissional. Considerando os princípios
+estabelecidos na Lei Orgânica da Assistência Social (LOAS), analise as afirmativas a
+seguir.
+I.A universalização dos direitos sociais é um princípio que visa tornar o destinatário
+da ação assistencial alcançável pelas demais políticas públicas, garantindo acesso a
+quem necessitar.
+II.O respeito à dignidade do cidadão, à sua autonomia e ao seu direito a benefícios e
+serviços de qualidade, bem como à convivência familiar e comunitária, vedando-se
+qualquer comprovação vexatória de necessidade.
+III.A igualdade de direitos no acesso ao atendimento, sem discriminação de qualquer
+natureza, garantindo-se equivalência às populações urbanas e rurais.
+Está correto o que se afirma em:`,alternativas:{A:`(A) I, apenas.`,B:`(B) I e II, apenas.`,C:`(C) I, II e III.`,D:`(D) II e III, apenas.`},disciplina:`Conhecimentos Específicos`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`01/2025`,banca:`IBAM`,resposta_correta:`C`},{questão:`A Lei Orgânica da Assistência Social (LOAS) estabelece diretrizes que organizam o
+funcionamento da assistência social no Brasil, definindo a responsabilidade do Estado
+e a forma de gestão da política. Ao analisar a diretriz da "primazia da
+responsabilidade do Estado", o profissional deve compreender seu significado político-
+administrativo. Após análise, assinale a alternativa correta.`,alternativas:{A:`(A) A primazia da responsabilidade estatal significa que o Estado deve atuar apenas em situações de calamidade pública, deixando a proteção social ordinária a cargo da solidariedade familiar e comunitária.`,B:`(B) Essa diretriz estabelece que o financiamento da assistência social é de responsabilidade exclusiva do Governo Federal, isentando os estados e municípios de aportarem recursos próprios para a manutenção dos serviços.`,C:`(C) A primazia da responsabilidade do Estado na condução da política de assistência social em cada esfera de governo impõe que o poder público é o principal garantidor dos direitos, não podendo transferir essa responsabilidade integralmente para a sociedade civil.`,D:`(D) A diretriz da primazia do Estado determina que apenas órgãos governamentais podem executar serviços de assistência social, sendo proibida a participação de entidades beneficentes ou organizações não governamentais na rede socioassistencial.`},disciplina:`Conhecimentos Específicos`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`01/2025`,banca:`IBAM`,resposta_correta:`C`},{questão:`A Constituição Federal de 1988 inovou ao instituir o sistema de Seguridade Social,
+composto pelo tripé Saúde, Previdência e Assistência Social. Sobre o lugar da
+Assistência Social na Carta Magna, assinale a alternativa correta.`,alternativas:{A:`(A) Segundo a Constituição, a Assistência Social deve ser financiada apenas com doações voluntárias da sociedade e das igrejas, isentando o Estado de aportar recursos orçamentários.`,B:`(B) A Constituição de 1988 estabelece que a Assistência Social é uma política contributiva, ou seja, o cidadão só tem direito aos serviços se pagar uma taxa mensal ao INSS.`,C:`(C) A Assistência Social é definida como direito do cidadão e dever do Estado, sendo prestada a quem dela necessitar, independentemente de contribuição à seguridade social, caracterizando-se como uma política não contributiva.`,D:`(D) A Constituição determina que a Assistência Social é destinada exclusivamente aos trabalhadores com carteira assinada que perderam o emprego, funcionando como um seguro-desemprego estendido.`},disciplina:`Conhecimentos Específicos`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`01/2025`,banca:`IBAM`,resposta_correta:`C`},{questão:`O financiamento da Política Nacional de Assistência Social é previsto
+constitucionalmente e regulamentado pela LOAS, devendo ocorrer de forma regular e
+automática entre os entes federados para garantir a continuidade dos serviços.
+Assinale a alternativa correta sobre os mecanismos de financiamento do SUAS.`,alternativas:{A:`(A) O repasse de recursos do Fundo Nacional de Assistência Social (FNAS) para os Fundos Municipais de Assistência Social deve ser realizado na modalidade fundo a fundo, de forma automática, mediante cumprimento dos requisitos legais (Conselho, Plano e Fundo constituídos).`,B:`(B) Os recursos para a assistência social são arrecadados diretamente pelos CRAS por meio da cobrança de taxas simbólicas aos usuários dos serviços, garantindo a sustentabilidade financeira local.`,C:`(C) O cofinanciamento dos serviços socioassistenciais é facultativo para os Estados e Municípios, sendo a União a única obrigada a destinar verbas do orçamento da Seguridade Social para essa finalidade.`,D:`(D) O financiamento do SUAS depende exclusivamente de emendas parlamentares voluntárias, não havendo obrigatoriedade de repasse contínuo por parte da União aos municípios.`},disciplina:`Conhecimentos Específicos`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`01/2025`,banca:`IBAM`,resposta_correta:`A`},{questão:`A Vigilância Socioassistencial é uma função da política de assistência social
+responsável pela produção e sistematização de informações, indicadores e índices
+territorializados. Seu objetivo não é vigiar as pessoas, mas sim os riscos e
+vulnerabilidades. Assinale a alternativa correta sobre as atribuições da Vigilância
+Socioassistencial.`,alternativas:{A:`(A) A Vigilância Socioassistencial é um setor da Polícia Civil que atua dentro dos CRAS para investigar crimes cometidos em áreas de vulnerabilidade social.`,B:`(B) A função da Vigilância Socioassistencial é fiscalizar a vida privada dos beneficiários do Bolsa Família, visitando suas casas para verificar se estão gastando o dinheiro corretamente.`,C:`(C) Compete à Vigilância Socioassistencial produzir diagnósticos socioterritoriais que identifiquem situações de vulnerabilidade e risco, subsidiando o planejamento das ações e a oferta adequada de serviços nos territórios.`,D:`(D) O objetivo da Vigilância Socioassistencial é monitorar exclusivamente a frequência dos funcionários da assistência social, garantindo que cumpram a carga horária de trabalho.`},disciplina:`Conhecimentos Específicos`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`01/2025`,banca:`IBAM`,resposta_correta:`C`},{questão:`A avaliação de políticas públicas busca mensurar os resultados e impactos das ações
+governamentais na vida dos usuários. Diferente do monitoramento, a avaliação faz
+julgamentos de valor sobre a eficiência, eficácia e efetividade. Assinale a alternativa
+correta que define o conceito de "efetividade" na avaliação de programas
+socioassistenciais.`,alternativas:{A:`(A) A efetividade mede apenas a relação entre o custo financeiro e o número de atendimentos realizados, sem considerar a qualidade ou o resultado final para o cidadão.`,B:`(B) A efetividade diz respeito exclusivamente ao cumprimento dos prazos burocráticos de prestação de contas, independentemente de o serviço ter sido entregue à população.`,C:`(C) A efetividade refere-se à capacidade do programa de produzir mudanças reais e positivas na realidade social dos usuários, resolvendo ou mitigando o problema público que motivou a intervenção (impacto social).`,D:`(D) A efetividade é a análise de quantos funcionários foram contratados para o projeto, garantindo que a equipe esteja completa, mas sem avaliar o trabalho realizado.`},disciplina:`Conhecimentos Específicos`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`01/2025`,banca:`IBAM`,resposta_correta:`C`},{questão:`A Política Nacional de Assistência Social (PNAS) de 2004 introduziu a matricialidade
+sociofamiliar como um eixo estruturante, deslocando o foco das ações do indivíduo
+isolado para o núcleo familiar e seu território. Diante dessa concepção, o trabalho
+social deve fortalecer os vínculos e a capacidade protetiva das famílias. Assinale a
+alternativa correta sobre a matricialidade sociofamiliar.`,alternativas:{A:`(A) O conceito de matricialidade na PNAS indica que os serviços socioassistenciais devem priorizar o atendimento individualizado de crianças e idosos, visto que a abordagem familiar dilui a eficácia das intervenções técnicas especializadas.`,B:`(B) A matricialidade sociofamiliar define que a família é a única e exclusiva responsável pelo bem-estar de seus membros, devendo o Estado intervir apenas quando houver falência total da capacidade financeira do núcleo familiar.`,C:`(C) A política estabelece que a família deve ser penalizada e vigiada quando não conseguir prover as necessidades básicas de seus membros, cabendo ao assistente social fiscalizar o cumprimento dos deveres parentais.`,D:`(D) A centralidade na família pressupõe que esta deve ser acolhida e apoiada pelo Estado para desempenhar sua função de proteção social, reconhecendo-a como espaço de sobrevivência, desenvolvimento e sociabilidade, superando a visão de culpabilização.`},disciplina:`Conhecimentos Específicos`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`01/2025`,banca:`IBAM`,resposta_correta:`D`},{questão:`A organização do Sistema Único de Assistência Social (SUAS) estrutura-se por tipos de
+proteção social, divididos em básica e especial, cada uma com seus respectivos níveis
+de complexidade e unidades de referência. Acerca da organização dos serviços e das
+unidades públicas estatais no SUAS, registre (V), para as afirmativas verdadeiras, e
+(F), para as falsas.
+(__)O Centro de Referência de Assistência Social (CRAS) é a unidade pública estatal de
+base territorial, localizada em áreas de vulnerabilidade social, responsável pela oferta
+de serviços da proteção social básica.
+(__)A proteção social especial de média complexidade é ofertada exclusivamente em
+abrigos institucionais, destinando-se a famílias que já tiveram seus vínculos rompidos
+e necessitam de moradia provisória.
+(__)O Centro de Referência Especializado de Assistência Social (CREAS) é a unidade
+responsável pela oferta de atenções especializadas a famílias e indivíduos em situação
+de ameaça ou violação de direitos.
+(__)A proteção social básica tem caráter preventivo e visa fortalecer a convivência
+familiar e comunitária, evitando que situações de risco evoluam para violação de
+direitos.
+Após análise, assinale a alternativa que apresenta a sequência correta dos itens acima.`,alternativas:{A:`(A) F, V, V, V.`,B:`(B) V, V, F, F.`,C:`(C) V, F, F, V.`,D:`(D) V, F, V, V.`},disciplina:`Conhecimentos Específicos`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`01/2025`,banca:`IBAM`,resposta_correta:`D`},{questão:`O planejamento na assistência social é um processo técnico-político contínuo que visa
+organizar a oferta de serviços frente às demandas da população. O Plano de
+Assistência Social é o instrumento que materializa esse planejamento. Sobre a
+importância e as características do Plano de Assistência Social, registre (V), para as
+afirmativas verdadeiras, e (F), para as falsas.
+(__)O Plano de Assistência Social é um instrumento obrigatório para que os entes
+federados (municípios, estados e DF) estejam aptos a receber recursos do
+financiamento federal.
+(__)O planejamento deve partir de um diagnóstico socioterritorial, identificando as
+demandas reais da população e definindo metas e prioridades para a política no
+período de sua vigência.
+(__)O Plano de Assistência Social deve ser elaborado exclusivamente por consultores
+externos contratados, sendo vedada a participação dos técnicos locais e do Conselho
+de Assistência Social.
+(__)O Plano tem validade indeterminada, não necessitando de revisão ou
+monitoramento periódico, uma vez que as demandas sociais são estáticas e imutáveis.
+Após análise, assinale a alternativa que apresenta a sequência correta dos itens acima.`,alternativas:{A:`(A) F, V, F, V.`,B:`(B) V, F, V, F.`,C:`(C) V, V, F, F.`,D:`(D) V, V, V, V.`},disciplina:`Conhecimentos Específicos`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`01/2025`,banca:`IBAM`,resposta_correta:`C`},{questão:`A Lei nº 8.742/1993, conhecida como LOAS, regulamenta os dispositivos constitucionais
+e organiza a assistência social no Brasil. Seu Artigo 1º traz a definição fundamental da
+política. Assinale a alternativa correta que reproduz o conceito legal de assistência
+social contido na LOAS.`,alternativas:{A:`(A) A assistência social é definida como a política de repressão à vadiagem e controle das populações pobres, visando a higienização dos espaços urbanos e a ordem pública.`,B:`(B) A assistência social é uma ajuda emergencial e temporária oferecida pelo Governo Federal, dependente da disponibilidade de sobra de caixa, não constituindo um direito reclamável judicialmente.`,C:`(C) A assistência social, direito do cidadão e dever do Estado, é Política de Seguridade Social não contributiva, que provê os mínimos sociais, realizada através de um conjunto integrado de ações de iniciativa pública e da sociedade, para garantir o atendimento às necessidades básicas.`,D:`(D) A assistência social é um serviço privado de interesse público, prestado majoritariamente por ONGs, cabendo ao Estado apenas fiscalizar a aplicação dos recursos sem obrigação de ofertar serviços diretos.`},disciplina:`Conhecimentos Específicos`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`01/2025`,banca:`IBAM`,resposta_correta:`C`},{questão:`O princípio da gestão descentralizada e participativa implica na existência de
+instâncias de deliberação e pactuação que envolvem a sociedade civil e as três esferas
+de governo. Os Conselhos de Assistência Social desempenham papel crucial nesse
+arranjo. Analise as afirmativas a seguir sobre a gestão e o controle social no SUAS.
+I.Os Conselhos de Assistência Social são instâncias deliberativas de caráter
+permanente e composição paritária entre governo e sociedade civil, responsáveis por
+aprovar a política e fiscalizar sua execução.
+II.A gestão das ações na área de assistência social é organizada sob a forma de sistema
+descentralizado e participativo, denominado Sistema Único de Assistência Social
+(SUAS), com comando único das ações em cada esfera de governo.
+III.As Conferências de Assistência Social são espaços consultivos que ocorrem a cada
+dez anos, sem poder de influenciar as decisões dos gestores públicos sobre o
+orçamento da política.
+Está correto o que se afirma em:`,alternativas:{A:`(A) I e II, apenas.`,B:`(B) III, apenas.`,C:`(C) II e III, apenas.`,D:`(D) I, apenas.`},disciplina:`Conhecimentos Específicos`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`01/2025`,banca:`IBAM`,resposta_correta:`A`},{questão:`A Proteção Social Especial (PSE) é destinada a famílias e indivíduos que se encontram
+em situação de risco pessoal e social, por ocorrência de abandono, maus-tratos, abuso
+sexual, entre outros. A organização da PSE divide-se em Média e Alta Complexidade.
+Sobre essa estruturação, registre (V), para as afirmativas verdadeiras, e (F), para as
+falsas.
+(__)A Proteção Social Especial de Média Complexidade atende famílias e indivíduos
+com seus direitos violados, mas cujos vínculos familiares e comunitários não foram
+rompidos.
+(__)O Serviço de Acolhimento Institucional (abrigos) faz parte da Proteção Social
+Especial de Alta Complexidade, garantindo proteção integral a quem necessitou ser
+afastado do núcleo familiar de origem.
+(__)O Centro de Referência Especializado para População em Situação de Rua (Centro
+POP) é uma unidade que oferta serviços de Média Complexidade, visando a reinserção
+social e o fortalecimento de vínculos.
+(__)As medidas socioeducativas em meio aberto (Liberdade Assistida e Prestação de
+Serviços à Comunidade) são executadas no âmbito da Proteção Social Básica, dentro
+dos CRAS.
+Após análise, assinale a alternativa que apresenta a sequência correta dos itens acima.`,alternativas:{A:`(A) V, V, F, V.`,B:`(B) F, V, V, F.`,C:`(C) V, V, V, F.`,D:`(D) V, F, F, V.`},disciplina:`Conhecimentos Específicos`,cargo:`ASSISTENTE SOCIAL`,id_concurso:`01/2025`,banca:`IBAM`,resposta_correta:`C`}]},m=Object.keys(p),h=m[0],g=p[h],_=3.5*60*60*1e3,v=null,y=0,b=null,x=!0,S=`prova`,C={start:document.getElementById(`start-screen`),exam:document.getElementById(`exam-screen`),results:document.getElementById(`results-screen`)},w=document.querySelector(`.app-header`),te=document.getElementById(`btn-start`),T=document.getElementById(`mode-toggle`),E=document.getElementById(`exam-select`),ne=document.getElementById(`error-bank-count`),D=document.getElementById(`btn-practice-errors`),O=document.getElementById(`history-list`),k=document.getElementById(`btn-clear-history`),A=document.getElementById(`timer`),j=document.getElementById(`btn-finish`),M=document.getElementById(`question-grid`),re=document.getElementById(`card-cargo`),ie=document.getElementById(`card-disciplina`),ae=document.getElementById(`card-edital`),N=document.getElementById(`card-ano`),P=document.getElementById(`card-banca`),F=document.getElementById(`current-q-number`),I=document.getElementById(`question-text`),L=document.getElementById(`options-container`),R=document.getElementById(`btn-prev`),z=document.getElementById(`btn-check`),B=document.getElementById(`btn-next`),V=document.getElementById(`area-breakdown`),H=document.getElementById(`review-list`);function U(){E.innerHTML=``,m.forEach(e=>{let t=document.createElement(`option`);t.value=e,t.textContent=e,E.appendChild(t)}),E.value=h}function W(e){h=e,g=p[h]}function G(){m.includes(h)||(h=m[0]),U(),W(h),T.checked=!1,q(`start`),K(),E.addEventListener(`change`,()=>W(E.value)),te.addEventListener(`click`,()=>X()),j.addEventListener(`click`,()=>$(!1)),R.addEventListener(`click`,()=>Z(y-1)),z.addEventListener(`click`,le),B.addEventListener(`click`,()=>Z(y+1)),D.addEventListener(`click`,oe),k.addEventListener(`click`,()=>{confirm(`limpar todo o histórico?`)&&(s(),K())}),document.getElementById(`btn-restart`).addEventListener(`click`,()=>{G()})}function K(){let e=l();ne.textContent=`${e.length} questões`,D.disabled=e.length===0;let t=o();if(O.innerHTML=``,t.length===0){O.innerHTML=`<p class="history-empty">nenhuma prova feita ainda</p>`,k.classList.add(`hidden`);return}k.classList.remove(`hidden`),t.slice(0,5).forEach(e=>{let t=document.createElement(`div`);t.className=`history-item`;let n=new Date(e.date);t.innerHTML=`
+      <span class="history-date">${n.toLocaleDateString(`pt-BR`,{day:`2-digit`,month:`2-digit`})+` `+n.toLocaleTimeString(`pt-BR`,{hour:`2-digit`,minute:`2-digit`})}</span>
+      <span class="history-exam">${e.examKey}</span>
+      <span class="history-score">${Math.round(e.score.percentage)}%</span>
+    `,O.appendChild(t)})}function q(e){Object.values(C).forEach(e=>e.classList.add(`hidden`)),C[e].classList.remove(`hidden`),w.classList.toggle(`hidden`,e===`start`)}function J(e){let t=Math.floor(e/1e3);return`${String(Math.floor(t/3600)).padStart(2,`0`)}:${String(Math.floor(t%3600/60)).padStart(2,`0`)}:${String(t%60).padStart(2,`0`)}`}function Y(){if(!v||!v.startTime)return;let e=Date.now()-v.startTime;if(x){let t=_-e;if(t<=0){A.textContent=`00:00:00`,$(!0);return}A.textContent=J(t),t<600*1e3&&(A.style.color=`var(--danger)`)}else A.textContent=J(e)}function X({forcedPractice:t=!1}={}){x=!t&&!T.checked,S=t?`erros`:x?`prova`:`treino`,x&&(A.style.color=`#b45309`),j.classList.remove(`hidden`),v=new e(g),v.start(),y=0,Y(),b=setInterval(Y,1e3),se(),Q(y),q(`exam`)}function oe(){let e=f();e.length!==0&&(h=`caderno de erros`,g=e,X({forcedPractice:!0}))}function se(){M.innerHTML=``,v.questions.forEach((e,t)=>{let n=document.createElement(`button`);n.className=`grid-btn`,n.textContent=t+1,n.id=`nav-q-${t}`,n.addEventListener(`click`,()=>Z(t)),M.appendChild(n)})}function ce(){v.questions.forEach((e,t)=>{let n=document.getElementById(`nav-q-${t}`);n&&(n.className=`grid-btn`,v.answers[t]&&n.classList.add(`answered`),t===y&&n.classList.add(`active`))})}function Z(e){e<0||e>=v.questions.length||(y=e,Q(e))}function Q(e){let t=v.questions[e];t.cargo&&(re.innerHTML=`<strong>Cargo:</strong> ${t.cargo}`),t.disciplina&&(ie.innerHTML=`<strong>Disciplina:</strong> ${t.disciplina}`),t.id_concurso&&(ae.innerHTML=`<strong>Edital:</strong> ${t.id_concurso}`),t.banca&&(P.innerHTML=`<strong>Banca:</strong> ${t.banca}`);let n=t.id_concurso&&t.id_concurso.match(/\d{4}/);n&&(N.innerHTML=`<strong>Ano:</strong> ${n[0]}`),F.textContent=`Questão ${e+1} de ${v.questions.length}`;let r=``;t.texto_relevante&&(r+=`<div style="background:#f9fafb; padding:1rem; border-radius:0.5rem; margin-bottom:1rem; border:1px solid #f3f4f6;">${t.texto_relevante}</div>`),r+=`<p>${t.questão||t.enunciado}</p>`,I.innerHTML=r,L.innerHTML=``;let i=v.answers[e],a=v.checkedQuestions[e],o=t.resposta_correta;t.alternativas&&Object.entries(t.alternativas).forEach(([t,n])=>{let r=document.createElement(`button`),s=[`option-btn`];i===t&&s.push(`selected`),a&&(t===o?s.push(`correct-ans`):i===t&&t!==o&&s.push(`wrong-ans`),r.disabled=!0),r.className=s.join(` `),r.innerHTML=`<span class="option-letter">${t})</span><span>${n.replace(/^\([A-E]\)\s*/,``)}</span>`,a||r.addEventListener(`click`,()=>{v.answerQuestion(e,t),Q(e)}),L.appendChild(r)}),R.disabled=e===0,B.disabled=e===v.questions.length-1,a||!i?(z.disabled=!0,a?z.classList.add(`hidden`):z.classList.remove(`hidden`)):(z.disabled=!1,z.classList.remove(`hidden`)),ce()}function le(){v.answers[y]&&(v.checkQuestion(y),Q(y))}function $(e=!1){if(!e&&!confirm(`Tem certeza que deseja finalizar a prova?`))return;clearInterval(b),v.finish();let t=v.getScore(),n=v.getBreakdownByArea(),r=v.getReview();d({examKey:h,mode:S,score:t,breakdown:n,review:r,questions:v.questions}),j.classList.add(`hidden`),q(`results`),document.getElementById(`score-text`).textContent=`${Math.round(t.percentage)}%`,document.getElementById(`res-correct`).textContent=t.correct,document.getElementById(`res-total`).textContent=t.total,document.getElementById(`res-time`).textContent=J(t.timeTakenMs),ue(n),de(r)}function ue(e){V.innerHTML=``,e.forEach(({area:e,correct:t,total:n,percentage:r})=>{let i=document.createElement(`div`);i.className=`area-item`,i.innerHTML=`
       <div class="area-item-header">
         <span class="area-name">${e}</span>
         <span class="area-percent">${Math.round(r)}%</span>
       </div>
       <div class="area-bar"><div class="area-bar-fill" style="width:${r}%"></div></div>
       <div class="area-detail">${t} de ${n} questões</div>
-    `,A.appendChild(i)})}function K(e){j.innerHTML=``,e.forEach(({index:e,disciplina:t,userAnswer:n,correctAnswer:r,isCorrect:i})=>{let a=`review-item--wrong`,o=`Incorreta`;n?i&&(a=`review-item--correct`,o=`Correta`):(a=`review-item--blank`,o=`Não respondida`);let s=document.createElement(`div`);s.className=`review-item ${a}`,s.innerHTML=`
+    `,V.appendChild(i)})}function de(e){H.innerHTML=``,e.forEach(({index:e,disciplina:t,userAnswer:n,correctAnswer:r,isCorrect:i})=>{let a=`review-item--wrong`,o=`Incorreta`;n?i&&(a=`review-item--correct`,o=`Correta`):(a=`review-item--blank`,o=`Não respondida`);let s=document.createElement(`div`);s.className=`review-item ${a}`,s.innerHTML=`
       <span class="review-q-number">${e+1}</span>
       <span class="review-area">${t||``}</span>
       <span class="review-answer">Sua resposta: <strong>${n||`Não respondida`}</strong></span>
       <span class="review-correct">Gabarito: <strong>${r}</strong></span>
       <span class="review-status">${o}</span>
-    `,j.appendChild(s)})}P();
+    `,H.appendChild(s)})}G();
