@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>senta a carimbada! · lei 8.662/93 (art. 4º × art. 5º)</title>
+<title>senta a carimbada! · fase 3 (tudo junto)</title>
 <style>
   :root{
     --paper:#e9e5d8;
@@ -11,10 +11,18 @@
     --ink:#1c1a17;
     --ink-soft:#4a453d;
     --line:#c4bda9;
-    --seal-green:#2f6b4f;   /* compartilhada */
+    --seal-green:#2f6b4f;    /* direito */
     --seal-green-ink:#1f4a37;
-    --seal-red:#a8322a;     /* privativa */
+    --seal-gold:#a8843c;     /* dever */
+    --seal-gold-ink:#6b5623;
+    --seal-red:#a8322a;      /* vedação */
     --seal-red-ink:#7a221c;
+    --seal-blue:#2f5f7a;     /* princípio */
+    --seal-blue-ink:#1c3a4a;
+    --seal-purple:#6b4c8c;   /* competência */
+    --seal-purple-ink:#402d54;
+    --seal-rust:#a15a2a;     /* atribuição */
+    --seal-rust-ink:#623510;
     --gold:#a8843c;
     --shadow:rgba(28,26,23,.18);
   }
@@ -106,7 +114,7 @@
     padding:26px 24px 22px;
   }
   .card::before{
-    content:"LEI 8.662/93";position:absolute;top:14px;right:16px;
+    content:"TUDO JUNTO";position:absolute;top:14px;right:16px;
     font-family:"Helvetica Neue",Arial,sans-serif;font-size:9px;letter-spacing:.28em;
     color:var(--line);font-weight:700;
   }
@@ -115,30 +123,38 @@
     letter-spacing:.24em;text-transform:uppercase;color:var(--ink-soft);
     font-weight:700;border-bottom:1px solid var(--line);padding-bottom:8px;margin-bottom:16px;
   }
-  .activity{font-size:clamp(18px,4.4vw,23px);line-height:1.42;min-height:120px;letter-spacing:-.005em}
+  .activity{font-size:clamp(17px,4.2vw,22px);line-height:1.42;min-height:110px;letter-spacing:-.005em}
   .qnum{color:var(--gold);font-weight:700}
 
   .carimbador{
-    display:block;margin:14px auto 4px;max-width:130px;height:auto;
+    display:block;margin:14px auto 4px;max-width:120px;height:auto;
     transition:transform .12s ease;
   }
   .carimbador.hit{transform:scale(1.08) rotate(-2deg)}
 
   /* botões de julgamento */
-  .verdict{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:22px}
+  .verdict{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:22px}
   .stamp-btn{
     cursor:pointer;border:2px solid;background:var(--paper-2);
-    border-radius:4px;padding:16px 10px;text-align:center;
+    border-radius:4px;padding:13px 8px;text-align:center;
     font-family:"Helvetica Neue",Arial,sans-serif;transition:transform .08s,background .15s;
   }
   .stamp-btn:active{transform:translateY(1px) scale(.99)}
-  .stamp-btn .art{display:block;font-size:11px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;opacity:.7}
-  .stamp-btn .nat{display:block;font-size:17px;font-weight:800;letter-spacing:.02em;margin-top:3px}
-  .stamp-btn.green{border-color:var(--seal-green);color:var(--seal-green-ink)}
-  .stamp-btn.green:hover{background:rgba(47,107,79,.08)}
-  .stamp-btn.red{border-color:var(--seal-red);color:var(--seal-red-ink)}
-  .stamp-btn.red:hover{background:rgba(168,50,42,.08)}
+  .stamp-btn .nat{display:block;font-size:14px;font-weight:800;letter-spacing:.01em}
   .stamp-btn:disabled{cursor:default;opacity:.45}
+
+  .stamp-btn.principio{border-color:var(--seal-blue);color:var(--seal-blue-ink)}
+  .stamp-btn.principio:hover{background:rgba(47,95,122,.08)}
+  .stamp-btn.direito{border-color:var(--seal-green);color:var(--seal-green-ink)}
+  .stamp-btn.direito:hover{background:rgba(47,107,79,.08)}
+  .stamp-btn.dever{border-color:var(--seal-gold);color:var(--seal-gold-ink)}
+  .stamp-btn.dever:hover{background:rgba(168,132,60,.1)}
+  .stamp-btn.vedacao{border-color:var(--seal-red);color:var(--seal-red-ink)}
+  .stamp-btn.vedacao:hover{background:rgba(168,50,42,.08)}
+  .stamp-btn.competencia{border-color:var(--seal-purple);color:var(--seal-purple-ink)}
+  .stamp-btn.competencia:hover{background:rgba(107,76,140,.08)}
+  .stamp-btn.atribuicao{border-color:var(--seal-rust);color:var(--seal-rust-ink)}
+  .stamp-btn.atribuicao:hover{background:rgba(161,90,42,.08)}
 
   /* selo estampado sobre a carta */
   .seal{
@@ -146,12 +162,16 @@
     transform:translate(-50%,-50%) rotate(-14deg) scale(.4);
     border:5px double currentColor;border-radius:8px;
     padding:10px 20px;font-family:"Helvetica Neue",Arial,sans-serif;
-    font-size:26px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;
+    font-size:24px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;
     opacity:0;pointer-events:none;text-align:center;white-space:nowrap;
   }
   .seal.show{animation:stamp .45s cubic-bezier(.2,1.4,.4,1) forwards}
-  .seal.green{color:var(--seal-green)}
-  .seal.red{color:var(--seal-red)}
+  .seal.principio{color:var(--seal-blue)}
+  .seal.direito{color:var(--seal-green)}
+  .seal.dever{color:var(--seal-gold)}
+  .seal.vedacao{color:var(--seal-red)}
+  .seal.competencia{color:var(--seal-purple)}
+  .seal.atribuicao{color:var(--seal-rust)}
   @keyframes stamp{
     0%{opacity:0;transform:translate(-50%,-50%) rotate(-14deg) scale(1.8)}
     60%{opacity:.95}
@@ -181,14 +201,32 @@
   /* ---- Estudo (tabela) ---- */
   .study{display:none}
   .study.show{display:block}
-  .pill-row{display:flex;gap:10px;margin-bottom:16px}
+  .pill-row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
   .pill{
-    flex:1;text-align:center;padding:10px;border-radius:4px;border:2px solid;
-    font-family:"Helvetica Neue",Arial,sans-serif;font-size:12px;font-weight:800;
-    letter-spacing:.04em;text-transform:uppercase;
+    flex:1 1 140px;text-align:center;padding:9px;border-radius:4px;border:2px solid;
+    font-family:"Helvetica Neue",Arial,sans-serif;font-size:11px;font-weight:800;
+    letter-spacing:.03em;text-transform:uppercase;
   }
-  .pill.g{border-color:var(--seal-green);color:var(--seal-green-ink);background:rgba(47,107,79,.06)}
-  .pill.r{border-color:var(--seal-red);color:var(--seal-red-ink);background:rgba(168,50,42,.06)}
+  .pill.principio{border-color:var(--seal-blue);color:var(--seal-blue-ink);background:rgba(47,95,122,.06)}
+  .pill.direito{border-color:var(--seal-green);color:var(--seal-green-ink);background:rgba(47,107,79,.06)}
+  .pill.dever{border-color:var(--seal-gold);color:var(--seal-gold-ink);background:rgba(168,132,60,.08)}
+  .pill.vedacao{border-color:var(--seal-red);color:var(--seal-red-ink);background:rgba(168,50,42,.06)}
+  .pill.competencia{border-color:var(--seal-purple);color:var(--seal-purple-ink);background:rgba(107,76,140,.06)}
+  .pill.atribuicao{border-color:var(--seal-rust);color:var(--seal-rust-ink);background:rgba(161,90,42,.06)}
+
+  .study-sec-title{
+    margin:20px 0 10px;font-family:"Helvetica Neue",Arial,sans-serif;font-size:11px;
+    letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);font-weight:800;
+  }
+  .study-sec-title:first-child{margin-top:0}
+  .study-sec-sub{
+    margin:14px 0 8px;font-family:"Helvetica Neue",Arial,sans-serif;font-size:10.5px;
+    letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);font-weight:700;
+    padding-left:8px;border-left:3px solid var(--line);
+  }
+  .princ-list{list-style:none;margin-bottom:6px}
+  .princ-list li{font-size:14.5px;line-height:1.55;color:var(--ink-soft);margin-bottom:8px}
+  .princ-list b{color:var(--ink)}
   details.inc{border:1px solid var(--line);border-radius:4px;margin-bottom:7px;background:var(--paper-2)}
   details.inc summary{
     list-style:none;cursor:pointer;padding:12px 14px;display:flex;align-items:center;gap:12px;
@@ -196,12 +234,16 @@
   }
   details.inc summary::-webkit-details-marker{display:none}
   .roman{
-    font-weight:800;font-size:13px;min-width:34px;padding:3px 0;text-align:center;border-radius:3px;
+    font-weight:800;font-size:12px;min-width:34px;padding:3px 4px;text-align:center;border-radius:3px;
     letter-spacing:.02em;
   }
-  .roman.g{background:var(--seal-green);color:#fff}
-  .roman.r{background:var(--seal-red);color:#fff}
-  .roman.veto{background:var(--ink-soft);color:var(--paper-2)}
+  .roman.principio{background:var(--seal-blue);color:#fff}
+  .roman.direito{background:var(--seal-green);color:#fff}
+  .roman.dever{background:var(--seal-gold);color:#fff}
+  .roman.vedacao{background:var(--seal-red);color:#fff}
+  .roman.competencia{background:var(--seal-purple);color:#fff}
+  .roman.atribuicao{background:var(--seal-rust);color:#fff}
+  .roman.norma{background:var(--ink-soft);color:var(--paper-2)}
   .sum-hint{font-size:13.5px;color:var(--ink-soft);font-weight:600}
   details.inc[open] summary .sum-hint{color:var(--ink)}
   .inc-body{padding:2px 16px 16px 60px;font-size:15.5px;line-height:1.55;color:var(--ink-soft)}
@@ -226,6 +268,9 @@
     .feedback.show{animation:none}
     .carimbador{transition:none}
   }
+  @media (max-width:520px){
+    .verdict{grid-template-columns:1fr 1fr}
+  }
   @media (max-width:420px){
     .verdict{grid-template-columns:1fr}
     .inc-body{padding-left:16px}
@@ -236,14 +281,14 @@
 <div class="wrap">
   <a class="back-link" href="../index.html">&larr; início</a>
   <nav class="fases">
-    <a class="fase-link" href="./carimbo-8662.html" aria-current="page">fase 1 · lei 8.662</a>
+    <a class="fase-link" href="./carimbo-8662.html">fase 1 · lei 8.662</a>
     <a class="fase-link" href="./carimbo-etica.html">fase 2 · código de ética</a>
-    <a class="fase-link" href="./carimbo-completo.html">fase 3 · tudo junto</a>
+    <a class="fase-link" href="./carimbo-completo.html" aria-current="page">fase 3 · tudo junto</a>
   </nav>
   <header>
-    <div class="eyebrow">Regulamentação da Profissão · Assistente Social</div>
+    <div class="eyebrow">Fase 3 · Tudo Junto</div>
     <h1>senta a carimbada!</h1>
-    <div class="sub">Art. 4º competências (compartilhadas) × Art. 5º atribuições privativas (exclusivas)</div>
+    <div class="sub">Princípio, direito, dever, vedação, competência ou atribuição privativa: carimbe qualquer questão do Código de Ética e da Lei 8.662</div>
   </header>
 
   <div class="hud">
@@ -266,16 +311,20 @@
 
       <img class="carimbador" id="carimbador" src="../img/carimbo/01.png" alt="assistente social de carimbo em punho, pronto para julgar">
 
-      <div class="seal green" id="sealGreen">Art. 4º<br>Competência</div>
-      <div class="seal red" id="sealRed">Art. 5º<br>Privativa</div>
+      <div class="seal principio" id="sealPrincipio">Princípio</div>
+      <div class="seal direito" id="sealDireito">Direito</div>
+      <div class="seal dever" id="sealDever">Dever</div>
+      <div class="seal vedacao" id="sealVedacao">Vedação</div>
+      <div class="seal competencia" id="sealCompetencia">Competência</div>
+      <div class="seal atribuicao" id="sealAtribuicao">Atribuição</div>
 
       <div class="verdict">
-        <button class="stamp-btn green" id="btnGreen" onclick="judge('compartilhada')">
-          <span class="art">Art. 4º</span><span class="nat">Competência</span>
-        </button>
-        <button class="stamp-btn red" id="btnRed" onclick="judge('privativa')">
-          <span class="art">Art. 5º</span><span class="nat">Privativa</span>
-        </button>
+        <button class="stamp-btn principio" id="btnPrincipio" onclick="judge('principio')"><span class="nat">Princípio</span></button>
+        <button class="stamp-btn direito" id="btnDireito" onclick="judge('direito')"><span class="nat">Direito</span></button>
+        <button class="stamp-btn dever" id="btnDever" onclick="judge('dever')"><span class="nat">Dever</span></button>
+        <button class="stamp-btn vedacao" id="btnVedacao" onclick="judge('vedacao')"><span class="nat">Vedação</span></button>
+        <button class="stamp-btn competencia" id="btnCompetencia" onclick="judge('competencia')"><span class="nat">Competência</span></button>
+        <button class="stamp-btn atribuicao" id="btnAtribuicao" onclick="judge('atribuicao')"><span class="nat">Atribuição</span></button>
       </div>
 
       <div class="feedback" id="feedback">
@@ -289,8 +338,12 @@
   <!-- ===== MODO ESTUDO ===== -->
   <section class="study" id="studyStage">
     <div class="pill-row">
-      <div class="pill g">Art. 4º · Competências<br>compartilhadas</div>
-      <div class="pill r">Art. 5º · Atribuições<br>privativas</div>
+      <div class="pill principio">Princípio</div>
+      <div class="pill direito">Direito</div>
+      <div class="pill dever">Dever</div>
+      <div class="pill vedacao">Vedação</div>
+      <div class="pill competencia">Competência</div>
+      <div class="pill atribuicao">Atribuição</div>
     </div>
     <div id="studyList"></div>
     <div class="traps">
@@ -299,17 +352,49 @@
     </div>
   </section>
 
-  <div class="foot">Fonte: texto oficial CFESS · Lei nº 8.662, de 7 de junho de 1993</div>
+  <div class="foot">Fontes: Código de Ética do/a Assistente Social (Resolução CFESS nº 273/93) e Lei nº 8.662, de 7 de junho de 1993</div>
 </div>
 
 <script>
 let DATA = null;
 
+const NAT = {
+  principio: {label:'Princípio', explica:'é um dos <b>princípios fundamentais</b> do Código de Ética.'},
+  direito: {label:'Direito', explica:'é um <b>direito</b> do/a assistente social (Código de Ética).'},
+  dever: {label:'Dever', explica:'é um <b>dever</b> do/a assistente social (Código de Ética).'},
+  vedacao: {label:'Vedação', explica:'é uma <b>vedação</b> (Código de Ética).'},
+  competencia: {label:'Competência', explica:'é uma <b>competência</b> compartilhada (Lei 8.662, art. 4º).'},
+  atribuicao: {label:'Atribuição', explica:'é uma <b>atribuição privativa</b> (Lei 8.662, art. 5º).'}
+};
+const SEAL_ID = {principio:'sealPrincipio', direito:'sealDireito', dever:'sealDever', vedacao:'sealVedacao', competencia:'sealCompetencia', atribuicao:'sealAtribuicao'};
+const BTN_ID = {principio:'btnPrincipio', direito:'btnDireito', dever:'btnDever', vedacao:'btnVedacao', competencia:'btnCompetencia', atribuicao:'btnAtribuicao'};
+
 /* ---------- monta o baralho ---------- */
 function buildDeck(){
   const deck=[];
-  DATA.art_4.incisos.forEach(i=>{ if(!i.vetado) deck.push({art:"4º",num:i.num,natureza:"compartilhada",texto:i.texto}); });
-  DATA.art_5.incisos.forEach(i=>{ deck.push({art:"5º",num:i.num,natureza:"privativa",texto:i.texto}); });
+
+  DATA.principios.forEach(p=>{
+    deck.push({categoria:'principio', ref:`princípio ${p.num}`, texto:p.texto});
+  });
+
+  Object.values(DATA.artigosEtica).forEach(a=>{
+    if(!['direito','dever','vedacao'].includes(a.natureza)) return;
+    if(a.alineas && a.alineas.length){
+      a.alineas.forEach(al=>{
+        deck.push({categoria:a.natureza, ref:`art. ${a.num}, alínea ${al.letra}`, texto:al.texto});
+      });
+    } else {
+      deck.push({categoria:a.natureza, ref:`art. ${a.num}`, texto:a.caput});
+    }
+  });
+
+  DATA.lei8662.art_4.incisos.forEach(i=>{
+    if(!i.vetado) deck.push({categoria:'competencia', ref:`Lei 8.662, art. 4º, inciso ${i.num}`, texto:i.texto});
+  });
+  DATA.lei8662.art_5.incisos.forEach(i=>{
+    deck.push({categoria:'atribuicao', ref:`Lei 8.662, art. 5º, inciso ${i.num}`, texto:i.texto});
+  });
+
   return deck;
 }
 function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
@@ -339,11 +424,19 @@ function cardTemplate(){
     <div class="doc-label" id="docLabel"></div>
     <div class="activity" id="activity"></div>
     <img class="carimbador" id="carimbador" src="../img/carimbo/01.png" alt="assistente social de carimbo em punho, pronto para julgar">
-    <div class="seal green" id="sealGreen">Art. 4º<br>Competência</div>
-    <div class="seal red" id="sealRed">Art. 5º<br>Privativa</div>
+    <div class="seal principio" id="sealPrincipio">Princípio</div>
+    <div class="seal direito" id="sealDireito">Direito</div>
+    <div class="seal dever" id="sealDever">Dever</div>
+    <div class="seal vedacao" id="sealVedacao">Vedação</div>
+    <div class="seal competencia" id="sealCompetencia">Competência</div>
+    <div class="seal atribuicao" id="sealAtribuicao">Atribuição</div>
     <div class="verdict">
-      <button class="stamp-btn green" id="btnGreen"><span class="art">Art. 4º</span><span class="nat">Competência</span></button>
-      <button class="stamp-btn red" id="btnRed"><span class="art">Art. 5º</span><span class="nat">Privativa</span></button>
+      <button class="stamp-btn principio" id="btnPrincipio"><span class="nat">Princípio</span></button>
+      <button class="stamp-btn direito" id="btnDireito"><span class="nat">Direito</span></button>
+      <button class="stamp-btn dever" id="btnDever"><span class="nat">Dever</span></button>
+      <button class="stamp-btn vedacao" id="btnVedacao"><span class="nat">Vedação</span></button>
+      <button class="stamp-btn competencia" id="btnCompetencia"><span class="nat">Competência</span></button>
+      <button class="stamp-btn atribuicao" id="btnAtribuicao"><span class="nat">Atribuição</span></button>
     </div>
     <div class="feedback" id="feedback">
       <div class="verdict-line" id="vLine"></div>
@@ -352,8 +445,7 @@ function cardTemplate(){
     </div>`;
 }
 function bindCard(){
-  $('btnGreen').onclick=()=>judge('compartilhada');
-  $('btnRed').onclick=()=>judge('privativa');
+  Object.keys(NAT).forEach(cat=>{ $(BTN_ID[cat]).onclick=()=>judge(cat); });
   $('nextBtn').onclick=nextCard;
 }
 
@@ -361,12 +453,11 @@ function judge(choice){
   if(answered) return;
   answered=true;
   const c=deck[idx];
-  const right = choice===c.natureza;
-  const isPriv = c.natureza==='privativa';
+  const right = choice===c.categoria;
+  const info = NAT[c.categoria];
 
   // estampa o selo correto
-  const seal = isPriv ? $('sealRed') : $('sealGreen');
-  seal.classList.add('show');
+  $(SEAL_ID[c.categoria]).classList.add('show');
 
   // bate o carimbo
   const carimbador=$('carimbador');
@@ -375,7 +466,7 @@ function judge(choice){
   setTimeout(()=>carimbador.classList.remove('hit'),150);
 
   // desabilita botões
-  $('btnGreen').disabled=true; $('btnRed').disabled=true;
+  Object.values(BTN_ID).forEach(id=>{ $(id).disabled=true; });
 
   if(right){ correct++; streak++; if(streak>best){best=streak;} }
   else { streak=0; }
@@ -385,8 +476,7 @@ function judge(choice){
   const cite=$('cite');
   vLine.className='verdict-line '+(right?'ok':'no');
   vLine.textContent = right ? '✓ Carimbo correto' : '✗ Carimbo errado';
-  cite.innerHTML =
-    `Art. <b>${c.art}</b>, inciso <b>${c.num}</b>: ${isPriv?'atribuição <b>privativa</b> (exclusiva do assistente social inscrito no CRESS).':'competência <b>compartilhada</b> (outros profissionais também podem atuar).'}`;
+  cite.innerHTML = `${c.ref}: ${info.explica}`;
   fb.classList.add('show');
   updateHud();
 
@@ -410,10 +500,10 @@ function updateHud(){
 function showDone(){
   const pct=Math.round(correct/deck.length*100);
   let msg;
-  if(pct===100) msg="Gabaritou. Você domina a fronteira 4º × 5º.";
-  else if(pct>=80) msg="Sólido. Revise só os incisos que escaparam.";
+  if(pct===100) msg="Gabaritou. Você domina tudo: princípios, direitos, deveres, vedações, competências e atribuições.";
+  else if(pct>=80) msg="Sólido. Revise só o que escapou.";
   else if(pct>=60) msg="Quase lá. Passe pela aba Estudar a tabela e volte.";
-  else msg="Vale reler a tabela antes de tentar de novo — foque nas pegadinhas.";
+  else msg="Vale reler a tabela antes de tentar de novo, foque nas pegadinhas.";
   $('playStage').innerHTML=`
     <div class="card"><div class="done">
       <div class="score-big">${correct}/${deck.length}</div>
@@ -428,26 +518,70 @@ function restart(){
 }
 
 /* ---------- modo estudo ---------- */
+function renderArtigoEtica(id){
+  const a = DATA.artigosEtica[id];
+  const cls = NAT[a.natureza] ? a.natureza : 'norma';
+  const label = NAT[a.natureza] ? NAT[a.natureza].label : 'norma';
+  let html = `<details class="inc"><summary><span class="roman ${cls}">${a.num}</span><span class="sum-hint">${label}: ${firstWords(a.caput)}</span></summary><div class="inc-body">`;
+  html += `<p><b>${a.caput}</b></p>`;
+  if(a.alineas && a.alineas.length){
+    html += '<ul style="padding-left:18px;margin-top:8px">';
+    a.alineas.forEach(al=>{
+      const grave = al.grave ? ' <b style="color:var(--seal-red-ink)">(grave)</b>' : '';
+      html += `<li style="margin-bottom:6px">${al.letra}) ${al.texto}${grave}</li>`;
+    });
+    html += '</ul>';
+  }
+  if(a.paragrafos && a.paragrafos.length){
+    a.paragrafos.forEach(p=>{ html += `<p style="margin-top:8px"><b>${p.tipo}:</b> ${p.texto}</p>`; });
+  }
+  html += '</div></details>';
+  return html;
+}
+
+function renderIncisosLei(numArt, categoria){
+  const art = DATA.lei8662[numArt];
+  let html = `<div class="study-sec-sub">${art.titulo}</div>`;
+  art.incisos.forEach(i=>{
+    if(i.vetado){
+      html += `<details class="inc"><summary><span class="roman norma">${i.num}</span><span class="sum-hint">vetado, não existe</span></summary><div class="inc-body">${i.texto}</div></details>`;
+      return;
+    }
+    html += `<details class="inc"><summary><span class="roman ${categoria}">${i.num}</span><span class="sum-hint">${firstWords(i.texto)}</span></summary><div class="inc-body">${i.texto}</div></details>`;
+  });
+  return html;
+}
+
 function renderStudy(){
   const list=$('studyList');
+  let html = '<div class="study-sec-title">Princípios fundamentais</div><ul class="princ-list">';
+  DATA.principios.forEach(p=>{
+    html += `<li><b>${p.num}.</b> ${p.texto}</li>`;
+  });
+  html += '</ul>';
 
-  let h4=`<div style="margin:4px 0 12px;font-family:'Helvetica Neue',Arial,sans-serif;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--seal-green-ink);font-weight:800">Art. 4º, ${DATA.art_4.titulo}</div>`;
-  DATA.art_4.incisos.forEach(i=>{
-    const roman=i.vetado?`<span class="roman veto">${i.num}</span>`:`<span class="roman g">${i.num}</span>`;
-    const hint=i.vetado?'inciso vetado, não existe':firstWords(i.texto);
-    h4+=`<details class="inc"><summary>${roman}<span class="sum-hint">${hint}</span></summary><div class="inc-body">${i.texto}</div></details>`;
+  html += '<div class="study-sec-title">Código de ética: direitos, deveres e vedações</div>';
+  DATA.titulos.forEach(tit=>{
+    html += `<div class="study-sec-sub">${tit.nome}</div>`;
+    if(tit.artigos){
+      tit.artigos.forEach(id=>{ html += renderArtigoEtica(id); });
+    } else if(tit.capitulos){
+      tit.capitulos.forEach(cap=>{
+        html += `<div class="study-sec-sub">${cap.nome}</div>`;
+        cap.artigos.forEach(id=>{ html += renderArtigoEtica(id); });
+      });
+    }
   });
 
-  let h5=`<div style="margin:22px 0 12px;font-family:'Helvetica Neue',Arial,sans-serif;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--seal-red-ink);font-weight:800">Art. 5º, ${DATA.art_5.titulo}</div>`;
-  DATA.art_5.incisos.forEach(i=>{
-    const roman=`<span class="roman r">${i.num}</span>`;
-    h5+=`<details class="inc"><summary>${roman}<span class="sum-hint">${firstWords(i.texto)}</span></summary><div class="inc-body">${i.texto}</div></details>`;
-  });
+  html += '<div class="study-sec-title">Lei 8.662/93: competências e atribuições privativas</div>';
+  html += renderIncisosLei('art_4','competencia');
+  html += renderIncisosLei('art_5','atribuicao');
 
-  list.innerHTML=h4+h5;
+  list.innerHTML=html;
 
   const tl=$('trapList');
-  tl.innerHTML=DATA.pegadinhas.map(p=>`<li>${p}</li>`).join('');
+  const allTraps=[...DATA.pegadinhasEtica, ...DATA.pegadinhasLei];
+  tl.innerHTML=allTraps.map(p=>`<li>${p}</li>`).join('');
 }
 function firstWords(t){
   const clean=t.replace(/\.$/,'');
@@ -466,14 +600,21 @@ function setMode(m){
 }
 
 /* ---------- init ---------- */
-fetch('../data/lei8662.json')
-  .then(r=>r.json())
-  .then(json=>{
-    DATA={art_4:json.artigos.art_4,art_5:json.artigos.art_5,pegadinhas:json.pegadinhas};
-    startRound();
-    renderStudy();
-  })
-  .catch(()=>{ $('activity').textContent='não foi possível carregar as questões.'; });
+Promise.all([
+  fetch('../data/codigo-etica.json').then(r=>r.json()),
+  fetch('../data/lei8662.json').then(r=>r.json())
+]).then(([etica, lei])=>{
+  DATA={
+    principios: etica.principios_fundamentais,
+    artigosEtica: etica.artigos,
+    titulos: etica.titulos,
+    pegadinhasEtica: etica.pegadinhas,
+    lei8662: lei.artigos,
+    pegadinhasLei: lei.pegadinhas
+  };
+  startRound();
+  renderStudy();
+}).catch(()=>{ $('activity').textContent='não foi possível carregar as questões.'; });
 </script>
 </body>
 </html>

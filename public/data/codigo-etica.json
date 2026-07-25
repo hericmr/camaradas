@@ -1,0 +1,619 @@
+{
+  "meta": {
+    "documento": "Código de Ética do/a Assistente Social",
+    "instituido_por": "Resolução CFESS nº 273, de 13 de março de 1993",
+    "aprovado_em": "1993-03-13",
+    "publicado_dou": "DOU nº 60, de 30.03.1993, Seção I, p. 4004 a 4007",
+    "revogou": "Resolução CFESS nº 195/86, de 09.05.1986",
+    "alteracoes": [
+      "Resolução CFESS nº 290/94",
+      "Resolução CFESS nº 293/94",
+      "Resolução CFESS nº 333/96 (incidiu sobre o art. 25)",
+      "Resolução CFESS nº 594/11 (numeração sequencial dos princípios, linguagem de gênero, 'opção sexual' → 'orientação sexual', inclusão de 'identidade de gênero' no princípio XI)"
+    ],
+    "edicao": "10ª edição revista e atualizada (CFESS, 2012)",
+    "fonte": "Código de Ética do/a Assistente Social · Lei 8.662/93 de Regulamentação da Profissão, CFESS, 10ª ed.",
+    "presidente_signatária": "Marlise Vinagre Silva"
+  },
+
+  "principios_fundamentais": [
+    { "num": "I", "chave": "liberdade como valor ético central", "texto": "Reconhecimento da liberdade como valor ético central e das demandas políticas a ela inerentes: autonomia, emancipação e plena expansão dos indivíduos sociais." },
+    { "num": "II", "chave": "direitos humanos e recusa do arbítrio", "texto": "Defesa intransigente dos direitos humanos e recusa do arbítrio e do autoritarismo." },
+    { "num": "III", "chave": "ampliação e consolidação da cidadania", "texto": "Ampliação e consolidação da cidadania, considerada tarefa primordial de toda sociedade, com vistas à garantia dos direitos civis sociais e políticos das classes trabalhadoras." },
+    { "num": "IV", "chave": "aprofundamento da democracia", "texto": "Defesa do aprofundamento da democracia, enquanto socialização da participação política e da riqueza socialmente produzida." },
+    { "num": "V", "chave": "equidade e justiça social", "texto": "Posicionamento em favor da equidade e justiça social, que assegure universalidade de acesso aos bens e serviços relativos aos programas e políticas sociais, bem como sua gestão democrática." },
+    { "num": "VI", "chave": "eliminação de todas as formas de preconceito", "texto": "Empenho na eliminação de todas as formas de preconceito, incentivando o respeito à diversidade, à participação de grupos socialmente discriminados e à discussão das diferenças." },
+    { "num": "VII", "chave": "garantia do pluralismo", "texto": "Garantia do pluralismo, através do respeito às correntes profissionais democráticas existentes e suas expressões teóricas, e compromisso com o constante aprimoramento intelectual." },
+    { "num": "VIII", "chave": "nova ordem societária sem dominação", "texto": "Opção por um projeto profissional vinculado ao processo de construção de uma nova ordem societária, sem dominação, exploração de classe, etnia e gênero." },
+    { "num": "IX", "chave": "articulação com outras categorias e com a luta dos trabalhadores", "texto": "Articulação com os movimentos de outras categorias profissionais que partilhem dos princípios deste Código e com a luta geral dos/as trabalhadores/as." },
+    { "num": "X", "chave": "qualidade dos serviços e competência profissional", "texto": "Compromisso com a qualidade dos serviços prestados à população e com o aprimoramento intelectual, na perspectiva da competência profissional." },
+    { "num": "XI", "chave": "exercício sem discriminar nem ser discriminado", "texto": "Exercício do Serviço Social sem ser discriminado/a, nem discriminar, por questões de inserção de classe social, gênero, etnia, religião, nacionalidade, orientação sexual, identidade de gênero, idade e condição física." }
+  ],
+
+  "titulos": [
+    {
+      "id": "titulo_1",
+      "nome": "Título I — Disposições Gerais",
+      "artigos": ["art_1"]
+    },
+    {
+      "id": "titulo_2",
+      "nome": "Título II — Dos Direitos e das Responsabilidades Gerais do/a Assistente Social",
+      "artigos": ["art_2", "art_3", "art_4"]
+    },
+    {
+      "id": "titulo_3",
+      "nome": "Título III — Das Relações Profissionais",
+      "capitulos": [
+        { "id": "cap_1", "nome": "Capítulo I — Das Relações com os/as Usuários/as", "artigos": ["art_5", "art_6"] },
+        { "id": "cap_2", "nome": "Capítulo II — Das Relações com as Instituições Empregadoras e outras", "artigos": ["art_7", "art_8", "art_9"] },
+        { "id": "cap_3", "nome": "Capítulo III — Das Relações com Assistentes Sociais e outros/as Profissionais", "artigos": ["art_10", "art_11"] },
+        { "id": "cap_4", "nome": "Capítulo IV — Das Relações com Entidades da Categoria e demais organizações da Sociedade Civil", "artigos": ["art_12", "art_13", "art_14"] },
+        { "id": "cap_5", "nome": "Capítulo V — Do Sigilo Profissional", "artigos": ["art_15", "art_16", "art_17", "art_18"] },
+        { "id": "cap_6", "nome": "Capítulo VI — Das Relações do/a Assistente Social com a Justiça", "artigos": ["art_19", "art_20"] }
+      ]
+    },
+    {
+      "id": "titulo_4",
+      "nome": "Título IV — Da Observância, Penalidades, Aplicação e Cumprimento Deste Código",
+      "artigos": ["art_21", "art_22", "art_23", "art_24", "art_25", "art_26", "art_27", "art_28", "art_29", "art_30", "art_31", "art_32", "art_33", "art_34", "art_35", "art_36"]
+    }
+  ],
+
+  "artigos": {
+    "art_1": {
+      "num": "1º",
+      "titulo": "titulo_1",
+      "natureza": "competencia_conselho",
+      "esfera": "conselhos",
+      "caput": "Compete ao Conselho Federal de Serviço Social:",
+      "alineas": [
+        { "letra": "a", "texto": "zelar pela observância dos princípios e diretrizes deste Código, fiscalizando as ações dos Conselhos Regionais e a prática exercida pelos profissionais, instituições e organizações na área do Serviço Social." },
+        { "letra": "b", "texto": "introduzir alteração neste Código, através de uma ampla participação da categoria, num processo desenvolvido em ação conjunta com os Conselhos Regionais." },
+        { "letra": "c", "texto": "como Tribunal Superior de Ética Profissional, firmar jurisprudência na observância deste Código e nos casos omissos." }
+      ],
+      "paragrafos": [
+        { "tipo": "parágrafo único", "texto": "Compete aos Conselhos Regionais, nas áreas de suas respectivas jurisdições, zelar pela observância dos princípios e diretrizes deste Código, e funcionar como órgão julgador de primeira instância." }
+      ]
+    },
+
+    "art_2": {
+      "num": "2º",
+      "titulo": "titulo_2",
+      "natureza": "direito",
+      "esfera": "geral",
+      "caput": "Constituem direitos do/a assistente social:",
+      "alineas": [
+        { "letra": "a", "texto": "garantia e defesa de suas atribuições e prerrogativas, estabelecidas na Lei de Regulamentação da Profissão e dos princípios firmados neste Código." },
+        { "letra": "b", "texto": "livre exercício das atividades inerentes à Profissão." },
+        { "letra": "c", "texto": "participação na elaboração e gerenciamento das políticas sociais, e na formulação e implementação de programas sociais." },
+        { "letra": "d", "texto": "inviolabilidade do local de trabalho e respectivos arquivos e documentação, garantindo o sigilo profissional." },
+        { "letra": "e", "texto": "desagravo público por ofensa que atinja a sua honra profissional." },
+        { "letra": "f", "texto": "aprimoramento profissional de forma contínua, colocando-o a serviço dos princípios deste Código." },
+        { "letra": "g", "texto": "pronunciamento em matéria de sua especialidade, sobretudo quando se tratar de assuntos de interesse da população." },
+        { "letra": "h", "texto": "ampla autonomia no exercício da Profissão, não sendo obrigado a prestar serviços profissionais incompatíveis com as suas atribuições, cargos ou funções." },
+        { "letra": "i", "texto": "liberdade na realização de seus estudos e pesquisas, resguardados os direitos de participação de indivíduos ou grupos envolvidos em seus trabalhos." }
+      ]
+    },
+
+    "art_3": {
+      "num": "3º",
+      "titulo": "titulo_2",
+      "natureza": "dever",
+      "esfera": "geral",
+      "caput": "São deveres do/a assistente social:",
+      "alineas": [
+        { "letra": "a", "texto": "desempenhar suas atividades profissionais, com eficiência e responsabilidade, observando a legislação em vigor." },
+        { "letra": "b", "texto": "utilizar seu número de registro no Conselho Regional no exercício da Profissão." },
+        { "letra": "c", "texto": "abster-se, no exercício da Profissão, de práticas que caracterizem a censura, o cerceamento da liberdade, o policiamento dos comportamentos, denunciando sua ocorrência aos órgãos competentes.", "grave": true },
+        { "letra": "d", "texto": "participar de programas de socorro à população em situação de calamidade pública, no atendimento e defesa de seus interesses e necessidades." }
+      ]
+    },
+
+    "art_4": {
+      "num": "4º",
+      "titulo": "titulo_2",
+      "natureza": "vedacao",
+      "esfera": "geral",
+      "caput": "É vedado ao/à assistente social:",
+      "alineas": [
+        { "letra": "a", "texto": "transgredir qualquer preceito deste Código, bem como da Lei de Regulamentação da Profissão.", "grave": true },
+        { "letra": "b", "texto": "praticar e ser conivente com condutas antiéticas, crimes ou contravenções penais na prestação de serviços profissionais, com base nos princípios deste Código, mesmo que estes sejam praticados por outros/as profissionais.", "grave": true },
+        { "letra": "c", "texto": "acatar determinação institucional que fira os princípios e diretrizes deste Código.", "grave": true },
+        { "letra": "d", "texto": "compactuar com o exercício ilegal da Profissão, inclusive nos casos de estagiários/as que exerçam atribuições específicas, em substituição aos/às profissionais." },
+        { "letra": "e", "texto": "permitir ou exercer a supervisão de aluno/a de Serviço Social em Instituições Públicas ou Privadas que não tenham em seu quadro assistente social que realize acompanhamento direto ao/à aluno/a estagiário/a." },
+        { "letra": "f", "texto": "assumir responsabilidade por atividade para as quais não esteja capacitado/a pessoal e tecnicamente." },
+        { "letra": "g", "texto": "substituir profissional que tenha sido exonerado/a por defender os princípios da ética profissional, enquanto perdurar o motivo da exoneração, demissão ou transferência.", "grave": true },
+        { "letra": "h", "texto": "pleitear para si ou para outrem emprego, cargo ou função que estejam sendo exercidos por colega." },
+        { "letra": "i", "texto": "adulterar resultados e fazer declarações falaciosas sobre situações ou estudos de que tome conhecimento.", "grave": true },
+        { "letra": "j", "texto": "assinar ou publicar em seu nome ou de outrem trabalhos de terceiros, mesmo que executados sob sua orientação.", "grave": true }
+      ]
+    },
+
+    "art_5": {
+      "num": "5º",
+      "titulo": "titulo_3",
+      "capitulo": "cap_1",
+      "natureza": "dever",
+      "esfera": "usuarios",
+      "caput": "São deveres do/a assistente social nas suas relações com os/as usuários/as:",
+      "alineas": [
+        { "letra": "a", "texto": "contribuir para a viabilização da participação efetiva da população usuária nas decisões institucionais." },
+        { "letra": "b", "texto": "garantir a plena informação e discussão sobre as possibilidades e consequências das situações apresentadas, respeitando democraticamente as decisões dos/as usuários/as, mesmo que sejam contrárias aos valores e às crenças individuais dos/as profissionais, resguardados os princípios deste Código.", "grave": true },
+        { "letra": "c", "texto": "democratizar as informações e o acesso aos programas disponíveis no espaço institucional, como um dos mecanismos indispensáveis à participação dos/as usuários/as." },
+        { "letra": "d", "texto": "devolver as informações colhidas nos estudos e pesquisas aos/às usuários/as, no sentido de que estes possam usá-los para o fortalecimento dos seus interesses." },
+        { "letra": "e", "texto": "informar à população usuária sobre a utilização de materiais de registro audiovisual e pesquisas a elas referentes e a forma de sistematização dos dados obtidos." },
+        { "letra": "f", "texto": "fornecer à população usuária, quando solicitado, informações concernentes ao trabalho desenvolvido pelo Serviço Social e as suas conclusões, resguardado o sigilo profissional.", "grave": true },
+        { "letra": "g", "texto": "contribuir para a criação de mecanismos que venham desburocratizar a relação com os/as usuários/as, no sentido de agilizar e melhorar os serviços prestados." },
+        { "letra": "h", "texto": "esclarecer aos/às usuários/as, ao iniciar o trabalho, sobre os objetivos e a amplitude de sua atuação profissional." }
+      ]
+    },
+
+    "art_6": {
+      "num": "6º",
+      "titulo": "titulo_3",
+      "capitulo": "cap_1",
+      "natureza": "vedacao",
+      "esfera": "usuarios",
+      "caput": "É vedado ao/à assistente social:",
+      "alineas": [
+        { "letra": "a", "texto": "exercer sua autoridade de maneira a limitar ou cercear o direito do/a usuário/a de participar e decidir livremente sobre seus interesses.", "grave": true },
+        { "letra": "b", "texto": "aproveitar-se de situações decorrentes da relação assistente social-usuário/a, para obter vantagens pessoais ou para terceiros.", "grave": true },
+        { "letra": "c", "texto": "bloquear o acesso dos/as usuários/as aos serviços oferecidos pelas instituições, através de atitudes que venham coagir e/ou desrespeitar aqueles que buscam o atendimento de seus direitos.", "grave": true }
+      ]
+    },
+
+    "art_7": {
+      "num": "7º",
+      "titulo": "titulo_3",
+      "capitulo": "cap_2",
+      "natureza": "direito",
+      "esfera": "instituicoes_empregadoras",
+      "caput": "Constituem direitos do/a assistente social:",
+      "alineas": [
+        { "letra": "a", "texto": "dispor de condições de trabalho condignas, seja em entidade pública ou privada, de forma a garantir a qualidade do exercício profissional." },
+        { "letra": "b", "texto": "ter livre acesso à população usuária." },
+        { "letra": "c", "texto": "ter acesso a informações institucionais que se relacionem aos programas e políticas sociais e sejam necessárias ao pleno exercício das atribuições profissionais." },
+        { "letra": "d", "texto": "integrar comissões interdisciplinares de ética nos locais de trabalho do/a profissional, tanto no que se refere à avaliação da conduta profissional, como em relação às decisões quanto às políticas institucionais." }
+      ]
+    },
+
+    "art_8": {
+      "num": "8º",
+      "titulo": "titulo_3",
+      "capitulo": "cap_2",
+      "natureza": "dever",
+      "esfera": "instituicoes_empregadoras",
+      "caput": "São deveres do/a assistente social:",
+      "alineas": [
+        { "letra": "a", "texto": "programar, administrar, executar e repassar os serviços sociais assegurados institucionalmente." },
+        { "letra": "b", "texto": "denunciar falhas nos regulamentos, normas e programas da instituição em que trabalha, quando os mesmos estiverem ferindo os princípios e diretrizes deste Código, mobilizando, inclusive, o Conselho Regional, caso se faça necessário.", "grave": true },
+        { "letra": "c", "texto": "contribuir para a alteração da correlação de forças institucionais, apoiando as legítimas demandas de interesse da população usuária." },
+        { "letra": "d", "texto": "empenhar-se na viabilização dos direitos sociais dos/as usuários/as, através dos programas e políticas sociais." },
+        { "letra": "e", "texto": "empregar com transparência as verbas sob a sua responsabilidade, de acordo com os interesses e necessidades coletivas dos/as usuários/as." }
+      ]
+    },
+
+    "art_9": {
+      "num": "9º",
+      "titulo": "titulo_3",
+      "capitulo": "cap_2",
+      "natureza": "vedacao",
+      "esfera": "instituicoes_empregadoras",
+      "caput": "É vedado ao/à assistente social:",
+      "alineas": [
+        { "letra": "a", "texto": "emprestar seu nome e registro profissional a firmas, organizações ou empresas para simulação do exercício efetivo do Serviço Social.", "grave": true },
+        { "letra": "b", "texto": "usar ou permitir o tráfico de influência para obtenção de emprego, desrespeitando concurso ou processos seletivos.", "grave": true },
+        { "letra": "c", "texto": "utilizar recursos institucionais (pessoal e/ou financeiro) para fins partidários, eleitorais e clientelistas.", "grave": true }
+      ]
+    },
+
+    "art_10": {
+      "num": "10",
+      "titulo": "titulo_3",
+      "capitulo": "cap_3",
+      "natureza": "dever",
+      "esfera": "outros_profissionais",
+      "caput": "São deveres do/a assistente social:",
+      "alineas": [
+        { "letra": "a", "texto": "ser solidário/a com outros/as profissionais, sem, todavia, eximir-se de denunciar atos que contrariem os postulados éticos contidos neste Código." },
+        { "letra": "b", "texto": "repassar ao seu substituto as informações necessárias à continuidade do trabalho." },
+        { "letra": "c", "texto": "mobilizar sua autoridade funcional, ao ocupar uma chefia, para a liberação de carga horária de subordinado/a, para fim de estudos e pesquisas que visem o aprimoramento profissional, bem como de representação ou delegação de entidade de organização da categoria e outras, dando igual oportunidade a todos/as." },
+        { "letra": "d", "texto": "incentivar, sempre que possível, a prática profissional interdisciplinar." },
+        { "letra": "e", "texto": "respeitar as normas e princípios éticos das outras profissões." },
+        { "letra": "f", "texto": "ao realizar crítica pública a colega e outros/as profissionais, fazê-lo sempre de maneira objetiva, construtiva e comprovável, assumindo sua inteira responsabilidade." }
+      ]
+    },
+
+    "art_11": {
+      "num": "11",
+      "titulo": "titulo_3",
+      "capitulo": "cap_3",
+      "natureza": "vedacao",
+      "esfera": "outros_profissionais",
+      "caput": "É vedado ao/à assistente social:",
+      "alineas": [
+        { "letra": "a", "texto": "intervir na prestação de serviços que estejam sendo efetuados por outro/a profissional, salvo a pedido desse/a profissional; em caso de urgência, seguido da imediata comunicação ao/à profissional; ou quando se tratar de trabalho multiprofissional e a intervenção fizer parte da metodologia adotada." },
+        { "letra": "b", "texto": "prevalecer-se de cargo de chefia para atos discriminatórios e de abuso de autoridade.", "grave": true },
+        { "letra": "c", "texto": "ser conivente com falhas éticas de acordo com os princípios deste Código e com erros técnicos praticados por assistente social e qualquer outro/a profissional.", "grave": true },
+        { "letra": "d", "texto": "prejudicar deliberadamente o trabalho e a reputação de outro/a profissional.", "grave": true }
+      ]
+    },
+
+    "art_12": {
+      "num": "12",
+      "titulo": "titulo_3",
+      "capitulo": "cap_4",
+      "natureza": "direito",
+      "esfera": "entidades_categoria",
+      "caput": "Constituem direitos do/a assistente social:",
+      "alineas": [
+        { "letra": "a", "texto": "participar em sociedades científicas e em entidades representativas e de organização da categoria que tenham por finalidade, respectivamente, a produção de conhecimento, a defesa e a fiscalização do exercício profissional." },
+        { "letra": "b", "texto": "apoiar e/ou participar dos movimentos sociais e organizações populares vinculados à luta pela consolidação e ampliação da democracia e dos direitos de cidadania." }
+      ]
+    },
+
+    "art_13": {
+      "num": "13",
+      "titulo": "titulo_3",
+      "capitulo": "cap_4",
+      "natureza": "dever",
+      "esfera": "entidades_categoria",
+      "caput": "São deveres do/a assistente social:",
+      "alineas": [
+        { "letra": "a", "texto": "denunciar ao Conselho Regional as instituições públicas ou privadas, onde as condições de trabalho não sejam dignas ou possam prejudicar os/as usuários/as ou profissionais." },
+        { "letra": "b", "texto": "denunciar, no exercício da Profissão, às entidades de organização da categoria, às autoridades e aos órgãos competentes, casos de violação da Lei e dos Direitos Humanos, quanto a: corrupção, maus tratos, torturas, ausência de condições mínimas de sobrevivência, discriminação, preconceito, abuso de autoridade individual e institucional, qualquer forma de agressão ou falta de respeito à integridade física, social e mental do/a cidadão/cidadã.", "grave": true },
+        { "letra": "c", "texto": "respeitar a autonomia dos movimentos populares e das organizações das classes trabalhadoras." }
+      ]
+    },
+
+    "art_14": {
+      "num": "14",
+      "titulo": "titulo_3",
+      "capitulo": "cap_4",
+      "natureza": "vedacao",
+      "esfera": "entidades_categoria",
+      "caput": "É vedado ao/à assistente social valer-se de posição ocupada na direção de entidade da categoria para obter vantagens pessoais, diretamente ou através de terceiros/as.",
+      "alineas": [],
+      "grave": true
+    },
+
+    "art_15": {
+      "num": "15",
+      "titulo": "titulo_3",
+      "capitulo": "cap_5",
+      "natureza": "direito",
+      "esfera": "sigilo",
+      "caput": "Constitui direito do/a assistente social manter o sigilo profissional.",
+      "alineas": []
+    },
+
+    "art_16": {
+      "num": "16",
+      "titulo": "titulo_3",
+      "capitulo": "cap_5",
+      "natureza": "norma",
+      "esfera": "sigilo",
+      "caput": "O sigilo protegerá o/a usuário/a em tudo aquilo de que o/a assistente social tome conhecimento, como decorrência do exercício da atividade profissional.",
+      "alineas": [],
+      "grave": true,
+      "paragrafos": [
+        { "tipo": "parágrafo único", "texto": "Em trabalho multidisciplinar só poderão ser prestadas informações dentro dos limites do estritamente necessário." }
+      ]
+    },
+
+    "art_17": {
+      "num": "17",
+      "titulo": "titulo_3",
+      "capitulo": "cap_5",
+      "natureza": "vedacao",
+      "esfera": "sigilo",
+      "caput": "É vedado ao/à assistente social revelar sigilo profissional.",
+      "alineas": [],
+      "grave": true
+    },
+
+    "art_18": {
+      "num": "18",
+      "titulo": "titulo_3",
+      "capitulo": "cap_5",
+      "natureza": "norma",
+      "esfera": "sigilo",
+      "caput": "A quebra do sigilo só é admissível quando se tratarem de situações cuja gravidade possa, envolvendo ou não fato delituoso, trazer prejuízo aos interesses do/a usuário/a, de terceiros/as e da coletividade.",
+      "alineas": [],
+      "paragrafos": [
+        { "tipo": "parágrafo único", "texto": "A revelação será feita dentro do estritamente necessário, quer em relação ao assunto revelado, quer ao grau e número de pessoas que dele devam tomar conhecimento.", "grave": true }
+      ]
+    },
+
+    "art_19": {
+      "num": "19",
+      "titulo": "titulo_3",
+      "capitulo": "cap_6",
+      "natureza": "dever",
+      "esfera": "justica",
+      "caput": "São deveres do/a assistente social:",
+      "alineas": [
+        { "letra": "a", "texto": "apresentar à justiça, quando convocado na qualidade de perito ou testemunha, as conclusões do seu laudo ou depoimento, sem extrapolar o âmbito da competência profissional e violar os princípios éticos contidos neste Código." },
+        { "letra": "b", "texto": "comparecer perante a autoridade competente, quando intimado/a a prestar depoimento, para declarar que está obrigado/a a guardar sigilo profissional nos termos deste Código e da Legislação em vigor.", "grave": true }
+      ]
+    },
+
+    "art_20": {
+      "num": "20",
+      "titulo": "titulo_3",
+      "capitulo": "cap_6",
+      "natureza": "vedacao",
+      "esfera": "justica",
+      "caput": "É vedado ao/à assistente social:",
+      "alineas": [
+        { "letra": "a", "texto": "depor como testemunha sobre situação sigilosa do/a usuário/a de que tenha conhecimento no exercício profissional, mesmo quando autorizado.", "grave": true },
+        { "letra": "b", "texto": "aceitar nomeação como perito e/ou atuar em perícia quando a situação não se caracterizar como área de sua competência ou de sua atribuição profissional, ou quando infringir os dispositivos legais relacionados a impedimentos ou suspeição.", "grave": true }
+      ]
+    },
+
+    "art_21": {
+      "num": "21",
+      "titulo": "titulo_4",
+      "natureza": "dever",
+      "esfera": "observancia",
+      "caput": "São deveres do/a assistente social:",
+      "alineas": [
+        { "letra": "a", "texto": "cumprir e fazer cumprir este Código." },
+        { "letra": "b", "texto": "denunciar ao Conselho Regional de Serviço Social, através de comunicação fundamentada, qualquer forma de exercício irregular da Profissão, infrações a princípios e diretrizes deste Código e da legislação profissional." },
+        { "letra": "c", "texto": "informar, esclarecer e orientar os/as estudantes, na docência ou supervisão, quanto aos princípios e normas contidas neste Código." }
+      ]
+    },
+
+    "art_22": {
+      "num": "22",
+      "titulo": "titulo_4",
+      "natureza": "infracao_disciplinar",
+      "esfera": "observancia",
+      "caput": "Constituem infrações disciplinares:",
+      "alineas": [
+        { "letra": "a", "texto": "exercer a Profissão quando impedido/a de fazê-lo, ou facilitar, por qualquer meio, o seu exercício ao/às não inscritos/as ou impedidos/as." },
+        { "letra": "b", "texto": "não cumprir, no prazo estabelecido, determinação emanada do órgão ou autoridade dos Conselhos, em matéria destes, depois de regularmente notificado/a." },
+        { "letra": "c", "texto": "deixar de pagar, regularmente, as anuidades e contribuições devidas ao Conselho Regional de Serviço Social a que esteja obrigado/a." },
+        { "letra": "d", "texto": "participar de instituição que, tendo por objeto o Serviço Social, não esteja inscrita no Conselho Regional." },
+        { "letra": "e", "texto": "fazer ou apresentar declaração, documento falso ou adulterado, perante o Conselho Regional ou Federal." }
+      ]
+    },
+
+    "art_23": {
+      "num": "23",
+      "titulo": "titulo_4",
+      "natureza": "norma",
+      "esfera": "penalidades",
+      "caput": "As infrações a este Código acarretarão penalidades, desde a multa à cassação do exercício profissional, na forma dos dispositivos legais e/ou regimentais.",
+      "alineas": []
+    },
+
+    "art_24": {
+      "num": "24",
+      "titulo": "titulo_4",
+      "natureza": "penalidade",
+      "esfera": "penalidades",
+      "caput": "As penalidades aplicáveis são as seguintes:",
+      "alineas": [
+        { "letra": "a", "texto": "multa.", "ordem": 1 },
+        { "letra": "b", "texto": "advertência reservada.", "ordem": 2 },
+        { "letra": "c", "texto": "advertência pública.", "ordem": 3 },
+        { "letra": "d", "texto": "suspensão do exercício profissional.", "ordem": 4 },
+        { "letra": "e", "texto": "cassação do registro profissional.", "ordem": 5 }
+      ],
+      "paragrafos": [
+        { "tipo": "parágrafo único", "texto": "Serão eliminados/as dos quadros dos CRESS aqueles/as que fizerem falsa prova dos requisitos exigidos nos Conselhos." }
+      ]
+    },
+
+    "art_25": {
+      "num": "25",
+      "titulo": "titulo_4",
+      "natureza": "norma",
+      "esfera": "penalidades",
+      "caput": "A pena de suspensão acarreta ao/à assistente social a interdição do exercício profissional em todo o território nacional, pelo prazo de 30 (trinta) dias a 2 (dois) anos.",
+      "nota": "Redação dada pela Resolução CFESS nº 333/96.",
+      "alineas": [],
+      "paragrafos": [
+        { "tipo": "parágrafo único", "texto": "A suspensão por falta de pagamento de anuidades e taxas só cessará com a satisfação do débito, podendo ser cassada a inscrição profissional após decorridos três anos da suspensão." }
+      ]
+    },
+
+    "art_26": {
+      "num": "26",
+      "titulo": "titulo_4",
+      "natureza": "norma",
+      "esfera": "penalidades",
+      "caput": "Serão considerados na aplicação das penas os antecedentes profissionais do/a infrator/a e as circunstâncias em que ocorreu a infração.",
+      "alineas": []
+    },
+
+    "art_27": {
+      "num": "27",
+      "titulo": "titulo_4",
+      "natureza": "norma",
+      "esfera": "penalidades",
+      "caput": "Salvo nos casos de gravidade manifesta, que exigem aplicação de penalidades mais rigorosas, a imposição das penas obedecerá à gradação estabelecida pelo artigo 24.",
+      "alineas": []
+    },
+
+    "art_28": {
+      "num": "28",
+      "titulo": "titulo_4",
+      "natureza": "norma",
+      "esfera": "penalidades",
+      "caput": "Para efeito da fixação da pena serão considerados especialmente graves as violações que digam respeito às seguintes disposições:",
+      "dispositivos_graves": [
+        "artigo 3º — alínea c",
+        "artigo 4º — alíneas a, b, c, g, i, j",
+        "artigo 5º — alíneas b, f",
+        "artigo 6º — alíneas a, b, c",
+        "artigo 8º — alínea b",
+        "artigo 9º — alíneas a, b, c",
+        "artigo 11 — alíneas b, c, d",
+        "artigo 13 — alínea b",
+        "artigo 14",
+        "artigo 16",
+        "artigo 17",
+        "parágrafo único do artigo 18",
+        "artigo 19 — alínea b",
+        "artigo 20 — alíneas a, b"
+      ],
+      "alineas": [],
+      "paragrafos": [
+        { "tipo": "parágrafo único", "texto": "As demais violações não previstas no caput, uma vez consideradas graves, autorizarão aplicação de penalidades mais severas, em conformidade com o artigo 26." }
+      ]
+    },
+
+    "art_29": {
+      "num": "29",
+      "titulo": "titulo_4",
+      "natureza": "norma",
+      "esfera": "penalidades",
+      "caput": "A advertência reservada, ressalvada a hipótese prevista no artigo 33, será confidencial, sendo que a advertência pública, suspensão e a cassação do exercício profissional serão efetivadas através de publicação em Diário Oficial e em outro órgão da imprensa, e afixado na sede do Conselho Regional onde estiver inserido/a o/a denunciado/a e na Delegacia Seccional do CRESS da jurisdição de seu domicílio.",
+      "alineas": []
+    },
+
+    "art_30": {
+      "num": "30",
+      "titulo": "titulo_4",
+      "natureza": "norma",
+      "esfera": "penalidades",
+      "caput": "Cumpre ao Conselho Regional a execução das decisões proferidas nos processos disciplinares.",
+      "alineas": []
+    },
+
+    "art_31": {
+      "num": "31",
+      "titulo": "titulo_4",
+      "natureza": "norma",
+      "esfera": "penalidades",
+      "caput": "Da imposição de qualquer penalidade caberá recurso com efeito suspensivo ao CFESS.",
+      "alineas": []
+    },
+
+    "art_32": {
+      "num": "32",
+      "titulo": "titulo_4",
+      "natureza": "norma",
+      "esfera": "penalidades",
+      "caput": "A punibilidade do assistente social, por falta sujeita a processo ético e disciplinar, prescreve em 5 (cinco) anos, contados da data da verificação do fato respectivo.",
+      "alineas": []
+    },
+
+    "art_33": {
+      "num": "33",
+      "titulo": "titulo_4",
+      "natureza": "norma",
+      "esfera": "penalidades",
+      "caput": "Na execução da pena de advertência reservada, não sendo encontrado o/a penalizado/a ou se este/a, após duas convocações, não comparecer no prazo fixado para receber a penalidade, será ela tornada pública.",
+      "alineas": [],
+      "paragrafos": [
+        { "tipo": "§ 1º", "texto": "A pena de multa, ainda que o/a penalizado/a compareça para tomar conhecimento da decisão, será publicada nos termos do artigo 29 deste Código, se não for devidamente quitada no prazo de 30 (trinta) dias, sem prejuízo da cobrança judicial." },
+        { "tipo": "§ 2º", "texto": "Em caso de cassação do exercício profissional, além dos editais e das comunicações feitas às autoridades competentes interessadas no assunto, proceder-se-á a apreensão da Carteira e Cédula de Identidade Profissional do/a infrator/a." }
+      ]
+    },
+
+    "art_34": {
+      "num": "34",
+      "titulo": "titulo_4",
+      "natureza": "norma",
+      "esfera": "penalidades",
+      "caput": "A pena de multa variará entre o mínimo correspondente ao valor de uma anuidade e o máximo do seu décuplo.",
+      "alineas": []
+    },
+
+    "art_35": {
+      "num": "35",
+      "titulo": "titulo_4",
+      "natureza": "norma",
+      "esfera": "penalidades",
+      "caput": "As dúvidas na observância deste Código e os casos omissos serão resolvidos pelos Conselhos Regionais de Serviço Social ad referendum do Conselho Federal de Serviço Social, a quem cabe firmar jurisprudência.",
+      "alineas": []
+    },
+
+    "art_36": {
+      "num": "36",
+      "titulo": "titulo_4",
+      "natureza": "norma",
+      "esfera": "vigencia",
+      "caput": "O presente Código entrará em vigor na data de sua publicação no Diário Oficial da União, revogando-se as disposições em contrário.",
+      "alineas": []
+    }
+  },
+
+  "esferas": {
+    "geral": "Direitos e responsabilidades gerais (Título II)",
+    "usuarios": "Relações com os/as usuários/as (Cap. I)",
+    "instituicoes_empregadoras": "Relações com as instituições empregadoras (Cap. II)",
+    "outros_profissionais": "Relações com assistentes sociais e outros/as profissionais (Cap. III)",
+    "entidades_categoria": "Relações com entidades da categoria e sociedade civil (Cap. IV)",
+    "sigilo": "Sigilo profissional (Cap. V)",
+    "justica": "Relações com a Justiça (Cap. VI)",
+    "observancia": "Observância e cumprimento (Título IV)",
+    "penalidades": "Penalidades e aplicação (Título IV)",
+    "conselhos": "Competência do CFESS e dos CRESS (Título I)",
+    "vigencia": "Vigência"
+  },
+
+  "numeros_chave": [
+    { "item": "Prazo da pena de suspensão", "valor": "30 dias a 2 anos", "fonte": "Código de Ética, art. 25" },
+    { "item": "Cassação por inadimplência após suspensão", "valor": "3 anos", "fonte": "Código de Ética, art. 25, parágrafo único" },
+    { "item": "Prescrição da punibilidade ético-disciplinar", "valor": "5 anos da verificação do fato", "fonte": "Código de Ética, art. 32" },
+    { "item": "Pena de multa", "valor": "de 1 anuidade até o décuplo (10x)", "fonte": "Código de Ética, art. 34" },
+    { "item": "Prazo para quitar multa antes da publicação", "valor": "30 dias", "fonte": "Código de Ética, art. 33, § 1º" },
+    { "item": "Convocações antes de tornar pública a advertência reservada", "valor": "2 convocações", "fonte": "Código de Ética, art. 33" },
+    { "item": "Multa aplicada pelos CRESS por infração à Lei 8.662", "valor": "1 a 5 vezes a anuidade vigente", "fonte": "Lei 8.662/93, art. 16, I" },
+    { "item": "Suspensão por descumprir o Código (Lei 8.662)", "valor": "1 a 2 anos", "fonte": "Lei 8.662/93, art. 16, II" },
+    { "item": "Reincidência na mesma infração em 2 anos", "valor": "multa elevada ao dobro", "fonte": "Lei 8.662/93, art. 16, § 2º" },
+    { "item": "Prazo para adequação ao uso da expressão Serviço Social", "valor": "90 dias", "fonte": "Lei 8.662/93, art. 15, parágrafo único" },
+    { "item": "Jornada de trabalho do assistente social", "valor": "30 horas semanais", "fonte": "Lei 8.662/93, art. 5º-A (incluído pela Lei 12.317/2010)" },
+    { "item": "Composição do CFESS e de cada CRESS", "valor": "9 membros efetivos e 9 suplentes", "fonte": "Lei 8.662/93, art. 20" },
+    { "item": "Mandato da diretoria CFESS/CRESS", "valor": "3 anos", "fonte": "Lei 8.662/93, art. 20" },
+    { "item": "Composição das delegacias seccionais", "valor": "3 membros efetivos e 3 suplentes", "fonte": "Lei 8.662/93, art. 20, parágrafo único" },
+    { "item": "Número de princípios fundamentais", "valor": "11", "fonte": "Código de Ética, Princípios Fundamentais" }
+  ],
+
+  "instancias": {
+    "cfess": {
+      "papel": "Tribunal Superior de Ética Profissional; órgão normativo de grau superior",
+      "funcoes": [
+        "zelar pela observância do Código e fiscalizar as ações dos CRESS (art. 1º, a)",
+        "introduzir alterações no Código em ação conjunta com os CRESS (art. 1º, b)",
+        "firmar jurisprudência na observância do Código e nos casos omissos (art. 1º, c)",
+        "julgar recursos com efeito suspensivo contra penalidades (art. 31)"
+      ],
+      "sede": "Distrito Federal (Lei 8.662/93, art. 11)"
+    },
+    "cress": {
+      "papel": "Tribunal Regional de Ética Profissional; órgão julgador de primeira instância",
+      "funcoes": [
+        "zelar pela observância do Código na sua jurisdição (art. 1º, parágrafo único)",
+        "funcionar como órgão julgador de primeira instância (art. 1º, parágrafo único)",
+        "executar as decisões proferidas nos processos disciplinares (art. 30)",
+        "resolver dúvidas e casos omissos ad referendum do CFESS (art. 35)"
+      ]
+    }
+  },
+
+  "pegadinhas": [
+    "O Código de Ética vigente é instituído pela <b>Resolução CFESS nº 273/93</b>. Não confunda com a <b>Resolução 493/2006</b>, que trata das condições éticas e técnicas do exercício profissional (ambiente de trabalho).",
+    "A ordem das penalidades do art. 24 é <b>multa → advertência reservada → advertência pública → suspensão → cassação</b>. A multa vem primeiro, não a advertência.",
+    "Suspensão é de <b>30 dias a 2 anos</b> pelo Código de Ética (art. 25), mas de <b>1 a 2 anos</b> pela Lei 8.662 (art. 16, II). Prazos diferentes em normas diferentes.",
+    "O CFESS é <b>Tribunal Superior</b> de Ética; o CRESS é <b>primeira instância</b> e Tribunal Regional. Recurso de penalidade vai ao CFESS <b>com efeito suspensivo</b> (art. 31).",
+    "É vedado depor como testemunha sobre situação sigilosa <b>mesmo quando autorizado</b> (art. 20, a). A autorização do usuário não libera o sigilo nesse caso.",
+    "Quebra de sigilo (art. 18) exige <b>gravidade</b> e prejuízo a interesses do usuário, de terceiros ou da coletividade, <b>envolvendo ou não fato delituoso</b>.",
+    "O princípio XI foi alterado pela Resolução 594/11: 'opção sexual' virou <b>'orientação sexual'</b> e foi incluída <b>'identidade de gênero'</b>.",
+    "Prescrição da punibilidade é de <b>5 anos</b> contados da <b>verificação do fato</b>, não da data do fato."
+  ],
+
+  "baralhos_sugeridos": [
+    { "id": "principios", "nome": "Os 11 princípios", "mecanica": "reconhecer o princípio pela ideia-chave ou ordenar de I a XI", "fonte": "principios_fundamentais" },
+    { "id": "direito_dever_vedacao", "nome": "Direito, dever ou vedação?", "mecanica": "carimbo de três vias sobre cada alínea", "fonte": "artigos[].natureza" },
+    { "id": "esferas", "nome": "Com quem é a relação?", "mecanica": "classificar a alínea na esfera correta (usuários, empregadora, colegas, entidades, sigilo, justiça)", "fonte": "artigos[].esfera" },
+    { "id": "graves", "nome": "Especialmente grave?", "mecanica": "decidir se a violação está no rol do art. 28", "fonte": "alineas[].grave" },
+    { "id": "penalidades", "nome": "Gradação das penas", "mecanica": "ordenar as cinco penalidades do art. 24", "fonte": "artigos.art_24.alineas[].ordem" },
+    { "id": "numeros", "nome": "Prazos e números", "mecanica": "acertar o valor exato de cada prazo ou quantidade", "fonte": "numeros_chave" }
+  ]
+}

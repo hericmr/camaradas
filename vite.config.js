@@ -7,7 +7,9 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: resolve(process.cwd(), 'index.html'),
-        carimbo: resolve(process.cwd(), 'jogos/carimbo-8662.html'),
+        carimboEtica: resolve(process.cwd(), 'jogos/carimbo-etica.html'),
+        carimbo8662: resolve(process.cwd(), 'jogos/carimbo-8662.html'),
+        carimboCompleto: resolve(process.cwd(), 'jogos/carimbo-completo.html'),
       },
     },
   },
