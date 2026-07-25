@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>senta a carimbada! · lei 8.662/93 (art. 4º × art. 5º)</title>
+<style>
+  :root{
+    --paper:#e9e5d8;
+    --paper-2:#f2efe6;
+    --ink:#1c1a17;
+    --ink-soft:#4a453d;
+    --line:#c4bda9;
+    --seal-green:#2f6b4f;   /* compartilhada */
+    --seal-green-ink:#1f4a37;
+    --seal-red:#a8322a;     /* privativa */
+    --seal-red-ink:#7a221c;
+    --gold:#a8843c;
+    --shadow:rgba(28,26,23,.18);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    background:var(--paper);
+    background-image:
+      radial-gradient(circle at 20% 10%, rgba(255,255,255,.35), transparent 40%),
+      radial-gradient(circle at 80% 90%, rgba(0,0,0,.05), transparent 45%);
+    color:var(--ink);
+    font-family:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+    line-height:1.5;
+    min-height:100vh;
+    padding:clamp(16px,4vw,48px) clamp(14px,4vw,24px) 64px;
+  }
+  body::before{
+    content:'';
+    position:fixed;
+    inset:0;
+    z-index:-1;
+    background-image:url('../background.png');
+    background-repeat:repeat;
+    background-size:256px 256px;
+    pointer-events:none;
+  }
+  .wrap{max-width:760px;margin:0 auto}
+
+  .back-link{
+    display:inline-block;
+    font-family:"Helvetica Neue",Arial,sans-serif;
+    font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--ink-soft);text-decoration:none;margin-bottom:14px;
+  }
+  .back-link:hover{color:var(--ink)}
+
+  /* ---- Cabeçalho ---- */
+  header{border-bottom:2px solid var(--ink);padding-bottom:18px;margin-bottom:8px}
+  .eyebrow{
+    font-family:"Helvetica Neue",Arial,sans-serif;
+    font-size:11px;letter-spacing:.32em;text-transform:uppercase;
+    color:var(--ink-soft);font-weight:700;
+  }
+  h1{
+    font-size:clamp(30px,7vw,52px);line-height:.98;letter-spacing:-.01em;
+    margin:.18em 0 .1em;font-weight:800;
+  }
+  .sub{font-size:14px;color:var(--ink-soft);font-family:"Helvetica Neue",Arial,sans-serif}
+
+  /* ---- Placar ---- */
+  .hud{
+    display:flex;flex-wrap:wrap;gap:10px;margin:22px 0 4px;
+    font-family:"Helvetica Neue",Arial,sans-serif;
+  }
+  .stat{
+    flex:1 1 90px;border:1px solid var(--line);background:var(--paper-2);
+    padding:9px 12px;border-radius:3px;min-width:78px;
+  }
+  .stat .k{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);font-weight:700}
+  .stat .v{font-size:22px;font-weight:800;font-variant-numeric:tabular-nums;line-height:1.1}
+  .stat.streak .v{color:var(--gold)}
+
+  /* ---- Modos ---- */
+  .tabs{display:flex;gap:0;margin:24px 0 20px;border:1px solid var(--ink);border-radius:4px;overflow:hidden}
+  .tab{
+    flex:1;background:transparent;border:none;cursor:pointer;
+    font-family:"Helvetica Neue",Arial,sans-serif;font-size:12px;font-weight:700;
+    letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);
+    padding:11px 6px;transition:background .15s,color .15s;
+  }
+  .tab + .tab{border-left:1px solid var(--ink)}
+  .tab[aria-selected="true"]{background:var(--ink);color:var(--paper-2)}
+
+  /* ---- Carta / Carimbo ---- */
+  .stage{position:relative;min-height:340px}
+  .card{
+    position:relative;background:var(--paper-2);
+    border:1px solid var(--line);border-radius:5px;
+    box-shadow:0 10px 30px -12px var(--shadow), 0 1px 0 #fff inset;
+    padding:26px 24px 22px;
+  }
+  .card::before{
+    content:"LEI 8.662/93";position:absolute;top:14px;right:16px;
+    font-family:"Helvetica Neue",Arial,sans-serif;font-size:9px;letter-spacing:.28em;
+    color:var(--line);font-weight:700;
+  }
+  .doc-label{
+    font-family:"Helvetica Neue",Arial,sans-serif;font-size:10px;
+    letter-spacing:.24em;text-transform:uppercase;color:var(--ink-soft);
+    font-weight:700;border-bottom:1px solid var(--line);padding-bottom:8px;margin-bottom:16px;
+  }
+  .activity{font-size:clamp(18px,4.4vw,23px);line-height:1.42;min-height:120px;letter-spacing:-.005em}
+  .qnum{color:var(--gold);font-weight:700}
+
+  .carimbador{
+    display:block;margin:14px auto 4px;max-width:130px;height:auto;
+    transition:transform .12s ease;
+  }
+  .carimbador.hit{transform:scale(1.08) rotate(-2deg)}
+
+  /* botões de julgamento */
+  .verdict{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:22px}
+  .stamp-btn{
+    cursor:pointer;border:2px solid;background:var(--paper-2);
+    border-radius:4px;padding:16px 10px;text-align:center;
+    font-family:"Helvetica Neue",Arial,sans-serif;transition:transform .08s,background .15s;
+  }
+  .stamp-btn:active{transform:translateY(1px) scale(.99)}
+  .stamp-btn .art{display:block;font-size:11px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;opacity:.7}
+  .stamp-btn .nat{display:block;font-size:17px;font-weight:800;letter-spacing:.02em;margin-top:3px}
+  .stamp-btn.green{border-color:var(--seal-green);color:var(--seal-green-ink)}
+  .stamp-btn.green:hover{background:rgba(47,107,79,.08)}
+  .stamp-btn.red{border-color:var(--seal-red);color:var(--seal-red-ink)}
+  .stamp-btn.red:hover{background:rgba(168,50,42,.08)}
+  .stamp-btn:disabled{cursor:default;opacity:.45}
+
+  /* selo estampado sobre a carta */
+  .seal{
+    position:absolute;top:50%;left:50%;
+    transform:translate(-50%,-50%) rotate(-14deg) scale(.4);
+    border:5px double currentColor;border-radius:8px;
+    padding:10px 20px;font-family:"Helvetica Neue",Arial,sans-serif;
+    font-size:26px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;
+    opacity:0;pointer-events:none;text-align:center;white-space:nowrap;
+  }
+  .seal.show{animation:stamp .45s cubic-bezier(.2,1.4,.4,1) forwards}
+  .seal.green{color:var(--seal-green)}
+  .seal.red{color:var(--seal-red)}
+  @keyframes stamp{
+    0%{opacity:0;transform:translate(-50%,-50%) rotate(-14deg) scale(1.8)}
+    60%{opacity:.95}
+    100%{opacity:.92;transform:translate(-50%,-50%) rotate(-14deg) scale(1)}
+  }
+
+  /* feedback / gabarito */
+  .feedback{
+    margin-top:18px;border-top:1px solid var(--line);padding-top:16px;
+    display:none;
+  }
+  .feedback.show{display:block;animation:fade .3s ease}
+  @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1}}
+  .verdict-line{font-family:"Helvetica Neue",Arial,sans-serif;font-weight:800;font-size:14px;letter-spacing:.04em;text-transform:uppercase;margin-bottom:8px}
+  .verdict-line.ok{color:var(--seal-green-ink)}
+  .verdict-line.no{color:var(--seal-red-ink)}
+  .cite{font-size:15px;line-height:1.5;color:var(--ink-soft)}
+  .cite b{color:var(--ink)}
+  .next{
+    margin-top:16px;width:100%;cursor:pointer;border:none;
+    background:var(--ink);color:var(--paper-2);
+    font-family:"Helvetica Neue",Arial,sans-serif;font-weight:700;font-size:13px;
+    letter-spacing:.12em;text-transform:uppercase;padding:13px;border-radius:4px;
+  }
+  .next:hover{background:#000}
+
+  /* ---- Estudo (tabela) ---- */
+  .study{display:none}
+  .study.show{display:block}
+  .pill-row{display:flex;gap:10px;margin-bottom:16px}
+  .pill{
+    flex:1;text-align:center;padding:10px;border-radius:4px;border:2px solid;
+    font-family:"Helvetica Neue",Arial,sans-serif;font-size:12px;font-weight:800;
+    letter-spacing:.04em;text-transform:uppercase;
+  }
+  .pill.g{border-color:var(--seal-green);color:var(--seal-green-ink);background:rgba(47,107,79,.06)}
+  .pill.r{border-color:var(--seal-red);color:var(--seal-red-ink);background:rgba(168,50,42,.06)}
+  details.inc{border:1px solid var(--line);border-radius:4px;margin-bottom:7px;background:var(--paper-2)}
+  details.inc summary{
+    list-style:none;cursor:pointer;padding:12px 14px;display:flex;align-items:center;gap:12px;
+    font-family:"Helvetica Neue",Arial,sans-serif;
+  }
+  details.inc summary::-webkit-details-marker{display:none}
+  .roman{
+    font-weight:800;font-size:13px;min-width:34px;padding:3px 0;text-align:center;border-radius:3px;
+    letter-spacing:.02em;
+  }
+  .roman.g{background:var(--seal-green);color:#fff}
+  .roman.r{background:var(--seal-red);color:#fff}
+  .roman.veto{background:var(--ink-soft);color:var(--paper-2)}
+  .sum-hint{font-size:13.5px;color:var(--ink-soft);font-weight:600}
+  details.inc[open] summary .sum-hint{color:var(--ink)}
+  .inc-body{padding:2px 16px 16px 60px;font-size:15.5px;line-height:1.55;color:var(--ink-soft)}
+  .traps{margin-top:26px;border:1px dashed var(--seal-red);border-radius:5px;padding:16px 18px;background:rgba(168,50,42,.04)}
+  .traps h3{font-family:"Helvetica Neue",Arial,sans-serif;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--seal-red-ink);margin-bottom:10px}
+  .traps li{margin:0 0 9px 18px;font-size:14.5px;line-height:1.5}
+
+  /* vitória */
+  .done{text-align:center;padding:40px 20px}
+  .done h2{font-size:30px;margin-bottom:6px}
+  .done .score-big{font-size:64px;font-weight:800;color:var(--gold);font-variant-numeric:tabular-nums;line-height:1}
+  .done p{color:var(--ink-soft);margin:12px 0 24px;font-family:"Helvetica Neue",Arial,sans-serif}
+  .done button{cursor:pointer;border:2px solid var(--ink);background:transparent;color:var(--ink);
+    font-family:"Helvetica Neue",Arial,sans-serif;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+    font-size:13px;padding:13px 26px;border-radius:4px}
+  .done button:hover{background:var(--ink);color:var(--paper-2)}
+
+  .foot{margin-top:34px;text-align:center;font-family:"Helvetica Neue",Arial,sans-serif;font-size:11px;color:var(--ink-soft);letter-spacing:.04em}
+
+  @media (prefers-reduced-motion: reduce){
+    .seal.show{animation:none;opacity:.92;transform:translate(-50%,-50%) rotate(-14deg) scale(1)}
+    .feedback.show{animation:none}
+    .carimbador{transition:none}
+  }
+  @media (max-width:420px){
+    .verdict{grid-template-columns:1fr}
+    .inc-body{padding-left:16px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back-link" href="../index.html">&larr; início</a>
+  <header>
+    <div class="eyebrow">Regulamentação da Profissão · Assistente Social</div>
+    <h1>senta a carimbada!</h1>
+    <div class="sub">Art. 4º competências (compartilhadas) × Art. 5º atribuições privativas (exclusivas)</div>
+  </header>
+
+  <div class="hud">
+    <div class="stat"><div class="k">Acertos</div><div class="v" id="hCorrect">0</div></div>
+    <div class="stat"><div class="k">Rodada</div><div class="v" id="hProg">0/0</div></div>
+    <div class="stat streak"><div class="k">Sequência</div><div class="v" id="hStreak">0</div></div>
+    <div class="stat"><div class="k">Recorde</div><div class="v" id="hBest">0</div></div>
+  </div>
+
+  <div class="tabs" role="tablist">
+    <button class="tab" id="tab-play" role="tab" aria-selected="true" onclick="setMode('play')">Julgar</button>
+    <button class="tab" id="tab-study" role="tab" aria-selected="false" onclick="setMode('study')">Estudar a tabela</button>
+  </div>
+
+  <!-- ===== MODO JOGO ===== -->
+  <section class="stage" id="playStage">
+    <div class="card" id="card">
+      <div class="doc-label" id="docLabel">Documento nº 1: classifique a atividade</div>
+      <div class="activity" id="activity">…</div>
+
+      <img class="carimbador" id="carimbador" src="../img/carimbo/01.png" alt="assistente social de carimbo em punho, pronto para julgar">
+
+      <div class="seal green" id="sealGreen">Art. 4º<br>Competência</div>
+      <div class="seal red" id="sealRed">Art. 5º<br>Privativa</div>
+
+      <div class="verdict">
+        <button class="stamp-btn green" id="btnGreen" onclick="judge('compartilhada')">
+          <span class="art">Art. 4º</span><span class="nat">Competência</span>
+        </button>
+        <button class="stamp-btn red" id="btnRed" onclick="judge('privativa')">
+          <span class="art">Art. 5º</span><span class="nat">Privativa</span>
+        </button>
+      </div>
+
+      <div class="feedback" id="feedback">
+        <div class="verdict-line" id="vLine"></div>
+        <div class="cite" id="cite"></div>
+        <button class="next" id="nextBtn" onclick="nextCard()">Próximo documento →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== MODO ESTUDO ===== -->
+  <section class="study" id="studyStage">
+    <div class="pill-row">
+      <div class="pill g">Art. 4º · Competências<br>compartilhadas</div>
+      <div class="pill r">Art. 5º · Atribuições<br>privativas</div>
+    </div>
+    <div id="studyList"></div>
+    <div class="traps">
+      <h3>⚠ Pegadinhas do IBAM</h3>
+      <ul id="trapList"></ul>
+    </div>
+  </section>
+
+  <div class="foot">Fonte: texto oficial CFESS · Lei nº 8.662, de 7 de junho de 1993</div>
+</div>
+
+<script>
+let DATA = null;
+
+/* ---------- monta o baralho ---------- */
+function buildDeck(){
+  const deck=[];
+  DATA.art_4.incisos.forEach(i=>{ if(!i.vetado) deck.push({art:"4º",num:i.num,natureza:"compartilhada",texto:i.texto}); });
+  DATA.art_5.incisos.forEach(i=>{ deck.push({art:"5º",num:i.num,natureza:"privativa",texto:i.texto}); });
+  return deck;
+}
+function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+
+let deck=[], idx=0, correct=0, streak=0, best=0, answered=false;
+
+const $=id=>document.getElementById(id);
+
+function startRound(){
+  deck=shuffle(buildDeck());
+  idx=0; correct=0; streak=0; answered=false;
+  renderCard(); updateHud();
+}
+
+function renderCard(){
+  answered=false;
+  const c=deck[idx];
+  $('card').innerHTML=cardTemplate();
+  bindCard();
+  $('docLabel').textContent=`Documento nº ${idx+1}: classifique a atividade`;
+  $('activity').innerHTML=`<span class="qnum">“</span>${c.texto}<span class="qnum">”</span>`;
+  updateHud();
+}
+
+function cardTemplate(){
+  return `
+    <div class="doc-label" id="docLabel"></div>
+    <div class="activity" id="activity"></div>
+    <img class="carimbador" id="carimbador" src="../img/carimbo/01.png" alt="assistente social de carimbo em punho, pronto para julgar">
+    <div class="seal green" id="sealGreen">Art. 4º<br>Competência</div>
+    <div class="seal red" id="sealRed">Art. 5º<br>Privativa</div>
+    <div class="verdict">
+      <button class="stamp-btn green" id="btnGreen"><span class="art">Art. 4º</span><span class="nat">Competência</span></button>
+      <button class="stamp-btn red" id="btnRed"><span class="art">Art. 5º</span><span class="nat">Privativa</span></button>
+    </div>
+    <div class="feedback" id="feedback">
+      <div class="verdict-line" id="vLine"></div>
+      <div class="cite" id="cite"></div>
+      <button class="next" id="nextBtn">Próximo documento →</button>
+    </div>`;
+}
+function bindCard(){
+  $('btnGreen').onclick=()=>judge('compartilhada');
+  $('btnRed').onclick=()=>judge('privativa');
+  $('nextBtn').onclick=nextCard;
+}
+
+function judge(choice){
+  if(answered) return;
+  answered=true;
+  const c=deck[idx];
+  const right = choice===c.natureza;
+  const isPriv = c.natureza==='privativa';
+
+  // estampa o selo correto
+  const seal = isPriv ? $('sealRed') : $('sealGreen');
+  seal.classList.add('show');
+
+  // bate o carimbo
+  const carimbador=$('carimbador');
+  carimbador.src='../img/carimbo/02.png';
+  carimbador.classList.add('hit');
+  setTimeout(()=>carimbador.classList.remove('hit'),150);
+
+  // desabilita botões
+  $('btnGreen').disabled=true; $('btnRed').disabled=true;
+
+  if(right){ correct++; streak++; if(streak>best){best=streak;} }
+  else { streak=0; }
+
+  const fb=$('feedback');
+  const vLine=$('vLine');
+  const cite=$('cite');
+  vLine.className='verdict-line '+(right?'ok':'no');
+  vLine.textContent = right ? '✓ Carimbo correto' : '✗ Carimbo errado';
+  cite.innerHTML =
+    `Art. <b>${c.art}</b>, inciso <b>${c.num}</b>: ${isPriv?'atribuição <b>privativa</b> (exclusiva do assistente social inscrito no CRESS).':'competência <b>compartilhada</b> (outros profissionais também podem atuar).'}`;
+  fb.classList.add('show');
+  updateHud();
+
+  if(idx>=deck.length-1){
+    $('nextBtn').textContent='Ver resultado →';
+  }
+}
+
+function nextCard(){
+  if(idx>=deck.length-1){ showDone(); return; }
+  idx++; renderCard();
+}
+
+function updateHud(){
+  $('hCorrect').textContent=correct;
+  $('hProg').textContent=`${Math.min(idx+ (answered?1:0),deck.length)}/${deck.length}`;
+  $('hStreak').textContent=streak;
+  $('hBest').textContent=best;
+}
+
+function showDone(){
+  const pct=Math.round(correct/deck.length*100);
+  let msg;
+  if(pct===100) msg="Gabaritou. Você domina a fronteira 4º × 5º.";
+  else if(pct>=80) msg="Sólido. Revise só os incisos que escaparam.";
+  else if(pct>=60) msg="Quase lá. Passe pela aba Estudar a tabela e volte.";
+  else msg="Vale reler a tabela antes de tentar de novo — foque nas pegadinhas.";
+  $('playStage').innerHTML=`
+    <div class="card"><div class="done">
+      <div class="score-big">${correct}/${deck.length}</div>
+      <h2>${pct}% de acerto</h2>
+      <p>${msg}${best>1?`<br>Melhor sequência: ${best} seguidos.`:''}</p>
+      <button onclick="restart()">Nova rodada</button>
+    </div></div>`;
+}
+function restart(){
+  $('playStage').innerHTML=`<div class="card" id="card"></div>`;
+  startRound();
+}
+
+/* ---------- modo estudo ---------- */
+function renderStudy(){
+  const list=$('studyList');
+
+  let h4=`<div style="margin:4px 0 12px;font-family:'Helvetica Neue',Arial,sans-serif;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--seal-green-ink);font-weight:800">Art. 4º, ${DATA.art_4.titulo}</div>`;
+  DATA.art_4.incisos.forEach(i=>{
+    const roman=i.vetado?`<span class="roman veto">${i.num}</span>`:`<span class="roman g">${i.num}</span>`;
+    const hint=i.vetado?'inciso vetado, não existe':firstWords(i.texto);
+    h4+=`<details class="inc"><summary>${roman}<span class="sum-hint">${hint}</span></summary><div class="inc-body">${i.texto}</div></details>`;
+  });
+
+  let h5=`<div style="margin:22px 0 12px;font-family:'Helvetica Neue',Arial,sans-serif;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--seal-red-ink);font-weight:800">Art. 5º, ${DATA.art_5.titulo}</div>`;
+  DATA.art_5.incisos.forEach(i=>{
+    const roman=`<span class="roman r">${i.num}</span>`;
+    h5+=`<details class="inc"><summary>${roman}<span class="sum-hint">${firstWords(i.texto)}</span></summary><div class="inc-body">${i.texto}</div></details>`;
+  });
+
+  list.innerHTML=h4+h5;
+
+  const tl=$('trapList');
+  tl.innerHTML=DATA.pegadinhas.map(p=>`<li>${p}</li>`).join('');
+}
+function firstWords(t){
+  const clean=t.replace(/\.$/,'');
+  const w=clean.split(' ').slice(0,6).join(' ');
+  return w + (clean.split(' ').length>6?'…':'');
+}
+
+/* ---------- navegação de modo ---------- */
+function setMode(m){
+  const play=m==='play';
+  $('playStage').style.display=play?'block':'none';
+  $('studyStage').classList.toggle('show',!play);
+  $('tab-play').setAttribute('aria-selected',play);
+  $('tab-study').setAttribute('aria-selected',!play);
+  if(!play) renderStudy();
+}
+
+/* ---------- init ---------- */
+fetch('../data/lei8662.json')
+  .then(r=>r.json())
+  .then(json=>{
+    DATA={art_4:json.artigos.art_4,art_5:json.artigos.art_5,pegadinhas:json.pegadinhas};
+    startRound();
+    renderStudy();
+  })
+  .catch(()=>{ $('activity').textContent='não foi possível carregar as questões.'; });
+</script>
+</body>
+</html>

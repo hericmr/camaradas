@@ -1,0 +1,52 @@
+{
+  "lei": "8.662/1993",
+  "ementa": "Dispõe sobre a profissão de Assistente Social e dá outras providências.",
+  "fonte": "Texto oficial CFESS (legislacao_lei_8662.pdf)",
+  "artigos": {
+    "art_4": {
+      "titulo": "Competências do Assistente Social",
+      "natureza": "compartilhada",
+      "descricao": "Atividades que o assistente social pode exercer, mas que não são exclusivas — outros profissionais também podem atuar nelas. Voltadas para fora: população, políticas sociais, movimentos sociais.",
+      "incisos": [
+        { "num": "I", "texto": "Elaborar, implementar, executar e avaliar políticas sociais junto a órgãos da administração pública, direta ou indireta, empresas, entidades e organizações populares." },
+        { "num": "II", "texto": "Elaborar, coordenar, executar e avaliar planos, programas e projetos que sejam do âmbito de atuação do Serviço Social com participação da sociedade civil." },
+        { "num": "III", "texto": "Encaminhar providências e prestar orientação social a indivíduos, grupos e à população." },
+        { "num": "IV", "texto": "(VETADO)", "vetado": true },
+        { "num": "V", "texto": "Orientar indivíduos e grupos de diferentes segmentos sociais no sentido de identificar recursos e de fazer uso dos mesmos no atendimento e na defesa de seus direitos." },
+        { "num": "VI", "texto": "Planejar, organizar e administrar benefícios e Serviços Sociais." },
+        { "num": "VII", "texto": "Planejar, executar e avaliar pesquisas que possam contribuir para a análise da realidade social e para subsidiar ações profissionais." },
+        { "num": "VIII", "texto": "Prestar assessoria e consultoria a órgãos da administração pública direta e indireta, empresas privadas e outras entidades, com relação às matérias relacionadas no inciso II." },
+        { "num": "IX", "texto": "Prestar assessoria e apoio aos movimentos sociais em matéria relacionada às políticas sociais, no exercício e na defesa dos direitos civis, políticos e sociais da coletividade." },
+        { "num": "X", "texto": "Planejamento, organização e administração de Serviços Sociais e de Unidade de Serviço Social." },
+        { "num": "XI", "texto": "Realizar estudos socioeconômicos com os usuários para fins de benefícios e serviços sociais junto a órgãos da administração pública direta e indireta, empresas privadas e outras entidades." }
+      ]
+    },
+    "art_5": {
+      "titulo": "Atribuições privativas do Assistente Social",
+      "natureza": "privativa",
+      "descricao": "Atividades exclusivas do assistente social habilitado e inscrito no CRESS. Voltadas para dentro da profissão: coordenar/dirigir Serviço Social, periciar, formar, fiscalizar.",
+      "incisos": [
+        { "num": "I", "texto": "Coordenar, elaborar, executar, supervisionar e avaliar estudos, pesquisas, planos, programas e projetos na área de Serviço Social." },
+        { "num": "II", "texto": "Planejar, organizar e administrar programas e projetos em Unidade de Serviço Social." },
+        { "num": "III", "texto": "Assessoria e consultoria a órgãos da Administração Pública direta e indireta, empresas privadas e outras entidades, em matéria de Serviço Social." },
+        { "num": "IV", "texto": "Realizar vistorias, perícias técnicas, laudos periciais, informações e pareceres sobre a matéria de Serviço Social." },
+        { "num": "V", "texto": "Assumir, no magistério de Serviço Social tanto a nível de graduação como pós-graduação, disciplinas e funções que exijam conhecimentos próprios e adquiridos em curso de formação regular." },
+        { "num": "VI", "texto": "Treinamento, avaliação e supervisão direta de estagiários de Serviço Social." },
+        { "num": "VII", "texto": "Dirigir e coordenar Unidades de Ensino e Cursos de Serviço Social, de graduação e pós-graduação." },
+        { "num": "VIII", "texto": "Dirigir e coordenar associações, núcleos, centros de estudo e de pesquisa em Serviço Social." },
+        { "num": "IX", "texto": "Elaborar provas, presidir e compor bancas de exames e comissões julgadoras de concursos ou outras formas de seleção para Assistentes Sociais, ou onde sejam aferidos conhecimentos inerentes ao Serviço Social." },
+        { "num": "X", "texto": "Coordenar seminários, encontros, congressos e eventos assemelhados sobre assuntos de Serviço Social." },
+        { "num": "XI", "texto": "Fiscalizar o exercício profissional através dos Conselhos Federal e Regionais." },
+        { "num": "XII", "texto": "Dirigir serviços técnicos de Serviço Social em entidades públicas ou privadas." },
+        { "num": "XIII", "texto": "Ocupar cargos e funções de direção e fiscalização da gestão financeira em órgãos e entidades representativas da categoria profissional." }
+      ]
+    }
+  },
+  "pegadinhas": [
+    "O inciso IV do art. 4º é VETADO — não existe. Qualquer texto atribuído a ele está errado.",
+    "Vistorias, perícias, laudos e pareceres são PRIVATIVOS (art. 5º, IV). Se aparecerem como competência do art. 4º, a questão está errada.",
+    "Estudo socioeconômico (art. 4º, XI) é COMPARTILHADO; perícia/laudo (art. 5º, IV) é PRIVATIVO. Mesma família, artigos diferentes.",
+    "Assessoria/consultoria aparece nos dois: art. 4º, VIII (competência, ligada às políticas do inciso II) e art. 5º, III (privativa, 'em matéria de Serviço Social').",
+    "Regra de bolso: se a atividade só faz sentido feita por quem é do Serviço Social (dirigir Unidade, formar, periciar, fiscalizar), é PRIVATIVA."
+  ]
+}
