@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portes de município — PNAS/2004</title>
+<style>
+  :root{
+    --ink:#101820;
+    --paper:#E8E4DC;
+    --paper-2:#DDD8CE;
+    --rule:#B9B2A4;
+    --p1:#2E5E4E;
+    --p2:#4C8C6B;
+    --md:#C9A227;
+    --gd:#C4622D;
+    --mt:#8C2F39;
+    --ok:#2E5E4E;
+    --no:#8C2F39;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+    line-height:1.5;
+    padding:clamp(16px,4vw,48px);
+    background-image:
+      linear-gradient(var(--paper-2) 1px,transparent 1px),
+      linear-gradient(90deg,var(--paper-2) 1px,transparent 1px);
+    background-size:32px 32px;
+  }
+  .wrap{max-width:860px;margin:0 auto}
+
+  header{border-bottom:3px solid var(--ink);padding-bottom:18px;margin-bottom:32px}
+  .eyebrow{
+    font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+    font-size:11px;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--gd);margin-bottom:10px;
+  }
+  h1{font-size:clamp(30px,6vw,50px);line-height:1.02;font-weight:400;letter-spacing:-.02em}
+  h1 em{font-style:italic;color:var(--p1)}
+  .sub{margin-top:12px;font-size:15px;max-width:52ch;color:#3d4650}
+
+  nav{display:flex;gap:6px;margin:28px 0;flex-wrap:wrap}
+  nav button{
+    font-family:ui-monospace,Menlo,Consolas,monospace;
+    font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+    background:none;border:1.5px solid var(--rule);color:#5a6068;
+    padding:9px 15px;cursor:pointer;transition:.15s;border-radius:2px;
+  }
+  nav button:hover{border-color:var(--ink);color:var(--ink)}
+  nav button[aria-selected="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+  nav button:focus-visible,.opt:focus-visible,.ctl:focus-visible{outline:2px solid var(--gd);outline-offset:2px}
+
+  .panel{display:none}
+  .panel.on{display:block;animation:fade .3s ease}
+  @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+  /* ---- ESCALA ---- */
+  .scale{display:flex;flex-direction:column;gap:2px;margin-bottom:26px}
+  .bar{
+    position:relative;display:grid;
+    grid-template-columns:minmax(120px,1.1fr) 1.4fr minmax(84px,.8fr);
+    gap:12px;align-items:center;
+    padding:15px 16px;background:#F2EFE9;
+    border-left:7px solid var(--c);cursor:pointer;transition:.18s;
+  }
+  .bar:hover{background:#fff;transform:translateX(3px)}
+  .bar .nm{font-size:17px;font-weight:600}
+  .bar .rg{
+    font-family:ui-monospace,Menlo,Consolas,monospace;
+    font-size:14px;font-weight:700;color:var(--c);letter-spacing:-.01em;
+  }
+  .bar .fm{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px;color:#6a7078;text-align:right}
+  .bar .track{position:absolute;left:0;bottom:0;height:3px;background:var(--c);opacity:.55;width:var(--w)}
+  .bar.blur .rg{filter:blur(7px);transition:filter .18s}
+  .bar.blur:hover .rg{filter:none}
+
+  .toggle{display:flex;gap:8px;align-items:center;margin-bottom:18px;flex-wrap:wrap}
+  .ctl{
+    font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px;
+    letter-spacing:.1em;text-transform:uppercase;
+    background:none;border:1.5px solid var(--rule);color:#5a6068;
+    padding:8px 14px;cursor:pointer;border-radius:2px;transition:.15s;
+  }
+  .ctl:hover{border-color:var(--ink);color:var(--ink)}
+  .ctl.on{background:var(--gd);border-color:var(--gd);color:#fff}
+
+  .note{
+    border-left:3px solid var(--md);background:#F2EFE9;
+    padding:14px 18px;font-size:14px;margin-top:22px;
+  }
+  .note b{color:var(--gd)}
+
+  /* ---- QUIZ ---- */
+  .q{background:#F2EFE9;border:1.5px solid var(--rule);padding:22px;border-radius:3px}
+  .qn{
+    font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px;
+    letter-spacing:.18em;text-transform:uppercase;color:var(--gd);margin-bottom:12px;
+  }
+  .qt{font-size:21px;margin-bottom:20px;line-height:1.35}
+  .qt code{
+    font-family:ui-monospace,Menlo,Consolas,monospace;
+    background:var(--paper-2);padding:2px 7px;border-radius:2px;font-size:.9em;
+  }
+  .opts{display:flex;flex-direction:column;gap:8px}
+  .opt{
+    text-align:left;background:#fff;border:1.5px solid var(--rule);
+    padding:13px 16px;font-size:15px;cursor:pointer;
+    font-family:inherit;color:var(--ink);transition:.13s;border-radius:2px;
+  }
+  .opt:hover:not(:disabled){border-color:var(--ink);transform:translateX(3px)}
+  .opt:disabled{cursor:default}
+  .opt.right{border-color:var(--ok);background:#E6EFE9;font-weight:600}
+  .opt.wrong{border-color:var(--no);background:#F4E7E8}
+  .fb{margin-top:16px;padding:14px 16px;font-size:14px;display:none;border-left:3px solid}
+  .fb.on{display:block}
+  .fb.y{border-color:var(--ok);background:#E6EFE9}
+  .fb.n{border-color:var(--no);background:#F4E7E8}
+  .score{
+    font-family:ui-monospace,Menlo,Consolas,monospace;font-size:12px;
+    color:#6a7078;margin-top:18px;display:flex;justify-content:space-between;align-items:center;
+  }
+
+  /* ---- TABELA ---- */
+  table{width:100%;border-collapse:collapse;font-size:14px;background:#F2EFE9}
+  th,td{padding:12px 14px;text-align:left;border-bottom:1px solid var(--rule)}
+  th{
+    font-family:ui-monospace,Menlo,Consolas,monospace;font-size:10px;
+    letter-spacing:.14em;text-transform:uppercase;color:#5a6068;
+    border-bottom:2px solid var(--ink);
+  }
+  td:nth-child(2),td:nth-child(3){font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px}
+  tr td:first-child{font-weight:600;border-left:5px solid var(--c)}
+
+  footer{
+    margin-top:40px;padding-top:18px;border-top:1px solid var(--rule);
+    font-size:12px;color:#6a7078;
+  }
+  footer a{color:var(--p1)}
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+  @media(max-width:560px){
+    .bar{grid-template-columns:1fr auto;gap:4px 10px}
+    .bar .fm{grid-column:1/-1;text-align:left}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="eyebrow">PNAS 2004 · Assistência Social · Território</div>
+  <h1>Cinco cortes na <em>escala urbana</em></h1>
+  <p class="sub">A Política Nacional de Assistência Social divide os municípios brasileiros por porte populacional. Os cortes definem que rede de proteção cada território precisa — e caem em prova com os números trocados.</p>
+</header>
+
+<nav role="tablist">
+  <button role="tab" aria-selected="true" data-p="escala">Escala</button>
+  <button role="tab" aria-selected="false" data-p="quiz">Treinar</button>
+  <button role="tab" aria-selected="false" data-p="tabela">Tabela</button>
+</nav>
+
+<!-- ESCALA -->
+<section class="panel on" id="escala">
+  <div class="toggle">
+    <button class="ctl" id="hide">Ocultar números</button>
+    <span style="font-size:12px;color:#6a7078">passe o mouse sobre a faixa para revelar</span>
+  </div>
+  <div class="scale" id="scale"></div>
+  <div class="note">
+    <b>Regra dos dobros.</b> Os cortes seguem uma progressão fácil de guardar: <b>20 mil → 50 mil → 100 mil → 900 mil</b>. Só quatro números separam os cinco portes. O único que foge do padrão é o último: metrópole começa em <b>900 mil</b>, não em 1 milhão — e é exatamente aí que as bancas armam a pegadinha.
+  </div>
+</section>
+
+<!-- QUIZ -->
+<section class="panel" id="quiz">
+  <div class="q">
+    <div class="qn" id="qn">Questão 1</div>
+    <div class="qt" id="qt"></div>
+    <div class="opts" id="opts"></div>
+    <div class="fb" id="fb"></div>
+    <div class="score">
+      <span id="sc">0 acertos</span>
+      <button class="ctl" id="next" style="display:none">Próxima →</button>
+    </div>
+  </div>
+</section>
+
+<!-- TABELA -->
+<section class="panel" id="tabela">
+  <table>
+    <thead><tr><th>Porte</th><th>População</th><th>Famílias (média)</th><th>Rede de proteção</th></tr></thead>
+    <tbody id="tb"></tbody>
+  </table>
+  <div class="note">
+    <b>Por que os cortes existem.</b> O porte não é estatística solta: define a rede esperada. Pequeno Porte I precisa de rede básica simplificada e referencia a proteção especial em outro município ou consórcio. Só a partir do médio porte se espera estrutura própria de média e alta complexidade.
+  </div>
+</section>
+
+<footer>
+  Fonte: PNAS/2004 (MDS), item sobre divisão dos municípios por porte populacional.
+  <br>Conferir sempre o gabarito oficial da banca: alguns editais adotam o corte de 1 milhão para metrópole, divergindo da literalidade da norma.
+</footer>
+
+</div>
+
+<script>
+const D=[
+ {n:"Pequeno Porte I",  r:"até 20.000",           f:"até 5 mil",     w:8,  c:"var(--p1)", rede:"Rede básica simplificada; PSE por referência regional"},
+ {n:"Pequeno Porte II", r:"20.001 – 50.000",      f:"5 a 10 mil",    w:16, c:"var(--p2)", rede:"Rede básica própria; PSE ainda referenciada"},
+ {n:"Médio Porte",      r:"50.001 – 100.000",     f:"10 a 25 mil",   w:30, c:"var(--md)", rede:"CRAS próprio; início de média complexidade"},
+ {n:"Grande Porte",     r:"100.001 – 900.000",    f:"25 a 250 mil",  w:62, c:"var(--gd)", rede:"Rede completa: PSB e PSE de média e alta complexidade"},
+ {n:"Metrópole",        r:"acima de 900.000",     f:"mais de 250 mil",w:100,c:"var(--mt)", rede:"Rede complexa e territorializada; alta densidade de demandas"}
+];
+
+// escala
+const sc=document.getElementById('scale');
+D.forEach(d=>{
+  const b=document.createElement('div');
+  b.className='bar';
+  b.style.setProperty('--c',d.c);
+  b.style.setProperty('--w',d.w+'%');
+  b.innerHTML=`<div class="nm">${d.n}</div><div class="rg">${d.r}</div><div class="fm">${d.f} famílias</div><div class="track"></div>`;
+  sc.appendChild(b);
+});
+
+document.getElementById('hide').addEventListener('click',e=>{
+  const on=sc.querySelector('.bar').classList.contains('blur');
+  sc.querySelectorAll('.bar').forEach(b=>b.classList.toggle('blur',!on));
+  e.target.classList.toggle('on',!on);
+  e.target.textContent=on?'Ocultar números':'Mostrar números';
+});
+
+// tabela
+document.getElementById('tb').innerHTML=D.map(d=>
+  `<tr><td style="--c:${d.c}">${d.n}</td><td>${d.r}</td><td>${d.f}</td><td style="font-size:13px">${d.rede}</td></tr>`
+).join('');
+
+// quiz
+const Q=[
+ {t:"Município com <code>62.400</code> habitantes. Qual o porte?",o:["Pequeno Porte II","Médio Porte","Grande Porte"],a:1,e:"Médio porte vai de 50.001 a 100.000 habitantes."},
+ {t:"A partir de quantos habitantes um município é classificado como <b>metrópole</b>?",o:["Acima de 500.000","Acima de 900.000","Acima de 1.000.000"],a:1,e:"A PNAS fixa o corte em 900.000 — não em 1 milhão. É a pegadinha mais frequente do tema."},
+ {t:"Município de <code>18.700</code> habitantes. Qual o porte?",o:["Pequeno Porte I","Pequeno Porte II","Médio Porte"],a:0,e:"Pequeno Porte I é até 20.000 habitantes."},
+ {t:"Qual a faixa correta do <b>Grande Porte</b>?",o:["100.001 a 500.000","100.001 a 900.000","50.001 a 900.000"],a:1,e:"Grande porte: de 100.001 a 900.000 habitantes."},
+ {t:"Município com <code>50.000</code> habitantes exatos. Qual o porte?",o:["Pequeno Porte II","Médio Porte"],a:0,e:"Pequeno Porte II vai até 50.000. O médio começa em 50.001 — atenção ao limite exato."},
+ {t:"Quantas famílias, em média, tem um município de <b>Médio Porte</b>?",o:["5 a 10 mil","10 a 25 mil","25 a 250 mil"],a:1,e:"Médio porte: cerca de 10 a 25 mil famílias."},
+ {t:"Município de <code>904.000</code> habitantes. Qual o porte?",o:["Grande Porte","Metrópole"],a:1,e:"Passou de 900.000: é metrópole. Grande porte termina exatamente em 900.000."},
+ {t:"Qual a faixa do <b>Pequeno Porte II</b>?",o:["até 20.000","20.001 a 50.000","20.001 a 100.000"],a:1,e:"Pequeno Porte II: de 20.001 a 50.000 habitantes."},
+ {t:"Quantos portes populacionais a PNAS/2004 estabelece?",o:["Três","Quatro","Cinco"],a:2,e:"Cinco: Pequeno I, Pequeno II, Médio, Grande e Metrópole."},
+ {t:"Município com <code>100.000</code> habitantes exatos. Qual o porte?",o:["Médio Porte","Grande Porte"],a:0,e:"Médio porte vai até 100.000. Grande porte começa em 100.001."}
+];
+
+let i=0,acertos=0,ordem=[...Q.keys()].sort(()=>Math.random()-.5);
+const qn=document.getElementById('qn'),qt=document.getElementById('qt'),
+      op=document.getElementById('opts'),fb=document.getElementById('fb'),
+      scEl=document.getElementById('sc'),nx=document.getElementById('next');
+
+function render(){
+  const q=Q[ordem[i]];
+  qn.textContent=`Questão ${i+1} de ${Q.length}`;
+  qt.innerHTML=q.t;
+  fb.className='fb';nx.style.display='none';op.innerHTML='';
+  q.o.forEach((txt,k)=>{
+    const b=document.createElement('button');
+    b.className='opt';b.textContent=txt;
+    b.onclick=()=>responder(k,q,b);
+    op.appendChild(b);
+  });
+}
+function responder(k,q,btn){
+  const bs=[...op.children];
+  bs.forEach(b=>b.disabled=true);
+  bs[q.a].classList.add('right');
+  if(k===q.a){acertos++;fb.className='fb on y';fb.innerHTML='<b>Certo.</b> '+q.e;}
+  else{btn.classList.add('wrong');fb.className='fb on n';fb.innerHTML='<b>Não é essa.</b> '+q.e;}
+  scEl.textContent=`${acertos} acerto${acertos===1?'':'s'} em ${i+1}`;
+  nx.style.display='inline-block';
+  nx.textContent = i<Q.length-1 ? 'Próxima →' : 'Recomeçar';
+}
+nx.onclick=()=>{
+  if(i<Q.length-1){i++;render();}
+  else{i=0;acertos=0;ordem=[...Q.keys()].sort(()=>Math.random()-.5);scEl.textContent='0 acertos';render();}
+};
+render();
+
+// abas
+document.querySelectorAll('nav button').forEach(b=>{
+  b.onclick=()=>{
+    document.querySelectorAll('nav button').forEach(x=>x.setAttribute('aria-selected','false'));
+    b.setAttribute('aria-selected','true');
+    document.querySelectorAll('.panel').forEach(p=>p.classList.remove('on'));
+    document.getElementById(b.dataset.p).classList.add('on');
+  };
+});
+</script>
+</body>
+</html>

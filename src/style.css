@@ -219,6 +219,81 @@ body {
   height: auto;
 }
 
+.progress-section {
+  border-top: 1px solid var(--gray-200);
+  padding-top: 1.5rem;
+}
+
+.error-bank-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  background: var(--gray-50);
+  border: 1px solid var(--gray-200);
+  border-radius: 0.5rem;
+  padding: 0.75rem 1rem;
+  font-size: 0.85rem;
+  color: var(--text-gray);
+  margin-bottom: 1rem;
+}
+
+.history-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.history-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.8rem;
+  color: var(--text-gray);
+  padding: 0.4rem 0;
+  border-bottom: 1px dashed var(--gray-200);
+}
+
+.history-item:last-child {
+  border-bottom: none;
+}
+
+.history-date {
+  font-family: monospace;
+  color: var(--text-light);
+  min-width: 5.5rem;
+}
+
+.history-exam {
+  flex: 1;
+}
+
+.history-score {
+  font-weight: 700;
+  color: var(--text-dark);
+}
+
+.history-empty {
+  font-size: 0.85rem;
+  color: var(--text-light);
+}
+
+.btn-sm {
+  padding: 0.35rem 0.75rem;
+  font-size: 0.8rem;
+}
+
+.btn-link {
+  background: none;
+  border: none;
+  color: var(--primary-blue-hover);
+  cursor: pointer;
+  margin-top: 0.5rem;
+  padding: 0;
+  font-weight: 600;
+}
+.btn-link:hover { text-decoration: underline; }
+
 .study-links {
   border-top: 1px solid var(--gray-200);
   padding-top: 1.5rem;

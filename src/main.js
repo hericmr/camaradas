@@ -1,5 +1,6 @@
 import './style.css';
 import { SimuladoEngine } from './engine/SimuladoEngine';
+import * as Storage from './engine/Storage';
 import ibamData from './data/ibam_provas.json';
 
 const examKeys = Object.keys(ibamData);
@@ -11,6 +12,7 @@ let engine = null;
 let currentQuestionIndex = 0;
 let timerInterval = null;
 let hasTimerLimit = true;
+let currentMode = 'prova';
 
 const screens = {
   start: document.getElementById('start-screen'),
@@ -23,6 +25,11 @@ const elHeader = document.querySelector('.app-header');
 const btnStart = document.getElementById('btn-start');
 const elModeToggle = document.getElementById('mode-toggle');
 const elExamSelect = document.getElementById('exam-select');
+
+const elErrorBankCount = document.getElementById('error-bank-count');
+const btnPracticeErrors = document.getElementById('btn-practice-errors');
+const elHistoryList = document.getElementById('history-list');
+const btnClearHistory = document.getElementById('btn-clear-history');
 
 const elTimer = document.getElementById('timer');
 const btnFinish = document.getElementById('btn-finish');
@@ -62,20 +69,60 @@ function selectExam(key) {
 }
 
 function init() {
+  if (!examKeys.includes(examKey)) {
+    examKey = examKeys[0];
+  }
   populateExamSelect();
   selectExam(examKey);
   elModeToggle.checked = false;
   showScreen('start');
+  renderProgressSection();
 
   elExamSelect.addEventListener('change', () => selectExam(elExamSelect.value));
-  btnStart.addEventListener('click', startExam);
+  btnStart.addEventListener('click', () => startExam());
   btnFinish.addEventListener('click', () => finishExam(false));
   btnPrev.addEventListener('click', () => navigateTo(currentQuestionIndex - 1));
   btnCheck.addEventListener('click', checkCurrentQuestion);
   btnNext.addEventListener('click', () => navigateTo(currentQuestionIndex + 1));
+  btnPracticeErrors.addEventListener('click', startErrorPractice);
+  btnClearHistory.addEventListener('click', () => {
+    if (!confirm('limpar todo o histórico?')) return;
+    Storage.clearHistory();
+    renderProgressSection();
+  });
 
   document.getElementById('btn-restart').addEventListener('click', () => {
     init();
+  });
+}
+
+function renderProgressSection() {
+  const bank = Storage.getErrorBankList();
+  elErrorBankCount.textContent = `${bank.length} questões`;
+  btnPracticeErrors.disabled = bank.length === 0;
+
+  const history = Storage.getHistory();
+  elHistoryList.innerHTML = '';
+
+  if (history.length === 0) {
+    elHistoryList.innerHTML = '<p class="history-empty">nenhuma prova feita ainda</p>';
+    btnClearHistory.classList.add('hidden');
+    return;
+  }
+
+  btnClearHistory.classList.remove('hidden');
+  history.slice(0, 5).forEach((attempt) => {
+    const div = document.createElement('div');
+    div.className = 'history-item';
+    const date = new Date(attempt.date);
+    const dateStr = date.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit' })
+      + ' ' + date.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
+    div.innerHTML = `
+      <span class="history-date">${dateStr}</span>
+      <span class="history-exam">${attempt.examKey}</span>
+      <span class="history-score">${Math.round(attempt.score.percentage)}%</span>
+    `;
+    elHistoryList.appendChild(div);
   });
 }
 
@@ -113,26 +160,35 @@ function updateTimerDisplay() {
   }
 }
 
-function startExam() {
-  hasTimerLimit = !elModeToggle.checked;
-  
+function startExam({ forcedPractice = false } = {}) {
+  hasTimerLimit = forcedPractice ? false : !elModeToggle.checked;
+  currentMode = forcedPractice ? 'erros' : (hasTimerLimit ? 'prova' : 'treino');
+
   if (hasTimerLimit) {
     elTimer.style.color = '#b45309'; // warning
   }
-  
+
   btnFinish.classList.remove('hidden');
 
   engine = new SimuladoEngine(examQuestions);
   engine.start();
   currentQuestionIndex = 0;
-  
+
   updateTimerDisplay();
   timerInterval = setInterval(updateTimerDisplay, 1000);
-  
+
   buildNavigationGrid();
   renderQuestion(currentQuestionIndex);
-  
+
   showScreen('exam');
+}
+
+function startErrorPractice() {
+  const practiceSet = Storage.buildErrorPracticeSet();
+  if (practiceSet.length === 0) return;
+  examKey = 'caderno de erros';
+  examQuestions = practiceSet;
+  startExam({ forcedPractice: true });
 }
 
 function buildNavigationGrid() {
@@ -250,16 +306,28 @@ function finishExam(isAuto = false) {
   clearInterval(timerInterval);
   engine.finish();
   const score = engine.getScore();
+  const breakdown = engine.getBreakdownByArea();
+  const review = engine.getReview();
+
+  Storage.recordAttempt({
+    examKey,
+    mode: currentMode,
+    score,
+    breakdown,
+    review,
+    questions: engine.questions
+  });
+
   btnFinish.classList.add('hidden');
   showScreen('results');
-  
+
   document.getElementById('score-text').textContent = `${Math.round(score.percentage)}%`;
   document.getElementById('res-correct').textContent = score.correct;
   document.getElementById('res-total').textContent = score.total;
   document.getElementById('res-time').textContent = formatTime(score.timeTakenMs);
 
-  renderAreaBreakdown(engine.getBreakdownByArea());
-  renderReviewList(engine.getReview());
+  renderAreaBreakdown(breakdown);
+  renderReviewList(review);
 }
 
 function renderAreaBreakdown(areas) {
