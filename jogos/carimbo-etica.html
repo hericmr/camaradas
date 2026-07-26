@@ -110,7 +110,9 @@ const $=id=>document.getElementById(id);
 const sndStamp=new Audio('../stamp.mp3');
 const sndCorrect=new Audio('../correct.mp3');
 const sndWrong=new Audio('../wrong.mp3');
-function playSound(a){ a.currentTime=0; a.play().catch(()=>{}); }
+function playSound(a){
+  try{ a.currentTime=0; a.play().catch(()=>{}); }catch(e){}
+}
 
 /* ---------- avanço automático ---------- */
 let autoAdvanceTimer=null;
@@ -198,6 +200,7 @@ function bindCard(){
 function judge(choice){
   if(answered) return;
   answered=true;
+  playSound(sndStamp);
   const c=deck[idx];
   const right = choice===c.natureza;
   const info = NAT[c.natureza];
@@ -210,7 +213,6 @@ function judge(choice){
   carimbador.src='../img/carimbo/02.png';
   carimbador.classList.add('hit');
   setTimeout(()=>carimbador.classList.remove('hit'),150);
-  playSound(sndStamp);
 
   // desabilita botões
   $('btnDireito').disabled=true; $('btnDever').disabled=true; $('btnVedacao').disabled=true;
