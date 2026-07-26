@@ -202,12 +202,23 @@ h1{
 .cite{font-size:15px;line-height:1.5;color:var(--ink-soft)}
 .cite b{color:var(--ink)}
 .next{
+  position:relative;overflow:hidden;
   margin-top:16px;width:100%;cursor:pointer;border:none;
   background:var(--ink);color:var(--paper-2);
   font-family:'Bangalore',"Helvetica Neue",Arial,sans-serif;font-weight:400;font-size:15px;
   letter-spacing:.1em;text-transform:uppercase;padding:13px;border-radius:4px;
 }
 .next:hover{background:#000}
+.next-fill{
+  position:absolute;top:0;left:0;bottom:0;width:0%;
+  background:var(--gold);opacity:.4;z-index:0;
+}
+.next-fill.run{animation:nextFillAnim 3s linear forwards}
+@keyframes nextFillAnim{from{width:0%}to{width:100%}}
+.next-label{position:relative;z-index:1}
+@media (prefers-reduced-motion: reduce){
+  .next-fill.run{animation:none}
+}
 
 /* ---- Revisão dos erros ---- */
 .review{margin-top:4px;padding:20px 24px 26px;border-top:1px solid var(--line);text-align:left}

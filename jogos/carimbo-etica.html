@@ -65,7 +65,10 @@
       <div class="feedback" id="feedback">
         <div class="verdict-line" id="vLine"></div>
         <div class="cite" id="cite"></div>
-        <button class="next" id="nextBtn" onclick="nextCard()">Próximo documento →</button>
+        <button class="next" id="nextBtn" onclick="avancarQuestao()">
+          <span class="next-fill" id="nextFill"></span>
+          <span class="next-label" id="nextLabel">Próximo documento →</span>
+        </button>
       </div>
     </div>
   </section>
@@ -109,7 +112,45 @@ const sndCorrect=new Audio('../correct.mp3');
 const sndWrong=new Audio('../wrong.mp3');
 function playSound(a){ a.currentTime=0; a.play().catch(()=>{}); }
 
+/* ---------- avanço automático ---------- */
+let autoAdvanceTimer=null;
+let spaceAdvanceActive=false;
+
+document.addEventListener('keydown', e=>{
+  if(e.code==='Space' || e.key===' '){
+    if(spaceAdvanceActive){
+      e.preventDefault();
+      avancarQuestao();
+    }
+  }
+});
+
+function agendarProximo(){
+  cancelarAutoAvanco();
+  const fill=$('nextFill');
+  if(fill){
+    fill.classList.remove('run');
+    void fill.offsetWidth;
+    fill.classList.add('run');
+  }
+  spaceAdvanceActive=true;
+  autoAdvanceTimer=setTimeout(avancarQuestao, 3000);
+}
+
+function cancelarAutoAvanco(){
+  if(autoAdvanceTimer){ clearTimeout(autoAdvanceTimer); autoAdvanceTimer=null; }
+  spaceAdvanceActive=false;
+  const fill=$('nextFill');
+  if(fill) fill.classList.remove('run');
+}
+
+function avancarQuestao(){
+  cancelarAutoAvanco();
+  nextCard();
+}
+
 function startRound(){
+  cancelarAutoAvanco();
   deck=shuffle(buildDeck());
   idx=0; correct=0; streak=0; answered=false; missed=[];
   renderCard(); updateHud();
@@ -141,14 +182,17 @@ function cardTemplate(){
     <div class="feedback" id="feedback">
       <div class="verdict-line" id="vLine"></div>
       <div class="cite" id="cite"></div>
-      <button class="next" id="nextBtn">Próximo documento →</button>
+      <button class="next" id="nextBtn">
+        <span class="next-fill" id="nextFill"></span>
+        <span class="next-label" id="nextLabel">Próximo documento →</span>
+      </button>
     </div>`;
 }
 function bindCard(){
   $('btnDireito').onclick=()=>judge('direito');
   $('btnDever').onclick=()=>judge('dever');
   $('btnVedacao').onclick=()=>judge('vedacao');
-  $('nextBtn').onclick=nextCard;
+  $('nextBtn').onclick=avancarQuestao;
 }
 
 function judge(choice){
@@ -186,8 +230,9 @@ function judge(choice){
   updateHud();
 
   if(idx>=deck.length-1){
-    $('nextBtn').textContent='Ver resultado →';
+    $('nextLabel').textContent='Ver resultado →';
   }
+  agendarProximo();
 }
 
 function nextCard(){
