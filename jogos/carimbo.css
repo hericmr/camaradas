@@ -211,7 +211,9 @@ h1{
 .next:hover{background:#000}
 .next-fill{
   position:absolute;top:0;left:0;bottom:0;width:0%;
-  background:var(--gold);opacity:.4;z-index:0;
+  background:#e0b84c;opacity:.6;z-index:0;
+  pointer-events:none;
+  box-shadow:2px 0 8px 1px rgba(224,184,76,.55);
 }
 .next-fill.run{animation:nextFillAnim 3s linear forwards}
 @keyframes nextFillAnim{from{width:0%}to{width:100%}}
