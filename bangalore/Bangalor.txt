@@ -1,0 +1,16 @@
+===========================================================
+P.Font No.              : 1020
+Family Name             : Bangalore
+Style Name              : Bangalore -Regular
+Type                    : TrueTypeｪ for Windows
+Author                  : Yuji Adachi
+Description             : Copyright (c)1998 Yuji Adachi
+Support URL             : http://www.annie.ne.jp/~yuji/
+===========================================================
+
+Attention
+印刷物、WEBページ等での御使用は自由ですが、このフォントを作者の許可なく
+販売したり、営利目的の製品に添付することを禁じます。
+
+足立裕司
+yuji@annie.ne.jp
