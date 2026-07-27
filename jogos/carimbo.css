@@ -36,6 +36,11 @@
   font-weight:normal;font-style:normal;font-display:swap;
 }
 @font-face{
+  font-family:'Minhaletra2';
+  src:url('../Minhaletra2-Regular.ttf') format('truetype');
+  font-weight:normal;font-style:normal;font-display:swap;
+}
+@font-face{
   font-family:'Bangalore';
   src:url('../bangalore/Bangalor.ttf') format('truetype');
   font-weight:normal;font-style:normal;font-display:swap;
@@ -118,6 +123,10 @@ h1{
     16px 16px 0 var(--ink-deep), 17px 17px 0 var(--ink-deep), 18px 18px 0 var(--ink-deep),
     19px 19px 0 var(--ink-deep), 20px 20px 0 var(--ink-deep);
 }
+h1 .camarada{
+  font-family:'Minhaletra2',"Helvetica Neue",Arial,sans-serif;
+  text-shadow:none;
+}
 .sub{font-size:15px;color:var(--ink-soft);font-family:'04b03',"Helvetica Neue",Arial,sans-serif;letter-spacing:.02em}
 
 /* ---- Placar ---- */
@@ -171,7 +180,7 @@ h1{
 }
 .stamp-btn:active{transform:translateY(1px) scale(.99)}
 .stamp-btn:disabled{cursor:default;opacity:.45}
-.stamp-btn .nat{display:block;font-family:'BM germar',"Helvetica Neue",Arial,sans-serif;font-size:19px;font-weight:400;letter-spacing:.03em}
+.stamp-btn .nat{display:block;font-family:'BM germar',"Helvetica Neue",Arial,sans-serif;font-size:19px;font-weight:400;letter-spacing:.03em;text-transform:uppercase}
 
 /* selo estampado sobre a carta */
 .seal{
