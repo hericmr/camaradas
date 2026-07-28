@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SENTA A CARIMBADA, camarada! · fase 4 (lei orgânica de Santos)</title>
+<style>
+  .stamp-btn.principio{border-color:var(--seal-blue);color:var(--seal-blue-ink)}
+  .stamp-btn.principio:hover{background:rgba(47,95,122,.08)}
+  .stamp-btn.vedacao{border-color:var(--seal-red);color:var(--seal-red-ink)}
+  .stamp-btn.vedacao:hover{background:rgba(168,50,42,.08)}
+  .stamp-btn.privativa{border-color:var(--seal-rust);color:var(--seal-rust-ink)}
+  .stamp-btn.privativa:hover{background:rgba(161,90,42,.08)}
+  .stamp-btn.comum{border-color:var(--seal-purple);color:var(--seal-purple-ink)}
+  .stamp-btn.comum:hover{background:rgba(107,76,140,.08)}
+  .stamp-btn.suplementar{border-color:var(--seal-gold);color:var(--seal-gold-ink)}
+  .stamp-btn.suplementar:hover{background:rgba(168,132,60,.1)}
+
+  .seal.principio{color:var(--seal-blue)}
+  .seal.vedacao{color:var(--seal-red)}
+  .seal.privativa{color:var(--seal-rust)}
+  .seal.comum{color:var(--seal-purple)}
+  .seal.suplementar{color:var(--seal-gold)}
+
+  .verdict.c5{grid-template-columns:1fr 1fr 1fr}
+  @media (max-width:520px){
+    .verdict.c5{grid-template-columns:1fr 1fr}
+  }
+</style>
+  <link rel="stylesheet" crossorigin href="/camaradas/assets/carimbo-6LNxk0KP.css">
+</head>
+<body>
+<div class="wrap">
+  <a class="back-link" href="../index.html">&larr; início</a>
+  <nav class="fases">
+    <a class="fase-link" href="./carimbo-8662.html">fase 1 · lei 8.662</a>
+    <a class="fase-link" href="./carimbo-etica.html">fase 2 · código de ética</a>
+    <a class="fase-link" href="./carimbo-completo.html">fase 3 · tudo junto</a>
+    <a class="fase-link" href="./carimbo-santos.html" aria-current="page">fase 4 · lei orgânica de Santos</a>
+  </nav>
+  <header>
+    <div class="eyebrow">Lei Orgânica do Município de Santos</div>
+    <h1>SENTA A CARIMBADA, <span class="camarada">camarada!</span></h1>
+    <div class="sub">Princípio, vedação, competência privativa, comum ou suplementar: carimbe cada dispositivo da Lei Orgânica de Santos</div>
+  </header>
+
+  <div class="hud">
+    <div class="stat"><div class="k">Acertos</div><div class="v" id="hCorrect">0</div></div>
+    <div class="stat"><div class="k">Rodada</div><div class="v" id="hProg">0/0</div></div>
+    <div class="stat streak"><div class="k">Sequência</div><div class="v" id="hStreak">0</div></div>
+    <div class="stat"><div class="k">Recorde</div><div class="v" id="hBest">0</div></div>
+  </div>
+
+  <!-- ===== MODO JOGO ===== -->
+  <section class="stage" id="playStage">
+    <div class="card" id="card" data-label="LEI ORGÂNICA DE SANTOS">
+      <div class="doc-label" id="docLabel">Documento nº 1: classifique a atividade</div>
+      <div class="activity" id="activity">…</div>
+
+      <img class="carimbador" id="carimbador" src="../img/carimbo/01.png" alt="assistente social de carimbo em punho, pronto para julgar">
+
+      <div class="seal principio" id="sealPrincipio">Princípio</div>
+      <div class="seal vedacao" id="sealVedacao">Vedação</div>
+      <div class="seal privativa" id="sealPrivativa">Compet. Privativa</div>
+      <div class="seal comum" id="sealComum">Compet. Comum</div>
+      <div class="seal suplementar" id="sealSuplementar">Compet. Suplementar</div>
+
+      <div class="verdict c5">
+        <button class="stamp-btn principio" id="btnPrincipio" onclick="judge('principio')"><span class="nat">Princípio</span></button>
+        <button class="stamp-btn vedacao" id="btnVedacao" onclick="judge('vedacao')"><span class="nat">Vedação</span></button>
+        <button class="stamp-btn privativa" id="btnPrivativa" onclick="judge('competencia_privativa')"><span class="nat">Privativa</span></button>
+        <button class="stamp-btn comum" id="btnComum" onclick="judge('competencia_comum')"><span class="nat">Comum</span></button>
+        <button class="stamp-btn suplementar" id="btnSuplementar" onclick="judge('competencia_suplementar')"><span class="nat">Suplementar</span></button>
+      </div>
+
+      <div class="feedback" id="feedback">
+        <div class="verdict-line" id="vLine"></div>
+        <div class="cite" id="cite"></div>
+        <button class="next" id="nextBtn" onclick="avancarQuestao()">
+          <span class="next-fill" id="nextFill"></span>
+          <span class="next-label" id="nextLabel">Próximo documento →</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <div class="foot">Fonte: Lei Orgânica do Município de Santos, atualizada até 10/11/2022 (Gabinete do Prefeito)</div>
+</div>
+
+<script>
+let DATA = null;
+
+const NAT = {
+  principio: {label:'Princípio', explica:'é um <b>princípio</b> fundamental da Lei Orgânica de Santos.'},
+  vedacao: {label:'Vedação', explica:'é uma <b>vedação</b>: proibido ao Município ou a seus agentes.'},
+  competencia_privativa: {label:'Competência Privativa', explica:'é uma <b>competência privativa</b> do Município (exclusiva, sem concorrência de outro ente).'},
+  competencia_comum: {label:'Competência Comum', explica:'é uma <b>competência comum</b>, exercida concorrentemente com a União e o Estado.'},
+  competencia_suplementar: {label:'Competência Suplementar', explica:'é uma <b>competência suplementar</b>: adapta a legislação federal/estadual ao interesse local.'}
+};
+const SEAL_ID = {principio:'sealPrincipio', vedacao:'sealVedacao', competencia_privativa:'sealPrivativa', competencia_comum:'sealComum', competencia_suplementar:'sealSuplementar'};
+const BTN_ID = {principio:'btnPrincipio', vedacao:'btnVedacao', competencia_privativa:'btnPrivativa', competencia_comum:'btnComum', competencia_suplementar:'btnSuplementar'};
+const RESPOSTA_CATEGORIA = {Privativa:'competencia_privativa', Comum:'competencia_comum', Suplementar:'competencia_suplementar'};
+
+/* ---------- monta o baralho ---------- */
+function buildDeck(){
+  const deck=[];
+
+  DATA.principios.forEach(p=>{
+    deck.push({categoria:'principio', ref:`princípio ${p.num}`, texto:p.texto});
+  });
+
+  Object.values(DATA.artigos).forEach(a=>{
+    if(a.natureza!=='vedacao') return;
+    if(a.incisos && a.incisos.length){
+      a.incisos.forEach(i=>{
+        deck.push({categoria:'vedacao', ref:`art. ${a.num}, inciso ${i.num}`, texto:i.texto});
+      });
+    } else {
+      deck.push({categoria:'vedacao', ref:`art. ${a.num}`, texto:a.caput});
+    }
+  });
+
+  DATA.competencias.forEach(c=>{
+    deck.push({categoria:RESPOSTA_CATEGORIA[c.resposta], ref:c.fonte, texto:c.afirmacao, dica:c.dica});
+  });
+
+  return deck;
+}
+function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+
+let deck=[], idx=0, correct=0, streak=0, best=0, answered=false, missed=[];
+
+const $=id=>document.getElementById(id);
+
+const sndStamp=new Audio('../stamp.mp3');
+const sndCorrect=new Audio('../correct.mp3');
+const sndWrong=new Audio('../wrong.mp3');
+function playSound(a){
+  try{ a.currentTime=0; a.play().catch(()=>{}); }catch(e){}
+}
+
+/* ---------- avanço automático ---------- */
+let autoAdvanceTimer=null;
+let spaceAdvanceActive=false;
+
+document.addEventListener('keydown', e=>{
+  if(e.code==='Space' || e.key===' '){
+    if(spaceAdvanceActive){
+      e.preventDefault();
+      avancarQuestao();
+    }
+  }
+});
+
+function agendarProximo(){
+  cancelarAutoAvanco();
+  const fill=$('nextFill');
+  if(fill){
+    fill.classList.remove('run');
+    void fill.offsetWidth;
+    fill.classList.add('run');
+  }
+  spaceAdvanceActive=true;
+  autoAdvanceTimer=setTimeout(avancarQuestao, 3000);
+}
+
+function cancelarAutoAvanco(){
+  if(autoAdvanceTimer){ clearTimeout(autoAdvanceTimer); autoAdvanceTimer=null; }
+  spaceAdvanceActive=false;
+  const fill=$('nextFill');
+  if(fill) fill.classList.remove('run');
+}
+
+function avancarQuestao(){
+  cancelarAutoAvanco();
+  nextCard();
+}
+
+function startRound(){
+  cancelarAutoAvanco();
+  deck=shuffle(buildDeck());
+  idx=0; correct=0; streak=0; answered=false; missed=[];
+  renderCard(); updateHud();
+}
+
+function renderCard(){
+  answered=false;
+  const c=deck[idx];
+  $('card').innerHTML=cardTemplate();
+  bindCard();
+  $('docLabel').textContent=`Documento nº ${idx+1}: classifique a atividade`;
+  $('activity').innerHTML=`<span class="qnum">“</span>${c.texto}<span class="qnum">”</span>`;
+  updateHud();
+}
+
+function cardTemplate(){
+  return `
+    <div class="doc-label" id="docLabel"></div>
+    <div class="activity" id="activity"></div>
+    <img class="carimbador" id="carimbador" src="../img/carimbo/01.png" alt="assistente social de carimbo em punho, pronto para julgar">
+    <div class="seal principio" id="sealPrincipio">Princípio</div>
+    <div class="seal vedacao" id="sealVedacao">Vedação</div>
+    <div class="seal privativa" id="sealPrivativa">Compet. Privativa</div>
+    <div class="seal comum" id="sealComum">Compet. Comum</div>
+    <div class="seal suplementar" id="sealSuplementar">Compet. Suplementar</div>
+    <div class="verdict c5">
+      <button class="stamp-btn principio" id="btnPrincipio"><span class="nat">Princípio</span></button>
+      <button class="stamp-btn vedacao" id="btnVedacao"><span class="nat">Vedação</span></button>
+      <button class="stamp-btn privativa" id="btnPrivativa"><span class="nat">Privativa</span></button>
+      <button class="stamp-btn comum" id="btnComum"><span class="nat">Comum</span></button>
+      <button class="stamp-btn suplementar" id="btnSuplementar"><span class="nat">Suplementar</span></button>
+    </div>
+    <div class="feedback" id="feedback">
+      <div class="verdict-line" id="vLine"></div>
+      <div class="cite" id="cite"></div>
+      <button class="next" id="nextBtn">
+        <span class="next-fill" id="nextFill"></span>
+        <span class="next-label" id="nextLabel">Próximo documento →</span>
+      </button>
+    </div>`;
+}
+function bindCard(){
+  Object.keys(NAT).forEach(cat=>{ $(BTN_ID[cat]).onclick=()=>judge(cat); });
+  $('nextBtn').onclick=avancarQuestao;
+}
+
+function judge(choice){
+  if(answered) return;
+  answered=true;
+  playSound(sndStamp);
+  const c=deck[idx];
+  const right = choice===c.categoria;
+  const info = NAT[c.categoria];
+
+  // estampa o selo correto
+  $(SEAL_ID[c.categoria]).classList.add('show');
+
+  // bate o carimbo
+  const carimbador=$('carimbador');
+  carimbador.src='../img/carimbo/02.png';
+  carimbador.classList.add('hit');
+  setTimeout(()=>carimbador.classList.remove('hit'),150);
+
+  // desabilita botões
+  Object.values(BTN_ID).forEach(id=>{ $(id).disabled=true; });
+
+  const explica = c.dica || info.explica;
+
+  if(right){ correct++; streak++; if(streak>best){best=streak;} playSound(sndCorrect); }
+  else { streak=0; missed.push({ref:c.ref, texto:c.texto, explica}); playSound(sndWrong); }
+
+  const fb=$('feedback');
+  const vLine=$('vLine');
+  const cite=$('cite');
+  vLine.className='verdict-line '+(right?'ok':'no');
+  vLine.textContent = right ? '✓ Carimbo correto' : '✗ Carimbo errado';
+  cite.innerHTML = `${c.ref}: ${explica}`;
+  fb.classList.add('show');
+  updateHud();
+
+  if(idx>=deck.length-1){
+    $('nextLabel').textContent='Ver resultado →';
+  }
+  agendarProximo();
+}
+
+function nextCard(){
+  if(idx>=deck.length-1){ showDone(); return; }
+  idx++; renderCard();
+}
+
+function updateHud(){
+  $('hCorrect').textContent=correct;
+  $('hProg').textContent=`${Math.min(idx+ (answered?1:0),deck.length)}/${deck.length}`;
+  $('hStreak').textContent=streak;
+  $('hBest').textContent=best;
+}
+
+function reviewHtml(){
+  if(!missed.length) return '';
+  return `<div class="review">
+    <h3>Revise o que errou (${missed.length})</h3>
+    <ul>${missed.map(m=>`<li><div class="r-cite">${m.ref}: ${m.explica}</div><div class="r-txt">“${m.texto}”</div></li>`).join('')}</ul>
+  </div>`;
+}
+
+function showDone(){
+  const pct=Math.round(correct/deck.length*100);
+  let msg;
+  if(pct===100) msg="Gabaritou. Você domina princípios, vedações e competências (privativa, comum e suplementar) da Lei Orgânica de Santos.";
+  else if(pct>=80) msg="Sólido. Revise só o que escapou.";
+  else if(pct>=60) msg="Quase lá. Revise os errados abaixo e tente de novo.";
+  else msg="Revise os errados abaixo antes de tentar de novo.";
+  $('playStage').innerHTML=`
+    <div class="card"><div class="done">
+      <div class="score-big">${correct}/${deck.length}</div>
+      <h2>${pct}% de acerto</h2>
+      <p>${msg}${best>1?`<br>Melhor sequência: ${best} seguidos.`:''}</p>
+      <button onclick="restart()">Nova rodada</button>
+    </div>${reviewHtml()}</div>`;
+}
+function restart(){
+  $('playStage').innerHTML=`<div class="card" id="card" data-label="LEI ORGÂNICA DE SANTOS"></div>`;
+  startRound();
+}
+
+/* ---------- init ---------- */
+fetch('../data/lei-organica-santos.json')
+  .then(r=>r.json())
+  .then(json=>{
+    DATA={principios:json.principios, artigos:json.artigos, competencias:json.baralho_competencias.cartas};
+    startRound();
+  })
+  .catch(()=>{ $('activity').textContent='não foi possível carregar as questões.'; });
+</script>
+</body>
+</html>
