@@ -10,6 +10,7 @@ export default defineConfig({
         carimboEtica: resolve(process.cwd(), 'jogos/carimbo-etica.html'),
         carimbo8662: resolve(process.cwd(), 'jogos/carimbo-8662.html'),
         carimboCompleto: resolve(process.cwd(), 'jogos/carimbo-completo.html'),
+        carimboSantos: resolve(process.cwd(), 'jogos/carimbo-santos.html'),
       },
     },
   },
