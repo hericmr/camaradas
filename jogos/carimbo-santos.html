@@ -3,31 +3,30 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SENTA A CARIMBADA, camarada! · fase 3 (tudo junto)</title>
+<title>SENTA A CARIMBADA, camarada! · fase 4 (lei orgânica de Santos)</title>
 <link rel="stylesheet" href="./carimbo.css">
 <style>
-  .stamp-btn{padding:13px 8px}
-  .stamp-btn .nat{font-size:16px}
-
   .stamp-btn.principio{border-color:var(--seal-blue);color:var(--seal-blue-ink)}
   .stamp-btn.principio:hover{background:rgba(47,95,122,.08)}
-  .stamp-btn.direito{border-color:var(--seal-green);color:var(--seal-green-ink)}
-  .stamp-btn.direito:hover{background:rgba(47,107,79,.08)}
-  .stamp-btn.dever{border-color:var(--seal-gold);color:var(--seal-gold-ink)}
-  .stamp-btn.dever:hover{background:rgba(168,132,60,.1)}
   .stamp-btn.vedacao{border-color:var(--seal-red);color:var(--seal-red-ink)}
   .stamp-btn.vedacao:hover{background:rgba(168,50,42,.08)}
-  .stamp-btn.competencia{border-color:var(--seal-purple);color:var(--seal-purple-ink)}
-  .stamp-btn.competencia:hover{background:rgba(107,76,140,.08)}
-  .stamp-btn.atribuicao{border-color:var(--seal-rust);color:var(--seal-rust-ink)}
-  .stamp-btn.atribuicao:hover{background:rgba(161,90,42,.08)}
+  .stamp-btn.privativa{border-color:var(--seal-rust);color:var(--seal-rust-ink)}
+  .stamp-btn.privativa:hover{background:rgba(161,90,42,.08)}
+  .stamp-btn.comum{border-color:var(--seal-purple);color:var(--seal-purple-ink)}
+  .stamp-btn.comum:hover{background:rgba(107,76,140,.08)}
+  .stamp-btn.suplementar{border-color:var(--seal-gold);color:var(--seal-gold-ink)}
+  .stamp-btn.suplementar:hover{background:rgba(168,132,60,.1)}
 
   .seal.principio{color:var(--seal-blue)}
-  .seal.direito{color:var(--seal-green)}
-  .seal.dever{color:var(--seal-gold)}
   .seal.vedacao{color:var(--seal-red)}
-  .seal.competencia{color:var(--seal-purple)}
-  .seal.atribuicao{color:var(--seal-rust)}
+  .seal.privativa{color:var(--seal-rust)}
+  .seal.comum{color:var(--seal-purple)}
+  .seal.suplementar{color:var(--seal-gold)}
+
+  .verdict.c5{grid-template-columns:1fr 1fr 1fr}
+  @media (max-width:520px){
+    .verdict.c5{grid-template-columns:1fr 1fr}
+  }
 </style>
 </head>
 <body>
@@ -36,13 +35,13 @@
   <nav class="fases">
     <a class="fase-link" href="./carimbo-8662.html">fase 1 · lei 8.662</a>
     <a class="fase-link" href="./carimbo-etica.html">fase 2 · código de ética</a>
-    <a class="fase-link" href="./carimbo-completo.html" aria-current="page">fase 3 · tudo junto</a>
-    <a class="fase-link" href="./carimbo-santos.html">fase 4 · lei orgânica de Santos</a>
+    <a class="fase-link" href="./carimbo-completo.html">fase 3 · tudo junto</a>
+    <a class="fase-link" href="./carimbo-santos.html" aria-current="page">fase 4 · lei orgânica de Santos</a>
   </nav>
   <header>
-    <div class="eyebrow">Fase 3 · Tudo Junto</div>
+    <div class="eyebrow">Lei Orgânica do Município de Santos</div>
     <h1>SENTA A CARIMBADA, <span class="camarada">camarada!</span></h1>
-    <div class="sub">Princípio, direito, dever, vedação, competência ou atribuição privativa: carimbe qualquer questão do Código de Ética e da Lei 8.662</div>
+    <div class="sub">Princípio, vedação, competência privativa, comum ou suplementar: carimbe cada dispositivo da Lei Orgânica de Santos</div>
   </header>
 
   <div class="hud">
@@ -54,26 +53,24 @@
 
   <!-- ===== MODO JOGO ===== -->
   <section class="stage" id="playStage">
-    <div class="card" id="card" data-label="TUDO JUNTO">
+    <div class="card" id="card" data-label="LEI ORGÂNICA DE SANTOS">
       <div class="doc-label" id="docLabel">Documento nº 1: classifique a atividade</div>
       <div class="activity" id="activity">…</div>
 
       <img class="carimbador" id="carimbador" src="../img/carimbo/01.png" alt="assistente social de carimbo em punho, pronto para julgar">
 
       <div class="seal principio" id="sealPrincipio">Princípio</div>
-      <div class="seal direito" id="sealDireito">Direito</div>
-      <div class="seal dever" id="sealDever">Dever</div>
       <div class="seal vedacao" id="sealVedacao">Vedação</div>
-      <div class="seal competencia" id="sealCompetencia">Competência</div>
-      <div class="seal atribuicao" id="sealAtribuicao">Atribuição</div>
+      <div class="seal privativa" id="sealPrivativa">Compet. Privativa</div>
+      <div class="seal comum" id="sealComum">Compet. Comum</div>
+      <div class="seal suplementar" id="sealSuplementar">Compet. Suplementar</div>
 
-      <div class="verdict c3">
+      <div class="verdict c5">
         <button class="stamp-btn principio" id="btnPrincipio" onclick="judge('principio')"><span class="nat">Princípio</span></button>
-        <button class="stamp-btn direito" id="btnDireito" onclick="judge('direito')"><span class="nat">Direito</span></button>
-        <button class="stamp-btn dever" id="btnDever" onclick="judge('dever')"><span class="nat">Dever</span></button>
         <button class="stamp-btn vedacao" id="btnVedacao" onclick="judge('vedacao')"><span class="nat">Vedação</span></button>
-        <button class="stamp-btn competencia" id="btnCompetencia" onclick="judge('competencia')"><span class="nat">Competência</span></button>
-        <button class="stamp-btn atribuicao" id="btnAtribuicao" onclick="judge('atribuicao')"><span class="nat">Atribuição</span></button>
+        <button class="stamp-btn privativa" id="btnPrivativa" onclick="judge('competencia_privativa')"><span class="nat">Privativa</span></button>
+        <button class="stamp-btn comum" id="btnComum" onclick="judge('competencia_comum')"><span class="nat">Comum</span></button>
+        <button class="stamp-btn suplementar" id="btnSuplementar" onclick="judge('competencia_suplementar')"><span class="nat">Suplementar</span></button>
       </div>
 
       <div class="feedback" id="feedback">
@@ -87,22 +84,22 @@
     </div>
   </section>
 
-  <div class="foot">Fontes: <a href="https://www.cfess.org.br/arquivos/CEP_CFESS-SITE.pdf" target="_blank" rel="noopener">Código de Ética do/a Assistente Social (Resolução CFESS nº 273/93)</a> e <a href="https://www.planalto.gov.br/ccivil_03/leis/L8662.htm" target="_blank" rel="noopener">Lei nº 8.662, de 7 de junho de 1993</a></div>
+  <div class="foot">Fonte: Lei Orgânica do Município de Santos, atualizada até 10/11/2022 (Gabinete do Prefeito)</div>
 </div>
 
 <script>
 let DATA = null;
 
 const NAT = {
-  principio: {label:'Princípio', explica:'é um dos <b>princípios fundamentais</b> do Código de Ética.'},
-  direito: {label:'Direito', explica:'é um <b>direito</b> do/a assistente social (Código de Ética).'},
-  dever: {label:'Dever', explica:'é um <b>dever</b> do/a assistente social (Código de Ética).'},
-  vedacao: {label:'Vedação', explica:'é uma <b>vedação</b> (Código de Ética).'},
-  competencia: {label:'Competência', explica:'é uma <b>competência</b> compartilhada (Lei 8.662, art. 4º).'},
-  atribuicao: {label:'Atribuição', explica:'é uma <b>atribuição privativa</b> (Lei 8.662, art. 5º).'}
+  principio: {label:'Princípio', explica:'é um <b>princípio</b> fundamental da Lei Orgânica de Santos.'},
+  vedacao: {label:'Vedação', explica:'é uma <b>vedação</b>: proibido ao Município ou a seus agentes.'},
+  competencia_privativa: {label:'Competência Privativa', explica:'é uma <b>competência privativa</b> do Município (exclusiva, sem concorrência de outro ente).'},
+  competencia_comum: {label:'Competência Comum', explica:'é uma <b>competência comum</b>, exercida concorrentemente com a União e o Estado.'},
+  competencia_suplementar: {label:'Competência Suplementar', explica:'é uma <b>competência suplementar</b>: adapta a legislação federal/estadual ao interesse local.'}
 };
-const SEAL_ID = {principio:'sealPrincipio', direito:'sealDireito', dever:'sealDever', vedacao:'sealVedacao', competencia:'sealCompetencia', atribuicao:'sealAtribuicao'};
-const BTN_ID = {principio:'btnPrincipio', direito:'btnDireito', dever:'btnDever', vedacao:'btnVedacao', competencia:'btnCompetencia', atribuicao:'btnAtribuicao'};
+const SEAL_ID = {principio:'sealPrincipio', vedacao:'sealVedacao', competencia_privativa:'sealPrivativa', competencia_comum:'sealComum', competencia_suplementar:'sealSuplementar'};
+const BTN_ID = {principio:'btnPrincipio', vedacao:'btnVedacao', competencia_privativa:'btnPrivativa', competencia_comum:'btnComum', competencia_suplementar:'btnSuplementar'};
+const RESPOSTA_CATEGORIA = {Privativa:'competencia_privativa', Comum:'competencia_comum', Suplementar:'competencia_suplementar'};
 
 /* ---------- monta o baralho ---------- */
 function buildDeck(){
@@ -112,22 +109,19 @@ function buildDeck(){
     deck.push({categoria:'principio', ref:`princípio ${p.num}`, texto:p.texto});
   });
 
-  Object.values(DATA.artigosEtica).forEach(a=>{
-    if(!['direito','dever','vedacao'].includes(a.natureza)) return;
-    if(a.alineas && a.alineas.length){
-      a.alineas.forEach(al=>{
-        deck.push({categoria:a.natureza, ref:`art. ${a.num}, alínea ${al.letra}`, texto:al.texto});
+  Object.values(DATA.artigos).forEach(a=>{
+    if(a.natureza!=='vedacao') return;
+    if(a.incisos && a.incisos.length){
+      a.incisos.forEach(i=>{
+        deck.push({categoria:'vedacao', ref:`art. ${a.num}, inciso ${i.num}`, texto:i.texto});
       });
     } else {
-      deck.push({categoria:a.natureza, ref:`art. ${a.num}`, texto:a.caput});
+      deck.push({categoria:'vedacao', ref:`art. ${a.num}`, texto:a.caput});
     }
   });
 
-  DATA.lei8662.art_4.incisos.forEach(i=>{
-    if(!i.vetado) deck.push({categoria:'competencia', ref:`Lei 8.662, art. 4º, inciso ${i.num}`, texto:i.texto});
-  });
-  DATA.lei8662.art_5.incisos.forEach(i=>{
-    deck.push({categoria:'atribuicao', ref:`Lei 8.662, art. 5º, inciso ${i.num}`, texto:i.texto});
+  DATA.competencias.forEach(c=>{
+    deck.push({categoria:RESPOSTA_CATEGORIA[c.resposta], ref:c.fonte, texto:c.afirmacao, dica:c.dica});
   });
 
   return deck;
@@ -205,18 +199,16 @@ function cardTemplate(){
     <div class="activity" id="activity"></div>
     <img class="carimbador" id="carimbador" src="../img/carimbo/01.png" alt="assistente social de carimbo em punho, pronto para julgar">
     <div class="seal principio" id="sealPrincipio">Princípio</div>
-    <div class="seal direito" id="sealDireito">Direito</div>
-    <div class="seal dever" id="sealDever">Dever</div>
     <div class="seal vedacao" id="sealVedacao">Vedação</div>
-    <div class="seal competencia" id="sealCompetencia">Competência</div>
-    <div class="seal atribuicao" id="sealAtribuicao">Atribuição</div>
-    <div class="verdict c3">
+    <div class="seal privativa" id="sealPrivativa">Compet. Privativa</div>
+    <div class="seal comum" id="sealComum">Compet. Comum</div>
+    <div class="seal suplementar" id="sealSuplementar">Compet. Suplementar</div>
+    <div class="verdict c5">
       <button class="stamp-btn principio" id="btnPrincipio"><span class="nat">Princípio</span></button>
-      <button class="stamp-btn direito" id="btnDireito"><span class="nat">Direito</span></button>
-      <button class="stamp-btn dever" id="btnDever"><span class="nat">Dever</span></button>
       <button class="stamp-btn vedacao" id="btnVedacao"><span class="nat">Vedação</span></button>
-      <button class="stamp-btn competencia" id="btnCompetencia"><span class="nat">Competência</span></button>
-      <button class="stamp-btn atribuicao" id="btnAtribuicao"><span class="nat">Atribuição</span></button>
+      <button class="stamp-btn privativa" id="btnPrivativa"><span class="nat">Privativa</span></button>
+      <button class="stamp-btn comum" id="btnComum"><span class="nat">Comum</span></button>
+      <button class="stamp-btn suplementar" id="btnSuplementar"><span class="nat">Suplementar</span></button>
     </div>
     <div class="feedback" id="feedback">
       <div class="verdict-line" id="vLine"></div>
@@ -252,15 +244,17 @@ function judge(choice){
   // desabilita botões
   Object.values(BTN_ID).forEach(id=>{ $(id).disabled=true; });
 
+  const explica = c.dica || info.explica;
+
   if(right){ correct++; streak++; if(streak>best){best=streak;} playSound(sndCorrect); }
-  else { streak=0; missed.push({ref:c.ref, texto:c.texto, explica:info.explica}); playSound(sndWrong); }
+  else { streak=0; missed.push({ref:c.ref, texto:c.texto, explica}); playSound(sndWrong); }
 
   const fb=$('feedback');
   const vLine=$('vLine');
   const cite=$('cite');
   vLine.className='verdict-line '+(right?'ok':'no');
   vLine.textContent = right ? '✓ Carimbo correto' : '✗ Carimbo errado';
-  cite.innerHTML = `${c.ref}: ${info.explica}`;
+  cite.innerHTML = `${c.ref}: ${explica}`;
   fb.classList.add('show');
   updateHud();
 
@@ -293,7 +287,7 @@ function reviewHtml(){
 function showDone(){
   const pct=Math.round(correct/deck.length*100);
   let msg;
-  if(pct===100) msg="Gabaritou. Você domina tudo: princípios, direitos, deveres, vedações, competências e atribuições.";
+  if(pct===100) msg="Gabaritou. Você domina princípios, vedações e competências (privativa, comum e suplementar) da Lei Orgânica de Santos.";
   else if(pct>=80) msg="Sólido. Revise só o que escapou.";
   else if(pct>=60) msg="Quase lá. Revise os errados abaixo e tente de novo.";
   else msg="Revise os errados abaixo antes de tentar de novo.";
@@ -306,22 +300,18 @@ function showDone(){
     </div>${reviewHtml()}</div>`;
 }
 function restart(){
-  $('playStage').innerHTML=`<div class="card" id="card" data-label="TUDO JUNTO"></div>`;
+  $('playStage').innerHTML=`<div class="card" id="card" data-label="LEI ORGÂNICA DE SANTOS"></div>`;
   startRound();
 }
 
 /* ---------- init ---------- */
-Promise.all([
-  fetch('../data/codigo-etica.json').then(r=>r.json()),
-  fetch('../data/lei8662.json').then(r=>r.json())
-]).then(([etica, lei])=>{
-  DATA={
-    principios: etica.principios_fundamentais,
-    artigosEtica: etica.artigos,
-    lei8662: lei.artigos
-  };
-  startRound();
-}).catch(()=>{ $('activity').textContent='não foi possível carregar as questões.'; });
+fetch('../data/lei-organica-santos.json')
+  .then(r=>r.json())
+  .then(json=>{
+    DATA={principios:json.principios, artigos:json.artigos, competencias:json.baralho_competencias.cartas};
+    startRound();
+  })
+  .catch(()=>{ $('activity').textContent='não foi possível carregar as questões.'; });
 </script>
 </body>
 </html>
