@@ -6,13 +6,20 @@ import ibamData from './data/ibam_provas.json';
 const examKeys = Object.keys(ibamData);
 let examKey = examKeys[0];
 let examQuestions = ibamData[examKey];
-const DURATION_MS = 3.5 * 60 * 60 * 1000;
+const DEFAULT_DURATION_MS = 3.5 * 60 * 60 * 1000;
+let currentDurationMs = DEFAULT_DURATION_MS;
 
 let engine = null;
 let currentQuestionIndex = 0;
 let timerInterval = null;
 let hasTimerLimit = true;
 let currentMode = 'prova';
+let lastResult = null;
+
+const ROUTE_HOME = '#/';
+const ROUTE_EXAM = '#/simulado';
+const ROUTE_RESULTS = '#/resultado';
+const ACTIVE_EXAM_KEY = 'ibam_active_exam_v1';
 
 const screens = {
   start: document.getElementById('start-screen'),
@@ -26,6 +33,7 @@ const btnStart = document.getElementById('btn-start');
 const elModeToggle = document.getElementById('mode-toggle');
 const elExamSelect = document.getElementById('exam-select');
 
+const elProgressCard = document.getElementById('progress-card');
 const elErrorBankCount = document.getElementById('error-bank-count');
 const btnPracticeErrors = document.getElementById('btn-practice-errors');
 const elHistoryList = document.getElementById('history-list');
@@ -34,6 +42,10 @@ const btnClearHistory = document.getElementById('btn-clear-history');
 const elTimer = document.getElementById('timer');
 const btnFinish = document.getElementById('btn-finish');
 const gridContainer = document.getElementById('question-grid');
+
+const elNavProgressText = document.getElementById('nav-progress-text');
+const elNavPendingBadge = document.getElementById('nav-pending-badge');
+const elNavProgressFill = document.getElementById('nav-progress-fill');
 
 const elCardCargo = document.getElementById('card-cargo');
 const elCardDisciplina = document.getElementById('card-disciplina');
@@ -69,13 +81,9 @@ function selectExam(key) {
 }
 
 function init() {
-  if (!examKeys.includes(examKey)) {
-    examKey = examKeys[0];
-  }
   populateExamSelect();
   selectExam(examKey);
   elModeToggle.checked = false;
-  showScreen('start');
   renderProgressSection();
 
   elExamSelect.addEventListener('change', () => selectExam(elExamSelect.value));
@@ -91,21 +99,27 @@ function init() {
     renderProgressSection();
   });
 
-  document.getElementById('btn-restart').addEventListener('click', () => {
-    init();
-  });
+  document.getElementById('btn-restart').addEventListener('click', resetToHome);
+  window.addEventListener('hashchange', route);
+
+  if (!location.hash) {
+    history.replaceState(null, '', ROUTE_HOME);
+  }
+  route();
 }
 
 function renderProgressSection() {
   const bank = Storage.getErrorBankList();
+  const history = Storage.getHistory();
+
+  elProgressCard.classList.toggle('hidden', history.length === 0);
+
   elErrorBankCount.textContent = `${bank.length} questões`;
   btnPracticeErrors.disabled = bank.length === 0;
 
-  const history = Storage.getHistory();
   elHistoryList.innerHTML = '';
 
   if (history.length === 0) {
-    elHistoryList.innerHTML = '<p class="history-empty">nenhuma prova feita ainda</p>';
     btnClearHistory.classList.add('hidden');
     return;
   }
@@ -126,10 +140,124 @@ function renderProgressSection() {
   });
 }
 
-function showScreen(name) {
+function showScreenOnly(name) {
   Object.values(screens).forEach(el => el.classList.add('hidden'));
   screens[name].classList.remove('hidden');
   elHeader.classList.toggle('hidden', name === 'start');
+}
+
+// Roteamento por hash: dá URL própria pra cada tela (compartilhável, funciona
+// com voltar/avançar do navegador) sem precisar de servidor com rewrites,
+// já que o site é hospedado estático (GitHub Pages).
+function route() {
+  const hash = location.hash;
+
+  if (hash === ROUTE_EXAM) {
+    if (engine && !engine.isFinished) {
+      showScreenOnly('exam');
+    } else if (resumeActiveExam()) {
+      // resumeActiveExam já mostra a tela do exame
+    } else {
+      history.replaceState(null, '', ROUTE_HOME);
+      showScreenOnly('start');
+    }
+    return;
+  }
+
+  if (hash === ROUTE_RESULTS) {
+    if (lastResult) {
+      showScreenOnly('results');
+    } else {
+      history.replaceState(null, '', ROUTE_HOME);
+      showScreenOnly('start');
+    }
+    return;
+  }
+
+  showScreenOnly('start');
+}
+
+function goToRoute(hash) {
+  if (location.hash !== hash) {
+    location.hash = hash;
+  }
+  route();
+}
+
+function persistActiveExam() {
+  if (!engine || engine.isFinished) return;
+  const state = {
+    examKey,
+    questions: engine.questions,
+    answers: engine.answers,
+    checkedQuestions: engine.checkedQuestions,
+    startTime: engine.startTime,
+    currentQuestionIndex,
+    hasTimerLimit,
+    currentMode,
+    currentDurationMs
+  };
+  try {
+    sessionStorage.setItem(ACTIVE_EXAM_KEY, JSON.stringify(state));
+  } catch {
+    // sessionStorage indisponível, ignora
+  }
+}
+
+function clearActiveExam() {
+  try {
+    sessionStorage.removeItem(ACTIVE_EXAM_KEY);
+  } catch {
+    // ignora
+  }
+}
+
+function resumeActiveExam() {
+  let saved;
+  try {
+    saved = JSON.parse(sessionStorage.getItem(ACTIVE_EXAM_KEY));
+  } catch {
+    return false;
+  }
+  if (!saved || !Array.isArray(saved.questions) || saved.questions.length === 0) return false;
+
+  examKey = saved.examKey;
+  examQuestions = saved.questions;
+  hasTimerLimit = saved.hasTimerLimit;
+  currentMode = saved.currentMode;
+  currentDurationMs = saved.currentDurationMs;
+  currentQuestionIndex = saved.currentQuestionIndex || 0;
+
+  engine = new SimuladoEngine(examQuestions);
+  engine.answers = saved.answers || {};
+  engine.checkedQuestions = saved.checkedQuestions || {};
+  engine.startTime = saved.startTime;
+
+  if (hasTimerLimit) {
+    elTimer.style.color = '#b45309';
+  }
+  btnFinish.classList.remove('hidden');
+
+  updateTimerDisplay();
+  timerInterval = setInterval(updateTimerDisplay, 1000);
+
+  buildNavigationGrid();
+  renderQuestion(currentQuestionIndex);
+  showScreenOnly('exam');
+  return true;
+}
+
+function resetToHome() {
+  clearInterval(timerInterval);
+  engine = null;
+  lastResult = null;
+  examKey = examKeys[0];
+  selectExam(examKey);
+  elModeToggle.checked = false;
+  clearActiveExam();
+  renderProgressSection();
+  history.replaceState(null, '', ROUTE_HOME);
+  route();
 }
 
 function formatTime(ms) {
@@ -145,7 +273,7 @@ function updateTimerDisplay() {
   const elapsed = Date.now() - engine.startTime;
   
   if (hasTimerLimit) {
-    const timeLeft = DURATION_MS - elapsed;
+    const timeLeft = currentDurationMs - elapsed;
     if (timeLeft <= 0) {
       elTimer.textContent = "00:00:00";
       finishExam(true);
@@ -160,9 +288,10 @@ function updateTimerDisplay() {
   }
 }
 
-function startExam({ forcedPractice = false } = {}) {
-  hasTimerLimit = forcedPractice ? false : !elModeToggle.checked;
-  currentMode = forcedPractice ? 'erros' : (hasTimerLimit ? 'prova' : 'treino');
+function startExam({ forcedPractice = false, forcedMode = null, noTimeOverride = null, durationMs = DEFAULT_DURATION_MS } = {}) {
+  hasTimerLimit = forcedPractice ? false : (noTimeOverride !== null ? !noTimeOverride : !elModeToggle.checked);
+  currentMode = forcedMode || (forcedPractice ? 'erros' : (hasTimerLimit ? 'prova' : 'treino'));
+  currentDurationMs = durationMs;
 
   if (hasTimerLimit) {
     elTimer.style.color = '#b45309'; // warning
@@ -180,7 +309,8 @@ function startExam({ forcedPractice = false } = {}) {
   buildNavigationGrid();
   renderQuestion(currentQuestionIndex);
 
-  showScreen('exam');
+  persistActiveExam();
+  goToRoute(ROUTE_EXAM);
 }
 
 function startErrorPractice() {
@@ -213,10 +343,29 @@ function updateNavigationGrid() {
   });
 }
 
+function updateProgressPanel(index) {
+  const total = engine.questions.length;
+  const answered = Object.keys(engine.answers).length;
+  const pending = total - answered;
+
+  elNavProgressText.textContent = `Questão ${index + 1} de ${total}`;
+  elNavProgressFill.style.width = `${total ? (answered / total) * 100 : 0}%`;
+
+  elNavPendingBadge.classList.toggle('nav-pending-badge--done', pending === 0);
+  elNavPendingBadge.textContent = pending === 0
+    ? 'todas respondidas'
+    : `${pending} pendente${pending === 1 ? '' : 's'}`;
+}
+
+function countPending() {
+  return engine.questions.length - Object.keys(engine.answers).length;
+}
+
 function navigateTo(index) {
   if (index < 0 || index >= engine.questions.length) return;
   currentQuestionIndex = index;
   renderQuestion(index);
+  persistActiveExam();
 }
 
 function renderQuestion(index) {
@@ -269,6 +418,7 @@ function renderQuestion(index) {
         btn.addEventListener('click', () => {
           engine.answerQuestion(index, letter);
           renderQuestion(index);
+          persistActiveExam();
         });
       }
       
@@ -290,19 +440,27 @@ function renderQuestion(index) {
     btnCheck.disabled = false;
     btnCheck.classList.remove('hidden');
   }
-  
+
   updateNavigationGrid();
+  updateProgressPanel(index);
 }
 
 function checkCurrentQuestion() {
   if (!engine.answers[currentQuestionIndex]) return;
   engine.checkQuestion(currentQuestionIndex);
   renderQuestion(currentQuestionIndex);
+  persistActiveExam();
 }
 
 function finishExam(isAuto = false) {
-  if (!isAuto && !confirm("Tem certeza que deseja finalizar a prova?")) return;
-  
+  if (!isAuto) {
+    const pending = countPending();
+    const message = pending > 0
+      ? `Você ainda tem ${pending} questão${pending === 1 ? '' : 'ões'} sem resposta. Deseja finalizar mesmo assim?`
+      : 'Tem certeza que deseja finalizar a prova?';
+    if (!confirm(message)) return;
+  }
+
   clearInterval(timerInterval);
   engine.finish();
   const score = engine.getScore();
@@ -319,7 +477,8 @@ function finishExam(isAuto = false) {
   });
 
   btnFinish.classList.add('hidden');
-  showScreen('results');
+  clearActiveExam();
+  lastResult = { score, breakdown, review };
 
   document.getElementById('score-text').textContent = `${Math.round(score.percentage)}%`;
   document.getElementById('res-correct').textContent = score.correct;
@@ -328,6 +487,8 @@ function finishExam(isAuto = false) {
 
   renderAreaBreakdown(breakdown);
   renderReviewList(review);
+
+  goToRoute(ROUTE_RESULTS);
 }
 
 function renderAreaBreakdown(areas) {
