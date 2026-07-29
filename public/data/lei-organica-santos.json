@@ -6,24 +6,97 @@
     "presidente_signatario": "Dr. Roberto Bonavides",
     "observacao": "Estrutura análoga ao Código de Ética. Foco nos temas de concurso: organização do Município, competências, Poder Legislativo, Poder Executivo, servidores, tributação e políticas sociais."
   },
-
   "principios": [
-    { "num": "I", "chave": "transparência e publicidade", "texto": "Transparência e publicidade de atos e ações (art. 1º, §3º, I)." },
-    { "num": "II", "chave": "moralidade", "texto": "Moralidade (art. 1º, §3º, II)." },
-    { "num": "III", "chave": "participação popular", "texto": "Participação popular (art. 1º, §3º, III)." },
-    { "num": "IV", "chave": "descentralização administrativa", "texto": "Descentralização administrativa (art. 1º, §3º, IV)." },
-    { "num": "V", "chave": "LIMPE (art. 66)", "texto": "A administração pública direta e indireta obedecerá aos princípios de legalidade, impessoalidade, moralidade, publicidade, eficiência e interesse público (art. 66)." }
+    {
+      "num": "I",
+      "chave": "transparência e publicidade",
+      "texto": "Transparência e publicidade de atos e ações (art. 1º, §3º, I)."
+    },
+    {
+      "num": "II",
+      "chave": "moralidade",
+      "texto": "Moralidade (art. 1º, §3º, II)."
+    },
+    {
+      "num": "III",
+      "chave": "participação popular",
+      "texto": "Participação popular (art. 1º, §3º, III)."
+    },
+    {
+      "num": "IV",
+      "chave": "descentralização administrativa",
+      "texto": "Descentralização administrativa (art. 1º, §3º, IV)."
+    },
+    {
+      "num": "V",
+      "chave": "LIMPE (art. 66)",
+      "texto": "A administração pública direta e indireta obedecerá aos princípios de legalidade, impessoalidade, moralidade, publicidade, eficiência e interesse público (art. 66)."
+    }
   ],
-
   "titulos": [
-    { "id": "titulo_1", "nome": "Título I — Disposições Preliminares (Organização, Competências, Vedações)", "artigos": ["art_1", "art_2", "art_6", "art_7", "art_9"] },
-    { "id": "titulo_2", "nome": "Título II — Do Poder Legislativo", "artigos": ["art_13", "art_16", "art_17", "art_20", "art_21", "art_27"] },
-    { "id": "titulo_3", "nome": "Título III — Do Poder Executivo", "artigos": ["art_51", "art_54", "art_58", "art_58a", "art_59"] },
-    { "id": "titulo_4", "nome": "Título IV — Da Administração Municipal e Servidores", "artigos": ["art_66", "art_67", "art_73", "art_77"] },
-    { "id": "titulo_5", "nome": "Título V — Tributação e Orçamentos", "artigos": ["art_104", "art_203", "art_183"] },
-    { "id": "titulo_6", "nome": "Título VI — Políticas Municipais (Social, Saúde, Proteção Especial)", "artigos": ["art_180", "art_234", "art_237"] }
+    {
+      "id": "titulo_1",
+      "nome": "Título I — Disposições Preliminares (Organização, Competências, Vedações)",
+      "artigos": [
+        "art_1",
+        "art_2",
+        "art_6",
+        "art_7",
+        "art_9"
+      ]
+    },
+    {
+      "id": "titulo_2",
+      "nome": "Título II — Do Poder Legislativo",
+      "artigos": [
+        "art_13",
+        "art_16",
+        "art_17",
+        "art_20",
+        "art_21",
+        "art_27"
+      ]
+    },
+    {
+      "id": "titulo_3",
+      "nome": "Título III — Do Poder Executivo",
+      "artigos": [
+        "art_51",
+        "art_54",
+        "art_58",
+        "art_58a",
+        "art_59"
+      ]
+    },
+    {
+      "id": "titulo_4",
+      "nome": "Título IV — Da Administração Municipal e Servidores",
+      "artigos": [
+        "art_66",
+        "art_67",
+        "art_73",
+        "art_77"
+      ]
+    },
+    {
+      "id": "titulo_5",
+      "nome": "Título V — Tributação e Orçamentos",
+      "artigos": [
+        "art_104",
+        "art_203",
+        "art_183"
+      ]
+    },
+    {
+      "id": "titulo_6",
+      "nome": "Título VI — Políticas Municipais (Social, Saúde, Proteção Especial)",
+      "artigos": [
+        "art_180",
+        "art_234",
+        "art_237"
+      ]
+    }
   ],
-
   "artigos": {
     "art_1": {
       "num": "1º",
@@ -32,13 +105,24 @@
       "esfera": "organizacao",
       "caput": "O Município de Santos, em união indissolúvel ao Estado de São Paulo e à República Federativa do Brasil, reger-se-á por esta Lei Orgânica, no pleno uso de sua autonomia política, administrativa e financeira.",
       "incisos": [
-        { "num": "§2º-I", "texto": "A soberania popular é exercida pelo sufrágio universal e pelo voto direto e secreto, com valor igual para todos." },
-        { "num": "§2º-II", "texto": "Pelo plebiscito, quando ao menos 1% do eleitorado o requerer ao Tribunal Regional Eleitoral, ouvida a Câmara." },
-        { "num": "§2º-III", "texto": "Pelo referendo, quando ao menos 1% do eleitorado o requerer à Câmara." },
-        { "num": "§2º-V", "texto": "Pela iniciativa popular no processo legislativo." }
+        {
+          "num": "§2º-I",
+          "texto": "A soberania popular é exercida pelo sufrágio universal e pelo voto direto e secreto, com valor igual para todos."
+        },
+        {
+          "num": "§2º-II",
+          "texto": "Pelo plebiscito, quando ao menos 1% do eleitorado o requerer ao Tribunal Regional Eleitoral, ouvida a Câmara."
+        },
+        {
+          "num": "§2º-III",
+          "texto": "Pelo referendo, quando ao menos 1% do eleitorado o requerer à Câmara."
+        },
+        {
+          "num": "§2º-V",
+          "texto": "Pela iniciativa popular no processo legislativo."
+        }
       ]
     },
-
     "art_2": {
       "num": "2º e 3º",
       "titulo": "titulo_1",
@@ -47,7 +131,6 @@
       "caput": "São poderes do Município, independentes e harmônicos entre si, o Legislativo e o Executivo (art. 2º). São símbolos do Município: o brasão de armas, a bandeira e o hino (art. 3º).",
       "incisos": []
     },
-
     "art_6": {
       "num": "6º",
       "titulo": "titulo_1",
@@ -55,17 +138,40 @@
       "esfera": "competencias",
       "caput": "Compete ao Município (competência privativa):",
       "incisos": [
-        { "num": "I", "texto": "Legislar sobre assuntos de interesse local." },
-        { "num": "II", "texto": "Instituir e arrecadar os tributos de sua competência." },
-        { "num": "III", "texto": "Aplicar suas rendas, prestando contas e publicando balancetes nos prazos fixados em lei." },
-        { "num": "IV", "texto": "Criar, organizar e suprimir distritos, observada a legislação estadual." },
-        { "num": "V", "texto": "Organizar e prestar, diretamente ou sob concessão/permissão, os serviços públicos de interesse local, incluído o transporte coletivo, de caráter essencial." },
-        { "num": "VIII", "texto": "Promover, no que couber, adequado ordenamento territorial, mediante planejamento e controle do uso, do parcelamento e da ocupação do solo urbano." },
-        { "num": "XI", "texto": "Elaborar e executar o plano diretor, instrumento básico da política de desenvolvimento e expansão urbana." },
-        { "num": "XII", "texto": "Constituir a Guarda Municipal, destinada à proteção de bens, serviços e instalações, além de proteção ao meio ambiente e patrimônio." }
+        {
+          "num": "I",
+          "texto": "Legislar sobre assuntos de interesse local."
+        },
+        {
+          "num": "II",
+          "texto": "Instituir e arrecadar os tributos de sua competência."
+        },
+        {
+          "num": "III",
+          "texto": "Aplicar suas rendas, prestando contas e publicando balancetes nos prazos fixados em lei."
+        },
+        {
+          "num": "IV",
+          "texto": "Criar, organizar e suprimir distritos, observada a legislação estadual."
+        },
+        {
+          "num": "V",
+          "texto": "Organizar e prestar, diretamente ou sob concessão/permissão, os serviços públicos de interesse local, incluído o transporte coletivo, de caráter essencial."
+        },
+        {
+          "num": "VIII",
+          "texto": "Promover, no que couber, adequado ordenamento territorial, mediante planejamento e controle do uso, do parcelamento e da ocupação do solo urbano."
+        },
+        {
+          "num": "XI",
+          "texto": "Elaborar e executar o plano diretor, instrumento básico da política de desenvolvimento e expansão urbana."
+        },
+        {
+          "num": "XII",
+          "texto": "Constituir a Guarda Municipal, destinada à proteção de bens, serviços e instalações, além de proteção ao meio ambiente e patrimônio."
+        }
       ]
     },
-
     "art_7": {
       "num": "7º",
       "titulo": "titulo_1",
@@ -73,17 +179,40 @@
       "esfera": "competencias",
       "caput": "É da competência do Município, concorrentemente com a União e o Estado (competência comum):",
       "incisos": [
-        { "num": "I", "texto": "Zelar pela guarda da Constituição, das leis e das instituições democráticas e conservar o patrimônio público." },
-        { "num": "II", "texto": "Cuidar da saúde e assistência pública, da proteção e garantia das pessoas com deficiência." },
-        { "num": "III", "texto": "Proteger os documentos, as obras e outros bens de valor histórico, artístico e cultural, os monumentos e os sítios arqueológicos." },
-        { "num": "V", "texto": "Proporcionar os meios de acesso à cultura, à educação e à ciência." },
-        { "num": "VI", "texto": "Proteger o meio ambiente e combater a poluição em qualquer de suas formas." },
-        { "num": "VII", "texto": "Preservar as florestas, a fauna, a flora, as praias, os manguezais e os costões." },
-        { "num": "IX", "texto": "Promover programas de construção de moradias e melhoria das condições habitacionais e de saneamento básico." },
-        { "num": "X", "texto": "Combater as causas da pobreza e os fatores de marginalização, promovendo a integração social dos setores desfavorecidos." }
+        {
+          "num": "I",
+          "texto": "Zelar pela guarda da Constituição, das leis e das instituições democráticas e conservar o patrimônio público."
+        },
+        {
+          "num": "II",
+          "texto": "Cuidar da saúde e assistência pública, da proteção e garantia das pessoas com deficiência."
+        },
+        {
+          "num": "III",
+          "texto": "Proteger os documentos, as obras e outros bens de valor histórico, artístico e cultural, os monumentos e os sítios arqueológicos."
+        },
+        {
+          "num": "V",
+          "texto": "Proporcionar os meios de acesso à cultura, à educação e à ciência."
+        },
+        {
+          "num": "VI",
+          "texto": "Proteger o meio ambiente e combater a poluição em qualquer de suas formas."
+        },
+        {
+          "num": "VII",
+          "texto": "Preservar as florestas, a fauna, a flora, as praias, os manguezais e os costões."
+        },
+        {
+          "num": "IX",
+          "texto": "Promover programas de construção de moradias e melhoria das condições habitacionais e de saneamento básico."
+        },
+        {
+          "num": "X",
+          "texto": "Combater as causas da pobreza e os fatores de marginalização, promovendo a integração social dos setores desfavorecidos."
+        }
       ]
     },
-
     "art_8": {
       "num": "8º",
       "titulo": "titulo_1",
@@ -92,7 +221,6 @@
       "caput": "Ao Município compete suplementar as legislações federal e estadual no que couber e naquilo que disser respeito ao seu peculiar interesse, visando a adaptá-las à realidade local.",
       "incisos": []
     },
-
     "art_9": {
       "num": "9º",
       "titulo": "titulo_1",
@@ -100,12 +228,21 @@
       "esfera": "vedacoes",
       "caput": "É vedado ao Município:",
       "incisos": [
-        { "num": "I", "texto": "Estabelecer cultos religiosos ou igrejas, subvencioná-los ou manter com eles relações de dependência ou aliança, ressalvada a colaboração de interesse público.", "grave": true },
-        { "num": "II", "texto": "Recusar fé aos documentos públicos." },
-        { "num": "III", "texto": "Criar distinções entre brasileiros ou preferências entre si." }
+        {
+          "num": "I",
+          "texto": "Estabelecer cultos religiosos ou igrejas, subvencioná-los, embaraçar-lhes o funcionamento ou manter com eles ou seus representantes relações de dependência ou aliança, ressalvada, na forma da lei, a colaboração de interesse público.",
+          "grave": true
+        },
+        {
+          "num": "II",
+          "texto": "Recusar fé aos documentos públicos."
+        },
+        {
+          "num": "III",
+          "texto": "Criar distinções entre brasileiros ou preferências entre si."
+        }
       ]
     },
-
     "art_13": {
       "num": "13, 11, 12",
       "titulo": "titulo_2",
@@ -113,24 +250,54 @@
       "esfera": "legislativo",
       "caput": "A Câmara terá 21 Vereadores, eleitos pelo sistema proporcional, com mandato de 4 anos (arts. 11 e 13). As deliberações são tomadas por maioria de votos, presente a maioria absoluta (art. 12).",
       "incisos": [
-        { "num": "12-I-a", "texto": "Dependem de 2/3 dos membros: aprovação/alteração do Plano Diretor de Desenvolvimento e Expansão Urbana." },
-        { "num": "12-I-b", "texto": "Dependem de 2/3: zoneamento urbano." },
-        { "num": "12-III", "texto": "Depende de 2/3: destituição de componentes da Mesa." }
+        {
+          "num": "12-I-a",
+          "texto": "Dependem de 2/3 dos membros: aprovação/alteração do Plano Diretor de Desenvolvimento e Expansão Urbana."
+        },
+        {
+          "num": "12-I-b",
+          "texto": "Dependem de 2/3: zoneamento urbano."
+        },
+        {
+          "num": "12-III",
+          "texto": "Depende de 2/3: destituição de componentes da Mesa."
+        }
       ]
     },
-
     "art_16": {
       "num": "16",
       "titulo": "titulo_2",
-      "natureza": "vedacao",
+      "natureza": "impedimento",
       "esfera": "legislativo",
-      "caput": "Os Vereadores não poderão (proibições/impedimentos):",
+      "caput": "Os Vereadores não poderão:",
       "incisos": [
-        { "num": "I-a", "texto": "Desde a expedição do diploma: firmar/manter contrato com pessoa jurídica de direito público municipal, salvo cláusulas uniformes.", "grave": true },
-        { "num": "II-d", "texto": "Desde a posse: ser titulares de mais de um cargo ou mandato público eletivo." }
+        {
+          "num": "I, a",
+          "texto": "Desde a expedição do diploma: firmar ou manter contrato com pessoa jurídica de direito público, autarquia, empresa pública, sociedade de economia mista ou empresa concessionária de serviço público municipal, salvo quando o contrato obedecer a cláusulas uniformes.",
+          "grave": true
+        },
+        {
+          "num": "I, b",
+          "texto": "Desde a expedição do diploma: aceitar ou exercer cargo, função ou emprego remunerado, inclusive os que sejam demissíveis \"ad nutum\", nas entidades constantes da alínea anterior, salvo se nelas já se encontravam antes da diplomação e houver compatibilidade entre o horário normal daquelas entidades e as atividades no exercício do mandato."
+        },
+        {
+          "num": "II, a",
+          "texto": "Desde a posse: ser proprietários, controladores ou diretores de empresa que goze de favor decorrente de contrato com pessoa jurídica de direito público municipal ou nela exercer função remunerada."
+        },
+        {
+          "num": "II, b",
+          "texto": "Desde a posse: ocupar cargo ou função de que sejam demissíveis \"ad nutum\", nas entidades referidas no inciso I, \"a\"."
+        },
+        {
+          "num": "II, c",
+          "texto": "Desde a posse: patrocinar causa em que seja interessada qualquer das entidades a que se refere o inciso I, \"a\"."
+        },
+        {
+          "num": "II, d",
+          "texto": "Desde a posse: ser titulares de mais de um cargo ou mandato público eletivo."
+        }
       ]
     },
-
     "art_17": {
       "num": "17",
       "titulo": "titulo_2",
@@ -138,14 +305,30 @@
       "esfera": "legislativo",
       "caput": "Perderá o mandato o Vereador:",
       "incisos": [
-        { "num": "II", "texto": "Cujo procedimento for declarado incompatível com o decoro parlamentar." },
-        { "num": "III", "texto": "Que deixar de comparecer, em cada sessão legislativa, à terça parte das sessões ordinárias, salvo licença." },
-        { "num": "VI", "texto": "Que sofrer condenação criminal em sentença transitada em julgado.", "grave": true },
-        { "num": "VII", "texto": "Que fixar residência fora do Município." },
-        { "num": "VIII", "texto": "Que se utilizar do mandato para prática de atos de corrupção ou improbidade administrativa.", "grave": true }
+        {
+          "num": "II",
+          "texto": "Cujo procedimento for declarado incompatível com o decoro parlamentar."
+        },
+        {
+          "num": "III",
+          "texto": "Que deixar de comparecer, em cada sessão legislativa, à terça parte das sessões ordinárias, salvo licença."
+        },
+        {
+          "num": "VI",
+          "texto": "Que sofrer condenação criminal em sentença transitada em julgado.",
+          "grave": true
+        },
+        {
+          "num": "VII",
+          "texto": "Que fixar residência fora do Município."
+        },
+        {
+          "num": "VIII",
+          "texto": "Que se utilizar do mandato para prática de atos de corrupção ou improbidade administrativa.",
+          "grave": true
+        }
       ]
     },
-
     "art_20": {
       "num": "20",
       "titulo": "titulo_2",
@@ -153,13 +336,24 @@
       "esfera": "legislativo",
       "caput": "Cabe à Câmara, com a sanção do Prefeito, dispor sobre as matérias de competência do Município, especialmente:",
       "incisos": [
-        { "num": "IX", "texto": "Julgar, anualmente, as contas prestadas pelo Prefeito e apreciar os relatórios sobre execução dos planos de governo." },
-        { "num": "XV", "texto": "Declarar perda de mandato do Prefeito." },
-        { "num": "XVI", "texto": "Criar comissões especiais de inquérito." },
-        { "num": "XIX", "texto": "Julgar os Vereadores, o Prefeito e o Vice-Prefeito." }
+        {
+          "num": "IX",
+          "texto": "Julgar, anualmente, as contas prestadas pelo Prefeito e apreciar os relatórios sobre execução dos planos de governo."
+        },
+        {
+          "num": "XV",
+          "texto": "Declarar perda de mandato do Prefeito."
+        },
+        {
+          "num": "XVI",
+          "texto": "Criar comissões especiais de inquérito."
+        },
+        {
+          "num": "XIX",
+          "texto": "Julgar os Vereadores, o Prefeito e o Vice-Prefeito."
+        }
       ]
     },
-
     "art_21": {
       "num": "21",
       "titulo": "titulo_2",
@@ -167,12 +361,20 @@
       "esfera": "legislativo",
       "caput": "Compete privativamente à Câmara (sem sanção do Prefeito):",
       "incisos": [
-        { "num": "I", "texto": "Eleger a Mesa, destituí-la e constituir as Comissões, na forma regimental." },
-        { "num": "II", "texto": "Elaborar seu Regimento Interno." },
-        { "num": "IV", "texto": "Dar posse ao Prefeito e ao Vice-Prefeito, conhecer de sua renúncia ou afastá-los definitivamente do cargo." }
+        {
+          "num": "I",
+          "texto": "Eleger a Mesa, destituí-la e constituir as Comissões, na forma regimental."
+        },
+        {
+          "num": "II",
+          "texto": "Elaborar seu Regimento Interno."
+        },
+        {
+          "num": "IV",
+          "texto": "Dar posse ao Prefeito e ao Vice-Prefeito, conhecer de sua renúncia ou afastá-los definitivamente do cargo."
+        }
       ]
     },
-
     "art_27": {
       "num": "27",
       "titulo": "titulo_2",
@@ -180,10 +382,13 @@
       "esfera": "legislativo",
       "caput": "Os membros da Mesa serão eleitos para mandato de 2 anos, pela maioria absoluta da Câmara em primeiro escrutínio.",
       "incisos": [
-        { "num": "§2º", "texto": "É vedada a recondução para o mesmo cargo na eleição imediatamente subsequente.", "grave": true }
+        {
+          "num": "§2º",
+          "texto": "É vedada a recondução para o mesmo cargo na eleição imediatamente subsequente.",
+          "grave": true
+        }
       ]
     },
-
     "art_51": {
       "num": "51 e 52",
       "titulo": "titulo_3",
@@ -191,10 +396,12 @@
       "esfera": "executivo",
       "caput": "A eleição do Prefeito e Vice-Prefeito, para mandato de 4 anos, dá-se por pleito direto, 90 dias antes do término do mandato dos antecessores (art. 51). A posse ocorre em 1º de janeiro do ano subsequente à eleição, às 17h (art. 52).",
       "incisos": [
-        { "num": "52-pu", "texto": "Se, decorridos 10 dias da data fixada, o Prefeito ou Vice não assumir (salvo força maior aceita pela Câmara), o cargo será declarado vago." }
+        {
+          "num": "52-pu",
+          "texto": "Se, decorridos 10 dias da data fixada, o Prefeito ou Vice não assumir (salvo força maior aceita pela Câmara), o cargo será declarado vago."
+        }
       ]
     },
-
     "art_54": {
       "num": "53 e 54",
       "titulo": "titulo_3",
@@ -203,7 +410,6 @@
       "caput": "Substituirá o Prefeito, no impedimento, e o sucederá, na vaga, o Vice-Prefeito (art. 53). No impedimento/vacância de ambos, serão sucessivamente chamados o Presidente da Câmara e o Procurador Geral do Município (art. 54).",
       "incisos": []
     },
-
     "art_58": {
       "num": "58",
       "titulo": "titulo_3",
@@ -211,13 +417,24 @@
       "esfera": "executivo",
       "caput": "Compete privativamente ao Prefeito:",
       "incisos": [
-        { "num": "III", "texto": "Nomear e exonerar os Secretários Municipais e o Procurador Geral do Município." },
-        { "num": "X", "texto": "Sancionar, promulgar e fazer publicar as leis, bem como expedir decretos e regulamentos para sua fiel execução." },
-        { "num": "XI", "texto": "Vetar projetos de lei, total ou parcialmente." },
-        { "num": "XVII", "texto": "Decretar, nos termos da lei, a desapropriação por necessidade, utilidade pública ou interesse social." }
+        {
+          "num": "III",
+          "texto": "Nomear e exonerar os Secretários Municipais e o Procurador Geral do Município."
+        },
+        {
+          "num": "X",
+          "texto": "Sancionar, promulgar e fazer publicar as leis, bem como expedir decretos e regulamentos para sua fiel execução."
+        },
+        {
+          "num": "XI",
+          "texto": "Vetar projetos de lei, total ou parcialmente."
+        },
+        {
+          "num": "XVII",
+          "texto": "Decretar, nos termos da lei, a desapropriação por necessidade, utilidade pública ou interesse social."
+        }
       ]
     },
-
     "art_58a": {
       "num": "58-A",
       "titulo": "titulo_3",
@@ -225,11 +442,16 @@
       "esfera": "executivo",
       "caput": "O Prefeito, eleito ou reeleito, apresentará o Programa de Metas de sua gestão até 90 dias após a posse, com prioridades, ações estratégicas, indicadores e metas quantitativas por secretaria.",
       "incisos": [
-        { "num": "§4º", "texto": "O Poder Executivo divulgará semestralmente os indicadores de desempenho relativos à execução do Programa de Metas." },
-        { "num": "§7º", "texto": "Ao final de cada ano, o Prefeito divulgará o relatório da execução do Programa de Metas." }
+        {
+          "num": "§4º",
+          "texto": "O Poder Executivo divulgará semestralmente os indicadores de desempenho relativos à execução do Programa de Metas."
+        },
+        {
+          "num": "§7º",
+          "texto": "Ao final de cada ano, o Prefeito divulgará o relatório da execução do Programa de Metas."
+        }
       ]
     },
-
     "art_59": {
       "num": "59",
       "titulo": "titulo_3",
@@ -237,11 +459,17 @@
       "esfera": "executivo",
       "caput": "A Câmara, tomando conhecimento de ato do Prefeito que configure infração penal comum ou crime de responsabilidade, nomeará Comissão Processante, para apurar os fatos em 30 dias.",
       "incisos": [
-        { "num": "§2º", "texto": "Recebida a denúncia, o Prefeito ficará suspenso de suas funções.", "grave": true },
-        { "num": "§3º", "texto": "Se, decorridos 180 dias, o julgamento não estiver concluído, cessará o afastamento do Prefeito, sem prejuízo do prosseguimento do processo." }
+        {
+          "num": "§2º",
+          "texto": "Recebida a denúncia, o Prefeito ficará suspenso de suas funções.",
+          "grave": true
+        },
+        {
+          "num": "§3º",
+          "texto": "Se, decorridos 180 dias, o julgamento não estiver concluído, cessará o afastamento do Prefeito, sem prejuízo do prosseguimento do processo."
+        }
       ]
     },
-
     "art_66": {
       "num": "66",
       "titulo": "titulo_4",
@@ -250,7 +478,6 @@
       "caput": "A administração pública direta e indireta obedecerá aos princípios de legalidade, impessoalidade, moralidade, publicidade, eficiência e interesse público (LIMPE + interesse público).",
       "incisos": []
     },
-
     "art_67": {
       "num": "67",
       "titulo": "titulo_4",
@@ -258,12 +485,21 @@
       "esfera": "administracao",
       "caput": "Normas obrigatórias da organização da administração pública:",
       "incisos": [
-        { "num": "II", "texto": "A investidura em cargo ou emprego público depende de aprovação prévia em concurso público de provas ou de provas e títulos, ressalvadas as nomeações para cargo em comissão.", "grave": true },
-        { "num": "III", "texto": "O prazo de validade do concurso público será de até 2 anos, prorrogável uma vez por igual período." },
-        { "num": "XVIII", "texto": "É vedada a acumulação remunerada de cargos públicos, exceto quando houver compatibilidade de horários (2 professores; 1 professor + técnico; 2 profissionais de saúde regulamentados)." }
+        {
+          "num": "II",
+          "texto": "A investidura em cargo ou emprego público depende de aprovação prévia em concurso público de provas ou de provas e títulos, ressalvadas as nomeações para cargo em comissão.",
+          "grave": true
+        },
+        {
+          "num": "III",
+          "texto": "O prazo de validade do concurso público será de até 2 anos, prorrogável uma vez por igual período."
+        },
+        {
+          "num": "XVIII",
+          "texto": "É vedada a acumulação remunerada de cargos públicos, exceto quando houver compatibilidade de horários (2 professores; 1 professor + técnico; 2 profissionais de saúde regulamentados)."
+        }
       ]
     },
-
     "art_73": {
       "num": "73",
       "titulo": "titulo_4",
@@ -271,10 +507,12 @@
       "esfera": "administracao",
       "caput": "O regime jurídico único dos servidores da administração direta, autarquias e fundações públicas é o estatutário, instituído por lei.",
       "incisos": [
-        { "num": "§6º", "texto": "É assegurado o adicional por tempo de serviço (quinquênio) e a sexta parte dos vencimentos integrais aos 20 anos de efetivo exercício." }
+        {
+          "num": "§6º",
+          "texto": "É assegurado o adicional por tempo de serviço (quinquênio) e a sexta parte dos vencimentos integrais aos 20 anos de efetivo exercício."
+        }
       ]
     },
-
     "art_77": {
       "num": "77",
       "titulo": "titulo_4",
@@ -282,11 +520,16 @@
       "esfera": "administracao",
       "caput": "O Regime Próprio de Previdência (RPPS-Santos) terá caráter contributivo e solidário, preservando o equilíbrio financeiro e atuarial.",
       "incisos": [
-        { "num": "§1º-II", "texto": "Aposentadoria compulsória aos 75 anos de idade." },
-        { "num": "§1º-III", "texto": "Aposentadoria voluntária aos 62 anos (mulher) e 65 anos (homem), observados tempo de contribuição e demais requisitos." }
+        {
+          "num": "§1º-II",
+          "texto": "Aposentadoria compulsória aos 75 anos de idade."
+        },
+        {
+          "num": "§1º-III",
+          "texto": "Aposentadoria voluntária aos 62 anos (mulher) e 65 anos (homem), observados tempo de contribuição e demais requisitos."
+        }
       ]
     },
-
     "art_104": {
       "num": "104",
       "titulo": "titulo_5",
@@ -294,12 +537,20 @@
       "esfera": "tributacao",
       "caput": "Compete ao Município instituir impostos sobre:",
       "incisos": [
-        { "num": "I", "texto": "Propriedade predial e territorial urbana (IPTU) — pode ser progressivo para assegurar a função social da propriedade." },
-        { "num": "II", "texto": "Transmissão inter vivos, por ato oneroso, de bens imóveis e direitos reais (ITBI)." },
-        { "num": "IV", "texto": "Serviços de qualquer natureza (ISS) não compreendidos na competência estadual e definidos em lei complementar." }
+        {
+          "num": "I",
+          "texto": "Propriedade predial e territorial urbana (IPTU) — pode ser progressivo para assegurar a função social da propriedade."
+        },
+        {
+          "num": "II",
+          "texto": "Transmissão inter vivos, por ato oneroso, de bens imóveis e direitos reais (ITBI)."
+        },
+        {
+          "num": "IV",
+          "texto": "Serviços de qualquer natureza (ISS) não compreendidos na competência estadual e definidos em lei complementar."
+        }
       ]
     },
-
     "art_203": {
       "num": "203",
       "titulo": "titulo_5",
@@ -309,7 +560,6 @@
       "incisos": [],
       "nota": "Percentual do Município de Santos é superior ao mínimo federal de 25% (CF, art. 212)."
     },
-
     "art_183": {
       "num": "183",
       "titulo": "titulo_5",
@@ -317,10 +567,12 @@
       "esfera": "tributacao",
       "caput": "O SUS municipal será financiado com recursos do orçamento do Município, do Estado, da União e da Seguridade Social.",
       "incisos": [
-        { "num": "§2º", "texto": "O Município aplicará anualmente no mínimo 15% do produto da arrecadação dos impostos em ações e serviços públicos de saúde." }
+        {
+          "num": "§2º",
+          "texto": "O Município aplicará anualmente no mínimo 15% do produto da arrecadação dos impostos em ações e serviços públicos de saúde."
+        }
       ]
     },
-
     "art_180": {
       "num": "180 e 182",
       "titulo": "titulo_6",
@@ -328,13 +580,25 @@
       "esfera": "saude",
       "caput": "A saúde é direito de todos e dever do Poder Público (art. 180). O Município constitui, com a União e o Estado, o Sistema Único de Saúde (art. 182).",
       "incisos": [
-        { "num": "182-I", "texto": "Descentralização, com direção do Poder Público Municipal em sua esfera de governo." },
-        { "num": "182-II", "texto": "Atendimento integral, com prioridade para atividades preventivas, sem prejuízo dos serviços assistenciais." },
-        { "num": "182-III", "texto": "Participação da comunidade na formulação, controle e fiscalização da política municipal de saúde." },
-        { "num": "182-IV", "texto": "Gratuidade dos serviços prestados, vedada a cobrança aos usuários.", "grave": true }
+        {
+          "num": "182-I",
+          "texto": "Descentralização, com direção do Poder Público Municipal em sua esfera de governo."
+        },
+        {
+          "num": "182-II",
+          "texto": "Atendimento integral, com prioridade para atividades preventivas, sem prejuízo dos serviços assistenciais."
+        },
+        {
+          "num": "182-III",
+          "texto": "Participação da comunidade na formulação, controle e fiscalização da política municipal de saúde."
+        },
+        {
+          "num": "182-IV",
+          "texto": "Gratuidade dos serviços prestados, vedada a cobrança aos usuários.",
+          "grave": true
+        }
       ]
     },
-
     "art_234": {
       "num": "232 a 234",
       "titulo": "titulo_6",
@@ -342,10 +606,13 @@
       "esfera": "protecao_especial",
       "caput": "O Poder Público garantirá à pessoa idosa condições de vida apropriada, saúde e participação nos serviços (art. 232).",
       "incisos": [
-        { "num": "234", "texto": "O Município assegurará gratuidade no transporte coletivo urbano às pessoas com idade igual ou superior a 65 anos.", "grave": true }
+        {
+          "num": "234",
+          "texto": "O Município assegurará gratuidade no transporte coletivo urbano às pessoas com idade igual ou superior a 65 anos.",
+          "grave": true
+        }
       ]
     },
-
     "art_237": {
       "num": "237",
       "titulo": "titulo_6",
@@ -353,13 +620,21 @@
       "esfera": "protecao_especial",
       "caput": "O Município deverá, em favor das pessoas com deficiência:",
       "incisos": [
-        { "num": "I", "texto": "Criar programas de reabilitação, integração e atendimento pedagógico especializado, obrigatoriamente na rede regular de ensino, sem limite de idade." },
-        { "num": "VII", "texto": "Conceder gratuidade nos transportes coletivos urbanos às pessoas com deficiência e seu acompanhante, quando houver dificuldade de locomoção reconhecida." },
-        { "num": "VIII", "texto": "Garantir às pessoas com deficiência 5% das unidades dos conjuntos habitacionais construídos no Município." }
+        {
+          "num": "I",
+          "texto": "Criar programas de reabilitação, integração e atendimento pedagógico especializado, obrigatoriamente na rede regular de ensino, sem limite de idade."
+        },
+        {
+          "num": "VII",
+          "texto": "Conceder gratuidade nos transportes coletivos urbanos às pessoas com deficiência e seu acompanhante, quando houver dificuldade de locomoção reconhecida."
+        },
+        {
+          "num": "VIII",
+          "texto": "Garantir às pessoas com deficiência 5% das unidades dos conjuntos habitacionais construídos no Município."
+        }
       ]
     }
   },
-
   "esferas": {
     "organizacao": "Organização do Município e soberania popular (Título I)",
     "competencias": "Competências do Município: privativa, comum e suplementar (Título I)",
@@ -371,28 +646,98 @@
     "saude": "Política de Saúde e SUS municipal (Título VI)",
     "protecao_especial": "Proteção especial — idoso, criança, pessoa com deficiência, mulher (Título VI)"
   },
-
   "numeros_chave": [
-    { "item": "Número de Vereadores de Santos", "valor": "21 vereadores", "fonte": "Lei Orgânica, art. 13" },
-    { "item": "Mandato dos Vereadores", "valor": "4 anos (sistema proporcional)", "fonte": "Lei Orgânica, art. 11" },
-    { "item": "Mandato da Mesa da Câmara", "valor": "2 anos, vedada recondução ao mesmo cargo", "fonte": "Lei Orgânica, art. 27" },
-    { "item": "Mandato do Prefeito e Vice", "valor": "4 anos (pleito direto)", "fonte": "Lei Orgânica, art. 51" },
-    { "item": "Posse do Prefeito e Vereadores", "valor": "1º de janeiro, às 17 horas", "fonte": "Lei Orgânica, arts. 14 e 52" },
-    { "item": "Quórum para perda de mandato do Prefeito/Vereador", "valor": "2/3 dos membros da Câmara", "fonte": "Lei Orgânica, arts. 17, §2º e 59, §1º" },
-    { "item": "Prazo do Programa de Metas", "valor": "até 90 dias após a posse", "fonte": "Lei Orgânica, art. 58-A" },
-    { "item": "Afastamento do Prefeito em processo (crime de responsabilidade)", "valor": "cessa após 180 dias se não concluído", "fonte": "Lei Orgânica, art. 59, §3º" },
-    { "item": "Validade do concurso público", "valor": "até 2 anos, prorrogável uma vez por igual período", "fonte": "Lei Orgânica, art. 67, III" },
-    { "item": "Aposentadoria compulsória", "valor": "75 anos de idade", "fonte": "Lei Orgânica, art. 77, §1º, II" },
-    { "item": "Aposentadoria voluntária", "valor": "62 anos (mulher) / 65 anos (homem)", "fonte": "Lei Orgânica, art. 77, §1º, III" },
-    { "item": "Aplicação mínima em saúde", "valor": "15% da arrecadação de impostos", "fonte": "Lei Orgânica, art. 183, §2º" },
-    { "item": "Aplicação mínima em educação (Santos)", "valor": "30% da receita de impostos (mínimo federal é 25%)", "fonte": "Lei Orgânica, art. 203" },
-    { "item": "Aplicação mínima em habitação", "valor": "não inferior a 5% das despesas globais do orçamento", "fonte": "Lei Orgânica, art. 147, pu" },
-    { "item": "Gratuidade no transporte coletivo urbano (idoso)", "valor": "a partir de 65 anos", "fonte": "Lei Orgânica, art. 234" },
-    { "item": "Reserva habitacional para pessoas com deficiência", "valor": "5% das unidades dos conjuntos habitacionais", "fonte": "Lei Orgânica, art. 237, VIII" },
-    { "item": "Prazo do Prefeito para vetar projeto de lei", "valor": "15 dias úteis do recebimento", "fonte": "Lei Orgânica, art. 44, §1º" },
-    { "item": "Quórum para rejeitar veto do Prefeito", "valor": "maioria absoluta dos Vereadores", "fonte": "Lei Orgânica, art. 44, §4º" }
+    {
+      "item": "Número de Vereadores de Santos",
+      "valor": "21 vereadores",
+      "fonte": "Lei Orgânica, art. 13"
+    },
+    {
+      "item": "Mandato dos Vereadores",
+      "valor": "4 anos (sistema proporcional)",
+      "fonte": "Lei Orgânica, art. 11"
+    },
+    {
+      "item": "Mandato da Mesa da Câmara",
+      "valor": "2 anos, vedada recondução ao mesmo cargo",
+      "fonte": "Lei Orgânica, art. 27"
+    },
+    {
+      "item": "Mandato do Prefeito e Vice",
+      "valor": "4 anos (pleito direto)",
+      "fonte": "Lei Orgânica, art. 51"
+    },
+    {
+      "item": "Posse do Prefeito e Vereadores",
+      "valor": "1º de janeiro, às 17 horas",
+      "fonte": "Lei Orgânica, arts. 14 e 52"
+    },
+    {
+      "item": "Quórum para perda de mandato do Prefeito/Vereador",
+      "valor": "2/3 dos membros da Câmara",
+      "fonte": "Lei Orgânica, arts. 17, §2º e 59, §1º"
+    },
+    {
+      "item": "Prazo do Programa de Metas",
+      "valor": "até 90 dias após a posse",
+      "fonte": "Lei Orgânica, art. 58-A"
+    },
+    {
+      "item": "Afastamento do Prefeito em processo (crime de responsabilidade)",
+      "valor": "cessa após 180 dias se não concluído",
+      "fonte": "Lei Orgânica, art. 59, §3º"
+    },
+    {
+      "item": "Validade do concurso público",
+      "valor": "até 2 anos, prorrogável uma vez por igual período",
+      "fonte": "Lei Orgânica, art. 67, III"
+    },
+    {
+      "item": "Aposentadoria compulsória",
+      "valor": "75 anos de idade",
+      "fonte": "Lei Orgânica, art. 77, §1º, II"
+    },
+    {
+      "item": "Aposentadoria voluntária",
+      "valor": "62 anos (mulher) / 65 anos (homem)",
+      "fonte": "Lei Orgânica, art. 77, §1º, III"
+    },
+    {
+      "item": "Aplicação mínima em saúde",
+      "valor": "15% da arrecadação de impostos",
+      "fonte": "Lei Orgânica, art. 183, §2º"
+    },
+    {
+      "item": "Aplicação mínima em educação (Santos)",
+      "valor": "30% da receita de impostos (mínimo federal é 25%)",
+      "fonte": "Lei Orgânica, art. 203"
+    },
+    {
+      "item": "Aplicação mínima em habitação",
+      "valor": "não inferior a 5% das despesas globais do orçamento",
+      "fonte": "Lei Orgânica, art. 147, pu"
+    },
+    {
+      "item": "Gratuidade no transporte coletivo urbano (idoso)",
+      "valor": "a partir de 65 anos",
+      "fonte": "Lei Orgânica, art. 234"
+    },
+    {
+      "item": "Reserva habitacional para pessoas com deficiência",
+      "valor": "5% das unidades dos conjuntos habitacionais",
+      "fonte": "Lei Orgânica, art. 237, VIII"
+    },
+    {
+      "item": "Prazo do Prefeito para vetar projeto de lei",
+      "valor": "15 dias úteis do recebimento",
+      "fonte": "Lei Orgânica, art. 44, §1º"
+    },
+    {
+      "item": "Quórum para rejeitar veto do Prefeito",
+      "valor": "maioria absoluta dos Vereadores",
+      "fonte": "Lei Orgânica, art. 44, §4º"
+    }
   ],
-
   "instancias": {
     "camara": {
       "papel": "Poder Legislativo do Município; exerce fiscalização e legisla com sanção do Prefeito",
@@ -422,7 +767,6 @@
       "orgao": "Tribunal de Contas do Estado de São Paulo (TCE-SP)"
     }
   },
-
   "pegadinhas": [
     "Santos tem <b>21 Vereadores</b> (art. 13), não 15 nem outro número. Mandato de <b>4 anos</b>, mas a Mesa é eleita para <b>2 anos</b> (art. 27).",
     "A Mesa da Câmara tem <b>vedação de recondução</b> ao mesmo cargo na eleição imediatamente subsequente (art. 27, §2º).",
@@ -433,40 +777,167 @@
     "Competência <b>privativa</b> da Câmara (art. 21) dispensa sanção do Prefeito; competência do art. 20 é <b>com sanção</b> do Prefeito.",
     "Princípios da Administração em Santos (art. 66): <b>LIMPE + interesse público</b> — legalidade, impessoalidade, moralidade, publicidade, eficiência e interesse público."
   ],
-
   "baralho_competencias": {
     "nome": "Privativa, comum ou suplementar?",
     "pergunta": "A competência abaixo é do Município como PRIVATIVA, COMUM (com União e Estado) ou SUPLEMENTAR?",
-    "opcoes": ["Privativa", "Comum", "Suplementar"],
+    "opcoes": [
+      "Privativa",
+      "Comum",
+      "Suplementar"
+    ],
     "cartas": [
-      { "afirmacao": "Legislar sobre assuntos de interesse local.", "resposta": "Privativa", "fonte": "art. 6º, I", "dica": "Interesse LOCAL é a marca da competência privativa do Município." },
-      { "afirmacao": "Instituir e arrecadar os tributos de sua competência.", "resposta": "Privativa", "fonte": "art. 6º, II", "dica": "Tributos próprios do Município são competência privativa." },
-      { "afirmacao": "Aplicar suas rendas, prestando contas e publicando balancetes, nos prazos fixados em lei.", "resposta": "Privativa", "fonte": "art. 6º, III", "dica": "Gestão das próprias rendas é privativa." },
-      { "afirmacao": "Criar, organizar e suprimir distritos, observada a legislação estadual.", "resposta": "Privativa", "fonte": "art. 6º, IV", "dica": "Organização territorial interna é privativa do Município." },
-      { "afirmacao": "Organizar e prestar, diretamente ou sob regime de concessão ou permissão, os serviços públicos de interesse local, incluído o de transporte coletivo, que tem caráter essencial.", "resposta": "Privativa", "fonte": "art. 6º, V", "dica": "Serviço público de interesse local é privativa." },
-      { "afirmacao": "Promover, no que couber, adequado ordenamento territorial, mediante planejamento e controle do uso, do parcelamento e da ocupação do solo urbano.", "resposta": "Privativa", "fonte": "art. 6º, VIII", "dica": "Ordenamento do solo urbano local é privativa." },
-      { "afirmacao": "Elaborar e executar o plano diretor, como instrumento básico da política de desenvolvimento e de expansão urbana.", "resposta": "Privativa", "fonte": "art. 6º, XI", "dica": "Plano diretor é instrumento local — privativa." },
-      { "afirmacao": "Constituir a Guarda Municipal, destinada à proteção de seus bens, serviços e instalações, além de proteção e fiscalização ao meio ambiente, ao patrimônio histórico, cultural, ecológico, paisagístico e às posturas do município, conforme dispuser a lei.", "resposta": "Privativa", "fonte": "art. 6º, XII", "dica": "A Guarda Municipal é do próprio Município — privativa." },
-      { "afirmacao": "Zelar pela guarda da Constituição, das leis e das instituições democráticas e conservar o patrimônio público.", "resposta": "Comum", "fonte": "art. 7º, I", "dica": "Zelar pela Constituição é dever compartilhado com União e Estado." },
-      { "afirmacao": "Cuidar da saúde e assistência pública, da proteção e garantia das pessoas portadoras de deficiência.", "resposta": "Comum", "fonte": "art. 7º, II", "dica": "Saúde e assistência são competência comum aos três entes." },
-      { "afirmacao": "Proteger os documentos, as obras e outros bens de valor histórico, artístico e cultural, os monumentos, as paisagens naturais notáveis e os sítios arqueológicos.", "resposta": "Comum", "fonte": "art. 7º, III", "dica": "Proteção do patrimônio cultural é comum." },
-      { "afirmacao": "Proporcionar os meios de acesso à cultura, à educação e à ciência.", "resposta": "Comum", "fonte": "art. 7º, V", "dica": "Acesso à cultura e educação é comum aos três entes." },
-      { "afirmacao": "Proteger o meio ambiente e combater a poluição em qualquer de suas formas.", "resposta": "Comum", "fonte": "art. 7º, VI", "dica": "Meio ambiente é competência comum clássica." },
-      { "afirmacao": "Preservar as florestas, a fauna, a flora, as praias, os manguezais e os costões.", "resposta": "Comum", "fonte": "art. 7º, VII", "dica": "Preservação ambiental é comum." },
-      { "afirmacao": "Promover programas de construção de moradias e a melhoria das condições habitacionais e de saneamento básico.", "resposta": "Comum", "fonte": "art. 7º, IX", "dica": "Moradia e saneamento são competência comum." },
-      { "afirmacao": "Combater as causas da pobreza e os fatores de marginalização, promovendo a integração social dos setores desfavorecidos.", "resposta": "Comum", "fonte": "art. 7º, X", "dica": "Combate à pobreza é comum aos três entes." },
-      { "afirmacao": "Registrar, acompanhar e fiscalizar as concessões de direitos de pesquisa e exploração de recursos hídricos e minerais, em seu território.", "resposta": "Comum", "fonte": "art. 7º, XI", "dica": "Fiscalizar recursos hídricos e minerais é comum aos três entes." },
-      { "afirmacao": "Estabelecer e implantar a política de educação para a segurança do trânsito.", "resposta": "Comum", "fonte": "art. 7º, XII", "dica": "Educação para o trânsito é competência comum." },
-      { "afirmacao": "Ao Município compete suplementar as legislações federal e estadual no que couber e naquilo que disser respeito ao seu peculiar interesse, visando a adaptá-las à realidade local.", "resposta": "Suplementar", "fonte": "art. 8º", "dica": "As palavras 'suplementar', 'peculiar interesse' e 'adaptá-las à realidade local' entregam a resposta." }
+      {
+        "afirmacao": "Legislar sobre assuntos de interesse local.",
+        "resposta": "Privativa",
+        "fonte": "art. 6º, I",
+        "dica": "Interesse LOCAL é a marca da competência privativa do Município."
+      },
+      {
+        "afirmacao": "Instituir e arrecadar os tributos de sua competência.",
+        "resposta": "Privativa",
+        "fonte": "art. 6º, II",
+        "dica": "Tributos próprios do Município são competência privativa."
+      },
+      {
+        "afirmacao": "Aplicar suas rendas, prestando contas e publicando balancetes, nos prazos fixados em lei.",
+        "resposta": "Privativa",
+        "fonte": "art. 6º, III",
+        "dica": "Gestão das próprias rendas é privativa."
+      },
+      {
+        "afirmacao": "Criar, organizar e suprimir distritos, observada a legislação estadual.",
+        "resposta": "Privativa",
+        "fonte": "art. 6º, IV",
+        "dica": "Organização territorial interna é privativa do Município."
+      },
+      {
+        "afirmacao": "Organizar e prestar, diretamente ou sob regime de concessão ou permissão, os serviços públicos de interesse local, incluído o de transporte coletivo, que tem caráter essencial.",
+        "resposta": "Privativa",
+        "fonte": "art. 6º, V",
+        "dica": "Serviço público de interesse local é privativa."
+      },
+      {
+        "afirmacao": "Promover, no que couber, adequado ordenamento territorial, mediante planejamento e controle do uso, do parcelamento e da ocupação do solo urbano.",
+        "resposta": "Privativa",
+        "fonte": "art. 6º, VIII",
+        "dica": "Ordenamento do solo urbano local é privativa."
+      },
+      {
+        "afirmacao": "Elaborar e executar o plano diretor, como instrumento básico da política de desenvolvimento e de expansão urbana.",
+        "resposta": "Privativa",
+        "fonte": "art. 6º, XI",
+        "dica": "Plano diretor é instrumento local — privativa."
+      },
+      {
+        "afirmacao": "Constituir a Guarda Municipal, destinada à proteção de seus bens, serviços e instalações, além de proteção e fiscalização ao meio ambiente, ao patrimônio histórico, cultural, ecológico, paisagístico e às posturas do município, conforme dispuser a lei.",
+        "resposta": "Privativa",
+        "fonte": "art. 6º, XII",
+        "dica": "A Guarda Municipal é do próprio Município — privativa."
+      },
+      {
+        "afirmacao": "Zelar pela guarda da Constituição, das leis e das instituições democráticas e conservar o patrimônio público.",
+        "resposta": "Comum",
+        "fonte": "art. 7º, I",
+        "dica": "Zelar pela Constituição é dever compartilhado com União e Estado."
+      },
+      {
+        "afirmacao": "Cuidar da saúde e assistência pública, da proteção e garantia das pessoas portadoras de deficiência.",
+        "resposta": "Comum",
+        "fonte": "art. 7º, II",
+        "dica": "Saúde e assistência são competência comum aos três entes."
+      },
+      {
+        "afirmacao": "Proteger os documentos, as obras e outros bens de valor histórico, artístico e cultural, os monumentos, as paisagens naturais notáveis e os sítios arqueológicos.",
+        "resposta": "Comum",
+        "fonte": "art. 7º, III",
+        "dica": "Proteção do patrimônio cultural é comum."
+      },
+      {
+        "afirmacao": "Proporcionar os meios de acesso à cultura, à educação e à ciência.",
+        "resposta": "Comum",
+        "fonte": "art. 7º, V",
+        "dica": "Acesso à cultura e educação é comum aos três entes."
+      },
+      {
+        "afirmacao": "Proteger o meio ambiente e combater a poluição em qualquer de suas formas.",
+        "resposta": "Comum",
+        "fonte": "art. 7º, VI",
+        "dica": "Meio ambiente é competência comum clássica."
+      },
+      {
+        "afirmacao": "Preservar as florestas, a fauna, a flora, as praias, os manguezais e os costões.",
+        "resposta": "Comum",
+        "fonte": "art. 7º, VII",
+        "dica": "Preservação ambiental é comum."
+      },
+      {
+        "afirmacao": "Promover programas de construção de moradias e a melhoria das condições habitacionais e de saneamento básico.",
+        "resposta": "Comum",
+        "fonte": "art. 7º, IX",
+        "dica": "Moradia e saneamento são competência comum."
+      },
+      {
+        "afirmacao": "Combater as causas da pobreza e os fatores de marginalização, promovendo a integração social dos setores desfavorecidos.",
+        "resposta": "Comum",
+        "fonte": "art. 7º, X",
+        "dica": "Combate à pobreza é comum aos três entes."
+      },
+      {
+        "afirmacao": "Registrar, acompanhar e fiscalizar as concessões de direitos de pesquisa e exploração de recursos hídricos e minerais, em seu território.",
+        "resposta": "Comum",
+        "fonte": "art. 7º, XI",
+        "dica": "Fiscalizar recursos hídricos e minerais é comum aos três entes."
+      },
+      {
+        "afirmacao": "Estabelecer e implantar a política de educação para a segurança do trânsito.",
+        "resposta": "Comum",
+        "fonte": "art. 7º, XII",
+        "dica": "Educação para o trânsito é competência comum."
+      },
+      {
+        "afirmacao": "Ao Município compete suplementar as legislações federal e estadual no que couber e naquilo que disser respeito ao seu peculiar interesse, visando a adaptá-las à realidade local.",
+        "resposta": "Suplementar",
+        "fonte": "art. 8º",
+        "dica": "As palavras 'suplementar', 'peculiar interesse' e 'adaptá-las à realidade local' entregam a resposta."
+      }
     ]
   },
-
   "baralhos_sugeridos": [
-    { "id": "numeros", "nome": "Prazos e números", "mecanica": "acertar o valor exato de cada prazo, percentual ou quantidade", "fonte": "numeros_chave" },
-    { "id": "competencias", "nome": "Privativa, comum ou suplementar?", "mecanica": "escolher a categoria correta de cada competência do Município", "fonte": "baralho_competencias" },
-    { "id": "poderes", "nome": "Legislativo ou Executivo?", "mecanica": "classificar a atribuição no poder correto", "fonte": "artigos[].esfera" },
-    { "id": "sucessao", "nome": "Linha de sucessão e prazos", "mecanica": "ordenar a sucessão do Prefeito e associar prazos-chave", "fonte": "instancias" },
-    { "id": "principios", "nome": "LIMPE e princípios", "mecanica": "reconhecer o princípio pela ideia-chave", "fonte": "principios" },
-    { "id": "pegadinhas", "nome": "Cai na prova?", "mecanica": "identificar se a afirmação é verdadeira ou pegadinha", "fonte": "pegadinhas" }
+    {
+      "id": "numeros",
+      "nome": "Prazos e números",
+      "mecanica": "acertar o valor exato de cada prazo, percentual ou quantidade",
+      "fonte": "numeros_chave"
+    },
+    {
+      "id": "competencias",
+      "nome": "Privativa, comum ou suplementar?",
+      "mecanica": "escolher a categoria correta de cada competência do Município",
+      "fonte": "baralho_competencias"
+    },
+    {
+      "id": "poderes",
+      "nome": "Legislativo ou Executivo?",
+      "mecanica": "classificar a atribuição no poder correto",
+      "fonte": "artigos[].esfera"
+    },
+    {
+      "id": "sucessao",
+      "nome": "Linha de sucessão e prazos",
+      "mecanica": "ordenar a sucessão do Prefeito e associar prazos-chave",
+      "fonte": "instancias"
+    },
+    {
+      "id": "principios",
+      "nome": "LIMPE e princípios",
+      "mecanica": "reconhecer o princípio pela ideia-chave",
+      "fonte": "principios"
+    },
+    {
+      "id": "pegadinhas",
+      "nome": "Cai na prova?",
+      "mecanica": "identificar se a afirmação é verdadeira ou pegadinha",
+      "fonte": "pegadinhas"
+    }
   ]
 }
