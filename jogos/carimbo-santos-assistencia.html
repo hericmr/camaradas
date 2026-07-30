@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SENTA A CARIMBADA, camarada! · fase 5c (pegadinhas)</title>
+<title>SENTA A CARIMBADA, camarada! · fase 5e (assistência, promoção e proteção social)</title>
 <style>
   .verdict.c4{grid-template-columns:1fr 1fr 1fr 1fr}
   @media (max-width:520px){
@@ -39,9 +39,9 @@
           <a class="fase-link" href="./carimbo-santos.html">fase 4 · Santos: princípios, vedações e competências</a>
           <a class="fase-link" href="./carimbo-santos-poderes.html">fase 5a · Santos: poderes</a>
           <a class="fase-link" href="./carimbo-santos-politicas.html">fase 5b · Santos: tributação/saúde/proteção</a>
-          <a class="fase-link" href="./carimbo-santos-pegadinhas.html" aria-current="page">fase 5c · Santos: pegadinhas</a>
+          <a class="fase-link" href="./carimbo-santos-pegadinhas.html">fase 5c · Santos: pegadinhas</a>
           <a class="fase-link" href="./carimbo-santos-numeros.html">fase 5d · Santos: números</a>
-          <a class="fase-link" href="./carimbo-santos-assistencia.html">fase 5e · Santos: assistência/proteção social</a>
+          <a class="fase-link" href="./carimbo-santos-assistencia.html" aria-current="page">fase 5e · Santos: assistência/proteção social</a>
         </nav>
       </div>
     </div>
@@ -52,7 +52,7 @@
   <!-- ===== MODO JOGO ===== -->
   <section class="stage" id="playStage">
     <div class="card" id="card" data-label="LEI ORGÂNICA DE SANTOS">
-      <div class="doc-label" id="docLabel">Documento nº 1: verdadeiro ou pegadinha?</div>
+      <div class="doc-label" id="docLabel">Documento nº 1: Assistência Social, Promoção Social ou Proteção Especial?</div>
       <div class="activity" id="activity">…</div>
 
       <div class="carimbador-row">
@@ -84,13 +84,26 @@
 <script>
 let DATA = null;
 const ROUND_SIZE = 18;
-const DOC_HINT = 'verdadeiro ou pegadinha?';
+const DOC_HINT = 'Assistência Social, Promoção Social ou Proteção Especial?';
 
 /* ---------- monta o baralho ---------- */
+function ehRotuloGenerico(caput){ return /:\s*$/.test(caput.trim()); }
+function cartasDeEsfera(artigos, esferasAlvo){
+  const cartas=[];
+  Object.values(artigos).forEach(a=>{
+    if(!esferasAlvo.includes(a.esfera)) return;
+    if(a.natureza==='principio') return;
+    if(!ehRotuloGenerico(a.caput)){ cartas.push({texto:a.caput, ref:`art. ${a.num}`, esfera:a.esfera}); }
+    (a.incisos||[]).forEach(i=>{ cartas.push({texto:i.texto, ref:`art. ${a.num}, ${i.num}`, esfera:a.esfera}); });
+  });
+  return cartas;
+}
+const ESFERA_LABEL={assistencia_social:'Assistência Social', promocao_social:'Promoção Social', protecao_especial:'Proteção Especial'};
 function buildDeck(){
-  return DATA.pegadinhas.map(c=>({
-    texto:c.afirmacao, ref:c.fonte,
-    opcoes:['Verdadeiro','Falso'], correta:c.resposta, explica:c.explica
+  const ESFERAS=['assistencia_social','promocao_social','protecao_especial'];
+  return cartasDeEsfera(DATA.artigos, ESFERAS).map(c=>({
+    texto:c.texto, ref:c.ref,
+    opcoes:ESFERAS.map(e=>ESFERA_LABEL[e]), correta:ESFERA_LABEL[c.esfera]
   }));
 }
 function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
@@ -333,7 +346,7 @@ function restart(){
 fetch('../data/lei-organica-santos.json')
   .then(r=>r.json())
   .then(json=>{
-        DATA={pegadinhas:json.baralho_pegadinhas.cartas};
+        DATA={artigos:json.artigos};
     startRound();
     atualizarBotoes();
   })
