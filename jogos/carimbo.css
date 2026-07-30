@@ -154,13 +154,11 @@ h1 .camarada{
 /* ---- Carta / Carimbo ---- */
 .stage{position:relative;min-height:340px}
 .card{
-  position:relative;background:var(--paper-2);
-  border:1px solid var(--line);border-radius:5px;
-  box-shadow:0 10px 30px -12px var(--shadow), 0 1px 0 #fff inset;
-  padding:26px 24px 22px;
+  position:relative;
+  padding:26px 0 0;
 }
 .card::before{
-  content:attr(data-label);position:absolute;top:14px;right:16px;
+  content:attr(data-label);position:absolute;top:0;right:0;
   font-family:"Helvetica Neue",Arial,sans-serif;font-size:9px;letter-spacing:.28em;
   color:var(--line);font-weight:700;
 }
@@ -347,7 +345,7 @@ h1 .camarada{
 .game-navbar{
   position:fixed;top:0;left:0;right:0;z-index:60;
   display:flex;align-items:center;gap:16px;
-  height:var(--navbar-h);overflow:hidden;
+  height:var(--navbar-h);
   padding:0 clamp(14px,4vw,24px);
   background:var(--pp-dark-1);
   border-bottom:2px solid rgba(0,0,0,.5);
