@@ -275,40 +275,7 @@ function restart(){
   startRound();
 }
 
-/* ---------- paineis dock: manual (lei seca) e fases ---------- */
-function isDocked(){
-  return window.matchMedia('(min-width:1100px)').matches;
-}
-function estaAberto(id){
-  const ov=document.getElementById(id);
-  if(!ov) return false;
-  return isDocked() ? !ov.classList.contains('collapsed') : ov.classList.contains('show');
-}
-function fecharPainel(id){
-  const ov=document.getElementById(id);
-  if(!ov) return;
-  if(isDocked()) ov.classList.add('collapsed');
-  else ov.classList.remove('show');
-}
-function abrirPainel(id){
-  cancelarAutoAvanco();
-  const ov=document.getElementById(id);
-  if(isDocked()) ov.classList.remove('collapsed');
-  else ov.classList.add('show');
-  atualizarBotoes();
-}
-function atualizarBotoes(){
-  const ov=document.getElementById('manualOverlay'), btn=document.getElementById('manualBtn');
-  if(!ov||!btn) return;
-  btn.style.display = estaAberto('manualOverlay') ? 'none' : '';
-}
-function abrirManual(){
-  abrirPainel('manualOverlay');
-  const pdf=document.getElementById('manualPdf');
-  if(pdf && !pdf.getAttribute('src')) pdf.setAttribute('src', '../data/codigo-etica-cfess.pdf');
-}
-function fecharManual(){ fecharPainel('manualOverlay'); atualizarBotoes(); }
-function alternarManual(){ if(estaAberto('manualOverlay')) fecharManual(); else abrirPainel('manualOverlay'); }
+/* ---------- painel: fases ---------- */
 function alternarFases(){
   const dd=document.getElementById('fasesDropdown');
   if(dd) dd.classList.toggle('show');
@@ -320,7 +287,6 @@ document.addEventListener('click', e=>{
     dd.classList.remove('show');
   }
 });
-window.addEventListener('resize', atualizarBotoes);
 
 
 /* ---------- init ---------- */
@@ -329,19 +295,10 @@ fetch('../data/lei8662.json')
   .then(json=>{
     DATA={art_4:json.artigos.art_4,art_5:json.artigos.art_5};
     startRound();
-    atualizarBotoes();
   })
   .catch(()=>{ $('activity').textContent='não foi possível carregar as questões.'; });
 </script>
-<button class="manual-btn" id="manualBtn" onclick="alternarManual()">consultar a lei</button>
-<div class="manual-overlay" id="manualOverlay" onclick="if(event.target===this) fecharManual()">
-  <div class="manual-panel">
-    <div class="manual-head">
-      <button class="manual-close" onclick="fecharManual()" aria-label="fechar">×</button>
-    </div>
-    <iframe class="manual-pdf" id="manualPdf" title="Lei nº 8.662/93 (texto oficial)"></iframe>
-  </div>
-</div>
+<a class="manual-btn" id="manualBtn" href="https://www.planalto.gov.br/ccivil_03/leis/L8662.htm" target="_blank" rel="noopener">consultar a lei</a>
 </div>
 </body>
 </html>
