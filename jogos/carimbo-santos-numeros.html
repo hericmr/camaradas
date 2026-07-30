@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SENTA A CARIMBADA, camarada! · fase 4 (princípios, vedações e competências)</title>
+<title>SENTA A CARIMBADA, camarada! · fase 5d (números e prazos)</title>
 <style>
   .verdict.c4{grid-template-columns:1fr 1fr 1fr 1fr}
   @media (max-width:520px){
@@ -36,11 +36,11 @@
           <a class="fase-link" href="./carimbo-8662.html">fase 1 · lei 8.662</a>
           <a class="fase-link" href="./carimbo-etica.html">fase 2 · código de ética</a>
           <a class="fase-link" href="./carimbo-completo.html">fase 3 · tudo junto</a>
-          <a class="fase-link" href="./carimbo-santos.html" aria-current="page">fase 4 · Santos: princípios, vedações e competências</a>
+          <a class="fase-link" href="./carimbo-santos.html">fase 4 · Santos: princípios, vedações e competências</a>
           <a class="fase-link" href="./carimbo-santos-poderes.html">fase 5a · Santos: poderes</a>
           <a class="fase-link" href="./carimbo-santos-politicas.html">fase 5b · Santos: tributação/saúde/proteção</a>
           <a class="fase-link" href="./carimbo-santos-pegadinhas.html">fase 5c · Santos: pegadinhas</a>
-          <a class="fase-link" href="./carimbo-santos-numeros.html">fase 5d · Santos: números</a>
+          <a class="fase-link" href="./carimbo-santos-numeros.html" aria-current="page">fase 5d · Santos: números</a>
         </nav>
       </div>
     </div>
@@ -51,7 +51,7 @@
   <!-- ===== MODO JOGO ===== -->
   <section class="stage" id="playStage">
     <div class="card" id="card" data-label="LEI ORGÂNICA DE SANTOS">
-      <div class="doc-label" id="docLabel">Documento nº 1: classifique o dispositivo</div>
+      <div class="doc-label" id="docLabel">Documento nº 1: qual o valor exato?</div>
       <div class="activity" id="activity">…</div>
 
       <div class="carimbador-row">
@@ -83,20 +83,14 @@
 <script>
 let DATA = null;
 const ROUND_SIZE = 18;
+const DOC_HINT = 'qual o valor exato?';
 
 /* ---------- monta o baralho ---------- */
 function buildDeck(){
-  const deck=[];
-  DATA.principios.forEach(p=>{
-    deck.push({texto:p.texto, ref:`princípio ${p.num}`, opcoes:['Princípio','Vedação'], correta:'Princípio', dica:'Princípio ou vedação?'});
-  });
-  DATA.vedacoes.forEach(i=>{
-    deck.push({texto:i.texto, ref:`art. 9º, ${i.num}`, opcoes:['Princípio','Vedação'], correta:'Vedação', dica:'Princípio ou vedação?'});
-  });
-  DATA.competencias.forEach(c=>{
-    deck.push({texto:c.afirmacao, ref:c.fonte, opcoes:['Privativa','Comum','Suplementar'], correta:c.resposta, explica:c.dica, dica:'Privativa, comum ou suplementar?'});
-  });
-  return deck;
+  return DATA.numeros.map(c=>({
+    texto:c.pergunta, ref:c.fonte,
+    opcoes:c.opcoes, correta:c.correta
+  }));
 }
 function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
 
@@ -242,7 +236,7 @@ function renderCard(){
   const seal=$('seal');
   seal.className='seal';
   seal.textContent='';
-  $('docLabel').textContent=`Documento nº ${idx+1}: ${c.dica}`;
+  $('docLabel').textContent=`Documento nº ${idx+1}: ${DOC_HINT}`;
   $('activity').innerHTML=`<span class="qnum">"</span>${c.texto}<span class="qnum">"</span>`;
   $('feedback').classList.remove('show');
   updateHud();
@@ -317,7 +311,7 @@ function reviewHtml(){
 function showDone(){
   const pct=Math.round(correct/deck.length*100);
   let msg;
-  if(pct===100) msg="Gabaritou essa leva. Jogue de novo pra pegar outras cartas do baralho.";
+  if(pct===100) msg="Gabaritou essa leva. Bora pra próxima sub-fase ou jogue de novo pra pegar outras cartas do baralho.";
   else if(pct>=80) msg="Sólido. Revise só o que escapou.";
   else if(pct>=60) msg="Quase lá. Revise os errados abaixo e tente de novo.";
   else msg="Revise os errados abaixo antes de tentar de novo.";
@@ -338,7 +332,7 @@ function restart(){
 fetch('../data/lei-organica-santos.json')
   .then(r=>r.json())
   .then(json=>{
-        DATA={principios:json.principios, vedacoes:json.artigos.art_9.incisos, competencias:json.baralho_competencias.cartas};
+        DATA={numeros:json.baralho_numeros.cartas};
     startRound();
     atualizarBotoes();
   })

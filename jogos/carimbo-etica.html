@@ -15,37 +15,48 @@
   .seal.gold{color:var(--seal-gold)}
   .seal.red{color:var(--seal-red)}
 </style>
-  <link rel="stylesheet" crossorigin href="/camaradas/assets/carimbo-6LNxk0KP.css">
+  <link rel="stylesheet" crossorigin href="/camaradas/assets/carimbo-DtuTJefg.css">
 </head>
 <body>
-<div class="wrap">
-  <a class="back-link" href="../index.html">&larr; início</a>
-  <nav class="fases">
-    <a class="fase-link" href="./carimbo-8662.html">fase 1 · lei 8.662</a>
-    <a class="fase-link" href="./carimbo-etica.html" aria-current="page">fase 2 · código de ética</a>
-    <a class="fase-link" href="./carimbo-completo.html">fase 3 · tudo junto</a>
-    <a class="fase-link" href="./carimbo-santos.html">fase 4 · lei orgânica de Santos</a>
-  </nav>
-  <header>
-    <div class="eyebrow">Código de Ética · Assistente Social</div>
-    <h1>SENTA A CARIMBADA, <span class="camarada">camarada!</span></h1>
-    <div class="sub">Direito, dever ou vedação: carimbe cada alínea do Código de Ética (Resolução CFESS 273/93)</div>
-  </header>
-
-  <div class="hud">
-    <div class="stat"><div class="k">Acertos</div><div class="v" id="hCorrect">0</div></div>
-    <div class="stat"><div class="k">Rodada</div><div class="v" id="hProg">0/0</div></div>
-    <div class="stat streak"><div class="k">Sequência</div><div class="v" id="hStreak">0</div></div>
-    <div class="stat"><div class="k">Recorde</div><div class="v" id="hBest">0</div></div>
+  <div class="game-navbar">
+    <a class="back-link" href="../index.html">&larr; início</a>
+    <span class="game-navbar-title">SENTA A CARIMBADA, <span class="camarada">camarada!</span></span>
+    <div class="navbar-fases">
+      <button class="chrome-toggle" id="chromeToggle" onclick="alternarFases()">fases</button>
+      <div class="fases-dropdown" id="fasesDropdown">
+        <nav class="fases">
+          <a class="fase-link" href="./carimbo-8662.html">fase 1 · lei 8.662</a>
+          <a class="fase-link" href="./carimbo-etica.html" aria-current="page">fase 2 · código de ética</a>
+          <a class="fase-link" href="./carimbo-completo.html">fase 3 · tudo junto</a>
+          <a class="fase-link" href="./carimbo-santos.html">fase 4 · Santos: princípios, vedações e competências</a>
+          <a class="fase-link" href="./carimbo-santos-poderes.html">fase 5a · Santos: poderes</a>
+          <a class="fase-link" href="./carimbo-santos-politicas.html">fase 5b · Santos: tributação/saúde/proteção</a>
+          <a class="fase-link" href="./carimbo-santos-pegadinhas.html">fase 5c · Santos: pegadinhas</a>
+          <a class="fase-link" href="./carimbo-santos-numeros.html">fase 5d · Santos: números</a>
+        </nav>
+      </div>
+    </div>
   </div>
-
+<div class="desk">
+<div class="desk-game">
+<div class="wrap">
   <!-- ===== MODO JOGO ===== -->
   <section class="stage" id="playStage">
     <div class="card" id="card" data-label="CÓDIGO DE ÉTICA">
       <div class="doc-label" id="docLabel">Documento nº 1: classifique a atividade</div>
       <div class="activity" id="activity">…</div>
 
-      <img class="carimbador" id="carimbador" src="../img/carimbo/01.png" alt="assistente social de carimbo em punho, pronto para julgar">
+      <div class="carimbador-row">
+        <div class="hud-side">
+          <div class="stat"><div class="k">Acertos</div><div class="v" id="hCorrect">0</div></div>
+          <div class="stat streak"><div class="k">Sequência</div><div class="v" id="hStreak">0</div></div>
+        </div>
+        <img class="carimbador" id="carimbador" src="../img/carimbo/01.png" alt="assistente social de carimbo em punho, pronto para julgar">
+        <div class="hud-side">
+          <div class="stat"><div class="k">Rodada</div><div class="v" id="hProg">0/0</div></div>
+          <div class="stat"><div class="k">Recorde</div><div class="v" id="hBest">0</div></div>
+        </div>
+      </div>
 
       <div class="seal green" id="sealDireito">Direito</div>
       <div class="seal gold" id="sealDever">Dever</div>
@@ -66,14 +77,10 @@
       <div class="feedback" id="feedback">
         <div class="verdict-line" id="vLine"></div>
         <div class="cite" id="cite"></div>
-        <button class="next" id="nextBtn" onclick="avancarQuestao()">
-          <span class="next-fill" id="nextFill"></span>
-          <span class="next-label" id="nextLabel">Próximo documento →</span>
-        </button>
       </div>
     </div>
   </section>
-
+</div>
   <div class="foot">Fonte: <a href="https://www.cfess.org.br/arquivos/CEP_CFESS-SITE.pdf" target="_blank" rel="noopener">Código de Ética do/a Assistente Social, Resolução CFESS nº 273, de 13 de março de 1993 (PDF oficial)</a></div>
 </div>
 
@@ -86,6 +93,7 @@ const NAT = {
   vedacao: {label:'Vedação', explica:'é uma <b>vedação</b>: proibido ao/à assistente social.'}
 };
 const SEAL_ID = {direito:'sealDireito', dever:'sealDever', vedacao:'sealVedacao'};
+const BTN_ID = {direito:'btnDireito', dever:'btnDever', vedacao:'btnVedacao'};
 
 /* ---------- monta o baralho ---------- */
 function buildDeck(){
@@ -120,6 +128,9 @@ let autoAdvanceTimer=null;
 let spaceAdvanceActive=false;
 
 document.addEventListener('keydown', e=>{
+  if(e.key==='Escape'){ fecharManual(); const dd=document.getElementById('fasesDropdown'); if(dd) dd.classList.remove('show'); return; }
+  const tag=(e.target&&e.target.tagName)||'';
+  if(tag==='INPUT' || tag==='TEXTAREA') return;
   if(e.code==='Space' || e.key===' '){
     if(spaceAdvanceActive){
       e.preventDefault();
@@ -173,7 +184,17 @@ function cardTemplate(){
   return `
     <div class="doc-label" id="docLabel"></div>
     <div class="activity" id="activity"></div>
-    <img class="carimbador" id="carimbador" src="../img/carimbo/01.png" alt="assistente social de carimbo em punho, pronto para julgar">
+    <div class="carimbador-row">
+      <div class="hud-side">
+        <div class="stat"><div class="k">Acertos</div><div class="v" id="hCorrect">0</div></div>
+        <div class="stat streak"><div class="k">Sequência</div><div class="v" id="hStreak">0</div></div>
+      </div>
+      <img class="carimbador" id="carimbador" src="../img/carimbo/01.png" alt="assistente social de carimbo em punho, pronto para julgar">
+      <div class="hud-side">
+        <div class="stat"><div class="k">Rodada</div><div class="v" id="hProg">0/0</div></div>
+        <div class="stat"><div class="k">Recorde</div><div class="v" id="hBest">0</div></div>
+      </div>
+    </div>
     <div class="seal green" id="sealDireito">Direito</div>
     <div class="seal gold" id="sealDever">Dever</div>
     <div class="seal red" id="sealVedacao">Vedação</div>
@@ -185,17 +206,12 @@ function cardTemplate(){
     <div class="feedback" id="feedback">
       <div class="verdict-line" id="vLine"></div>
       <div class="cite" id="cite"></div>
-      <button class="next" id="nextBtn">
-        <span class="next-fill" id="nextFill"></span>
-        <span class="next-label" id="nextLabel">Próximo documento →</span>
-      </button>
     </div>`;
 }
 function bindCard(){
   $('btnDireito').onclick=()=>judge('direito');
   $('btnDever').onclick=()=>judge('dever');
   $('btnVedacao').onclick=()=>judge('vedacao');
-  $('nextBtn').onclick=avancarQuestao;
 }
 
 function judge(choice){
@@ -215,13 +231,23 @@ function judge(choice){
   carimbador.classList.add('hit');
   setTimeout(()=>carimbador.classList.remove('hit'),150);
 
-  // desabilita botões
-  $('btnDireito').disabled=true; $('btnDever').disabled=true; $('btnVedacao').disabled=true;
-
   const local = c.letra ? `alínea <b>${c.letra}</b> do art. <b>${c.art}</b>` : `art. <b>${c.art}</b>`;
 
   if(right){ correct++; streak++; if(streak>best){best=streak;} playSound(sndCorrect); }
   else { streak=0; missed.push({ref:local, texto:c.texto, explica:info.explica}); playSound(sndWrong); }
+
+  const rotuloProximo = idx>=deck.length-1 ? 'Ver resultado →' : 'Próximo →';
+  Object.keys(BTN_ID).forEach(cat=>{
+    const btn=$(BTN_ID[cat]);
+    if(cat===choice){
+      btn.disabled=false;
+      btn.classList.add('next-here');
+      btn.onclick=avancarQuestao;
+      btn.innerHTML=`<span class="next-fill" id="nextFill"></span><span class="next-label">${rotuloProximo}</span>`;
+    } else {
+      btn.disabled=true;
+    }
+  });
 
   const fb=$('feedback');
   const vLine=$('vLine');
@@ -232,9 +258,6 @@ function judge(choice){
   fb.classList.add('show');
   updateHud();
 
-  if(idx>=deck.length-1){
-    $('nextLabel').textContent='Ver resultado →';
-  }
   agendarProximo();
 }
 
@@ -278,14 +301,73 @@ function restart(){
   startRound();
 }
 
+/* ---------- paineis dock: manual (lei seca) e fases ---------- */
+function isDocked(){
+  return window.matchMedia('(min-width:1100px)').matches;
+}
+function estaAberto(id){
+  const ov=document.getElementById(id);
+  if(!ov) return false;
+  return isDocked() ? !ov.classList.contains('collapsed') : ov.classList.contains('show');
+}
+function fecharPainel(id){
+  const ov=document.getElementById(id);
+  if(!ov) return;
+  if(isDocked()) ov.classList.add('collapsed');
+  else ov.classList.remove('show');
+}
+function abrirPainel(id){
+  cancelarAutoAvanco();
+  const ov=document.getElementById(id);
+  if(isDocked()) ov.classList.remove('collapsed');
+  else ov.classList.add('show');
+  atualizarBotoes();
+}
+function atualizarBotoes(){
+  const ov=document.getElementById('manualOverlay'), btn=document.getElementById('manualBtn');
+  if(!ov||!btn) return;
+  btn.style.display = estaAberto('manualOverlay') ? 'none' : '';
+}
+function abrirManual(){
+  abrirPainel('manualOverlay');
+  const pdf=document.getElementById('manualPdf');
+  if(pdf && !pdf.getAttribute('src')) pdf.setAttribute('src', '../data/codigo-etica-cfess.pdf');
+}
+function fecharManual(){ fecharPainel('manualOverlay'); atualizarBotoes(); }
+function alternarManual(){ if(estaAberto('manualOverlay')) fecharManual(); else abrirPainel('manualOverlay'); }
+function alternarFases(){
+  const dd=document.getElementById('fasesDropdown');
+  if(dd) dd.classList.toggle('show');
+}
+document.addEventListener('click', e=>{
+  const dd=document.getElementById('fasesDropdown');
+  const btn=document.getElementById('chromeToggle');
+  if(dd && dd.classList.contains('show') && !dd.contains(e.target) && e.target!==btn){
+    dd.classList.remove('show');
+  }
+});
+window.addEventListener('resize', atualizarBotoes);
+
+
 /* ---------- init ---------- */
 fetch('../data/codigo-etica.json')
   .then(r=>r.json())
   .then(json=>{
     DATA={artigos:json.artigos};
     startRound();
+    atualizarBotoes();
   })
   .catch(()=>{ $('activity').textContent='não foi possível carregar as questões.'; });
 </script>
+<button class="manual-btn" id="manualBtn" onclick="alternarManual()">consultar a lei</button>
+<div class="manual-overlay" id="manualOverlay" onclick="if(event.target===this) fecharManual()">
+  <div class="manual-panel">
+    <div class="manual-head">
+      <button class="manual-close" onclick="fecharManual()" aria-label="fechar">×</button>
+    </div>
+    <iframe class="manual-pdf" id="manualPdf" title="Código de Ética do/a Assistente Social (PDF oficial CFESS)"></iframe>
+  </div>
+</div>
+</div>
 </body>
 </html>
