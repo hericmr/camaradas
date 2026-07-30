@@ -19,6 +19,13 @@
   --seal-rust-ink:#543423;
   --gold:#8c7c3f;
   --shadow:rgba(10,10,8,.28);
+  --pp-dark-1:#2a2b24;
+  --pp-dark-2:#3c3d31;
+  --pp-dark-3:#4c4c3c;
+  --navbar-h:64px;
+}
+@media (max-width:600px){
+  :root{--navbar-h:46px}
 }
 @font-face{
   font-family:'Agitprop';
@@ -58,15 +65,17 @@
 *{box-sizing:border-box;margin:0;padding:0}
 html{-webkit-text-size-adjust:100%}
 body{
-  background:var(--paper);
+  background:var(--pp-dark-1);
   background-image:
-    radial-gradient(circle at 20% 10%, rgba(255,255,255,.35), transparent 40%),
-    radial-gradient(circle at 80% 90%, rgba(0,0,0,.05), transparent 45%);
+    radial-gradient(circle at 20% 10%, rgba(255,255,255,.06), transparent 40%),
+    radial-gradient(circle at 80% 90%, rgba(0,0,0,.25), transparent 45%),
+    linear-gradient(160deg, var(--pp-dark-3) 0%, var(--pp-dark-2) 45%, var(--pp-dark-1) 100%);
   color:var(--ink);
   font-family:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
   line-height:1.5;
-  min-height:100vh;
-  padding:clamp(16px,4vw,48px) clamp(14px,4vw,24px) 64px;
+  height:100vh;
+  overflow:hidden;
+  padding:0 clamp(14px,4vw,24px) 64px;
 }
 body::before{
   content:'';
@@ -164,10 +173,29 @@ h1 .camarada{
 .qnum{color:var(--gold);font-weight:700}
 
 .carimbador{
-  display:block;margin:14px auto 4px;max-width:130px;height:auto;
+  display:block;margin:0 auto;max-width:130px;height:auto;
   transition:transform .12s ease;
 }
 .carimbador.hit{transform:scale(1.08) rotate(-2deg)}
+
+/* placar ao redor do carimbador, pra não passar despercebido lá em cima */
+.carimbador-row{
+  display:flex;align-items:center;justify-content:center;gap:16px;
+  margin:14px 0 4px;
+}
+.hud-side{display:flex;flex-direction:column;gap:8px;flex:0 0 92px}
+.hud-side .stat{flex:none;min-width:0;text-align:center}
+@media (max-width:560px){
+  .carimbador-row{gap:8px}
+  .hud-side{flex-basis:76px;gap:6px}
+  .hud-side .stat{padding:6px 6px}
+  .hud-side .stat .k{font-size:9px;letter-spacing:.08em}
+  .hud-side .stat .v{font-size:18px}
+}
+@media (max-width:400px){
+  .carimbador-row{flex-wrap:wrap}
+  .hud-side{flex-direction:row;flex-basis:100%;justify-content:center;gap:8px}
+}
 
 /* botões de julgamento */
 .verdict{display:grid;gap:12px;margin-top:22px}
@@ -227,8 +255,18 @@ h1 .camarada{
 .next-fill.run{animation:nextFillAnim 3s linear forwards}
 @keyframes nextFillAnim{from{width:0%}to{width:100%}}
 .next-label{position:relative;z-index:1}
-@media (prefers-reduced-motion: reduce){
-  .next-fill.run{animation:none}
+
+/* botao clicado vira o botao de avancar, no lugar exato onde o jogador clicou */
+.stamp-btn.next-here{
+  position:relative;overflow:hidden;cursor:pointer;
+  background:var(--ink);color:var(--paper-2);border-color:var(--ink);
+  opacity:1 !important;
+}
+.stamp-btn.next-here:hover{background:#000}
+.stamp-btn.next-here .next-label{
+  position:relative;z-index:1;display:block;
+  font-family:'Bangalore',"Helvetica Neue",Arial,sans-serif;font-weight:400;
+  font-size:15px;letter-spacing:.06em;text-transform:uppercase;
 }
 
 /* ---- Revisão dos erros ---- */
@@ -266,4 +304,125 @@ h1 .camarada{
 @media (max-width:520px){
   .verdict.c3{grid-template-columns:1fr 1fr}
   .verdict.odd .stamp-btn:last-child{grid-column:1 / -1}
+}
+
+/* ---- Manual (lei seca): visualizador do PDF oficial ---- */
+.manual-btn{
+  position:fixed;right:16px;bottom:16px;z-index:40;
+  cursor:pointer;border:2px solid var(--ink);background:var(--paper-2);color:var(--ink);
+  font-family:'Bangalore',"Helvetica Neue",Arial,sans-serif;font-weight:400;letter-spacing:.08em;text-transform:uppercase;
+  font-size:13px;padding:11px 16px;border-radius:4px;box-shadow:0 8px 20px -8px var(--shadow);
+}
+.manual-btn:hover{background:var(--ink);color:var(--paper-2)}
+.manual-overlay{
+  position:fixed;inset:0;z-index:50;background:rgba(16,15,13,.55);
+  display:none;
+}
+.manual-overlay.show{display:block}
+.manual-panel{
+  position:absolute;top:0;right:0;bottom:0;width:min(460px,92vw);
+  background:#fdfdfb;border-left:1px solid var(--line);
+  box-shadow:-24px 0 60px -30px var(--shadow);
+  display:flex;flex-direction:column;
+  transform:translateX(100%);transition:transform .25s ease;
+}
+.manual-overlay.show .manual-panel{transform:translateX(0)}
+.manual-head{
+  padding:12px 14px;border-bottom:2px solid var(--ink);
+  display:flex;align-items:center;justify-content:flex-end;
+  background:var(--paper-2);
+}
+.manual-close{
+  cursor:pointer;border:1px solid var(--line);background:transparent;color:var(--ink-soft);
+  font-family:"Helvetica Neue",Arial,sans-serif;font-size:18px;line-height:1;width:30px;height:30px;border-radius:3px;
+}
+.manual-close:hover{border-color:var(--ink);color:var(--ink)}
+.manual-pdf{flex:1;width:100%;border:none;background:#525659}
+@media (max-width:520px){
+  .manual-btn{right:10px;bottom:10px;padding:10px 14px;font-size:12px}
+}
+
+/* ---- topbar / chrome recolhível (fases + título) ---- */
+/* ---- navbar fixa do jogo: sempre no topo da pagina, fundo opaco pra legibilidade ---- */
+.game-navbar{
+  position:fixed;top:0;left:0;right:0;z-index:60;
+  display:flex;align-items:center;gap:16px;
+  height:var(--navbar-h);overflow:hidden;
+  padding:0 clamp(14px,4vw,24px);
+  background:var(--pp-dark-1);
+  border-bottom:2px solid rgba(0,0,0,.5);
+  box-shadow:0 6px 18px -10px rgba(0,0,0,.5);
+}
+.game-navbar .back-link{margin-bottom:0;flex:0 0 auto;order:2}
+.game-navbar-title{
+  order:1;
+  font-family:'Agitprop',"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+  font-size:30px;font-weight:400;line-height:1;color:var(--seal-red-ink);
+  white-space:nowrap;flex:0 1 auto;margin:0;
+  text-shadow:
+    1px 1px 0 var(--ink-deep),2px 2px 0 var(--ink-deep),3px 3px 0 var(--ink-deep),
+    4px 4px 0 var(--ink-deep),5px 5px 0 var(--ink-deep),6px 6px 0 var(--ink-deep),
+    7px 7px 0 var(--ink-deep),8px 8px 0 var(--ink-deep),9px 9px 0 var(--ink-deep),
+    10px 10px 0 var(--ink-deep);
+}
+.game-navbar-title .camarada{font-family:'Minhaletra2',"Helvetica Neue",Arial,sans-serif;text-shadow:none}
+@media (max-width:600px){
+  .game-navbar{gap:10px}
+  .game-navbar-title{
+    font-size:20px;
+    text-shadow:
+      1px 1px 0 var(--ink-deep),2px 2px 0 var(--ink-deep),3px 3px 0 var(--ink-deep),
+      4px 4px 0 var(--ink-deep),5px 5px 0 var(--ink-deep),6px 6px 0 var(--ink-deep);
+  }
+}
+.chrome-toggle{
+  cursor:pointer;border:1px solid var(--line);background:transparent;color:var(--ink-soft);
+  font-family:'Bangalore',"Helvetica Neue",Arial,sans-serif;font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;
+  padding:6px 10px;border-radius:3px;
+}
+.chrome-toggle:hover{border-color:var(--ink);color:var(--ink)}
+
+/* ---- menu de fases: dropdown simples, preso na navbar ---- */
+.navbar-fases{position:relative;flex:0 0 auto;order:3;margin-left:auto}
+.fases-dropdown{
+  position:absolute;top:calc(100% + 8px);right:0;
+  min-width:280px;max-width:92vw;max-height:70vh;overflow-y:auto;
+  background:var(--paper-2);border:1px solid var(--line);border-radius:4px;
+  box-shadow:0 14px 30px -12px rgba(0,0,0,.5);
+  padding:8px;
+  display:none;
+  z-index:70;
+}
+.fases-dropdown.show{display:block}
+.fases-dropdown .fases{display:flex;flex-direction:column;gap:5px}
+.fases-dropdown .fase-link{width:100%;text-align:left;box-sizing:border-box}
+
+/* ---- Layout "mesa": jogo à esquerda, manual docado à direita em telas largas ---- */
+.desk{display:block;height:100%;padding-top:calc(var(--navbar-h) + clamp(14px,3vw,28px))}
+.desk-game{
+  width:100%;height:100%;overflow-y:auto;
+  scrollbar-width:none;-ms-overflow-style:none;
+}
+.desk-game::-webkit-scrollbar{display:none;width:0;height:0}
+
+@media (min-width:1100px){
+  .desk{
+    display:flex;align-items:flex-start;justify-content:center;
+    gap:28px;max-width:1400px;margin:0 auto;
+  }
+  .desk-game{flex:1 1 auto;max-width:760px}
+  .manual-overlay{
+    position:sticky;top:24px;inset:auto;z-index:1;
+    background:transparent;display:block;
+    flex:0 0 min(420px,34vw);
+    height:calc(100vh - 48px);
+    transition:flex-basis .2s ease,opacity .2s ease;
+  }
+  .manual-overlay.collapsed{flex-basis:0;min-width:0;opacity:0;pointer-events:none}
+  .manual-panel{
+    position:relative;width:100%;height:100%;
+    transform:none !important;
+    box-shadow:0 10px 30px -12px var(--shadow),0 1px 0 #fff inset;
+    border-radius:5px;border:1px solid var(--line);
+  }
 }

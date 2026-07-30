@@ -902,6 +902,253 @@
       }
     ]
   },
+  "baralho_pegadinhas": {
+    "nome": "Cai na prova?",
+    "pergunta": "A afirmação abaixo é VERDADEIRA ou é uma pegadinha (FALSA)?",
+    "opcoes": ["Verdadeiro", "Falso"],
+    "cartas": [
+      {
+        "afirmacao": "A Câmara de Santos tem 21 Vereadores.",
+        "resposta": "Verdadeiro",
+        "fonte": "art. 13",
+        "explica": "21 Vereadores, eleitos pelo sistema proporcional."
+      },
+      {
+        "afirmacao": "A Câmara de Santos tem 15 Vereadores.",
+        "resposta": "Falso",
+        "fonte": "art. 13",
+        "explica": "São 21 Vereadores, não 15."
+      },
+      {
+        "afirmacao": "O mandato da Mesa da Câmara é de 2 anos, diferente dos 4 anos do mandato do Vereador.",
+        "resposta": "Verdadeiro",
+        "fonte": "art. 27",
+        "explica": "Vereador: 4 anos. Mesa: 2 anos."
+      },
+      {
+        "afirmacao": "A Mesa da Câmara tem mandato de 4 anos, igual ao mandato do Vereador.",
+        "resposta": "Falso",
+        "fonte": "art. 27",
+        "explica": "O mandato da Mesa é de 2 anos, não 4."
+      },
+      {
+        "afirmacao": "É vedada a recondução de um membro da Mesa ao mesmo cargo na eleição imediatamente subsequente.",
+        "resposta": "Verdadeiro",
+        "fonte": "art. 27, §2º",
+        "explica": "Vedação expressa de recondução ao mesmo cargo."
+      },
+      {
+        "afirmacao": "Um membro da Mesa pode ser reconduzido ao mesmo cargo na eleição imediatamente seguinte.",
+        "resposta": "Falso",
+        "fonte": "art. 27, §2º",
+        "explica": "É vedada a recondução ao mesmo cargo."
+      },
+      {
+        "afirmacao": "O Município de Santos aplica no mínimo 30% da receita de impostos em educação, percentual acima do mínimo federal de 25%.",
+        "resposta": "Verdadeiro",
+        "fonte": "art. 203",
+        "explica": "30% em Santos, contra 25% do mínimo federal (CF, art. 212)."
+      },
+      {
+        "afirmacao": "O Município de Santos aplica no mínimo 25% da receita de impostos em educação, o mesmo mínimo federal.",
+        "resposta": "Falso",
+        "fonte": "art. 203",
+        "explica": "Em Santos o mínimo é 30%, acima do federal."
+      },
+      {
+        "afirmacao": "O Município de Santos aplica no mínimo 15% da receita de impostos em saúde.",
+        "resposta": "Verdadeiro",
+        "fonte": "art. 183, §2º",
+        "explica": "15% do produto da arrecadação de impostos em ações e serviços de saúde."
+      },
+      {
+        "afirmacao": "O Município de Santos aplica no mínimo 20% da receita de impostos em saúde.",
+        "resposta": "Falso",
+        "fonte": "art. 183, §2º",
+        "explica": "O mínimo é 15%, não 20%."
+      },
+      {
+        "afirmacao": "A gratuidade no transporte coletivo urbano ao idoso começa aos 65 anos.",
+        "resposta": "Verdadeiro",
+        "fonte": "art. 234",
+        "explica": "65 anos — não confundir com os 60 anos usados em outros benefícios."
+      },
+      {
+        "afirmacao": "A gratuidade no transporte coletivo urbano ao idoso começa aos 60 anos.",
+        "resposta": "Falso",
+        "fonte": "art. 234",
+        "explica": "Começa aos 65 anos, não 60."
+      },
+      {
+        "afirmacao": "No impedimento ou vacância do Prefeito e do Vice, assume o Presidente da Câmara e, na sequência, o Procurador Geral do Município.",
+        "resposta": "Verdadeiro",
+        "fonte": "art. 54",
+        "explica": "Ordem de sucessão: Presidente da Câmara, depois Procurador Geral do Município."
+      },
+      {
+        "afirmacao": "No impedimento ou vacância do Prefeito e do Vice, assume diretamente o Procurador Geral do Município, sem passar pelo Presidente da Câmara.",
+        "resposta": "Falso",
+        "fonte": "art. 54",
+        "explica": "Primeiro assume o Presidente da Câmara; só depois o Procurador Geral."
+      },
+      {
+        "afirmacao": "O Prefeito tem até 90 dias após a posse para apresentar o Programa de Metas.",
+        "resposta": "Verdadeiro",
+        "fonte": "art. 58-A",
+        "explica": "90 dias após a posse."
+      },
+      {
+        "afirmacao": "O Prefeito tem até 180 dias após a posse para apresentar o Programa de Metas.",
+        "resposta": "Falso",
+        "fonte": "art. 58-A",
+        "explica": "São 90 dias, não 180. Os 180 dias são do prazo de afastamento em processo de responsabilidade (art. 59, §3º)."
+      },
+      {
+        "afirmacao": "Se o julgamento do Prefeito por crime de responsabilidade não terminar em 180 dias, cessa o afastamento, sem prejuízo do prosseguimento do processo.",
+        "resposta": "Verdadeiro",
+        "fonte": "art. 59, §3º",
+        "explica": "180 dias é o limite do afastamento, não do Programa de Metas."
+      },
+      {
+        "afirmacao": "A competência privativa da Câmara, prevista no art. 21, dispensa a sanção do Prefeito.",
+        "resposta": "Verdadeiro",
+        "fonte": "art. 21",
+        "explica": "Competência privativa da Câmara não passa pelo Prefeito."
+      },
+      {
+        "afirmacao": "Todas as matérias de competência da Câmara, inclusive as do art. 21, dependem de sanção do Prefeito.",
+        "resposta": "Falso",
+        "fonte": "arts. 20 e 21",
+        "explica": "O art. 20 exige sanção do Prefeito; o art. 21 (competência privativa) não."
+      },
+      {
+        "afirmacao": "Os princípios da Administração Pública em Santos são legalidade, impessoalidade, moralidade, publicidade, eficiência e interesse público.",
+        "resposta": "Verdadeiro",
+        "fonte": "art. 66",
+        "explica": "LIMPE + interesse público."
+      },
+      {
+        "afirmacao": "Os princípios da Administração Pública em Santos são apenas legalidade, moralidade e publicidade.",
+        "resposta": "Falso",
+        "fonte": "art. 66",
+        "explica": "Faltam impessoalidade, eficiência e interesse público."
+      }
+    ]
+  },
+  "baralho_numeros": {
+    "nome": "Prazos e números",
+    "pergunta": "Qual é o valor exato previsto na Lei Orgânica?",
+    "cartas": [
+      {
+        "pergunta": "Quantos Vereadores tem a Câmara de Santos?",
+        "opcoes": ["15 vereadores", "18 vereadores", "21 vereadores", "25 vereadores"],
+        "correta": "21 vereadores",
+        "fonte": "art. 13"
+      },
+      {
+        "pergunta": "Qual o mandato dos Vereadores de Santos?",
+        "opcoes": ["2 anos", "3 anos", "4 anos", "5 anos"],
+        "correta": "4 anos",
+        "fonte": "art. 11"
+      },
+      {
+        "pergunta": "Qual o mandato dos membros da Mesa da Câmara?",
+        "opcoes": ["1 ano", "2 anos", "4 anos", "até o fim da legislatura"],
+        "correta": "2 anos",
+        "fonte": "art. 27"
+      },
+      {
+        "pergunta": "Qual o mandato do Prefeito e do Vice-Prefeito?",
+        "opcoes": ["2 anos", "3 anos", "4 anos", "6 anos"],
+        "correta": "4 anos",
+        "fonte": "art. 51"
+      },
+      {
+        "pergunta": "A que horas tomam posse o Prefeito e os Vereadores?",
+        "opcoes": ["9 horas", "12 horas", "15 horas", "17 horas"],
+        "correta": "17 horas",
+        "fonte": "arts. 14 e 52"
+      },
+      {
+        "pergunta": "Por qual quórum a Câmara decide a perda de mandato do Prefeito/Vereador nos casos mais graves?",
+        "opcoes": ["maioria simples", "maioria absoluta", "2/3 dos membros", "3/5 dos membros"],
+        "correta": "2/3 dos membros",
+        "fonte": "arts. 17, §2º e 59, §1º"
+      },
+      {
+        "pergunta": "Em quantos dias após a posse o Prefeito deve apresentar o Programa de Metas?",
+        "opcoes": ["30 dias", "60 dias", "90 dias", "120 dias"],
+        "correta": "90 dias",
+        "fonte": "art. 58-A"
+      },
+      {
+        "pergunta": "Se o julgamento do Prefeito por crime de responsabilidade não terminar, quando cessa o afastamento?",
+        "opcoes": ["90 dias", "120 dias", "150 dias", "180 dias"],
+        "correta": "180 dias",
+        "fonte": "art. 59, §3º"
+      },
+      {
+        "pergunta": "Qual o prazo de validade do concurso público municipal?",
+        "opcoes": ["1 ano, prorrogável uma vez", "2 anos, prorrogável uma vez", "2 anos, improrrogável", "4 anos, prorrogável uma vez"],
+        "correta": "2 anos, prorrogável uma vez",
+        "fonte": "art. 67, III"
+      },
+      {
+        "pergunta": "Com que idade se dá a aposentadoria compulsória do servidor municipal?",
+        "opcoes": ["70 anos", "72 anos", "75 anos", "78 anos"],
+        "correta": "75 anos",
+        "fonte": "art. 77, §1º, II"
+      },
+      {
+        "pergunta": "Idade mínima para aposentadoria voluntária (mulher / homem)?",
+        "opcoes": ["60 / 65 anos", "62 / 65 anos", "62 / 67 anos", "65 / 70 anos"],
+        "correta": "62 / 65 anos",
+        "fonte": "art. 77, §1º, III"
+      },
+      {
+        "pergunta": "Qual o percentual mínimo aplicado em saúde pelo Município?",
+        "opcoes": ["10%", "12%", "15%", "20%"],
+        "correta": "15%",
+        "fonte": "art. 183, §2º"
+      },
+      {
+        "pergunta": "Qual o percentual mínimo aplicado em educação pelo Município de Santos?",
+        "opcoes": ["25%", "28%", "30%", "35%"],
+        "correta": "30%",
+        "fonte": "art. 203"
+      },
+      {
+        "pergunta": "Qual o percentual mínimo do orçamento aplicado em habitação?",
+        "opcoes": ["3%", "5%", "8%", "10%"],
+        "correta": "5%",
+        "fonte": "art. 147, pu"
+      },
+      {
+        "pergunta": "A partir de que idade o idoso tem gratuidade no transporte coletivo urbano?",
+        "opcoes": ["60 anos", "62 anos", "65 anos", "70 anos"],
+        "correta": "65 anos",
+        "fonte": "art. 234"
+      },
+      {
+        "pergunta": "Qual o percentual de unidades habitacionais reservado a pessoas com deficiência?",
+        "opcoes": ["3%", "5%", "8%", "10%"],
+        "correta": "5%",
+        "fonte": "art. 237, VIII"
+      },
+      {
+        "pergunta": "Em quantos dias úteis o Prefeito pode vetar um projeto de lei, a contar do recebimento?",
+        "opcoes": ["10 dias úteis", "15 dias úteis", "20 dias úteis", "30 dias úteis"],
+        "correta": "15 dias úteis",
+        "fonte": "art. 44, §1º"
+      },
+      {
+        "pergunta": "Por qual quórum a Câmara pode rejeitar o veto do Prefeito?",
+        "opcoes": ["maioria simples", "maioria absoluta", "2/3 dos membros", "3/5 dos membros"],
+        "correta": "maioria absoluta",
+        "fonte": "art. 44, §4º"
+      }
+    ]
+  },
   "baralhos_sugeridos": [
     {
       "id": "numeros",

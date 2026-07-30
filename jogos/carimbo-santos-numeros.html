@@ -3,46 +3,55 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SENTA A CARIMBADA, camarada! · lei 8.662/93 (art. 4º × art. 5º)</title>
+<title>SENTA A CARIMBADA, camarada! · fase 5d (números e prazos)</title>
 <link rel="stylesheet" href="./carimbo.css">
 <style>
-  .stamp-btn .art{display:block;font-family:'Bangalore',"Helvetica Neue",Arial,sans-serif;font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:400;opacity:.75}
-  .stamp-btn .nat{margin-top:3px}
-  .stamp-btn.green{border-color:var(--seal-green);color:var(--seal-green-ink)}
-  .stamp-btn.green:hover{background:rgba(47,107,79,.08)}
-  .stamp-btn.red{border-color:var(--seal-red);color:var(--seal-red-ink)}
-  .stamp-btn.red:hover{background:rgba(168,50,42,.08)}
-  .seal.green{color:var(--seal-green)}
-  .seal.red{color:var(--seal-red)}
+  .verdict.c4{grid-template-columns:1fr 1fr 1fr 1fr}
+  @media (max-width:520px){
+    .verdict.c3{grid-template-columns:1fr 1fr}
+    .verdict.c4{grid-template-columns:1fr 1fr}
+  }
+  .stamp-btn.opt0{border-color:var(--seal-blue);color:var(--seal-blue-ink)}
+  .stamp-btn.opt0:hover{background:rgba(47,95,122,.08)}
+  .stamp-btn.opt1{border-color:var(--seal-red);color:var(--seal-red-ink)}
+  .stamp-btn.opt1:hover{background:rgba(168,50,42,.08)}
+  .stamp-btn.opt2{border-color:var(--seal-gold);color:var(--seal-gold-ink)}
+  .stamp-btn.opt2:hover{background:rgba(168,132,60,.1)}
+  .stamp-btn.opt3{border-color:var(--seal-purple);color:var(--seal-purple-ink)}
+  .stamp-btn.opt3:hover{background:rgba(107,76,140,.08)}
+  #seal.opt0{color:var(--seal-blue)}
+  #seal.opt1{color:var(--seal-red)}
+  #seal.opt2{color:var(--seal-gold)}
+  #seal.opt3{color:var(--seal-purple)}
 </style>
 </head>
 <body>
-  <div class="game-navbar">
+<div class="game-navbar">
     <a class="back-link" href="../index.html">&larr; início</a>
     <span class="game-navbar-title">SENTA A CARIMBADA, <span class="camarada">camarada!</span></span>
     <div class="navbar-fases">
       <button class="chrome-toggle" id="chromeToggle" onclick="alternarFases()">fases</button>
       <div class="fases-dropdown" id="fasesDropdown">
         <nav class="fases">
-          <a class="fase-link" href="./carimbo-8662.html" aria-current="page">fase 1 · lei 8.662</a>
+          <a class="fase-link" href="./carimbo-8662.html">fase 1 · lei 8.662</a>
           <a class="fase-link" href="./carimbo-etica.html">fase 2 · código de ética</a>
           <a class="fase-link" href="./carimbo-completo.html">fase 3 · tudo junto</a>
           <a class="fase-link" href="./carimbo-santos.html">fase 4 · Santos: princípios, vedações e competências</a>
           <a class="fase-link" href="./carimbo-santos-poderes.html">fase 5a · Santos: poderes</a>
           <a class="fase-link" href="./carimbo-santos-politicas.html">fase 5b · Santos: tributação/saúde/proteção</a>
           <a class="fase-link" href="./carimbo-santos-pegadinhas.html">fase 5c · Santos: pegadinhas</a>
-          <a class="fase-link" href="./carimbo-santos-numeros.html">fase 5d · Santos: números</a>
+          <a class="fase-link" href="./carimbo-santos-numeros.html" aria-current="page">fase 5d · Santos: números</a>
         </nav>
       </div>
     </div>
-  </div>
+</div>
 <div class="desk">
 <div class="desk-game">
 <div class="wrap">
   <!-- ===== MODO JOGO ===== -->
   <section class="stage" id="playStage">
-    <div class="card" id="card" data-label="LEI 8.662/93">
-      <div class="doc-label" id="docLabel">Documento nº 1: classifique a atividade</div>
+    <div class="card" id="card" data-label="LEI ORGÂNICA DE SANTOS">
+      <div class="doc-label" id="docLabel">Documento nº 1: qual o valor exato?</div>
       <div class="activity" id="activity">…</div>
 
       <div class="carimbador-row">
@@ -57,17 +66,9 @@
         </div>
       </div>
 
-      <div class="seal green" id="sealGreen">Art. 4º<br>Competência</div>
-      <div class="seal red" id="sealRed">Art. 5º<br>Privativa</div>
+      <div class="seal" id="seal"></div>
 
-      <div class="verdict c2">
-        <button class="stamp-btn green" id="btnGreen" onclick="judge('compartilhada')">
-          <span class="art">Art. 4º</span><span class="nat">Competência</span>
-        </button>
-        <button class="stamp-btn red" id="btnRed" onclick="judge('privativa')">
-          <span class="art">Art. 5º</span><span class="nat">Privativa</span>
-        </button>
-      </div>
+      <div class="verdict c2" id="verdict"></div>
 
       <div class="feedback" id="feedback">
         <div class="verdict-line" id="vLine"></div>
@@ -76,18 +77,20 @@
     </div>
   </section>
 </div>
-  <div class="foot">Fonte: <a href="https://www.planalto.gov.br/ccivil_03/leis/L8662.htm" target="_blank" rel="noopener">texto oficial · Lei nº 8.662, de 7 de junho de 1993</a></div>
+  <div class="foot">Fonte: Lei Orgânica do Município de Santos, atualizada até 10/11/2022 (Gabinete do Prefeito)</div>
 </div>
 
 <script>
 let DATA = null;
+const ROUND_SIZE = 18;
+const DOC_HINT = 'qual o valor exato?';
 
 /* ---------- monta o baralho ---------- */
 function buildDeck(){
-  const deck=[];
-  DATA.art_4.incisos.forEach(i=>{ if(!i.vetado) deck.push({art:"4º",num:i.num,natureza:"compartilhada",texto:i.texto}); });
-  DATA.art_5.incisos.forEach(i=>{ deck.push({art:"5º",num:i.num,natureza:"privativa",texto:i.texto}); });
-  return deck;
+  return DATA.numeros.map(c=>({
+    texto:c.pergunta, ref:c.fonte,
+    opcoes:c.opcoes, correta:c.correta
+  }));
 }
 function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
 
@@ -101,6 +104,55 @@ const sndWrong=new Audio('../wrong.mp3');
 function playSound(a){
   try{ a.currentTime=0; a.play().catch(()=>{}); }catch(e){}
 }
+
+
+/* ---------- paineis dock: manual (lei seca) e fases ---------- */
+function isDocked(){
+  return window.matchMedia('(min-width:1100px)').matches;
+}
+function estaAberto(id){
+  const ov=document.getElementById(id);
+  if(!ov) return false;
+  return isDocked() ? !ov.classList.contains('collapsed') : ov.classList.contains('show');
+}
+function fecharPainel(id){
+  const ov=document.getElementById(id);
+  if(!ov) return;
+  if(isDocked()) ov.classList.add('collapsed');
+  else ov.classList.remove('show');
+}
+function abrirPainel(id){
+  cancelarAutoAvanco();
+  const ov=document.getElementById(id);
+  if(isDocked()) ov.classList.remove('collapsed');
+  else ov.classList.add('show');
+  atualizarBotoes();
+}
+function atualizarBotoes(){
+  const ov=document.getElementById('manualOverlay'), btn=document.getElementById('manualBtn');
+  if(!ov||!btn) return;
+  btn.style.display = estaAberto('manualOverlay') ? 'none' : '';
+}
+function abrirManual(){
+  abrirPainel('manualOverlay');
+  const pdf=document.getElementById('manualPdf');
+  if(pdf && !pdf.getAttribute('src')) pdf.setAttribute('src', '../data/lei-organica-santos.pdf');
+}
+function fecharManual(){ fecharPainel('manualOverlay'); atualizarBotoes(); }
+function alternarManual(){ if(estaAberto('manualOverlay')) fecharManual(); else abrirPainel('manualOverlay'); }
+function alternarFases(){
+  const dd=document.getElementById('fasesDropdown');
+  if(dd) dd.classList.toggle('show');
+}
+document.addEventListener('click', e=>{
+  const dd=document.getElementById('fasesDropdown');
+  const btn=document.getElementById('chromeToggle');
+  if(dd && dd.classList.contains('show') && !dd.contains(e.target) && e.target!==btn){
+    dd.classList.remove('show');
+  }
+});
+window.addEventListener('resize', atualizarBotoes);
+
 
 /* ---------- avanço automático ---------- */
 let autoAdvanceTimer=null;
@@ -142,24 +194,7 @@ function avancarQuestao(){
   nextCard();
 }
 
-function startRound(){
-  cancelarAutoAvanco();
-  deck=shuffle(buildDeck());
-  idx=0; correct=0; streak=0; answered=false; missed=[];
-  renderCard(); updateHud();
-}
-
-function renderCard(){
-  answered=false;
-  const c=deck[idx];
-  $('card').innerHTML=cardTemplate();
-  bindCard();
-  $('docLabel').textContent=`Documento nº ${idx+1}: classifique a atividade`;
-  $('activity').innerHTML=`<span class="qnum">“</span>${c.texto}<span class="qnum">”</span>`;
-  updateHud();
-}
-
-function cardTemplate(){
+function cardInnerHtml(){
   return `
     <div class="doc-label" id="docLabel"></div>
     <div class="activity" id="activity"></div>
@@ -174,61 +209,79 @@ function cardTemplate(){
         <div class="stat"><div class="k">Recorde</div><div class="v" id="hBest">0</div></div>
       </div>
     </div>
-    <div class="seal green" id="sealGreen">Art. 4º<br>Competência</div>
-    <div class="seal red" id="sealRed">Art. 5º<br>Privativa</div>
-    <div class="verdict c2">
-      <button class="stamp-btn green" id="btnGreen"><span class="art">Art. 4º</span><span class="nat">Competência</span></button>
-      <button class="stamp-btn red" id="btnRed"><span class="art">Art. 5º</span><span class="nat">Privativa</span></button>
-    </div>
+    <div class="seal" id="seal"></div>
+    <div class="verdict c2" id="verdict"></div>
     <div class="feedback" id="feedback">
       <div class="verdict-line" id="vLine"></div>
       <div class="cite" id="cite"></div>
     </div>`;
 }
-function bindCard(){
-  $('btnGreen').onclick=()=>judge('compartilhada');
-  $('btnRed').onclick=()=>judge('privativa');
+
+function startRound(){
+  cancelarAutoAvanco();
+  deck=shuffle(buildDeck());
+  if(deck.length>ROUND_SIZE){ deck=deck.slice(0,ROUND_SIZE); }
+  idx=0; correct=0; streak=0; answered=false; missed=[];
+  renderCard(); updateHud();
 }
 
-function judge(choice){
+function renderCard(){
+  answered=false;
+  const c=deck[idx];
+  const verdict=$('verdict');
+  verdict.className='verdict '+(c.opcoes.length===2?'c2':c.opcoes.length===4?'c4':'c3');
+  verdict.innerHTML=c.opcoes.map((op,i)=>
+    `<button class="stamp-btn opt${i}" onclick="judge('${op.replace(/'/g,"\\'")}')"><span class="nat">${op}</span></button>`
+  ).join('');
+  const seal=$('seal');
+  seal.className='seal';
+  seal.textContent='';
+  $('docLabel').textContent=`Documento nº ${idx+1}: ${DOC_HINT}`;
+  $('activity').innerHTML=`<span class="qnum">"</span>${c.texto}<span class="qnum">"</span>`;
+  $('feedback').classList.remove('show');
+  updateHud();
+}
+
+function judge(escolha){
   if(answered) return;
   answered=true;
   playSound(sndStamp);
   const c=deck[idx];
-  const right = choice===c.natureza;
-  const isPriv = c.natureza==='privativa';
+  const right = escolha===c.correta;
+  const idxCorreta = c.opcoes.indexOf(c.correta);
+  const idxClicado = c.opcoes.indexOf(escolha);
 
-  // estampa o selo correto
-  const seal = isPriv ? $('sealRed') : $('sealGreen');
+  const seal=$('seal');
+  seal.classList.add('opt'+idxCorreta);
+  seal.textContent=c.correta;
   seal.classList.add('show');
 
-  // bate o carimbo
   const carimbador=$('carimbador');
   carimbador.src='../img/carimbo/02.png';
   carimbador.classList.add('hit');
   setTimeout(()=>carimbador.classList.remove('hit'),150);
 
-  const explica = isPriv?'atribuição <b>privativa</b> (exclusiva do assistente social inscrito no CRESS).':'competência <b>compartilhada</b> (outros profissionais também podem atuar).';
-  const ref = `Art. <b>${c.art}</b>, inciso <b>${c.num}</b>`;
-
   if(right){ correct++; streak++; if(streak>best){best=streak;} playSound(sndCorrect); }
-  else { streak=0; missed.push({ref, texto:c.texto, explica}); playSound(sndWrong); }
+  else { streak=0; missed.push({ref:c.ref, texto:c.texto, explica:c.explica||`resposta certa: ${c.correta}.`}); playSound(sndWrong); }
 
   const rotuloProximo = idx>=deck.length-1 ? 'Ver resultado →' : 'Próximo →';
-  const btnClicado = choice==='compartilhada' ? $('btnGreen') : $('btnRed');
-  const btnOutro = choice==='compartilhada' ? $('btnRed') : $('btnGreen');
-  btnOutro.disabled=true;
-  btnClicado.disabled=false;
-  btnClicado.classList.add('next-here');
-  btnClicado.onclick=avancarQuestao;
-  btnClicado.innerHTML=`<span class="next-fill" id="nextFill"></span><span class="next-label">${rotuloProximo}</span>`;
+  Array.from($('verdict').children).forEach((btn,i)=>{
+    if(i===idxClicado){
+      btn.disabled=false;
+      btn.classList.add('next-here');
+      btn.onclick=avancarQuestao;
+      btn.innerHTML=`<span class="next-fill" id="nextFill"></span><span class="next-label">${rotuloProximo}</span>`;
+    } else {
+      btn.disabled=true;
+    }
+  });
 
   const fb=$('feedback');
   const vLine=$('vLine');
   const cite=$('cite');
   vLine.className='verdict-line '+(right?'ok':'no');
   vLine.textContent = right ? '✓ Carimbo correto' : '✗ Carimbo errado';
-  cite.innerHTML = `${ref}: ${explica}`;
+  cite.innerHTML = `${c.ref}: ${c.explica||`resposta certa é <b>${c.correta}</b>.`}`;
   fb.classList.add('show');
   updateHud();
 
@@ -251,15 +304,15 @@ function reviewHtml(){
   if(!missed.length) return '';
   return `<div class="review">
     <h3>Revise o que errou (${missed.length})</h3>
-    <ul>${missed.map(m=>`<li><div class="r-cite">${m.ref}: ${m.explica}</div><div class="r-txt">“${m.texto}”</div></li>`).join('')}</ul>
+    <ul>${missed.map(m=>`<li><div class="r-cite">${m.ref}: ${m.explica}</div><div class="r-txt">"${m.texto}"</div></li>`).join('')}</ul>
   </div>`;
 }
 
 function showDone(){
   const pct=Math.round(correct/deck.length*100);
   let msg;
-  if(pct===100) msg="Gabaritou. Você domina a fronteira 4º × 5º.";
-  else if(pct>=80) msg="Sólido. Revise só os incisos que escaparam.";
+  if(pct===100) msg="Gabaritou essa leva. Bora pra próxima sub-fase ou jogue de novo pra pegar outras cartas do baralho.";
+  else if(pct>=80) msg="Sólido. Revise só o que escapou.";
   else if(pct>=60) msg="Quase lá. Revise os errados abaixo e tente de novo.";
   else msg="Revise os errados abaixo antes de tentar de novo.";
   $('playStage').innerHTML=`
@@ -271,63 +324,15 @@ function showDone(){
     </div>${reviewHtml()}</div>`;
 }
 function restart(){
-  $('playStage').innerHTML=`<div class="card" id="card" data-label="LEI 8.662/93"></div>`;
+  $('playStage').innerHTML=`<div class="card" id="card" data-label="LEI ORGÂNICA DE SANTOS">${cardInnerHtml()}</div>`;
   startRound();
 }
 
-/* ---------- paineis dock: manual (lei seca) e fases ---------- */
-function isDocked(){
-  return window.matchMedia('(min-width:1100px)').matches;
-}
-function estaAberto(id){
-  const ov=document.getElementById(id);
-  if(!ov) return false;
-  return isDocked() ? !ov.classList.contains('collapsed') : ov.classList.contains('show');
-}
-function fecharPainel(id){
-  const ov=document.getElementById(id);
-  if(!ov) return;
-  if(isDocked()) ov.classList.add('collapsed');
-  else ov.classList.remove('show');
-}
-function abrirPainel(id){
-  cancelarAutoAvanco();
-  const ov=document.getElementById(id);
-  if(isDocked()) ov.classList.remove('collapsed');
-  else ov.classList.add('show');
-  atualizarBotoes();
-}
-function atualizarBotoes(){
-  const ov=document.getElementById('manualOverlay'), btn=document.getElementById('manualBtn');
-  if(!ov||!btn) return;
-  btn.style.display = estaAberto('manualOverlay') ? 'none' : '';
-}
-function abrirManual(){
-  abrirPainel('manualOverlay');
-  const pdf=document.getElementById('manualPdf');
-  if(pdf && !pdf.getAttribute('src')) pdf.setAttribute('src', '../data/codigo-etica-cfess.pdf');
-}
-function fecharManual(){ fecharPainel('manualOverlay'); atualizarBotoes(); }
-function alternarManual(){ if(estaAberto('manualOverlay')) fecharManual(); else abrirPainel('manualOverlay'); }
-function alternarFases(){
-  const dd=document.getElementById('fasesDropdown');
-  if(dd) dd.classList.toggle('show');
-}
-document.addEventListener('click', e=>{
-  const dd=document.getElementById('fasesDropdown');
-  const btn=document.getElementById('chromeToggle');
-  if(dd && dd.classList.contains('show') && !dd.contains(e.target) && e.target!==btn){
-    dd.classList.remove('show');
-  }
-});
-window.addEventListener('resize', atualizarBotoes);
-
-
 /* ---------- init ---------- */
-fetch('../data/lei8662.json')
+fetch('../data/lei-organica-santos.json')
   .then(r=>r.json())
   .then(json=>{
-    DATA={art_4:json.artigos.art_4,art_5:json.artigos.art_5};
+        DATA={numeros:json.baralho_numeros.cartas};
     startRound();
     atualizarBotoes();
   })
@@ -339,7 +344,7 @@ fetch('../data/lei8662.json')
     <div class="manual-head">
       <button class="manual-close" onclick="fecharManual()" aria-label="fechar">×</button>
     </div>
-    <iframe class="manual-pdf" id="manualPdf" title="Lei nº 8.662/93 (texto oficial)"></iframe>
+    <iframe class="manual-pdf" id="manualPdf" title="Lei Orgânica do Município de Santos (PDF)"></iframe>
   </div>
 </div>
 </div>
