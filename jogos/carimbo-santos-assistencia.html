@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SENTA A CARIMBADA, camarada! · fase 5a (poderes)</title>
+<title>SENTA A CARIMBADA, camarada! · fase 5e (assistência, promoção e proteção social)</title>
 <link rel="stylesheet" href="./carimbo.css">
 <style>
   .verdict.c4{grid-template-columns:1fr 1fr 1fr 1fr}
@@ -37,11 +37,11 @@
           <a class="fase-link" href="./carimbo-etica.html">fase 2 · código de ética</a>
           <a class="fase-link" href="./carimbo-completo.html">fase 3 · tudo junto</a>
           <a class="fase-link" href="./carimbo-santos.html">fase 4 · Santos: princípios, vedações e competências</a>
-          <a class="fase-link" href="./carimbo-santos-poderes.html" aria-current="page">fase 5a · Santos: poderes</a>
+          <a class="fase-link" href="./carimbo-santos-poderes.html">fase 5a · Santos: poderes</a>
           <a class="fase-link" href="./carimbo-santos-politicas.html">fase 5b · Santos: tributação/saúde/proteção</a>
           <a class="fase-link" href="./carimbo-santos-pegadinhas.html">fase 5c · Santos: pegadinhas</a>
           <a class="fase-link" href="./carimbo-santos-numeros.html">fase 5d · Santos: números</a>
-          <a class="fase-link" href="./carimbo-santos-assistencia.html">fase 5e · Santos: assistência/proteção social</a>
+          <a class="fase-link" href="./carimbo-santos-assistencia.html" aria-current="page">fase 5e · Santos: assistência/proteção social</a>
         </nav>
       </div>
     </div>
@@ -52,7 +52,7 @@
   <!-- ===== MODO JOGO ===== -->
   <section class="stage" id="playStage">
     <div class="card" id="card" data-label="LEI ORGÂNICA DE SANTOS">
-      <div class="doc-label" id="docLabel">Documento nº 1: Legislativo, Executivo ou Administração?</div>
+      <div class="doc-label" id="docLabel">Documento nº 1: Assistência Social, Promoção Social ou Proteção Especial?</div>
       <div class="activity" id="activity">…</div>
 
       <div class="carimbador-row">
@@ -84,7 +84,7 @@
 <script>
 let DATA = null;
 const ROUND_SIZE = 18;
-const DOC_HINT = 'Legislativo, Executivo ou Administração?';
+const DOC_HINT = 'Assistência Social, Promoção Social ou Proteção Especial?';
 
 /* ---------- monta o baralho ---------- */
 function ehRotuloGenerico(caput){ return /:\s*$/.test(caput.trim()); }
@@ -98,9 +98,9 @@ function cartasDeEsfera(artigos, esferasAlvo){
   });
   return cartas;
 }
-const ESFERA_LABEL={legislativo:'Legislativo', executivo:'Executivo', administracao:'Administração'};
+const ESFERA_LABEL={assistencia_social:'Assistência Social', promocao_social:'Promoção Social', protecao_especial:'Proteção Especial'};
 function buildDeck(){
-  const ESFERAS=['legislativo','executivo','administracao'];
+  const ESFERAS=['assistencia_social','promocao_social','protecao_especial'];
   return cartasDeEsfera(DATA.artigos, ESFERAS).map(c=>({
     texto:c.texto, ref:c.ref,
     opcoes:ESFERAS.map(e=>ESFERA_LABEL[e]), correta:ESFERA_LABEL[c.esfera]

@@ -93,7 +93,16 @@
       "artigos": [
         "art_180",
         "art_234",
-        "art_237"
+        "art_237",
+        "art_191",
+        "art_192",
+        "art_193",
+        "art_194",
+        "art_195",
+        "art_225",
+        "art_228",
+        "art_232_233",
+        "art_241"
       ]
     }
   ],
@@ -633,6 +642,154 @@
           "texto": "Garantir às pessoas com deficiência 5% das unidades dos conjuntos habitacionais construídos no Município."
         }
       ]
+    },
+    "art_191": {
+      "num": "191",
+      "titulo": "titulo_6",
+      "natureza": "norma",
+      "esfera": "assistencia_social",
+      "caput": "O Município assegurará ao servidor público plano de previdência e assistência social, definido em lei.",
+      "incisos": [
+        {
+          "num": "Parágrafo único",
+          "texto": "A lei garante pensão ao cônjuge sobrevivente ou, na falta deste, aos herdeiros ou beneficiários do servidor público falecido."
+        }
+      ]
+    },
+    "art_192": {
+      "num": "192",
+      "titulo": "titulo_6",
+      "natureza": "norma",
+      "esfera": "assistencia_social",
+      "caput": "A assistência social será prestada a quem dela necessitar, independentemente de contribuição à seguridade social.",
+      "incisos": [],
+      "grave": true
+    },
+    "art_193": {
+      "num": "193",
+      "titulo": "titulo_6",
+      "natureza": "norma",
+      "esfera": "promocao_social",
+      "caput": "O Município planejará, executará e regulamentará as ações de promoção social com base nos seguintes princípios:",
+      "incisos": [
+        {
+          "num": "I",
+          "texto": "Participação da comunidade."
+        },
+        {
+          "num": "II",
+          "texto": "Descentralização administrativa, considerado o Município e as comunidades como instâncias básicas de atendimento."
+        },
+        {
+          "num": "III",
+          "texto": "Integração das ações dos órgãos e entidades da administração, evitando duplicidade de atendimento entre as esferas municipal e estadual."
+        }
+      ]
+    },
+    "art_194": {
+      "num": "194",
+      "titulo": "titulo_6",
+      "natureza": "norma",
+      "esfera": "promocao_social",
+      "caput": "O plano de promoção social do Município terá por objetivos principais:",
+      "incisos": [
+        {
+          "num": "I",
+          "texto": "A atenção à família, à maternidade, à infância, à adolescência e à velhice."
+        },
+        {
+          "num": "II",
+          "texto": "O atendimento ao migrante e à mendicância."
+        },
+        {
+          "num": "III",
+          "texto": "A prevenção do abandono do idoso."
+        },
+        {
+          "num": "IV",
+          "texto": "A profissionalização do adolescente."
+        }
+      ]
+    },
+    "art_195": {
+      "num": "195",
+      "titulo": "titulo_6",
+      "natureza": "norma",
+      "esfera": "promocao_social",
+      "caput": "O Município criará o Conselho Municipal da Promoção Social, composto por representantes da comunidade em geral, com funções e regulamento definidos em lei.",
+      "incisos": []
+    },
+    "art_225": {
+      "num": "225",
+      "titulo": "titulo_6",
+      "natureza": "norma",
+      "esfera": "protecao_especial",
+      "caput": "O Poder Público promoverá e incentivará o desenvolvimento da família, assegurando-lhe o direito à alimentação, habitação, emprego, saúde, educação, assistência social, cultura, lazer, liberdade, respeito e convivência familiar e comunitária.",
+      "incisos": [
+        {
+          "num": "Parágrafo único",
+          "texto": "O atendimento à família se dará de forma articulada, por uma rede que integra serviços governamentais e não governamentais, com participação popular."
+        }
+      ]
+    },
+    "art_228": {
+      "num": "228",
+      "titulo": "titulo_6",
+      "natureza": "norma",
+      "esfera": "protecao_especial",
+      "caput": "Para garantir o pleno desenvolvimento da criança e do adolescente, o Município garantirá:",
+      "incisos": [
+        {
+          "num": "I",
+          "texto": "Assistência integral à saúde da criança e do adolescente, com programas de prevenção e atendimento especializado a dependentes de drogas."
+        },
+        {
+          "num": "III",
+          "texto": "Funcionamento de centro de recebimento e encaminhamento de denúncias de violência contra crianças e adolescentes, inclusive no âmbito familiar."
+        },
+        {
+          "num": "V",
+          "texto": "Colocação de adolescentes carentes de 14 a 18 anos incompletos em estágio supervisionado, educativo e profissionalizante."
+        }
+      ]
+    },
+    "art_232_233": {
+      "num": "232 e 233",
+      "titulo": "titulo_6",
+      "natureza": "norma",
+      "esfera": "protecao_especial",
+      "caput": "O Poder Público garantirá à pessoa idosa condições de vida apropriada, com direito à saúde, participação em programas culturais e de lazer, respeitabilidade e integração à sociedade.",
+      "incisos": [
+        {
+          "num": "233-I",
+          "texto": "Promoção de eventos culturais, esportivos e de lazer, gratuitos, para pessoas com 60 anos ou mais."
+        },
+        {
+          "num": "233-II",
+          "texto": "Inclusão, no planejamento escolar de todos os níveis, de conteúdo sobre a respeitabilidade ao idoso."
+        }
+      ]
+    },
+    "art_241": {
+      "num": "241",
+      "titulo": "titulo_6",
+      "natureza": "norma",
+      "esfera": "protecao_especial",
+      "caput": "O Município criará o Conselho Municipal para Assuntos da Mulher, garantindo o acompanhamento e a fiscalização da política de assistência integral à mulher, assegurando:",
+      "incisos": [
+        {
+          "num": "I",
+          "texto": "Assistência à saúde, de acordo com sua especificidade."
+        },
+        {
+          "num": "II",
+          "texto": "Direito à autorregulação da fertilidade, com livre decisão da mulher, do homem ou do casal."
+        },
+        {
+          "num": "III",
+          "texto": "Atendimento à mulher vítima de violência, com atendimento jurídico e criação de abrigos."
+        }
+      ]
     }
   },
   "esferas": {
@@ -905,7 +1062,10 @@
   "baralho_pegadinhas": {
     "nome": "Cai na prova?",
     "pergunta": "A afirmação abaixo é VERDADEIRA ou é uma pegadinha (FALSA)?",
-    "opcoes": ["Verdadeiro", "Falso"],
+    "opcoes": [
+      "Verdadeiro",
+      "Falso"
+    ],
     "cartas": [
       {
         "afirmacao": "A Câmara de Santos tem 21 Vereadores.",
@@ -1041,109 +1201,199 @@
     "cartas": [
       {
         "pergunta": "Quantos Vereadores tem a Câmara de Santos?",
-        "opcoes": ["15 vereadores", "18 vereadores", "21 vereadores", "25 vereadores"],
+        "opcoes": [
+          "15 vereadores",
+          "18 vereadores",
+          "21 vereadores",
+          "25 vereadores"
+        ],
         "correta": "21 vereadores",
         "fonte": "art. 13"
       },
       {
         "pergunta": "Qual o mandato dos Vereadores de Santos?",
-        "opcoes": ["2 anos", "3 anos", "4 anos", "5 anos"],
+        "opcoes": [
+          "2 anos",
+          "3 anos",
+          "4 anos",
+          "5 anos"
+        ],
         "correta": "4 anos",
         "fonte": "art. 11"
       },
       {
         "pergunta": "Qual o mandato dos membros da Mesa da Câmara?",
-        "opcoes": ["1 ano", "2 anos", "4 anos", "até o fim da legislatura"],
+        "opcoes": [
+          "1 ano",
+          "2 anos",
+          "4 anos",
+          "até o fim da legislatura"
+        ],
         "correta": "2 anos",
         "fonte": "art. 27"
       },
       {
         "pergunta": "Qual o mandato do Prefeito e do Vice-Prefeito?",
-        "opcoes": ["2 anos", "3 anos", "4 anos", "6 anos"],
+        "opcoes": [
+          "2 anos",
+          "3 anos",
+          "4 anos",
+          "6 anos"
+        ],
         "correta": "4 anos",
         "fonte": "art. 51"
       },
       {
         "pergunta": "A que horas tomam posse o Prefeito e os Vereadores?",
-        "opcoes": ["9 horas", "12 horas", "15 horas", "17 horas"],
+        "opcoes": [
+          "9 horas",
+          "12 horas",
+          "15 horas",
+          "17 horas"
+        ],
         "correta": "17 horas",
         "fonte": "arts. 14 e 52"
       },
       {
         "pergunta": "Por qual quórum a Câmara decide a perda de mandato do Prefeito/Vereador nos casos mais graves?",
-        "opcoes": ["maioria simples", "maioria absoluta", "2/3 dos membros", "3/5 dos membros"],
+        "opcoes": [
+          "maioria simples",
+          "maioria absoluta",
+          "2/3 dos membros",
+          "3/5 dos membros"
+        ],
         "correta": "2/3 dos membros",
         "fonte": "arts. 17, §2º e 59, §1º"
       },
       {
         "pergunta": "Em quantos dias após a posse o Prefeito deve apresentar o Programa de Metas?",
-        "opcoes": ["30 dias", "60 dias", "90 dias", "120 dias"],
+        "opcoes": [
+          "30 dias",
+          "60 dias",
+          "90 dias",
+          "120 dias"
+        ],
         "correta": "90 dias",
         "fonte": "art. 58-A"
       },
       {
         "pergunta": "Se o julgamento do Prefeito por crime de responsabilidade não terminar, quando cessa o afastamento?",
-        "opcoes": ["90 dias", "120 dias", "150 dias", "180 dias"],
+        "opcoes": [
+          "90 dias",
+          "120 dias",
+          "150 dias",
+          "180 dias"
+        ],
         "correta": "180 dias",
         "fonte": "art. 59, §3º"
       },
       {
         "pergunta": "Qual o prazo de validade do concurso público municipal?",
-        "opcoes": ["1 ano, prorrogável uma vez", "2 anos, prorrogável uma vez", "2 anos, improrrogável", "4 anos, prorrogável uma vez"],
+        "opcoes": [
+          "1 ano, prorrogável uma vez",
+          "2 anos, prorrogável uma vez",
+          "2 anos, improrrogável",
+          "4 anos, prorrogável uma vez"
+        ],
         "correta": "2 anos, prorrogável uma vez",
         "fonte": "art. 67, III"
       },
       {
         "pergunta": "Com que idade se dá a aposentadoria compulsória do servidor municipal?",
-        "opcoes": ["70 anos", "72 anos", "75 anos", "78 anos"],
+        "opcoes": [
+          "70 anos",
+          "72 anos",
+          "75 anos",
+          "78 anos"
+        ],
         "correta": "75 anos",
         "fonte": "art. 77, §1º, II"
       },
       {
         "pergunta": "Idade mínima para aposentadoria voluntária (mulher / homem)?",
-        "opcoes": ["60 / 65 anos", "62 / 65 anos", "62 / 67 anos", "65 / 70 anos"],
+        "opcoes": [
+          "60 / 65 anos",
+          "62 / 65 anos",
+          "62 / 67 anos",
+          "65 / 70 anos"
+        ],
         "correta": "62 / 65 anos",
         "fonte": "art. 77, §1º, III"
       },
       {
         "pergunta": "Qual o percentual mínimo aplicado em saúde pelo Município?",
-        "opcoes": ["10%", "12%", "15%", "20%"],
+        "opcoes": [
+          "10%",
+          "12%",
+          "15%",
+          "20%"
+        ],
         "correta": "15%",
         "fonte": "art. 183, §2º"
       },
       {
         "pergunta": "Qual o percentual mínimo aplicado em educação pelo Município de Santos?",
-        "opcoes": ["25%", "28%", "30%", "35%"],
+        "opcoes": [
+          "25%",
+          "28%",
+          "30%",
+          "35%"
+        ],
         "correta": "30%",
         "fonte": "art. 203"
       },
       {
         "pergunta": "Qual o percentual mínimo do orçamento aplicado em habitação?",
-        "opcoes": ["3%", "5%", "8%", "10%"],
+        "opcoes": [
+          "3%",
+          "5%",
+          "8%",
+          "10%"
+        ],
         "correta": "5%",
         "fonte": "art. 147, pu"
       },
       {
         "pergunta": "A partir de que idade o idoso tem gratuidade no transporte coletivo urbano?",
-        "opcoes": ["60 anos", "62 anos", "65 anos", "70 anos"],
+        "opcoes": [
+          "60 anos",
+          "62 anos",
+          "65 anos",
+          "70 anos"
+        ],
         "correta": "65 anos",
         "fonte": "art. 234"
       },
       {
         "pergunta": "Qual o percentual de unidades habitacionais reservado a pessoas com deficiência?",
-        "opcoes": ["3%", "5%", "8%", "10%"],
+        "opcoes": [
+          "3%",
+          "5%",
+          "8%",
+          "10%"
+        ],
         "correta": "5%",
         "fonte": "art. 237, VIII"
       },
       {
         "pergunta": "Em quantos dias úteis o Prefeito pode vetar um projeto de lei, a contar do recebimento?",
-        "opcoes": ["10 dias úteis", "15 dias úteis", "20 dias úteis", "30 dias úteis"],
+        "opcoes": [
+          "10 dias úteis",
+          "15 dias úteis",
+          "20 dias úteis",
+          "30 dias úteis"
+        ],
         "correta": "15 dias úteis",
         "fonte": "art. 44, §1º"
       },
       {
         "pergunta": "Por qual quórum a Câmara pode rejeitar o veto do Prefeito?",
-        "opcoes": ["maioria simples", "maioria absoluta", "2/3 dos membros", "3/5 dos membros"],
+        "opcoes": [
+          "maioria simples",
+          "maioria absoluta",
+          "2/3 dos membros",
+          "3/5 dos membros"
+        ],
         "correta": "maioria absoluta",
         "fonte": "art. 44, §4º"
       }
@@ -1185,6 +1435,12 @@
       "nome": "Cai na prova?",
       "mecanica": "identificar se a afirmação é verdadeira ou pegadinha",
       "fonte": "pegadinhas"
+    },
+    {
+      "id": "assistencia_protecao",
+      "nome": "Assistência, promoção e proteção social",
+      "mecanica": "classificar o dispositivo em assistência social, promoção social ou proteção especial",
+      "fonte": "artigos[].esfera"
     }
   ]
 }

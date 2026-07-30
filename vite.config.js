@@ -15,6 +15,7 @@ export default defineConfig({
         carimboSantosPoliticas: resolve(process.cwd(), 'jogos/carimbo-santos-politicas.html'),
         carimboSantosPegadinhas: resolve(process.cwd(), 'jogos/carimbo-santos-pegadinhas.html'),
         carimboSantosNumeros: resolve(process.cwd(), 'jogos/carimbo-santos-numeros.html'),
+        carimboSantosAssistencia: resolve(process.cwd(), 'jogos/carimbo-santos-assistencia.html'),
       },
     },
   },
