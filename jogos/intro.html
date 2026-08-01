@@ -107,6 +107,8 @@ const CONTINUAR_EM = 5460; // próximo acento musical (fim da 1a frase)
 const titulo = document.getElementById('introTitle');
 const palavras = titulo.querySelectorAll('.palavra');
 
+const MUSICA_POS_KEY = 'carimbo.musica.pos'; // mesma chave lida pelo musica.js nas outras páginas
+
 const musica = new Audio('../Theme.ogg');
 musica.volume = 0.35;
 musica.play().catch(()=>{
@@ -114,6 +116,11 @@ musica.play().catch(()=>{
   const retomar = ()=>{ musica.play().catch(()=>{}); };
   document.addEventListener('pointerdown', retomar, { once:true });
   document.addEventListener('keydown', retomar, { once:true });
+});
+
+// salva a posição continuamente pra a próxima página (mesa.html) continuar dali, em vez de reiniciar
+musica.addEventListener('timeupdate', ()=>{
+  try{ localStorage.setItem(MUSICA_POS_KEY, String(musica.currentTime)); }catch(e){}
 });
 
 BEATS.forEach((t, i) => {
@@ -137,6 +144,7 @@ function avancar(){
     const stamp = new Audio('../stamp.mp3');
     stamp.play().catch(()=>{});
   }catch(e){}
+  try{ localStorage.setItem(MUSICA_POS_KEY, String(musica.currentTime)); }catch(e){}
 
   setTimeout(() => {
     window.location.href = './mesa.html';
