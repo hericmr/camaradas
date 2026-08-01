@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SENTA A CARIMBADA, camarada! · resumo de progresso</title>
+  <link rel="stylesheet" crossorigin href="/camaradas/assets/carimbo-CCDEpn9E.css">
+</head>
+<body>
+<div class="game-navbar">
+    <a class="back-link" href="../index.html">&larr; início</a>
+    <span class="game-navbar-title">SENTA A CARIMBADA, <span class="camarada">camarada!</span></span>
+    <div class="navbar-fases">
+      <button class="chrome-toggle" id="chromeToggle" onclick="alternarFases()">fases</button>
+      <div class="fases-dropdown" id="fasesDropdown">
+        <nav class="fases">
+          <a class="fase-link" href="./carimbo-progresso.html" aria-current="page">resumo de progresso</a>
+          <div class="fases-divider"></div>
+          <a class="fase-link" href="./carimbo-8662.html">fase 1 · lei 8.662</a>
+          <a class="fase-link" href="./carimbo-etica.html">fase 2 · código de ética</a>
+          <a class="fase-link" href="./carimbo-completo.html">fase 3 · tudo junto</a>
+          <a class="fase-link" href="./carimbo-santos.html">fase 4 · Santos: princípios, vedações e competências</a>
+          <a class="fase-link" href="./carimbo-santos-poderes.html">fase 5a · Santos: poderes</a>
+          <a class="fase-link" href="./carimbo-santos-politicas.html">fase 5b · Santos: tributação/saúde/proteção</a>
+          <a class="fase-link" href="./carimbo-santos-pegadinhas.html">fase 5c · Santos: pegadinhas</a>
+          <a class="fase-link" href="./carimbo-santos-numeros.html">fase 5d · Santos: números</a>
+          <a class="fase-link" href="./carimbo-santos-assistencia.html">fase 5e · Santos: assistência/proteção social</a>
+        </nav>
+      </div>
+    </div>
+</div>
+<div class="desk">
+<div class="desk-game">
+<div class="wrap">
+  <header>
+    <div class="eyebrow">senta a carimbada, camarada!</div>
+    <h1>Resumo <span class="camarada">de progresso</span></h1>
+    <div class="sub" id="resumoSub">carregando…</div>
+  </header>
+
+  <div class="progress-summary" id="progressSummary"></div>
+
+  <div class="progress-list" id="progressList"></div>
+
+  <div class="progress-actions">
+    <button onclick="confirmarLimpeza()">limpar progresso</button>
+  </div>
+</div>
+  <div class="foot">O progresso fica salvo só neste navegador (localStorage) — trocar de aparelho ou limpar os dados do site reinicia o placar.</div>
+</div>
+</div>
+
+<button class="music-btn" id="musicaBtn" onclick="alternarMusica()" aria-pressed="false">tocar música</button>
+<script src="./musica.js"></script>
+<script src="./progresso.js"></script>
+<script>
+function alternarFases(){
+  const dd=document.getElementById('fasesDropdown');
+  if(dd) dd.classList.toggle('show');
+}
+document.addEventListener('click', e=>{
+  const dd=document.getElementById('fasesDropdown');
+  const btn=document.getElementById('chromeToggle');
+  if(dd && dd.classList.contains('show') && !dd.contains(e.target) && e.target!==btn){
+    dd.classList.remove('show');
+  }
+});
+document.addEventListener('keydown', e=>{
+  if(e.key==='Escape'){ const dd=document.getElementById('fasesDropdown'); if(dd) dd.classList.remove('show'); }
+});
+
+function fmtData(iso){
+  const d=new Date(iso);
+  return d.toLocaleDateString('pt-BR',{day:'2-digit',month:'2-digit',year:'numeric'});
+}
+
+function renderizarProgresso(){
+  const todos=carimboLerProgresso();
+  const jogadas=CARIMBO_FASES.filter(f=>todos[f.id]);
+  const total=CARIMBO_FASES.length;
+  const mediaPct=jogadas.length ? Math.round(jogadas.reduce((s,f)=>s+todos[f.id].pct,0)/jogadas.length) : 0;
+
+  $('resumoSub').textContent = jogadas.length===0
+    ? 'você ainda não jogou nenhuma fase.'
+    : `${jogadas.length} de ${total} fases jogadas · média de ${mediaPct}% de acerto`;
+
+  $('progressSummary').innerHTML = `
+    <div class="stat"><div class="k">Fases jogadas</div><div class="v">${jogadas.length}/${total}</div></div>
+    <div class="stat"><div class="k">Média de acerto</div><div class="v">${jogadas.length?mediaPct+'%':'—'}</div></div>
+  `;
+
+  $('progressList').innerHTML = CARIMBO_FASES.map(f=>{
+    const p=todos[f.id];
+    if(!p){
+      return `<a class="progress-item empty" href="${f.href}">
+        <span class="p-name">${f.nome}</span>
+        <span class="p-status">ainda não jogado</span>
+      </a>`;
+    }
+    return `<a class="progress-item" href="${f.href}">
+      <span class="p-name">${f.nome}</span>
+      <span class="progress-bar-track"><span class="progress-bar-fill" style="width:${p.pct}%"></span></span>
+      <span class="p-status"><b>${p.correct}/${p.total}</b> (${p.pct}%) · sequência ${p.streak} · ${fmtData(p.data)}</span>
+    </a>`;
+  }).join('');
+}
+
+function confirmarLimpeza(){
+  if(confirm('Apagar todo o progresso salvo neste navegador?')){
+    carimboLimparProgresso();
+    renderizarProgresso();
+  }
+}
+
+const $=id=>document.getElementById(id);
+renderizarProgresso();
+</script>
+</body>
+</html>
