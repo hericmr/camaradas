@@ -64,15 +64,6 @@
     100%{opacity:.95;transform:translate(-50%,-50%) rotate(-8deg) scale(1)}
   }
 
-  .intro-skip{
-    position:fixed;right:16px;bottom:16px;z-index:40;
-    font-family:'Bangalore',"Helvetica Neue",Arial,sans-serif;
-    font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;
-    color:var(--ink-soft);text-decoration:none;
-    border:1px solid var(--line);border-radius:4px;padding:9px 14px;
-  }
-  .intro-skip:hover{ color:var(--paper-2); border-color:var(--paper-2); }
-
   @media (prefers-reduced-motion: reduce){
     .intro-title .palavra, .intro-title .camarada{ animation:none !important; opacity:1 !important; transform:none !important; }
     .intro-continuar{ animation:none !important; }
@@ -82,8 +73,6 @@
   <link rel="stylesheet" crossorigin href="/camaradas/assets/carimbo-UJtDOi0e.css">
 </head>
 <body class="intro-body">
-
-<a class="intro-skip" href="./mesa.html">pular intro →</a>
 
 <div class="intro-stage" id="introStage">
   <h1 class="intro-title" id="introTitle">
