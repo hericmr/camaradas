@@ -317,28 +317,18 @@ h1 .camarada{
   .verdict.odd .stamp-btn:last-child{grid-column:1 / -1}
 }
 
-/* ---- Manual (lei seca): visualizador do PDF oficial ---- */
-.manual-btn{
-  position:fixed;right:16px;bottom:16px;z-index:40;
-  cursor:pointer;border:2px solid var(--ink);background:var(--paper-2);color:var(--ink);
-  font-family:'Bangalore',"Helvetica Neue",Arial,sans-serif;font-weight:400;letter-spacing:.08em;text-transform:uppercase;
-  font-size:13px;padding:11px 16px;border-radius:4px;box-shadow:0 8px 20px -8px var(--shadow);
+/* ---- Ações utilitárias no dropdown da navbar (tocar música, consultar a lei) ---- */
+.dropdown-actions{display:flex;flex-direction:column;gap:6px;margin-bottom:8px}
+.dropdown-action{
+  display:block;width:100%;box-sizing:border-box;text-align:left;text-decoration:none;
+  cursor:pointer;border:1px solid var(--line);background:transparent;color:var(--ink-soft);
+  font-family:'Bangalore',"Helvetica Neue",Arial,sans-serif;font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;
+  padding:9px 10px;border-radius:3px;
 }
-.manual-btn:hover{background:var(--ink);color:var(--paper-2)}
+.dropdown-action:hover{border-color:var(--ink);color:var(--ink)}
+.dropdown-action.on{border-color:var(--seal-green-ink);color:var(--seal-green-ink)}
 
-/* ---- Música-tema: controlada pelo jogador, nunca autoplay sem escolha explícita ---- */
-.music-btn{
-  position:fixed;left:16px;bottom:16px;z-index:40;
-  cursor:pointer;border:2px solid var(--ink);background:var(--paper-2);color:var(--ink);
-  font-family:'Bangalore',"Helvetica Neue",Arial,sans-serif;font-weight:400;letter-spacing:.08em;text-transform:uppercase;
-  font-size:13px;padding:11px 16px;border-radius:4px;box-shadow:0 8px 20px -8px var(--shadow);
-}
-.music-btn:hover{background:var(--ink);color:var(--paper-2)}
-.music-btn.on{border-color:var(--seal-green-ink);color:var(--seal-green-ink)}
-.music-btn.on:hover{background:var(--seal-green-ink);color:var(--paper-2)}
-@media (max-width:520px){
-  .music-btn{left:10px;bottom:10px;padding:10px 14px;font-size:12px}
-}
+/* ---- Manual (lei seca): visualizador do PDF oficial ---- */
 .manual-overlay{
   position:fixed;inset:0;z-index:50;background:rgba(16,15,13,.55);
   display:none;
@@ -363,9 +353,6 @@ h1 .camarada{
 }
 .manual-close:hover{border-color:var(--ink);color:var(--ink)}
 .manual-pdf{flex:1;width:100%;border:none;background:#525659}
-@media (max-width:520px){
-  .manual-btn{right:10px;bottom:10px;padding:10px 14px;font-size:12px}
-}
 
 /* ---- topbar / chrome recolhível (fases + título) ---- */
 /* ---- navbar fixa do jogo: sempre no topo da pagina, fundo opaco pra legibilidade ---- */

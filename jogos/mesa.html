@@ -13,6 +13,9 @@
     <div class="navbar-fases">
       <button class="chrome-toggle" id="chromeToggle" onclick="alternarFases()">fases</button>
       <div class="fases-dropdown" id="fasesDropdown">
+        <div class="dropdown-actions">
+          <button class="dropdown-action" id="musicaBtn" onclick="alternarMusica()" aria-pressed="false">tocar música</button>
+        </div>
         <nav class="fases" id="fasesNav"></nav>
       </div>
     </div>
@@ -26,7 +29,6 @@
 </div>
 </div>
 
-<button class="music-btn" id="musicaBtn" onclick="alternarMusica()" aria-pressed="false">tocar música</button>
 <script src="./progresso.js"></script>
 <script src="./musica.js"></script>
 <script>
