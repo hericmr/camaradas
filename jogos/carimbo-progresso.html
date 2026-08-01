@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SENTA A CARIMBADA, camarada! · resumo de progresso</title>
-  <link rel="stylesheet" crossorigin href="/camaradas/assets/carimbo-Dn2hwqxY.css">
+  <link rel="stylesheet" crossorigin href="/camaradas/assets/carimbo-DvlDHyiI.css">
 </head>
 <body>
 <div class="game-navbar">
@@ -13,6 +13,9 @@
     <div class="navbar-fases">
       <button class="chrome-toggle" id="chromeToggle" onclick="alternarFases()">fases</button>
       <div class="fases-dropdown" id="fasesDropdown">
+        <div class="dropdown-actions">
+          <button class="dropdown-action" id="musicaBtn" onclick="alternarMusica()" aria-pressed="false">tocar música</button>
+        </div>
         <nav class="fases" id="fasesNav"></nav>
       </div>
     </div>
@@ -38,7 +41,6 @@
 </div>
 </div>
 
-<button class="music-btn" id="musicaBtn" onclick="alternarMusica()" aria-pressed="false">tocar música</button>
 <script src="./musica.js"></script>
 <script src="./progresso.js"></script>
 <script>

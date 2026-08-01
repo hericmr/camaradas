@@ -14,7 +14,7 @@
   .seal.green{color:var(--seal-green)}
   .seal.red{color:var(--seal-red)}
 </style>
-  <link rel="stylesheet" crossorigin href="/camaradas/assets/carimbo-Dn2hwqxY.css">
+  <link rel="stylesheet" crossorigin href="/camaradas/assets/carimbo-DvlDHyiI.css">
 </head>
 <body>
   <div class="game-navbar">
@@ -23,6 +23,10 @@
     <div class="navbar-fases">
       <button class="chrome-toggle" id="chromeToggle" onclick="alternarFases()">fases</button>
       <div class="fases-dropdown" id="fasesDropdown">
+        <div class="dropdown-actions">
+          <button class="dropdown-action" id="musicaBtn" onclick="alternarMusica()" aria-pressed="false">tocar música</button>
+          <a class="dropdown-action" id="manualBtn" href="https://www.planalto.gov.br/ccivil_03/leis/L8662.htm" target="_blank" rel="noopener">consultar a lei</a>
+        </div>
         <nav class="fases" id="fasesNav"></nav>
       </div>
     </div>
@@ -293,8 +297,6 @@ fetch('../data/lei8662.json')
   })
   .catch(()=>{ $('activity').textContent='não foi possível carregar as questões.'; });
 </script>
-<button class="music-btn" id="musicaBtn" onclick="alternarMusica()" aria-pressed="false">tocar música</button>
-<a class="manual-btn" id="manualBtn" href="https://www.planalto.gov.br/ccivil_03/leis/L8662.htm" target="_blank" rel="noopener">consultar a lei</a>
 </div>
 </body>
 </html>

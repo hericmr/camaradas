@@ -28,7 +28,7 @@
   .seal.competencia{color:var(--seal-purple)}
   .seal.atribuicao{color:var(--seal-rust)}
 </style>
-  <link rel="stylesheet" crossorigin href="/camaradas/assets/carimbo-Dn2hwqxY.css">
+  <link rel="stylesheet" crossorigin href="/camaradas/assets/carimbo-DvlDHyiI.css">
 </head>
 <body class="bg-3">
   <div class="game-navbar">
@@ -37,6 +37,10 @@
     <div class="navbar-fases">
       <button class="chrome-toggle" id="chromeToggle" onclick="alternarFases()">fases</button>
       <div class="fases-dropdown" id="fasesDropdown">
+        <div class="dropdown-actions">
+          <button class="dropdown-action" id="musicaBtn" onclick="alternarMusica()" aria-pressed="false">tocar música</button>
+          <button class="dropdown-action" id="manualBtn" onclick="alternarManual()">consultar a lei</button>
+        </div>
         <nav class="fases" id="fasesNav"></nav>
       </div>
     </div>
@@ -389,8 +393,6 @@ Promise.all([
   atualizarBotoes();
 }).catch(()=>{ $('activity').textContent='não foi possível carregar as questões.'; });
 </script>
-<button class="music-btn" id="musicaBtn" onclick="alternarMusica()" aria-pressed="false">tocar música</button>
-<button class="manual-btn" id="manualBtn" onclick="alternarManual()">consultar a lei</button>
 <div class="manual-overlay" id="manualOverlay" onclick="if(event.target===this) fecharManual()">
   <div class="manual-panel">
     <div class="manual-head">
