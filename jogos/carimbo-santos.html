@@ -250,6 +250,7 @@ function renderCard(){
   $('docLabel').textContent=`Documento nº ${idx+1}: ${c.dica}`;
   $('activity').innerHTML=`<span class="qnum">"</span>${c.texto}<span class="qnum">"</span>`;
   $('feedback').classList.remove('show');
+  $('carimbador').src='../img/carimbo/01.png';
   updateHud();
 }
 
