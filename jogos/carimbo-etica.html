@@ -17,7 +17,7 @@
   .seal.red{color:var(--seal-red)}
 </style>
 </head>
-<body>
+<body class="bg-2">
   <div class="game-navbar">
     <a class="back-link" href="../index.html">&larr; início</a>
     <span class="game-navbar-title">SENTA A CARIMBADA, <span class="camarada">camarada!</span></span>
@@ -25,6 +25,8 @@
       <button class="chrome-toggle" id="chromeToggle" onclick="alternarFases()">fases</button>
       <div class="fases-dropdown" id="fasesDropdown">
         <nav class="fases">
+          <a class="fase-link" href="./carimbo-progresso.html">resumo de progresso</a>
+          <div class="fases-divider"></div>
           <a class="fase-link" href="./carimbo-8662.html">fase 1 · lei 8.662</a>
           <a class="fase-link" href="./carimbo-etica.html" aria-current="page">fase 2 · código de ética</a>
           <a class="fase-link" href="./carimbo-completo.html">fase 3 · tudo junto</a>
@@ -85,6 +87,8 @@
   <div class="foot">Fonte: <a href="https://www.cfess.org.br/arquivos/CEP_CFESS-SITE.pdf" target="_blank" rel="noopener">Código de Ética do/a Assistente Social, Resolução CFESS nº 273, de 13 de março de 1993 (PDF oficial)</a></div>
 </div>
 
+<script src="./progresso.js"></script>
+<script src="./musica.js"></script>
 <script>
 let DATA = null;
 
@@ -284,6 +288,7 @@ function reviewHtml(){
 
 function showDone(){
   const pct=Math.round(correct/deck.length*100);
+  carimboSalvarProgresso('etica', correct, deck.length, best);
   let msg;
   if(pct===100) msg="Gabaritou. Você domina direito, dever e vedação.";
   else if(pct>=80) msg="Sólido. Revise só as alíneas que escaparam.";
@@ -360,6 +365,7 @@ fetch('../data/codigo-etica.json')
   })
   .catch(()=>{ $('activity').textContent='não foi possível carregar as questões.'; });
 </script>
+<button class="music-btn" id="musicaBtn" onclick="alternarMusica()" aria-pressed="false">tocar música</button>
 <button class="manual-btn" id="manualBtn" onclick="alternarManual()">consultar a lei</button>
 <div class="manual-overlay" id="manualOverlay" onclick="if(event.target===this) fecharManual()">
   <div class="manual-panel">

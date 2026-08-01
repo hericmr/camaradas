@@ -77,6 +77,7 @@ body{
   overflow:hidden;
   padding:0 clamp(14px,4vw,24px) 64px;
 }
+/* ---- Papel de parede: intercala entre 3 fundos, um por fase (ver classe bg-2/bg-3 no <body>) ---- */
 body::before{
   content:'';
   position:fixed;
@@ -86,6 +87,14 @@ body::before{
   background-repeat:repeat;
   background-size:256px 256px;
   pointer-events:none;
+}
+body.bg-2::before{
+  background-image:url('../background-let.png');
+  background-size:380px 380px;
+}
+body.bg-3::before{
+  background-image:url('../background-mix.png');
+  background-size:200px 200px;
 }
 .wrap{
   max-width:760px;margin:0 auto;position:relative;
@@ -98,9 +107,9 @@ body::before{
   display:inline-block;
   font-family:'Bangalore',"Helvetica Neue",Arial,sans-serif;
   font-size:13px;font-weight:400;letter-spacing:.1em;text-transform:uppercase;
-  color:var(--ink-soft);text-decoration:none;margin-bottom:14px;
+  color:var(--paper-2);text-decoration:none;margin-bottom:14px;
 }
-.back-link:hover{color:var(--ink)}
+.back-link:hover{color:#fff}
 
 .fases{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
 .fase-link{
@@ -312,6 +321,20 @@ h1 .camarada{
   font-size:13px;padding:11px 16px;border-radius:4px;box-shadow:0 8px 20px -8px var(--shadow);
 }
 .manual-btn:hover{background:var(--ink);color:var(--paper-2)}
+
+/* ---- Música-tema: controlada pelo jogador, nunca autoplay sem escolha explícita ---- */
+.music-btn{
+  position:fixed;left:16px;bottom:16px;z-index:40;
+  cursor:pointer;border:2px solid var(--ink);background:var(--paper-2);color:var(--ink);
+  font-family:'Bangalore',"Helvetica Neue",Arial,sans-serif;font-weight:400;letter-spacing:.08em;text-transform:uppercase;
+  font-size:13px;padding:11px 16px;border-radius:4px;box-shadow:0 8px 20px -8px var(--shadow);
+}
+.music-btn:hover{background:var(--ink);color:var(--paper-2)}
+.music-btn.on{border-color:var(--seal-green-ink);color:var(--seal-green-ink)}
+.music-btn.on:hover{background:var(--seal-green-ink);color:var(--paper-2)}
+@media (max-width:520px){
+  .music-btn{left:10px;bottom:10px;padding:10px 14px;font-size:12px}
+}
 .manual-overlay{
   position:fixed;inset:0;z-index:50;background:rgba(16,15,13,.55);
   display:none;
@@ -351,19 +374,20 @@ h1 .camarada{
   border-bottom:2px solid rgba(0,0,0,.5);
   box-shadow:0 6px 18px -10px rgba(0,0,0,.5);
 }
-.game-navbar .back-link{margin-bottom:0;flex:0 0 auto;order:2}
+.game-navbar .back-link{margin-bottom:0;flex:0 0 auto;order:2;margin-left:auto}
 .game-navbar-title{
   order:1;
   font-family:'Agitprop',"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
-  font-size:30px;font-weight:400;line-height:1;color:var(--seal-red-ink);
-  white-space:nowrap;flex:0 1 auto;margin:0;
+  font-size:30px;font-weight:400;line-height:1;color:#c1554a;
+  white-space:nowrap;flex:1 1 auto;min-width:0;margin:0;
+  overflow:hidden;text-overflow:ellipsis;
   text-shadow:
     1px 1px 0 var(--ink-deep),2px 2px 0 var(--ink-deep),3px 3px 0 var(--ink-deep),
     4px 4px 0 var(--ink-deep),5px 5px 0 var(--ink-deep),6px 6px 0 var(--ink-deep),
     7px 7px 0 var(--ink-deep),8px 8px 0 var(--ink-deep),9px 9px 0 var(--ink-deep),
     10px 10px 0 var(--ink-deep);
 }
-.game-navbar-title .camarada{font-family:'Minhaletra2',"Helvetica Neue",Arial,sans-serif;text-shadow:none}
+.game-navbar-title .camarada{font-family:'Minhaletra2',"Helvetica Neue",Arial,sans-serif;font-size:1.2em;text-shadow:none}
 @media (max-width:600px){
   .game-navbar{gap:10px}
   .game-navbar-title{
@@ -373,15 +397,21 @@ h1 .camarada{
       4px 4px 0 var(--ink-deep),5px 5px 0 var(--ink-deep),6px 6px 0 var(--ink-deep);
   }
 }
+@media (max-width:420px){
+  .game-navbar{gap:6px}
+  .game-navbar-title{font-size:15px}
+  .back-link{font-size:11px}
+  .chrome-toggle{padding:6px 8px;font-size:10.5px}
+}
 .chrome-toggle{
-  cursor:pointer;border:1px solid var(--line);background:transparent;color:var(--ink-soft);
+  cursor:pointer;border:1px solid var(--paper-2);background:transparent;color:var(--paper-2);
   font-family:'Bangalore',"Helvetica Neue",Arial,sans-serif;font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;
   padding:6px 10px;border-radius:3px;
 }
-.chrome-toggle:hover{border-color:var(--ink);color:var(--ink)}
+.chrome-toggle:hover{border-color:#fff;color:#fff}
 
 /* ---- menu de fases: dropdown simples, preso na navbar ---- */
-.navbar-fases{position:relative;flex:0 0 auto;order:3;margin-left:auto}
+.navbar-fases{position:relative;flex:0 0 auto;order:3}
 .fases-dropdown{
   position:absolute;top:calc(100% + 8px);right:0;
   min-width:280px;max-width:92vw;max-height:70vh;overflow-y:auto;
@@ -394,6 +424,44 @@ h1 .camarada{
 .fases-dropdown.show{display:block}
 .fases-dropdown .fases{display:flex;flex-direction:column;gap:5px}
 .fases-dropdown .fase-link{width:100%;text-align:left;box-sizing:border-box}
+
+/* ---- Tela de resumo de progresso ---- */
+.fases-divider{height:1px;background:var(--line);margin:6px 2px}
+.progress-summary{display:flex;flex-wrap:wrap;gap:10px;margin:22px 0 26px}
+.progress-summary .stat{flex:1 1 140px}
+.progress-list{display:flex;flex-direction:column;gap:10px}
+.progress-item{
+  display:flex;align-items:center;gap:14px;
+  border:1px solid var(--line);border-radius:4px;
+  padding:14px 16px;background:var(--paper-2);
+  text-decoration:none;color:inherit;
+}
+.progress-item:hover{border-color:var(--ink)}
+.progress-item .p-name{
+  flex:1 1 auto;font-family:'Bangalore',"Helvetica Neue",Arial,sans-serif;
+  font-size:13.5px;letter-spacing:.03em;color:var(--ink);
+}
+.progress-item .p-status{
+  flex:0 0 auto;text-align:right;font-family:"Helvetica Neue",Arial,sans-serif;
+  font-size:12.5px;color:var(--ink-soft);white-space:nowrap;
+}
+.progress-item .p-status b{color:var(--ink);font-variant-numeric:tabular-nums}
+.progress-item.empty .p-status{font-style:italic}
+.progress-bar-track{
+  flex:0 0 56px;height:6px;border-radius:3px;background:rgba(0,0,0,.12);overflow:hidden;
+}
+.progress-bar-fill{display:block;height:100%;background:var(--gold)}
+.progress-actions{margin-top:26px;text-align:center}
+.progress-actions button{
+  cursor:pointer;border:1px solid var(--line);background:transparent;color:var(--ink-soft);
+  font-family:'Bangalore',"Helvetica Neue",Arial,sans-serif;font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;
+  padding:9px 14px;border-radius:4px;
+}
+.progress-actions button:hover{border-color:var(--seal-red-ink);color:var(--seal-red-ink)}
+@media (max-width:560px){
+  .progress-item{flex-wrap:wrap}
+  .progress-item .p-status{flex:1 1 100%;text-align:left;white-space:normal}
+}
 
 /* ---- Layout "mesa": jogo à esquerda, manual docado à direita em telas largas ---- */
 .desk{display:block;height:100%;padding-top:calc(var(--navbar-h) + clamp(14px,3vw,28px))}

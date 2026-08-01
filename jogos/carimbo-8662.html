@@ -24,6 +24,8 @@
       <button class="chrome-toggle" id="chromeToggle" onclick="alternarFases()">fases</button>
       <div class="fases-dropdown" id="fasesDropdown">
         <nav class="fases">
+          <a class="fase-link" href="./carimbo-progresso.html">resumo de progresso</a>
+          <div class="fases-divider"></div>
           <a class="fase-link" href="./carimbo-8662.html" aria-current="page">fase 1 · lei 8.662</a>
           <a class="fase-link" href="./carimbo-etica.html">fase 2 · código de ética</a>
           <a class="fase-link" href="./carimbo-completo.html">fase 3 · tudo junto</a>
@@ -80,6 +82,8 @@
   <div class="foot">Fonte: <a href="https://www.planalto.gov.br/ccivil_03/leis/L8662.htm" target="_blank" rel="noopener">texto oficial · Lei nº 8.662, de 7 de junho de 1993</a></div>
 </div>
 
+<script src="./progresso.js"></script>
+<script src="./musica.js"></script>
 <script>
 let DATA = null;
 
@@ -258,6 +262,7 @@ function reviewHtml(){
 
 function showDone(){
   const pct=Math.round(correct/deck.length*100);
+  carimboSalvarProgresso('8662', correct, deck.length, best);
   let msg;
   if(pct===100) msg="Gabaritou. Você domina a fronteira 4º × 5º.";
   else if(pct>=80) msg="Sólido. Revise só os incisos que escaparam.";
@@ -299,6 +304,7 @@ fetch('../data/lei8662.json')
   })
   .catch(()=>{ $('activity').textContent='não foi possível carregar as questões.'; });
 </script>
+<button class="music-btn" id="musicaBtn" onclick="alternarMusica()" aria-pressed="false">tocar música</button>
 <a class="manual-btn" id="manualBtn" href="https://www.planalto.gov.br/ccivil_03/leis/L8662.htm" target="_blank" rel="noopener">consultar a lei</a>
 </div>
 </body>
