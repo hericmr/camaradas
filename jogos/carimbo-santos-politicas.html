@@ -23,7 +23,7 @@
   #seal.opt2{color:var(--seal-gold)}
   #seal.opt3{color:var(--seal-purple)}
 </style>
-  <link rel="stylesheet" crossorigin href="/camaradas/assets/carimbo-CCDEpn9E.css">
+  <link rel="stylesheet" crossorigin href="/camaradas/assets/carimbo-UJtDOi0e.css">
 </head>
 <body class="bg-3">
 <div class="game-navbar">
@@ -32,19 +32,7 @@
     <div class="navbar-fases">
       <button class="chrome-toggle" id="chromeToggle" onclick="alternarFases()">fases</button>
       <div class="fases-dropdown" id="fasesDropdown">
-        <nav class="fases">
-          <a class="fase-link" href="./carimbo-progresso.html">resumo de progresso</a>
-          <div class="fases-divider"></div>
-          <a class="fase-link" href="./carimbo-8662.html">fase 1 · lei 8.662</a>
-          <a class="fase-link" href="./carimbo-etica.html">fase 2 · código de ética</a>
-          <a class="fase-link" href="./carimbo-completo.html">fase 3 · tudo junto</a>
-          <a class="fase-link" href="./carimbo-santos.html">fase 4 · Santos: princípios, vedações e competências</a>
-          <a class="fase-link" href="./carimbo-santos-poderes.html">fase 5a · Santos: poderes</a>
-          <a class="fase-link" href="./carimbo-santos-politicas.html" aria-current="page">fase 5b · Santos: tributação/saúde/proteção</a>
-          <a class="fase-link" href="./carimbo-santos-pegadinhas.html">fase 5c · Santos: pegadinhas</a>
-          <a class="fase-link" href="./carimbo-santos-numeros.html">fase 5d · Santos: números</a>
-          <a class="fase-link" href="./carimbo-santos-assistencia.html">fase 5e · Santos: assistência/proteção social</a>
-        </nav>
+        <nav class="fases" id="fasesNav"></nav>
       </div>
     </div>
 </div>
@@ -87,6 +75,7 @@
 <script src="./musica.js"></script>
 <script>
 let DATA = null;
+carimboRenderizarDropdownFase('santos-politicas');
 const ROUND_SIZE = 18;
 const DOC_HINT = 'Tributação, Saúde ou Proteção Especial?';
 

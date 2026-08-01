@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SENTA A CARIMBADA, camarada! · resumo de progresso</title>
+<title>SENTA A CARIMBADA, camarada! · escolha o tema</title>
   <link rel="stylesheet" crossorigin href="/camaradas/assets/carimbo-UJtDOi0e.css">
 </head>
 <body>
@@ -22,25 +22,19 @@
 <div class="wrap">
   <header>
     <div class="eyebrow">senta a carimbada, camarada!</div>
-    <h1>Resumo <span class="camarada">de progresso</span></h1>
-    <div class="sub" id="resumoSub">carregando…</div>
+    <h1>Escolha o <span class="camarada">tema!</span></h1>
+    <div class="sub">Cada dossiê é uma lei. Abra pra ver as fases dentro.</div>
   </header>
 
-  <div class="progress-summary" id="progressSummary"></div>
-
-  <div class="progress-list" id="progressList"></div>
-
-  <div class="progress-actions">
-    <button onclick="confirmarLimpeza()">limpar progresso</button>
-  </div>
+  <div class="mesa-dossies" id="mesaDossies"></div>
 </div>
-  <div class="foot">O progresso fica salvo só neste navegador (localStorage) — trocar de aparelho ou limpar os dados do site reinicia o placar.</div>
+  <div class="foot">O progresso de cada fase fica salvo só neste navegador.</div>
 </div>
 </div>
 
 <button class="music-btn" id="musicaBtn" onclick="alternarMusica()" aria-pressed="false">tocar música</button>
-<script src="./musica.js"></script>
 <script src="./progresso.js"></script>
+<script src="./musica.js"></script>
 <script>
 function alternarFases(){
   const dd=document.getElementById('fasesDropdown');
@@ -57,31 +51,24 @@ document.addEventListener('keydown', e=>{
   if(e.key==='Escape'){ const dd=document.getElementById('fasesDropdown'); if(dd) dd.classList.remove('show'); }
 });
 
+const $=id=>document.getElementById(id);
+
 function fmtData(iso){
   const d=new Date(iso);
   return d.toLocaleDateString('pt-BR',{day:'2-digit',month:'2-digit',year:'numeric'});
 }
 
-function renderizarProgresso(){
-  const todos=carimboLerProgresso();
-  const todasFases=carimboTodasFases();
-  const jogadas=todasFases.filter(f=>todos[f.id]);
-  const total=todasFases.length;
-  const mediaPct=jogadas.length ? Math.round(jogadas.reduce((s,f)=>s+todos[f.id].pct,0)/jogadas.length) : 0;
+function renderizarMesa(){
+  const todos = carimboLerProgresso();
+  $('mesaDossies').innerHTML = CARIMBO_TEMAS.map(tema=>{
+    const jogadas = tema.fases.filter(f=>todos[f.id]);
+    const mediaPct = jogadas.length ? Math.round(jogadas.reduce((s,f)=>s+todos[f.id].pct,0)/jogadas.length) : 0;
+    const resumo = jogadas.length
+      ? `${jogadas.length}/${tema.fases.length} fases · ${mediaPct}% média`
+      : `${tema.fases.length} fase${tema.fases.length>1?'s':''}`;
 
-  $('resumoSub').textContent = jogadas.length===0
-    ? 'você ainda não jogou nenhuma fase.'
-    : `${jogadas.length} de ${total} fases jogadas · média de ${mediaPct}% de acerto`;
-
-  $('progressSummary').innerHTML = `
-    <div class="stat"><div class="k">Fases jogadas</div><div class="v">${jogadas.length}/${total}</div></div>
-    <div class="stat"><div class="k">Média de acerto</div><div class="v">${jogadas.length?mediaPct+'%':'—'}</div></div>
-  `;
-
-  $('progressList').innerHTML = CARIMBO_TEMAS.map(tema => `
-    <div class="progress-tema-label">${tema.nome}</div>
-    ${tema.fases.map(f=>{
-      const p=todos[f.id];
+    const linhas = tema.fases.map(f=>{
+      const p = todos[f.id];
       if(!p){
         return `<a class="progress-item empty" href="${f.href}">
           <span class="p-name">${f.nome}</span>
@@ -91,22 +78,34 @@ function renderizarProgresso(){
       return `<a class="progress-item" href="${f.href}">
         <span class="p-name">${f.nome}</span>
         <span class="progress-bar-track"><span class="progress-bar-fill" style="width:${p.pct}%"></span></span>
-        <span class="p-status"><b>${p.correct}/${p.total}</b> (${p.pct}%) · sequência ${p.streak} · ${fmtData(p.data)}</span>
+        <span class="p-status"><b>${p.correct}/${p.total}</b> (${p.pct}%) · ${fmtData(p.data)}</span>
       </a>`;
-    }).join('')}
-  `).join('');
+    }).join('');
+
+    return `
+      <div class="dossie" data-tema="${tema.id}" id="dossie-${tema.id}">
+        <button class="dossie-head" onclick="toggleDossie('${tema.id}')">
+          <span class="dossie-nome">${tema.nome}</span>
+          <span class="dossie-sub">${tema.subtitulo}</span>
+          <span class="dossie-progresso">${resumo}</span>
+        </button>
+        <div class="dossie-fases progress-list">${linhas}</div>
+      </div>
+    `;
+  }).join('');
 }
 
-function confirmarLimpeza(){
-  if(confirm('Apagar todo o progresso salvo neste navegador?')){
-    carimboLimparProgresso();
-    renderizarProgresso();
-  }
+function toggleDossie(temaId){
+  const el = document.getElementById('dossie-'+temaId);
+  if(!el) return;
+  const abrindo = !el.classList.contains('open');
+  document.querySelectorAll('.dossie.open').forEach(d=>{ if(d!==el) d.classList.remove('open'); });
+  el.classList.toggle('open', abrindo);
 }
 
-const $=id=>document.getElementById(id);
-carimboRenderizarDropdownGeral('progresso');
-renderizarProgresso();
+carimboRenderizarDropdownGeral('mesa');
+renderizarMesa();
+if(CARIMBO_TEMAS[0]) toggleDossie(CARIMBO_TEMAS[0].id);
 </script>
 </body>
 </html>
