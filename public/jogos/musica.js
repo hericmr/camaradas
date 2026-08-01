@@ -2,6 +2,7 @@
    (quem desligar uma vez tem essa escolha lembrada em localStorage daí em diante). */
 (function(){
   const CHAVE = 'carimbo.musica';
+  const CHAVE_POS = 'carimbo.musica.pos'; // mesma chave usada pela intro, pra continuar de onde parou
   const audio = new Audio('../Theme.ogg');
   audio.loop = true;
   audio.volume = 0.35;
@@ -11,6 +12,15 @@
     const pref = localStorage.getItem(CHAVE);
     return pref === null ? true : pref === '1';
   }
+
+  // retoma de onde a música parou na página anterior (intro ou outra fase), em vez de sempre do zero
+  audio.addEventListener('loadedmetadata', ()=>{
+    const pos = Number(localStorage.getItem(CHAVE_POS));
+    if(pos > 0 && pos < audio.duration) audio.currentTime = pos;
+  });
+  audio.addEventListener('timeupdate', ()=>{
+    try{ localStorage.setItem(CHAVE_POS, String(audio.currentTime)); }catch(e){}
+  });
 
   function tocar(){
     audio.play().catch(()=>{
