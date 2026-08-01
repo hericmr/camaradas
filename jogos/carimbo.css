@@ -200,8 +200,12 @@ h1 .camarada{
   .hud-side .stat .v{font-size:18px}
 }
 @media (max-width:400px){
-  .carimbador-row{flex-wrap:wrap}
-  .hud-side{flex-direction:row;flex-basis:100%;justify-content:center;gap:8px}
+  .carimbador-row{gap:4px}
+  .carimbador{max-width:88px}
+  .hud-side{flex-basis:60px;gap:4px}
+  .hud-side .stat{padding:4px 3px}
+  .hud-side .stat .k{font-size:7px;letter-spacing:.02em}
+  .hud-side .stat .v{font-size:14px}
 }
 
 /* botões de julgamento */
