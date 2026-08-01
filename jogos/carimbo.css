@@ -424,12 +424,50 @@ h1 .camarada{
 .fases-dropdown.show{display:block}
 .fases-dropdown .fases{display:flex;flex-direction:column;gap:5px}
 .fases-dropdown .fase-link{width:100%;text-align:left;box-sizing:border-box}
+.fase-group-label{
+  font-family:"Helvetica Neue",Arial,sans-serif;font-size:10.5px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--ink-soft);font-weight:700;
+  padding:8px 4px 2px;
+}
+.fase-group-label:first-child{padding-top:2px}
 
 /* ---- Tela de resumo de progresso ---- */
 .fases-divider{height:1px;background:var(--line);margin:6px 2px}
 .progress-summary{display:flex;flex-wrap:wrap;gap:10px;margin:22px 0 26px}
 .progress-summary .stat{flex:1 1 140px}
 .progress-list{display:flex;flex-direction:column;gap:10px}
+/* ---- Mesa de trabalho: escolha de tema (dossiês) ---- */
+.mesa-dossies{display:flex;flex-direction:column;gap:14px;margin-top:24px}
+.dossie{border:2px solid var(--line);border-radius:6px;overflow:hidden;background:var(--paper-2)}
+.dossie-head{
+  width:100%;text-align:left;cursor:pointer;border:none;background:transparent;
+  display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 14px;
+  padding:16px 18px;font-family:inherit;color:inherit;
+}
+.dossie-head:hover{background:rgba(0,0,0,.04)}
+.dossie-nome{
+  font-family:'Bangalore',"Helvetica Neue",Arial,sans-serif;font-size:17px;
+  letter-spacing:.04em;text-transform:uppercase;font-weight:400;
+}
+.dossie-sub{font-size:13px;color:var(--ink-soft);flex:1 1 auto}
+.dossie-progresso{font-size:12.5px;color:var(--ink-soft);font-variant-numeric:tabular-nums;white-space:nowrap}
+.dossie[data-tema="lei8662"] .dossie-nome{color:var(--seal-blue-ink)}
+.dossie[data-tema="etica"] .dossie-nome{color:var(--seal-gold-ink)}
+.dossie[data-tema="santos"] .dossie-nome{color:var(--seal-green-ink)}
+.dossie-fases{max-height:0;overflow:hidden;transition:max-height .25s ease;border-top:0 solid var(--line)}
+.dossie.open .dossie-fases{max-height:800px;border-top-width:1px}
+.dossie-fases.progress-list{gap:0;padding:8px}
+.dossie-fases .progress-item{border-radius:3px}
+@media (prefers-reduced-motion: reduce){
+  .dossie-fases{transition:none}
+}
+
+.progress-tema-label{
+  font-family:'Bangalore',"Helvetica Neue",Arial,sans-serif;font-size:13px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--seal-red-ink);font-weight:400;
+  margin:18px 0 2px;padding-bottom:6px;border-bottom:1px solid var(--line);
+}
+.progress-tema-label:first-child{margin-top:0}
 .progress-item{
   display:flex;align-items:center;gap:14px;
   border:1px solid var(--line);border-radius:4px;

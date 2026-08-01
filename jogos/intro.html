@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SENTA A CARIMBADA, camarada!</title>
+<link rel="stylesheet" href="./carimbo.css">
+<style>
+  body.intro-body{
+    overflow:hidden;height:100vh;padding:0;
+    display:flex;align-items:center;justify-content:center;
+  }
+  /* na intro, sem o papel de parede de memes tiled — só o gradiente escuro por baixo */
+  body.intro-body::before{ display:none; }
+
+  .intro-stage{ position:relative; text-align:center; padding:0 24px; cursor:pointer; }
+
+  .intro-tap{
+    font-family:'Bangalore',"Helvetica Neue",Arial,sans-serif;
+    letter-spacing:.14em;text-transform:uppercase;
+    color:var(--paper-2);font-size:14px;
+    animation:piscar 1.4s ease-in-out infinite;
+  }
+  @keyframes piscar{ 0%,100%{opacity:.4} 50%{opacity:1} }
+
+  .intro-title{
+    display:none;
+    font-family:'Agitprop',"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+    font-size:clamp(40px,9vw,84px);line-height:1.05;font-weight:400;
+    color:#c1554a;margin:0;
+  }
+  .intro-title .palavra{
+    display:inline-block;opacity:0;transform:scale(2) rotate(-6deg);
+    text-shadow:
+      1px 1px 0 var(--ink-deep),2px 2px 0 var(--ink-deep),3px 3px 0 var(--ink-deep),
+      4px 4px 0 var(--ink-deep),5px 5px 0 var(--ink-deep),6px 6px 0 var(--ink-deep),
+      7px 7px 0 var(--ink-deep),8px 8px 0 var(--ink-deep);
+  }
+  .intro-title .palavra.show{ animation:baque .38s cubic-bezier(.2,1.4,.4,1) forwards; }
+  @keyframes baque{
+    0%{opacity:0;transform:scale(2) rotate(-6deg)}
+    60%{opacity:1}
+    100%{opacity:1;transform:scale(1) rotate(-1deg)}
+  }
+  .intro-title .camarada{
+    font-family:'Minhaletra2',"Helvetica Neue",Arial,sans-serif;
+    text-shadow:none;font-size:1.1em;
+  }
+  .intro-title .camarada.show{ animation:assina .5s ease forwards; }
+  @keyframes assina{
+    0%{opacity:0;transform:scale(1.3) rotate(-3deg)}
+    100%{opacity:1;transform:scale(1) rotate(-1deg)}
+  }
+
+  .intro-continuar{
+    margin-top:30px;opacity:0;
+    font-family:'Bangalore',"Helvetica Neue",Arial,sans-serif;
+    letter-spacing:.12em;text-transform:uppercase;
+    color:var(--paper-2);font-size:13px;
+  }
+  .intro-continuar.show{ animation:fade .5s ease forwards; }
+  @keyframes fade{ from{opacity:0} to{opacity:1} }
+
+  .intro-skip{
+    position:fixed;right:16px;bottom:16px;z-index:40;
+    font-family:'Bangalore',"Helvetica Neue",Arial,sans-serif;
+    font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;
+    color:var(--ink-soft);text-decoration:none;
+    border:1px solid var(--line);border-radius:4px;padding:9px 14px;
+  }
+  .intro-skip:hover{ color:var(--paper-2); border-color:var(--paper-2); }
+
+  @media (prefers-reduced-motion: reduce){
+    .intro-title .palavra, .intro-title .camarada{ animation:none !important; opacity:1 !important; transform:none !important; }
+    .intro-continuar{ animation:none !important; }
+  }
+</style>
+</head>
+<body class="intro-body">
+
+<a class="intro-skip" href="./mesa.html">pular intro →</a>
+
+<div class="intro-stage" id="introStage">
+  <div class="intro-tap" id="introTap">toque pra começar, camarada</div>
+
+  <h1 class="intro-title" id="introTitle">
+    <span class="palavra">SENTA</span>
+    <span class="palavra"> A</span>
+    <span class="palavra"> CARIMBADA,</span>
+    <span class="palavra camarada"> camarada!</span>
+  </h1>
+
+  <div class="intro-continuar" id="introContinuar">toque pra continuar →</div>
+</div>
+
+<script>
+/* Timestamps reais extraídos do Theme.ogg (análise de picos de energia — ~100 BPM,
+   batida a cada ~0.6s). O título bate junto com as 4 primeiras batidas da faixa. */
+const BEATS = [650, 1250, 1840, 2440];
+const CONTINUAR_EM = 5460; // próximo acento musical (fim da 1a frase)
+
+let iniciado = false;
+
+function iniciar(){
+  if(iniciado) return;
+  iniciado = true;
+
+  document.getElementById('introTap').style.display = 'none';
+  const titulo = document.getElementById('introTitle');
+  titulo.style.display = 'block';
+
+  const musica = new Audio('../Theme.ogg');
+  musica.volume = 0.35;
+  musica.play().catch(()=>{});
+
+  const stamp = new Audio('../stamp.mp3');
+  const palavras = titulo.querySelectorAll('.palavra');
+
+  BEATS.forEach((t, i) => {
+    setTimeout(() => {
+      const p = palavras[i];
+      if(!p) return;
+      p.classList.add('show');
+      if(!p.classList.contains('camarada')){
+        try{ stamp.currentTime = 0; stamp.play().catch(()=>{}); }catch(e){}
+      }
+    }, t);
+  });
+
+  setTimeout(() => {
+    document.getElementById('introContinuar').classList.add('show');
+  }, CONTINUAR_EM);
+}
+
+function avancar(){
+  if(!iniciado) return;
+  window.location.href = './mesa.html';
+}
+
+document.getElementById('introStage').addEventListener('pointerdown', () => {
+  if(!iniciado) iniciar();
+  else avancar();
+});
+document.addEventListener('keydown', e => {
+  if(e.key === 'Tab') return;
+  if(!iniciado) iniciar();
+  else avancar();
+});
+</script>
+</body>
+</html>
