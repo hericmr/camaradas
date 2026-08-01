@@ -52,6 +52,19 @@
   .intro-continuar.show{ animation:fade .5s ease forwards; }
   @keyframes fade{ from{opacity:0} to{opacity:1} }
 
+  .intro-logo-stamp{
+    position:fixed;top:50%;left:50%;z-index:45;
+    width:min(200px,42vw);height:auto;
+    transform:translate(-50%,-50%) rotate(-14deg) scale(1.8);
+    opacity:0;pointer-events:none;
+  }
+  .intro-logo-stamp.show{ animation:logoStamp .45s cubic-bezier(.2,1.4,.4,1) forwards; }
+  @keyframes logoStamp{
+    0%{opacity:0;transform:translate(-50%,-50%) rotate(-14deg) scale(1.8)}
+    60%{opacity:1}
+    100%{opacity:.95;transform:translate(-50%,-50%) rotate(-8deg) scale(1)}
+  }
+
   .intro-skip{
     position:fixed;right:16px;bottom:16px;z-index:40;
     font-family:'Bangalore',"Helvetica Neue",Arial,sans-serif;
@@ -64,6 +77,7 @@
   @media (prefers-reduced-motion: reduce){
     .intro-title .palavra, .intro-title .camarada{ animation:none !important; opacity:1 !important; transform:none !important; }
     .intro-continuar{ animation:none !important; }
+    .intro-logo-stamp.show{ animation:none !important; opacity:.95 !important; transform:translate(-50%,-50%) rotate(-8deg) scale(1) !important; }
   }
 </style>
 </head>
@@ -81,6 +95,8 @@
 
   <div class="intro-continuar" id="introContinuar">toque pra continuar →</div>
 </div>
+
+<img class="intro-logo-stamp" id="introLogoStamp" src="../logo.png" alt="">
 
 <script>
 /* Timestamps reais extraídos do Theme.ogg (análise de picos de energia — ~100 BPM,
@@ -111,8 +127,20 @@ setTimeout(() => {
   document.getElementById('introContinuar').classList.add('show');
 }, CONTINUAR_EM);
 
+let saindo = false;
 function avancar(){
-  window.location.href = './mesa.html';
+  if(saindo) return;
+  saindo = true;
+
+  document.getElementById('introLogoStamp').classList.add('show');
+  try{
+    const stamp = new Audio('../stamp.mp3');
+    stamp.play().catch(()=>{});
+  }catch(e){}
+
+  setTimeout(() => {
+    window.location.href = './mesa.html';
+  }, 550);
 }
 
 document.getElementById('introStage').addEventListener('pointerdown', avancar);
