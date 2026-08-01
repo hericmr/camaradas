@@ -15,6 +15,16 @@
 
   .intro-stage{ position:relative; text-align:center; padding:0 24px; cursor:pointer; }
 
+  .intro-tap{
+    display:none;
+    font-family:'Bangalore',"Helvetica Neue",Arial,sans-serif;
+    letter-spacing:.14em;text-transform:uppercase;
+    color:var(--paper-2);font-size:14px;
+    animation:piscar 1.4s ease-in-out infinite;
+  }
+  .intro-tap.show{ display:block; }
+  @keyframes piscar{ 0%,100%{opacity:.4} 50%{opacity:1} }
+
   .intro-title{
     font-family:'Agitprop',"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
     font-size:clamp(40px,9vw,84px);line-height:1.05;font-weight:400;
@@ -69,12 +79,15 @@
     .intro-title .palavra, .intro-title .camarada{ animation:none !important; opacity:1 !important; transform:none !important; }
     .intro-continuar{ animation:none !important; }
     .intro-logo-stamp.show{ animation:none !important; opacity:.95 !important; transform:translate(-50%,-50%) rotate(-8deg) scale(1) !important; }
+    .intro-tap{ animation:none !important; opacity:1 !important; }
   }
 </style>
 </head>
 <body class="intro-body">
 
 <div class="intro-stage" id="introStage">
+  <div class="intro-tap" id="introTap">toque pra começar, camarada</div>
+
   <h1 class="intro-title" id="introTitle">
     <span class="palavra">SENTA</span>
     <span class="palavra"> A</span>
@@ -100,28 +113,43 @@ const MUSICA_POS_KEY = 'carimbo.musica.pos'; // mesma chave lida pelo musica.js 
 
 const musica = new Audio('../Theme.ogg');
 musica.volume = 0.35;
-musica.play().catch(()=>{
-  // autoplay bloqueado pelo navegador: retoma assim que o jogador interagir com a página
-  const retomar = ()=>{ musica.play().catch(()=>{}); };
-  document.addEventListener('pointerdown', retomar, { once:true });
-  document.addEventListener('keydown', retomar, { once:true });
-});
 
 // salva a posição continuamente pra a próxima página (mesa.html) continuar dali, em vez de reiniciar
 musica.addEventListener('timeupdate', ()=>{
   try{ localStorage.setItem(MUSICA_POS_KEY, String(musica.currentTime)); }catch(e){}
 });
 
-BEATS.forEach((t, i) => {
+// o título só bate depois que a música realmente começa a tocar, pra ficar no ritmo de verdade
+// (em celular o navegador quase sempre bloqueia esse primeiro play() sem toque do jogador)
+let sequenciaIniciada = false;
+function iniciarSequencia(){
+  if(sequenciaIniciada) return;
+  sequenciaIniciada = true;
+
+  BEATS.forEach((t, i) => {
+    setTimeout(() => {
+      const p = palavras[i];
+      if(p) p.classList.add('show');
+    }, t);
+  });
+
   setTimeout(() => {
-    const p = palavras[i];
-    if(p) p.classList.add('show');
-  }, t);
+    document.getElementById('introContinuar').classList.add('show');
+  }, CONTINUAR_EM);
+}
+
+let aguardandoToque = false;
+musica.play().then(iniciarSequencia).catch(()=>{
+  aguardandoToque = true;
+  document.getElementById('introTap').classList.add('show');
 });
 
-setTimeout(() => {
-  document.getElementById('introContinuar').classList.add('show');
-}, CONTINUAR_EM);
+function desbloquear(){
+  aguardandoToque = false;
+  document.getElementById('introTap').classList.remove('show');
+  musica.play().catch(()=>{});
+  iniciarSequencia();
+}
 
 let saindo = false;
 function avancar(){
@@ -140,10 +168,15 @@ function avancar(){
   }, 550);
 }
 
-document.getElementById('introStage').addEventListener('pointerdown', avancar);
+function aoInteragir(){
+  if(aguardandoToque){ desbloquear(); return; }
+  avancar();
+}
+
+document.getElementById('introStage').addEventListener('pointerdown', aoInteragir);
 document.addEventListener('keydown', e => {
   if(e.key === 'Tab') return;
-  avancar();
+  aoInteragir();
 });
 </script>
 </body>
