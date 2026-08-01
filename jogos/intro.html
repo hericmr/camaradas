@@ -9,8 +9,9 @@
   body.intro-body{
     overflow:hidden;height:100vh;padding:0;
     display:flex;align-items:center;justify-content:center;
+    background:#000;background-image:none;
   }
-  /* na intro, sem o papel de parede de memes tiled — só o gradiente escuro por baixo */
+  /* na intro, sem o papel de parede de memes tiled e sem o gradiente escuro — fundo todo preto */
   body.intro-body::before{ display:none; }
 
   .intro-stage{ position:relative; text-align:center; padding:0 24px; cursor:pointer; }
@@ -33,9 +34,9 @@
   .intro-title .palavra{
     display:inline-block;opacity:0;transform:scale(2) rotate(-6deg);
     text-shadow:
-      1px 1px 0 var(--ink-deep),2px 2px 0 var(--ink-deep),3px 3px 0 var(--ink-deep),
-      4px 4px 0 var(--ink-deep),5px 5px 0 var(--ink-deep),6px 6px 0 var(--ink-deep),
-      7px 7px 0 var(--ink-deep),8px 8px 0 var(--ink-deep);
+      1px 1px 0 #fff,2px 2px 0 #fff,3px 3px 0 #fff,
+      4px 4px 0 #fff,5px 5px 0 #fff,6px 6px 0 #fff,
+      7px 7px 0 #fff,8px 8px 0 #fff;
   }
   .intro-title .palavra.show{ animation:baque .38s cubic-bezier(.2,1.4,.4,1) forwards; }
   @keyframes baque{
