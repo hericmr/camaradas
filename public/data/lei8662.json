@@ -1,7 +1,106 @@
 {
   "lei": "8.662/1993",
   "ementa": "Dispõe sobre a profissão de Assistente Social e dá outras providências.",
-  "fonte": "Texto oficial CFESS (legislacao_lei_8662.pdf)",
+  "fonte": "Texto oficial CFESS (legislacao_lei_8662.pdf), espelhado localmente em data/lei8662-cfess.pdf",
+  "texto_integral": {
+    "observacao": "Transcrição integral dos 24 artigos da Lei nº 8.662/1993, a partir do PDF oficial do CFESS. Usada para consulta no jogo; os incisos dos arts. 4º e 5º usados na rodada de classificação vivem em 'artigos' abaixo.",
+    "artigos": [
+      { "artigo": "1º", "caput": "É livre o exercício da profissão de Assistente Social em todo o território nacional, observadas as condições estabelecidas nesta lei." },
+      { "artigo": "2º", "caput": "Somente poderão exercer a profissão de Assistente Social:", "incisos": [
+        { "num": "I", "texto": "Os possuidores de diploma em curso de graduação em Serviço Social, oficialmente reconhecido, expedido por estabelecimento de ensino superior existente no País, devidamente registrado no órgão competente;" },
+        { "num": "II", "texto": "os possuidores de diploma de curso superior em Serviço Social, em nível de graduação ou equivalente, expedido por estabelecimento de ensino sediado em países estrangeiros, conveniado ou não com o governo brasileiro, desde que devidamente revalidado e registrado em órgão competente no Brasil;" },
+        { "num": "III", "texto": "os agentes sociais, qualquer que seja sua denominação com funções nos vários órgãos públicos, segundo o disposto no art. 14 e seu parágrafo único da Lei nº 1.889, de 13 de junho de 1953." }
+      ], "paragrafo_unico": "O exercício da profissão de Assistente Social requer prévio registro nos Conselhos Regionais que tenham jurisdição sobre a área de atuação do interessado nos termos desta lei." },
+      { "artigo": "3º", "caput": "A designação profissional de Assistente Social é privativa dos habilitados na forma da legislação vigente." },
+      { "artigo": "4º", "caput": "Constituem competências do Assistente Social:", "incisos": [
+        { "num": "I", "texto": "elaborar, implementar, executar e avaliar políticas sociais junto a órgãos da administração pública, direta ou indireta, empresas, entidades e organizações populares;" },
+        { "num": "II", "texto": "elaborar, coordenar, executar e avaliar planos, programas e projetos que sejam do âmbito de atuação do Serviço Social com participação da sociedade civil;" },
+        { "num": "III", "texto": "encaminhar providências, e prestar orientação social a indivíduos, grupos e à população;" },
+        { "num": "IV", "texto": "(Vetado);", "vetado": true },
+        { "num": "V", "texto": "orientar indivíduos e grupos de diferentes segmentos sociais no sentido de identificar recursos e de fazer uso dos mesmos no atendimento e na defesa de seus direitos;" },
+        { "num": "VI", "texto": "planejar, organizar e administrar benefícios e Serviços Sociais;" },
+        { "num": "VII", "texto": "planejar, executar e avaliar pesquisas que possam contribuir para a análise da realidade social e para subsidiar ações profissionais;" },
+        { "num": "VIII", "texto": "prestar assessoria e consultoria a órgãos da administração pública direta e indireta, empresas privadas e outras entidades, com relação às matérias relacionadas no inciso II deste artigo;" },
+        { "num": "IX", "texto": "prestar assessoria e apoio aos movimentos sociais em matéria relacionada às políticas sociais, no exercício e na defesa dos direitos civis, políticos e sociais da coletividade;" },
+        { "num": "X", "texto": "planejamento, organização e administração de Serviços Sociais e de Unidade de Serviço Social;" },
+        { "num": "XI", "texto": "realizar estudos sócio-econômicos com os usuários para fins de benefícios e serviços sociais junto a órgãos da administração pública direta e indireta, empresas privadas e outras entidades." }
+      ] },
+      { "artigo": "5º", "caput": "Constituem atribuições privativas do Assistente Social:", "incisos": [
+        { "num": "I", "texto": "coordenar, elaborar, executar, supervisionar e avaliar estudos, pesquisas, planos, programas e projetos na área de Serviço Social;" },
+        { "num": "II", "texto": "planejar, organizar e administrar programas e projetos em Unidade de Serviço Social;" },
+        { "num": "III", "texto": "assessoria e consultoria e órgãos da Administração Pública direta e indireta, empresas privadas e outras entidades, em matéria de Serviço Social;" },
+        { "num": "IV", "texto": "realizar vistorias, perícias técnicas, laudos periciais, informações e pareceres sobre a matéria de Serviço Social;" },
+        { "num": "V", "texto": "assumir, no magistério de Serviço Social tanto a nível de graduação como pós-graduação, disciplinas e funções que exijam conhecimentos próprios e adquiridos em curso de formação regular;" },
+        { "num": "VI", "texto": "treinamento, avaliação e supervisão direta de estagiários de Serviço Social;" },
+        { "num": "VII", "texto": "dirigir e coordenar Unidades de Ensino e Cursos de Serviço Social, de graduação e pós-graduação;" },
+        { "num": "VIII", "texto": "dirigir e coordenar associações, núcleos, centros de estudo e de pesquisa em Serviço Social;" },
+        { "num": "IX", "texto": "elaborar provas, presidir e compor bancas de exames e comissões julgadoras de concursos ou outras formas de seleção para Assistentes Sociais, ou onde sejam aferidos conhecimentos inerentes ao Serviço Social;" },
+        { "num": "X", "texto": "coordenar seminários, encontros, congressos e eventos assemelhados sobre assuntos de Serviço Social;" },
+        { "num": "XI", "texto": "fiscalizar o exercício profissional através dos Conselhos Federal e Regionais;" },
+        { "num": "XII", "texto": "dirigir serviços técnicos de Serviço Social em entidades públicas ou privadas;" },
+        { "num": "XIII", "texto": "ocupar cargos e funções de direção e fiscalização da gestão financeira em órgãos e entidades representativas da categoria profissional." }
+      ] },
+      { "artigo": "6º", "caput": "São alteradas as denominações do atual Conselho Federal de Assistentes Sociais (CFAS) e dos Conselhos Regionais de Assistentes Sociais (CRAS), para, respectivamente, Conselho Federal de Serviço Social (CFESS) e Conselhos Regionais de Serviço Social (CRESS)." },
+      { "artigo": "7º", "caput": "O Conselho Federal de Serviço Social (CFESS) e os Conselhos Regionais de Serviço Social (CRESS) constituem, em seu conjunto, uma entidade com personalidade jurídica e forma federativa, com o objetivo básico de disciplinar e defender o exercício da profissão de Assistente Social em todo o território nacional.", "paragrafos": [
+        { "num": "1º", "texto": "Os Conselhos Regionais de Serviço Social (CRESS) são dotados de autonomia administrativa e financeira, sem prejuízo de sua vinculação ao Conselho Federal, nos termos da legislação em vigor." },
+        { "num": "2º", "texto": "Cabe ao Conselho Federal de Serviço Social (CFESS) e aos Conselhos Regionais de Serviço Social (CRESS), representar, em juízo e fora dele, os interesses gerais e individuais dos Assistentes Sociais, no cumprimento desta lei." }
+      ] },
+      { "artigo": "8º", "caput": "Compete ao Conselho Federal de Serviço Social (CFESS), na qualidade de órgão normativo de grau superior, o exercício das seguintes atribuições:", "incisos": [
+        { "num": "I", "texto": "orientar, disciplinar, normatizar, fiscalizar e defender o exercício da profissão de Assistente Social, em conjunto com o CRESS;" },
+        { "num": "II", "texto": "assessorar os CRESS sempre que se fizer necessário;" },
+        { "num": "III", "texto": "aprovar os Regimentos Internos dos CRESS no fórum máximo de deliberação do conjunto CFESS/CRESS;" },
+        { "num": "IV", "texto": "aprovar o Código de Ética Profissional dos Assistentes Sociais juntamente com os CRESS, no fórum máximo de deliberação do conjunto CFESS/CRESS;" },
+        { "num": "V", "texto": "funcionar como Tribunal Superior de Ética Profissional;" },
+        { "num": "VI", "texto": "julgar, em última instância, os recursos contra as sanções impostas pelos CRESS;" },
+        { "num": "VII", "texto": "estabelecer os sistemas de registro dos profissionais habilitados;" },
+        { "num": "VIII", "texto": "prestar assessoria técnico-consultiva aos organismos públicos ou privados, em matéria de Serviço Social;" },
+        { "num": "IX", "texto": "(Vetado).", "vetado": true }
+      ] },
+      { "artigo": "9º", "caput": "O fórum máximo de deliberação da profissão para os fins desta lei dar-se-á nas reuniões conjuntas dos Conselhos Federal e Regionais, que inclusive fixarão os limites de sua competência e sua forma de convocação." },
+      { "artigo": "10", "caput": "Compete aos CRESS, em suas respectivas áreas de jurisdição, na qualidade de órgão executivo e de primeira instância, o exercício das seguintes atribuições:", "incisos": [
+        { "num": "I", "texto": "organizar e manter o registro profissional dos Assistentes Sociais e o cadastro das instituições e obras sociais públicas e privadas, ou de fins filantrópicos;" },
+        { "num": "II", "texto": "fiscalizar e disciplinar o exercício da profissão de Assistente Social na respectiva região;" },
+        { "num": "III", "texto": "expedir carteiras profissionais de Assistentes Sociais, fixando a respectiva taxa;" },
+        { "num": "IV", "texto": "zelar pela observância do Código de Ética Profissional, funcionando como Tribunais Regionais de Ética Profissional;" },
+        { "num": "V", "texto": "aplicar as sanções previstas no Código de Ética Profissional;" },
+        { "num": "VI", "texto": "fixar, em assembléia da categoria, as anuidades que devem ser pagas pelos Assistentes Sociais;" },
+        { "num": "VII", "texto": "elaborar o respectivo Regimento Interno e submetê-lo a exame e aprovação do fórum máximo de deliberação do conjunto CFESS/CRESS." }
+      ] },
+      { "artigo": "11", "caput": "O Conselho Federal de Serviço Social (CFESS) terá sede e foro no Distrito Federal." },
+      { "artigo": "12", "caput": "Em cada capital de Estado, de Território e no Distrito Federal, haverá um Conselho Regional de Serviço Social (CRESS) denominado segundo a sua jurisdição, a qual alcançará, respectivamente, a do Estado, a do Território e a do Distrito Federal.", "paragrafos": [
+        { "num": "1º", "texto": "Nos Estados ou Territórios em que os profissionais que neles atuam não tenham possibilidade de instalar um Conselho Regional, deverá ser constituída uma delegacia subordinada ao Conselho Regional que oferecer melhores condições de comunicação, fiscalização e orientação, ouvido o órgão regional e com homologação do Conselho Federal." },
+        { "num": "2º", "texto": "Os Conselhos Regionais poderão constituir, dentro de sua própria área de jurisdição, delegacias seccionais para desempenho de suas atribuições executivas e de primeira instância nas regiões em que forem instalados, desde que a arrecadação proveniente dos profissionais nelas atuantes seja suficiente para sua própria manutenção." }
+      ] },
+      { "artigo": "13", "caput": "A inscrição nos Conselhos Regionais sujeita os Assistentes Sociais ao pagamento das contribuições compulsórias (anuidades), taxas e demais emolumentos que forem estabelecidos em regulamentação baixada pelo Conselho Federal, em deliberação conjunta com os Conselhos Regionais." },
+      { "artigo": "14", "caput": "Cabe às Unidades de Ensino credenciar e comunicar aos Conselhos Regionais de sua jurisdição os campos de estágio de seus alunos e designar os Assistentes Sociais responsáveis por sua supervisão.", "paragrafo_unico": "Somente os estudantes de Serviço Social, sob supervisão direta de Assistente Social em pleno gozo de seus direitos profissionais, poderão realizar estágio de Serviço Social." },
+      { "artigo": "15", "caput": "É vedado o uso da expressão Serviço Social por quaisquer pessoas de direito público ou privado que não desenvolvam atividades previstas nos arts. 4º e 5º desta lei.", "paragrafo_unico": "As pessoas de direito público ou privado que se encontrem na situação mencionada neste artigo terão o prazo de noventa dias, a contar da data da vigência desta lei, para processarem as modificações que se fizerem necessárias a seu integral cumprimento, sob pena das medidas judiciais cabíveis." },
+      { "artigo": "16", "caput": "Os CRESS aplicarão as seguintes penalidades aos infratores dos dispositivos desta Lei:", "incisos": [
+        { "num": "I", "texto": "multa no valor de uma a cinco vezes a anuidade vigente;" },
+        { "num": "II", "texto": "suspensão de um a dois anos de exercício da profissão ao Assistente Social que, no âmbito de sua atuação, deixar de cumprir disposições do Código de Ética, tendo em vista a gravidade da falta;" },
+        { "num": "III", "texto": "cancelamento definitivo do registro, nos casos de extrema gravidade ou de reincidência contumaz." }
+      ], "paragrafos": [
+        { "num": "1º", "texto": "Provada a participação ativa ou conivência de empresas, entidades, instituições ou firmas individuais nas infrações a dispositivos desta lei pelos profissionais delas dependentes, serão estas também passíveis das multas aqui estabelecidas, na proporção de sua responsabilidade, sob pena das medidas judiciais cabíveis." },
+        { "num": "2º", "texto": "No caso de reincidência na mesma infração no prazo de dois anos, a multa cabível será elevada ao dobro." }
+      ] },
+      { "artigo": "17", "caput": "A Carteira de Identificação Profissional expedida pelos Conselhos Regionais de Serviço Social (CRESS), servirá de prova para fins de exercício profissional e de Carteira de Identidade Pessoal, e terá fé pública em todo o território nacional." },
+      { "artigo": "18", "caput": "As organizações que se registrarem nos CRESS receberão um certificado que as habilitará a atuar na área de Serviço Social." },
+      { "artigo": "19", "caput": "O Conselho Federal de Serviço Social (CFESS) será mantido:", "incisos": [
+        { "num": "I", "texto": "por contribuições, taxas e emolumentos arrecadados pelos CRESS, em percentual a ser definido pelo fórum máximo instituído pelo art. 9º desta lei;" },
+        { "num": "II", "texto": "por doações e legados;" },
+        { "num": "III", "texto": "por outras rendas." }
+      ] },
+      { "artigo": "20", "caput": "O Conselho Federal de Serviço Social (CFESS) e os Conselhos Regionais de Serviço Social (CRESS) contarão cada um com nove membros efetivos: Presidente, Vice-Presidente, dois Secretários, dois Tesoureiros e três membros do Conselho Fiscal, e nove suplentes, eleitos dentre os Assistentes Sociais, por via direta, para um mandato de três anos, de acordo com as normas estabelecidas em Código Eleitoral aprovado pelo fórum instituído pelo art. 9º desta lei.", "paragrafo_unico": "As delegacias seccionais contarão com três membros efetivos: um Delegado, um Secretário e um Tesoureiro, e três suplentes, eleitos dentre os Assistentes Sociais da área de sua jurisdição, nas condições previstas neste artigo." },
+      { "artigo": "21", "caput": "(Vetado).", "vetado": true },
+      { "artigo": "22", "caput": "O Conselho Federal e os Conselhos Regionais terão legitimidade para agir contra qualquer pessoa que infringir as disposições que digam respeito às prerrogativas, à dignidade e ao prestígio da profissão de Assistente Social." },
+      { "artigo": "23", "caput": "Esta lei entra em vigor na data de sua publicação." },
+      { "artigo": "24", "caput": "Revogam-se as disposições em contrário e, em especial, a Lei nº 3.252, de 27 de agosto de 1957." }
+    ],
+    "assinatura": {
+      "local_data": "Brasília, 7 de junho de 1993; 172º da Independência e 105º da República.",
+      "signatarios": ["ITAMAR FRANCO", "Walter Barelli"],
+      "nota": "Este texto não substitui o publicado no D.O.U. de 8.7.1993"
+    }
+  },
   "artigos": {
     "art_4": {
       "titulo": "Competências do Assistente Social",
