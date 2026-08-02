@@ -63,11 +63,12 @@
   .intro-continuar.show{ animation:fade .5s ease forwards; }
   @keyframes fade{ from{opacity:0} to{opacity:1} }
 
-  /* sobe em passos (JS ajusta opacity/transform inline a cada batida), não de uma vez só */
+  /* sobe em passos (JS ajusta transform inline a cada batida), não de uma vez só;
+     opacidade sempre 100%, só a posição muda */
   .intro-carimbador{
     display:block;margin:22px auto 0;max-width:150px;height:auto;
-    opacity:0;transform:translateY(80px);
-    transition:transform .3s cubic-bezier(.2,1.4,.4,1), opacity .3s ease;
+    opacity:1;transform:translateY(80px);
+    transition:transform .3s cubic-bezier(.2,1.4,.4,1);
   }
   /* bate o carimbo quando o jogador toca pra começar; mantém a posição final da subida */
   .intro-carimbador.hit{ animation:carimboHit .3s ease forwards; }
@@ -140,12 +141,7 @@ const CONTINUAR_EM = EH_MOBILE ? CONTINUAR_MOBILE : CONTINUAR_DESKTOP;
 const CLIMB_DESKTOP = [3040, 3620, 4230, 4830];
 const CLIMB_MOBILE = [4830, 5450, 6030, 6630];
 const CLIMB = EH_MOBILE ? CLIMB_MOBILE : CLIMB_DESKTOP;
-const SUBIDA_STEPS = [
-  { y: 60, op: .25 },
-  { y: 40, op: .5 },
-  { y: 20, op: .75 },
-  { y: 0,  op: 1 },
-];
+const SUBIDA_STEPS_Y = [60, 40, 20, 0];
 
 const titulo = document.getElementById('introTitle');
 const palavras = titulo.querySelectorAll('.palavra');
@@ -177,10 +173,9 @@ function iniciarSequencia(){
   const carimbador = document.getElementById('introCarimbador');
   CLIMB.forEach((t, i) => {
     setTimeout(() => {
-      const passo = SUBIDA_STEPS[i];
-      if(!passo) return;
-      carimbador.style.opacity = passo.op;
-      carimbador.style.transform = `translateY(${passo.y}px)`;
+      const y = SUBIDA_STEPS_Y[i];
+      if(y === undefined) return;
+      carimbador.style.transform = `translateY(${y}px)`;
     }, t);
   });
 
