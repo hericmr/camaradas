@@ -104,8 +104,18 @@
 <script>
 /* Timestamps reais extraídos do Theme.ogg (análise de picos de energia — ~100 BPM,
    batida a cada ~0.6s). O título bate junto com as 4 primeiras batidas da faixa. */
-const BEATS = [650, 1250, 1840, 2440];
-const CONTINUAR_EM = 5460; // próximo acento musical (fim da 1a frase)
+const BEATS_DESKTOP = [650, 1250, 1840, 2440];
+const CONTINUAR_DESKTOP = 5460; // próximo acento musical (fim da 1a frase)
+
+/* Em telas pequenas cada palavra ocupa a largura toda e demora mais pra ler,
+   então usa só as batidas alternadas (~1,2s entre elas, ainda batidas reais
+   da faixa) em vez de uma a cada ~0,6s. */
+const BEATS_MOBILE = [650, 1840, 3050, 4230];
+const CONTINUAR_MOBILE = 5450;
+
+const EH_MOBILE = window.matchMedia('(max-width:560px)').matches;
+const BEATS = EH_MOBILE ? BEATS_MOBILE : BEATS_DESKTOP;
+const CONTINUAR_EM = EH_MOBILE ? CONTINUAR_MOBILE : CONTINUAR_DESKTOP;
 
 const titulo = document.getElementById('introTitle');
 const palavras = titulo.querySelectorAll('.palavra');
