@@ -63,13 +63,16 @@
   .intro-continuar.show{ animation:fade .5s ease forwards; }
   @keyframes fade{ from{opacity:0} to{opacity:1} }
 
-  /* sobe em passos (JS ajusta opacity/transform inline a cada batida), não de uma vez só */
   .intro-carimbador{
     display:block;margin:22px auto 0;max-width:150px;height:auto;
-    opacity:0;transform:translateY(80px);
-    transition:transform .3s cubic-bezier(.2,1.4,.4,1), opacity .3s ease;
+    opacity:0;transform:translateY(60px);
   }
-  /* bate o carimbo quando o jogador toca pra começar; mantém a posição final da subida */
+  .intro-carimbador.show{ animation:subirCarimbo .5s cubic-bezier(.2,1.4,.4,1) forwards; }
+  @keyframes subirCarimbo{
+    0%{opacity:0;transform:translateY(60px)}
+    100%{opacity:1;transform:translateY(0)}
+  }
+  /* bate o carimbo quando o jogador toca pra começar; mantém a posição final da entrada */
   .intro-carimbador.hit{ animation:carimboHit .3s ease forwards; }
   @keyframes carimboHit{
     0%{transform:translateY(0) scale(1) rotate(0)}
@@ -95,7 +98,7 @@
     .intro-continuar{ animation:none !important; }
     .intro-logo-stamp.show{ animation:none !important; opacity:.95 !important; transform:translate(-50%,-50%) rotate(-8deg) scale(1) !important; }
     .intro-tap{ animation:none !important; opacity:1 !important; }
-    .intro-carimbador{ animation:none !important; transition:none !important; opacity:1 !important; transform:none !important; }
+    .intro-carimbador{ animation:none !important; opacity:1 !important; transform:none !important; }
   }
 </style>
 </head>
@@ -128,24 +131,11 @@ const CONTINUAR_DESKTOP = 5460; // próximo acento musical (fim da 1a frase)
    então usa só as batidas alternadas (~1,2s entre elas, ainda batidas reais
    da faixa) em vez de uma a cada ~0,6s. */
 const BEATS_MOBILE = [650, 1840, 3050, 4230];
-const CONTINUAR_MOBILE = 7220;
+const CONTINUAR_MOBILE = 5450;
 
 const EH_MOBILE = window.matchMedia('(max-width:560px)').matches;
 const BEATS = EH_MOBILE ? BEATS_MOBILE : BEATS_DESKTOP;
 const CONTINUAR_EM = EH_MOBILE ? CONTINUAR_MOBILE : CONTINUAR_DESKTOP;
-
-/* o assistente social sobe em 4 passos, um por batida, começando na batida
-   real seguinte ao fim do título e terminando pouco antes do "continuar" —
-   mesmas batidas reais da análise acima, só que depois das palavras. */
-const CLIMB_DESKTOP = [3040, 3620, 4230, 4830];
-const CLIMB_MOBILE = [4830, 5450, 6030, 6630];
-const CLIMB = EH_MOBILE ? CLIMB_MOBILE : CLIMB_DESKTOP;
-const SUBIDA_STEPS = [
-  { y: 60, op: .25 },
-  { y: 40, op: .5 },
-  { y: 20, op: .75 },
-  { y: 0,  op: 1 },
-];
 
 const titulo = document.getElementById('introTitle');
 const palavras = titulo.querySelectorAll('.palavra');
@@ -174,18 +164,9 @@ function iniciarSequencia(){
     }, t);
   });
 
-  const carimbador = document.getElementById('introCarimbador');
-  CLIMB.forEach((t, i) => {
-    setTimeout(() => {
-      const passo = SUBIDA_STEPS[i];
-      if(!passo) return;
-      carimbador.style.opacity = passo.op;
-      carimbador.style.transform = `translateY(${passo.y}px)`;
-    }, t);
-  });
-
   setTimeout(() => {
     document.getElementById('introContinuar').classList.add('show');
+    document.getElementById('introCarimbador').classList.add('show');
   }, CONTINUAR_EM);
 }
 
