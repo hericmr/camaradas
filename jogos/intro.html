@@ -63,23 +63,6 @@
   .intro-continuar.show{ animation:fade .5s ease forwards; }
   @keyframes fade{ from{opacity:0} to{opacity:1} }
 
-  .intro-carimbador{
-    display:block;margin:22px auto 0;max-width:150px;height:auto;
-    opacity:0;transform:translateY(60px);
-  }
-  .intro-carimbador.show{ animation:subirCarimbo .5s cubic-bezier(.2,1.4,.4,1) forwards; }
-  @keyframes subirCarimbo{
-    0%{opacity:0;transform:translateY(60px)}
-    100%{opacity:1;transform:translateY(0)}
-  }
-  /* bate o carimbo quando o jogador toca pra começar; mantém a posição final da entrada */
-  .intro-carimbador.hit{ animation:carimboHit .3s ease forwards; }
-  @keyframes carimboHit{
-    0%{transform:translateY(0) scale(1) rotate(0)}
-    40%{transform:translateY(0) scale(1.12) rotate(-4deg)}
-    100%{transform:translateY(0) scale(1) rotate(0)}
-  }
-
   .intro-logo-stamp{
     position:fixed;top:50%;left:50%;z-index:45;
     width:min(200px,42vw);height:auto;
@@ -98,7 +81,6 @@
     .intro-continuar{ animation:none !important; }
     .intro-logo-stamp.show{ animation:none !important; opacity:.95 !important; transform:translate(-50%,-50%) rotate(-8deg) scale(1) !important; }
     .intro-tap{ animation:none !important; opacity:1 !important; }
-    .intro-carimbador{ animation:none !important; opacity:1 !important; transform:none !important; }
   }
 </style>
 </head>
@@ -113,8 +95,6 @@
     <span class="palavra"> CARIMBADA,</span>
     <span class="palavra camarada"> camarada!</span>
   </h1>
-
-  <img class="intro-carimbador" id="introCarimbador" src="../img/carimbo/01.png" alt="assistente social de carimbo em punho, pronto para julgar">
 
   <div class="intro-continuar" id="introContinuar">toque pra continuar →</div>
 </div>
@@ -166,7 +146,6 @@ function iniciarSequencia(){
 
   setTimeout(() => {
     document.getElementById('introContinuar').classList.add('show');
-    document.getElementById('introCarimbador').classList.add('show');
   }, CONTINUAR_EM);
 }
 
@@ -189,9 +168,6 @@ function avancar(){
   saindo = true;
 
   document.getElementById('introLogoStamp').classList.add('show');
-  const carimbador = document.getElementById('introCarimbador');
-  carimbador.src = '../img/carimbo/02.png';
-  carimbador.classList.add('hit');
   try{
     const stamp = new Audio('../stamp.mp3');
     stamp.play().catch(()=>{});
