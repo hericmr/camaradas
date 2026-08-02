@@ -64,10 +64,12 @@
   @keyframes fade{ from{opacity:0} to{opacity:1} }
 
   /* sobe em passos (JS ajusta transform inline a cada batida), não de uma vez só;
-     opacidade sempre 100%, só a posição muda */
+     opacidade sempre 100%, só a posição muda. Começa a 70vh de distância —
+     bem abaixo da borda inferior da tela em qualquer aparelho, invisível
+     até a primeira batida da subida. */
   .intro-carimbador{
     display:block;margin:22px auto 0;max-width:150px;height:auto;
-    opacity:1;transform:translateY(80px);
+    opacity:1;transform:translateY(70vh);
     transition:transform .3s cubic-bezier(.2,1.4,.4,1);
   }
   /* bate o carimbo quando o jogador toca pra começar; mantém a posição final da subida */
@@ -120,28 +122,30 @@
 <img class="intro-logo-stamp" id="introLogoStamp" src="../logo.png" alt="">
 
 <script>
-/* Timestamps reais extraídos do Theme.ogg (análise de picos de energia — ~100 BPM,
-   batida a cada ~0.6s). O título bate junto com as 4 primeiras batidas da faixa. */
+/* Timestamps reais extraídos do Theme.ogg — onset detection por dois métodos
+   independentes (spectral flux + derivada do envelope RMS, via ffmpeg/numpy),
+   batidas aceitas só quando os dois métodos concordam (tolerância 60ms).
+   ~100 BPM, batida a cada ~0.6s. O título bate junto com as 4 primeiras
+   batidas da faixa. */
 const BEATS_DESKTOP = [650, 1250, 1840, 2440];
-const CONTINUAR_DESKTOP = 5460; // próximo acento musical (fim da 1a frase)
+const CONTINUAR_DESKTOP = 5450; // próxima batida confirmada (fim da 1a frase)
 
 /* Em telas pequenas cada palavra ocupa a largura toda e demora mais pra ler,
    então usa só as batidas alternadas (~1,2s entre elas, ainda batidas reais
    da faixa) em vez de uma a cada ~0,6s. */
 const BEATS_MOBILE = [650, 1840, 3050, 4230];
-const CONTINUAR_MOBILE = 7220;
+const CONTINUAR_MOBILE = 7245;
 
 const EH_MOBILE = window.matchMedia('(max-width:560px)').matches;
 const BEATS = EH_MOBILE ? BEATS_MOBILE : BEATS_DESKTOP;
 const CONTINUAR_EM = EH_MOBILE ? CONTINUAR_MOBILE : CONTINUAR_DESKTOP;
 
-/* o assistente social sobe em 4 passos, um por batida, começando na batida
-   real seguinte ao fim do título e terminando pouco antes do "continuar" —
-   mesmas batidas reais da análise acima, só que depois das palavras. */
-const CLIMB_DESKTOP = [3040, 3620, 4230, 4830];
-const CLIMB_MOBILE = [4830, 5450, 6030, 6630];
+/* o assistente social sobe em 4 passos, um por batida confirmada, começando
+   logo depois do fim do título e terminando pouco antes do "continuar". */
+const CLIMB_DESKTOP = [3050, 3630, 4230, 4830];
+const CLIMB_MOBILE = [4830, 5450, 6050, 6650];
 const CLIMB = EH_MOBILE ? CLIMB_MOBILE : CLIMB_DESKTOP;
-const SUBIDA_STEPS_Y = [60, 40, 20, 0];
+const SUBIDA_STEPS_VH = [52.5, 35, 17.5, 0]; // fração de 70vh (posição inicial) em cada passo
 
 const titulo = document.getElementById('introTitle');
 const palavras = titulo.querySelectorAll('.palavra');
@@ -173,9 +177,9 @@ function iniciarSequencia(){
   const carimbador = document.getElementById('introCarimbador');
   CLIMB.forEach((t, i) => {
     setTimeout(() => {
-      const y = SUBIDA_STEPS_Y[i];
+      const y = SUBIDA_STEPS_VH[i];
       if(y === undefined) return;
-      carimbador.style.transform = `translateY(${y}px)`;
+      carimbador.style.transform = `translateY(${y}vh)`;
     }, t);
   });
 
