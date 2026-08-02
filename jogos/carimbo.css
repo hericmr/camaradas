@@ -75,7 +75,7 @@ body{
   line-height:1.5;
   height:100vh;
   overflow:hidden;
-  padding:0 clamp(14px,4vw,24px) 64px;
+  padding:0 clamp(14px,4vw,24px);
 }
 /* ---- Papel de parede: intercala entre 3 fundos, um por fase (ver classe bg-2/bg-3 no <body>) ---- */
 body::before{
@@ -172,9 +172,10 @@ h1 .camarada{
   color:var(--line);font-weight:700;
 }
 .doc-label{
+  max-width:760px;margin:14px auto 0;text-align:center;
   font-family:'Bangalore',"Helvetica Neue",Arial,sans-serif;font-size:12px;
-  letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);
-  font-weight:400;border-bottom:1px solid var(--line);padding-bottom:8px;margin-bottom:16px;
+  letter-spacing:.18em;text-transform:uppercase;color:#fff;
+  font-weight:400;
 }
 .activity{font-family:'Megan Serif',"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;font-size:clamp(18px,4.4vw,23px);line-height:1.42;min-height:120px;letter-spacing:-.005em}
 .qnum{color:var(--gold);font-weight:700}
@@ -303,9 +304,9 @@ h1 .camarada{
   font-size:15px;padding:13px 26px;border-radius:4px}
 .done button:hover{background:var(--ink);color:var(--paper-2)}
 
-.foot{margin-top:34px;text-align:center;font-family:'04b03',"Helvetica Neue",Arial,sans-serif;font-size:12px;color:var(--ink-soft);letter-spacing:.06em}
-.foot a{color:var(--ink-soft);text-decoration:underline;text-underline-offset:2px}
-.foot a:hover{color:var(--ink)}
+.foot{margin-top:34px;text-align:center;font-family:'04b03',"Helvetica Neue",Arial,sans-serif;font-size:12px;color:rgba(255,255,255,.7);letter-spacing:.06em}
+.foot a{color:rgba(255,255,255,.7);text-decoration:underline;text-underline-offset:2px}
+.foot a:hover{color:#fff}
 
 @media (prefers-reduced-motion: reduce){
   .seal.show{animation:none;opacity:.92;transform:translate(-50%,-50%) rotate(-14deg) scale(1)}

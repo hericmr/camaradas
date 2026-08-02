@@ -38,7 +38,6 @@
   <!-- ===== MODO JOGO ===== -->
   <section class="stage" id="playStage">
     <div class="card" id="card" data-label="CÓDIGO DE ÉTICA">
-      <div class="doc-label" id="docLabel">Documento nº 1: classifique a atividade</div>
       <div class="activity" id="activity">…</div>
 
       <div class="carimbador-row">
@@ -76,6 +75,7 @@
     </div>
   </section>
 </div>
+<div class="doc-label" id="docLabel">Documento nº 1: classifique a atividade</div>
   <div class="foot">Fonte: <a href="https://www.cfess.org.br/arquivos/CEP_CFESS-SITE.pdf" target="_blank" rel="noopener">Código de Ética do/a Assistente Social, Resolução CFESS nº 273, de 13 de março de 1993 (PDF oficial)</a></div>
 </div>
 
@@ -180,7 +180,6 @@ function renderCard(){
 
 function cardTemplate(){
   return `
-    <div class="doc-label" id="docLabel"></div>
     <div class="activity" id="activity"></div>
     <div class="carimbador-row">
       <div class="hud-side">
@@ -280,6 +279,7 @@ function reviewHtml(){
 }
 
 function showDone(){
+  $('docLabel').textContent='';
   const pct=Math.round(correct/deck.length*100);
   carimboSalvarProgresso('etica', correct, deck.length, best);
   let msg;
