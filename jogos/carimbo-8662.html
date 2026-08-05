@@ -14,7 +14,7 @@
   .seal.green{color:var(--seal-green)}
   .seal.red{color:var(--seal-red)}
 </style>
-  <link rel="stylesheet" crossorigin href="/camaradas/assets/carimbo-DvlDHyiI.css">
+  <link rel="stylesheet" crossorigin href="/camaradas/assets/carimbo-B7DoTX-P.css">
 </head>
 <body>
   <div class="game-navbar">
@@ -25,7 +25,7 @@
       <div class="fases-dropdown" id="fasesDropdown">
         <div class="dropdown-actions">
           <button class="dropdown-action" id="musicaBtn" onclick="alternarMusica()" aria-pressed="false">tocar música</button>
-          <a class="dropdown-action" id="manualBtn" href="https://www.planalto.gov.br/ccivil_03/leis/L8662.htm" target="_blank" rel="noopener">consultar a lei</a>
+          <button class="dropdown-action" id="manualBtn" onclick="alternarManual()">consultar a lei</button>
         </div>
         <nav class="fases" id="fasesNav"></nav>
       </div>
@@ -37,7 +37,6 @@
   <!-- ===== MODO JOGO ===== -->
   <section class="stage" id="playStage">
     <div class="card" id="card" data-label="LEI 8.662/93">
-      <div class="doc-label" id="docLabel">Documento nº 1: classifique a atividade</div>
       <div class="activity" id="activity">…</div>
 
       <div class="carimbador-row">
@@ -71,6 +70,7 @@
     </div>
   </section>
 </div>
+<div class="doc-label" id="docLabel">Documento nº 1: classifique a atividade</div>
   <div class="foot">Fonte: <a href="https://www.planalto.gov.br/ccivil_03/leis/L8662.htm" target="_blank" rel="noopener">texto oficial · Lei nº 8.662, de 7 de junho de 1993</a></div>
 </div>
 
@@ -159,7 +159,6 @@ function renderCard(){
 
 function cardTemplate(){
   return `
-    <div class="doc-label" id="docLabel"></div>
     <div class="activity" id="activity"></div>
     <div class="carimbador-row">
       <div class="hud-side">
@@ -254,6 +253,7 @@ function reviewHtml(){
 }
 
 function showDone(){
+  $('docLabel').textContent='';
   const pct=Math.round(correct/deck.length*100);
   carimboSalvarProgresso('8662', correct, deck.length, best);
   let msg;
@@ -287,6 +287,42 @@ document.addEventListener('click', e=>{
   }
 });
 
+/* ---------- painel dock: manual (lei íntegra em PDF) ---------- */
+function isDocked(){
+  return window.matchMedia('(min-width:1100px)').matches;
+}
+function estaAberto(id){
+  const ov=document.getElementById(id);
+  if(!ov) return false;
+  return isDocked() ? !ov.classList.contains('collapsed') : ov.classList.contains('show');
+}
+function fecharPainel(id){
+  const ov=document.getElementById(id);
+  if(!ov) return;
+  if(isDocked()) ov.classList.add('collapsed');
+  else ov.classList.remove('show');
+}
+function abrirPainel(id){
+  cancelarAutoAvanco();
+  const ov=document.getElementById(id);
+  if(isDocked()) ov.classList.remove('collapsed');
+  else ov.classList.add('show');
+  atualizarBotoes();
+}
+function atualizarBotoes(){
+  const ov=document.getElementById('manualOverlay'), btn=document.getElementById('manualBtn');
+  if(!ov||!btn) return;
+  btn.style.display = estaAberto('manualOverlay') ? 'none' : '';
+}
+function abrirManual(){
+  abrirPainel('manualOverlay');
+  const pdf=document.getElementById('manualPdf');
+  if(pdf && !pdf.getAttribute('src')) pdf.setAttribute('src', '../data/lei8662-cfess.pdf');
+}
+function fecharManual(){ fecharPainel('manualOverlay'); atualizarBotoes(); }
+function alternarManual(){ if(estaAberto('manualOverlay')) fecharManual(); else abrirManual(); }
+window.addEventListener('resize', atualizarBotoes);
+
 
 /* ---------- init ---------- */
 fetch('../data/lei8662.json')
@@ -297,6 +333,14 @@ fetch('../data/lei8662.json')
   })
   .catch(()=>{ $('activity').textContent='não foi possível carregar as questões.'; });
 </script>
+<div class="manual-overlay" id="manualOverlay" onclick="if(event.target===this) fecharManual()">
+  <div class="manual-panel">
+    <div class="manual-head">
+      <button class="manual-close" onclick="fecharManual()" aria-label="fechar">×</button>
+    </div>
+    <iframe class="manual-pdf" id="manualPdf" title="Lei nº 8.662/1993, texto integral (PDF oficial CFESS)"></iframe>
+  </div>
+</div>
 </div>
 </body>
 </html>

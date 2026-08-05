@@ -23,7 +23,7 @@
   #seal.opt2{color:var(--seal-gold)}
   #seal.opt3{color:var(--seal-purple)}
 </style>
-  <link rel="stylesheet" crossorigin href="/camaradas/assets/carimbo-DvlDHyiI.css">
+  <link rel="stylesheet" crossorigin href="/camaradas/assets/carimbo-B7DoTX-P.css">
 </head>
 <body class="bg-3">
 <div class="game-navbar">
@@ -46,7 +46,6 @@
   <!-- ===== MODO JOGO ===== -->
   <section class="stage" id="playStage">
     <div class="card" id="card" data-label="LEI ORGÂNICA DE SANTOS">
-      <div class="doc-label" id="docLabel">Documento nº 1: Tributação, Saúde ou Proteção Especial?</div>
       <div class="activity" id="activity">…</div>
 
       <div class="carimbador-row">
@@ -72,6 +71,7 @@
     </div>
   </section>
 </div>
+<div class="doc-label" id="docLabel">Documento nº 1: Tributação, Saúde ou Proteção Especial?</div>
   <div class="foot">Fonte: Lei Orgânica do Município de Santos, atualizada até 10/11/2022 (Gabinete do Prefeito)</div>
 </div>
 
@@ -207,7 +207,6 @@ function avancarQuestao(){
 
 function cardInnerHtml(){
   return `
-    <div class="doc-label" id="docLabel"></div>
     <div class="activity" id="activity"></div>
     <div class="carimbador-row">
       <div class="hud-side">
@@ -321,6 +320,7 @@ function reviewHtml(){
 }
 
 function showDone(){
+  $('docLabel').textContent='';
   const pct=Math.round(correct/deck.length*100);
   carimboSalvarProgresso('santos-politicas', correct, deck.length, best);
   let msg;

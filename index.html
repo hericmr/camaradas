@@ -8,8 +8,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <script type="module" crossorigin src="/camaradas/assets/main-CL9oBbFm.js"></script>
-    <link rel="stylesheet" crossorigin href="/camaradas/assets/main-PL-JVp2R.css">
+    <script type="module" crossorigin src="/camaradas/assets/main-BZQnvjFp.js"></script>
+    <link rel="stylesheet" crossorigin href="/camaradas/assets/main-D_dfhEcP.css">
   </head>
   <body>
     <div id="app">
@@ -41,21 +41,33 @@
                   <h2 class="brand-title">Aliança dxs Camaradas Assistente Sociais</h2>
                 </div>
 
-                <div class="exam-select-wrapper mb-6">
-                  <label for="exam-select" class="field-label">Prova</label>
-                  <select id="exam-select" class="exam-select"></select>
+                <div class="mode-tabs mb-6" role="tablist">
+                  <button type="button" id="tab-prova" class="mode-tab active" data-mode="prova">Prova completa</button>
+                  <button type="button" id="tab-disciplina" class="mode-tab" data-mode="disciplina">Por disciplina</button>
                 </div>
 
-                <label class="mode-selector mb-6">
-                  <span class="toggle-switch">
-                    <input type="checkbox" id="mode-toggle">
-                    <span class="slider"></span>
-                  </span>
-                  <span class="mode-selector-text">
-                    <strong>Modo Treino</strong>
-                    <span>sem tempo limite</span>
-                  </span>
-                </label>
+                <div id="panel-prova" class="start-panel">
+                  <div class="exam-select-wrapper mb-6">
+                    <label for="exam-select" class="field-label">Prova</label>
+                    <select id="exam-select" class="exam-select"></select>
+                  </div>
+                </div>
+
+                <div id="panel-disciplina" class="start-panel hidden">
+                  <div class="exam-select-wrapper mb-6">
+                    <label class="field-label">Cargos</label>
+                    <div id="cargo-checklist" class="disciplina-checklist"></div>
+                  </div>
+                  <div class="exam-select-wrapper mb-6">
+                    <label class="field-label">Disciplinas</label>
+                    <div id="disciplina-checklist" class="disciplina-checklist"></div>
+                  </div>
+                  <div class="exam-select-wrapper mb-6">
+                    <label for="question-count" class="field-label">Número de questões</label>
+                    <input type="number" id="question-count" class="question-count-input" min="1" value="10">
+                    <span id="question-count-hint" class="field-hint"></span>
+                  </div>
+                </div>
 
                 <button id="btn-start" class="btn-primary btn-block">Começar Simulado</button>
               </div>
