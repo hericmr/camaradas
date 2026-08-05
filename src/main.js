@@ -6,14 +6,18 @@ import ibamData from './data/ibam_provas.json';
 const examKeys = Object.keys(ibamData);
 let examKey = examKeys[0];
 let examQuestions = ibamData[examKey];
-const DEFAULT_DURATION_MS = 3.5 * 60 * 60 * 1000;
-let currentDurationMs = DEFAULT_DURATION_MS;
+
+// Pool de todas as questões de todas as provas, usado pelo modo "Por disciplina"
+// (cada questão já carrega cargo/disciplina/banca próprios, então dá pra filtrar
+// e misturar entre provas sem perder esse contexto).
+const allQuestions = examKeys.flatMap((key) => ibamData[key]);
+const cargoList = [...new Set(allQuestions.map((q) => q.cargo).filter(Boolean))];
+let activeStartMode = 'prova';
 
 let engine = null;
 let currentQuestionIndex = 0;
 let timerInterval = null;
-let hasTimerLimit = true;
-let currentMode = 'prova';
+let currentMode = 'simulado';
 let lastResult = null;
 
 const ROUTE_HOME = '#/';
@@ -30,8 +34,16 @@ const screens = {
 const elHeader = document.querySelector('.app-header');
 
 const btnStart = document.getElementById('btn-start');
-const elModeToggle = document.getElementById('mode-toggle');
 const elExamSelect = document.getElementById('exam-select');
+
+const tabProva = document.getElementById('tab-prova');
+const tabDisciplina = document.getElementById('tab-disciplina');
+const panelProva = document.getElementById('panel-prova');
+const panelDisciplina = document.getElementById('panel-disciplina');
+const elCargoChecklist = document.getElementById('cargo-checklist');
+const elDisciplinaChecklist = document.getElementById('disciplina-checklist');
+const elQuestionCount = document.getElementById('question-count');
+const elQuestionCountHint = document.getElementById('question-count-hint');
 
 const elProgressCard = document.getElementById('progress-card');
 const elErrorBankCount = document.getElementById('error-bank-count');
@@ -80,15 +92,143 @@ function selectExam(key) {
   examQuestions = ibamData[examKey];
 }
 
+function titleCase(str) {
+  return str.toLowerCase().replace(/(^|\s)\S/g, (c) => c.toUpperCase());
+}
+
+function shuffle(arr) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
+function setStartMode(mode) {
+  activeStartMode = mode;
+  tabProva.classList.toggle('active', mode === 'prova');
+  tabDisciplina.classList.toggle('active', mode === 'disciplina');
+  panelProva.classList.toggle('hidden', mode !== 'prova');
+  panelDisciplina.classList.toggle('hidden', mode !== 'disciplina');
+}
+
+function renderCargoChecklist() {
+  elCargoChecklist.innerHTML = '';
+  cargoList.forEach((cargo) => {
+    const label = document.createElement('label');
+    label.className = 'disciplina-checklist-item';
+    label.innerHTML = `<input type="checkbox" value="${cargo}" checked> ${titleCase(cargo)}`;
+    label.querySelector('input').addEventListener('change', renderDisciplinaChecklist);
+    elCargoChecklist.appendChild(label);
+  });
+}
+
+function getCheckedCargos() {
+  return [...elCargoChecklist.querySelectorAll('input:checked')].map((cb) => cb.value);
+}
+
+function getDisciplinasForCargos(cargos) {
+  const disciplinas = [];
+  allQuestions.forEach((q) => {
+    if (cargos.includes(q.cargo) && q.disciplina && !disciplinas.includes(q.disciplina)) {
+      disciplinas.push(q.disciplina);
+    }
+  });
+  return disciplinas;
+}
+
+function renderDisciplinaChecklist() {
+  const cargos = getCheckedCargos();
+  const disciplinas = getDisciplinasForCargos(cargos);
+
+  elDisciplinaChecklist.innerHTML = '';
+  if (disciplinas.length === 0) {
+    elDisciplinaChecklist.innerHTML = '<span class="disciplina-checklist-empty">Nenhuma disciplina encontrada.</span>';
+    updateQuestionCountHint();
+    return;
+  }
+
+  disciplinas.forEach((disciplina) => {
+    const label = document.createElement('label');
+    label.className = 'disciplina-checklist-item';
+    label.innerHTML = `<input type="checkbox" value="${disciplina}" checked> ${disciplina}`;
+    label.querySelector('input').addEventListener('change', updateQuestionCountHint);
+    elDisciplinaChecklist.appendChild(label);
+  });
+
+  updateQuestionCountHint();
+}
+
+function getCheckedDisciplinas() {
+  return [...elDisciplinaChecklist.querySelectorAll('input:checked')].map((cb) => cb.value);
+}
+
+function getDisciplinaPool() {
+  const cargos = getCheckedCargos();
+  const disciplinas = getCheckedDisciplinas();
+  return allQuestions.filter((q) => cargos.includes(q.cargo) && disciplinas.includes(q.disciplina));
+}
+
+function updateQuestionCountHint() {
+  const total = getDisciplinaPool().length;
+  elQuestionCount.max = total || 1;
+  elQuestionCount.value = total || 1;
+  elQuestionCountHint.textContent = total > 0
+    ? `${total} questão${total === 1 ? '' : 'ões'} disponível${total === 1 ? '' : 'is'} — todas incluídas por padrão, reduza se quiser um simulado mais curto`
+    : 'nenhuma questão disponível para essa combinação';
+}
+
+function prepareDisciplinaSession() {
+  const cargos = getCheckedCargos();
+  if (cargos.length === 0) {
+    alert('Selecione ao menos um cargo.');
+    return false;
+  }
+
+  const disciplinas = getCheckedDisciplinas();
+  if (disciplinas.length === 0) {
+    alert('Selecione ao menos uma disciplina.');
+    return false;
+  }
+
+  const pool = getDisciplinaPool();
+  if (pool.length === 0) {
+    alert('Nenhuma questão encontrada para essa combinação.');
+    return false;
+  }
+
+  const requested = parseInt(elQuestionCount.value, 10) || 1;
+  const count = Math.min(Math.max(1, requested), pool.length);
+
+  const cargosLabel = cargos.length === cargoList.length
+    ? 'Todos os cargos'
+    : cargos.map(titleCase).join(', ');
+
+  examQuestions = shuffle([...pool]).slice(0, count);
+  examKey = `${cargosLabel} — ${disciplinas.join(', ')}`;
+  return true;
+}
+
 function init() {
   populateExamSelect();
   selectExam(examKey);
-  elModeToggle.checked = false;
+  renderCargoChecklist();
+  renderDisciplinaChecklist();
   renderProgressSection();
 
+  tabProva.addEventListener('click', () => setStartMode('prova'));
+  tabDisciplina.addEventListener('click', () => setStartMode('disciplina'));
+
   elExamSelect.addEventListener('change', () => selectExam(elExamSelect.value));
-  btnStart.addEventListener('click', () => startExam());
-  btnFinish.addEventListener('click', () => finishExam(false));
+  btnStart.addEventListener('click', () => {
+    if (activeStartMode === 'disciplina') {
+      if (!prepareDisciplinaSession()) return;
+    } else {
+      selectExam(elExamSelect.value);
+    }
+    startExam();
+  });
+  btnFinish.addEventListener('click', () => finishExam());
   btnPrev.addEventListener('click', () => navigateTo(currentQuestionIndex - 1));
   btnCheck.addEventListener('click', checkCurrentQuestion);
   btnNext.addEventListener('click', () => navigateTo(currentQuestionIndex + 1));
@@ -193,9 +333,7 @@ function persistActiveExam() {
     checkedQuestions: engine.checkedQuestions,
     startTime: engine.startTime,
     currentQuestionIndex,
-    hasTimerLimit,
-    currentMode,
-    currentDurationMs
+    currentMode
   };
   try {
     sessionStorage.setItem(ACTIVE_EXAM_KEY, JSON.stringify(state));
@@ -223,9 +361,7 @@ function resumeActiveExam() {
 
   examKey = saved.examKey;
   examQuestions = saved.questions;
-  hasTimerLimit = saved.hasTimerLimit;
   currentMode = saved.currentMode;
-  currentDurationMs = saved.currentDurationMs;
   currentQuestionIndex = saved.currentQuestionIndex || 0;
 
   engine = new SimuladoEngine(examQuestions);
@@ -233,9 +369,6 @@ function resumeActiveExam() {
   engine.checkedQuestions = saved.checkedQuestions || {};
   engine.startTime = saved.startTime;
 
-  if (hasTimerLimit) {
-    elTimer.style.color = '#b45309';
-  }
   btnFinish.classList.remove('hidden');
 
   updateTimerDisplay();
@@ -253,7 +386,7 @@ function resetToHome() {
   lastResult = null;
   examKey = examKeys[0];
   selectExam(examKey);
-  elModeToggle.checked = false;
+  setStartMode('prova');
   clearActiveExam();
   renderProgressSection();
   history.replaceState(null, '', ROUTE_HOME);
@@ -271,31 +404,11 @@ function formatTime(ms) {
 function updateTimerDisplay() {
   if (!engine || !engine.startTime) return;
   const elapsed = Date.now() - engine.startTime;
-  
-  if (hasTimerLimit) {
-    const timeLeft = currentDurationMs - elapsed;
-    if (timeLeft <= 0) {
-      elTimer.textContent = "00:00:00";
-      finishExam(true);
-      return;
-    }
-    elTimer.textContent = formatTime(timeLeft);
-    if (timeLeft < 10 * 60 * 1000) {
-      elTimer.style.color = 'var(--danger)';
-    }
-  } else {
-    elTimer.textContent = formatTime(elapsed);
-  }
+  elTimer.textContent = formatTime(elapsed);
 }
 
-function startExam({ forcedPractice = false, forcedMode = null, noTimeOverride = null, durationMs = DEFAULT_DURATION_MS } = {}) {
-  hasTimerLimit = forcedPractice ? false : (noTimeOverride !== null ? !noTimeOverride : !elModeToggle.checked);
-  currentMode = forcedMode || (forcedPractice ? 'erros' : (hasTimerLimit ? 'prova' : 'treino'));
-  currentDurationMs = durationMs;
-
-  if (hasTimerLimit) {
-    elTimer.style.color = '#b45309'; // warning
-  }
+function startExam({ forcedMode = null } = {}) {
+  currentMode = forcedMode || 'simulado';
 
   btnFinish.classList.remove('hidden');
 
@@ -318,7 +431,7 @@ function startErrorPractice() {
   if (practiceSet.length === 0) return;
   examKey = 'caderno de erros';
   examQuestions = practiceSet;
-  startExam({ forcedPractice: true });
+  startExam({ forcedMode: 'erros' });
 }
 
 function buildNavigationGrid() {
@@ -452,14 +565,12 @@ function checkCurrentQuestion() {
   persistActiveExam();
 }
 
-function finishExam(isAuto = false) {
-  if (!isAuto) {
-    const pending = countPending();
-    const message = pending > 0
-      ? `Você ainda tem ${pending} questão${pending === 1 ? '' : 'ões'} sem resposta. Deseja finalizar mesmo assim?`
-      : 'Tem certeza que deseja finalizar a prova?';
-    if (!confirm(message)) return;
-  }
+function finishExam() {
+  const pending = countPending();
+  const message = pending > 0
+    ? `Você ainda tem ${pending} questão${pending === 1 ? '' : 'ões'} sem resposta. Deseja finalizar mesmo assim?`
+    : 'Tem certeza que deseja finalizar a prova?';
+  if (!confirm(message)) return;
 
   clearInterval(timerInterval);
   engine.finish();

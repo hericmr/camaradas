@@ -676,36 +676,6 @@ body {
   border-color: var(--primary-blue);
 }
 
-/* Toggle */
-.toggle-switch {
-  display: inline-flex;
-  align-items: center;
-  cursor: pointer;
-}
-.toggle-switch input { display: none; }
-.slider {
-  width: 44px;
-  height: 24px;
-  background-color: var(--gray-200);
-  border-radius: 9999px;
-  position: relative;
-  transition: 0.3s;
-}
-.slider:before {
-  content: "";
-  position: absolute;
-  height: 18px;
-  width: 18px;
-  left: 3px;
-  bottom: 3px;
-  background-color: var(--white);
-  border-radius: 50%;
-  transition: 0.3s;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.1);
-}
-.toggle-switch input:checked + .slider { background-color: var(--primary-blue); }
-.toggle-switch input:checked + .slider:before { transform: translateX(20px); }
-
 /* Card "Montar simulado" */
 .start-card {
   padding: 2rem;
@@ -748,32 +718,82 @@ body {
   margin-bottom: 0.4rem;
 }
 
-.mode-selector {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  cursor: pointer;
-}
-
-.mode-selector-text {
-  display: flex;
-  flex-direction: column;
-  font-size: 0.85rem;
-  color: var(--text-gray);
-  line-height: 1.3;
-}
-
-.mode-selector-text strong {
-  color: var(--text-dark);
-  font-size: 0.9rem;
-}
-
 .btn-block {
   display: block;
   width: 100%;
   padding: 0.85rem 1rem;
   font-size: 0.95rem;
   text-align: center;
+}
+
+/* Alternância "Prova completa" / "Por disciplina" */
+.mode-tabs {
+  display: flex;
+  gap: 0.4rem;
+}
+.mode-tab {
+  flex: 1;
+  padding: 0.5rem 0.75rem;
+  border: none;
+  border-radius: 0.4rem;
+  background: transparent;
+  color: var(--text-gray);
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+}
+.mode-tab:hover { color: var(--text-dark); }
+.mode-tab.active {
+  background: var(--brand-red);
+  color: var(--white);
+}
+
+.field-hint {
+  display: block;
+  font-size: 0.78rem;
+  color: var(--text-light);
+  margin-top: 0.35rem;
+}
+
+.disciplina-checklist {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  border: 1px solid var(--gray-200);
+  border-radius: 0.5rem;
+  padding: 0.75rem;
+  max-height: 12rem;
+  overflow-y: auto;
+  background-color: var(--card-bg);
+}
+.disciplina-checklist-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.88rem;
+  color: var(--text-dark);
+  cursor: pointer;
+}
+.disciplina-checklist-empty {
+  font-size: 0.85rem;
+  color: var(--text-light);
+}
+
+.question-count-input {
+  width: 100%;
+  padding: 0.6rem 0.75rem;
+  border: 1px solid var(--gray-200);
+  border-radius: 0.5rem;
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  color: var(--text-dark);
+  background-color: var(--card-bg);
+}
+.question-count-input:focus {
+  outline: none;
+  border-color: var(--brand-red);
 }
 
 /* Seletor de simulado */
